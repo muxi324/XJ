@@ -14,15 +14,13 @@ public class SendTaskService
 {
     @Resource(name = "daoSupport")
     private DaoSupport dao;
-    @Resource(name = "HouseService")
-    private HouseService houseService;
+  
 
     /*
    * 新增
    */
     public void save(PageData pd)throws Exception{
         dao.save("SendTaskMapper.save", pd);
-        houseService.editStatus2(pd);
     }
 
     //    修改图片
@@ -30,7 +28,5 @@ public class SendTaskService
         dao.update("SendTaskMapper.editpic", pd);
     }
 
-    public PageData count(PageData pd)throws Exception{
-        return (PageData)dao.findForObject("SendTaskMapper.count", pd);
-    }
+  
 }
