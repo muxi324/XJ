@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="HouseMapper">
+
+    <resultMap type="com.wp.entity.house.House" id="lockResultMap">
+        <!--<id column="house_id" property="house_id"/>-->
+        <result column="type_lock" property="type_lock"/>
+        <result column="type_model" property="type_model"/>
+    </resultMap>
+
+    <!-- 新增-->
+    <insert id="save" parameterType="pd">
+        insert into set_mission(
+        house_address,house_owner,owner_phone,lock_code,lock_type,lock_model,door_type,lock_pic,longitude,latitude,set_condition,
+        add_time) values (   #{house_address},#{house_owner}, #{owner_phone}, #{lock_code},#{lock_type},
+        #{lock_model}, #{door_type},#{lock_pic},#{longitude},#{latitude},#{set_condition}, #{add_time}
+        )
+    </insert>
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from set_mission
+        where
+        house_id = #{house_id}
+    </delete>
+    <!-- 修改 -->
+    <update id="edit" parameterType="pd">
+        update  set_mission
+        set
+        house_address = #{house_address},
+        house_owner = #{house_owner},
+        owner_phone = #{owner_phone},
+        lock_code   = #{lock_code},
+        lock_model  = #{lock_model},
+        lock_type  = #{lock_type},
+        door_type   = #{door_type},
+        longitude   = #{longitude},
+        latitude    = #{latitude},
+        lock_pic    = #{lock_pic}
+        where
+        house_id = #{house_id}
+    </update>
+    <!-- 修改图片 -->
+    <update id="editpic" parameterType="pd">
+        update  set_mission
+        set
+        
+        lock_pic    = #{lock_pic}
+        where
+        house_id = #{house_id}
+    </update>
+    <!--列出所有锁的类型-->
+    <select id="listLockType" resultMap="lockResultMap">
+       select distinct lock_type from set_mission h where h.lock_type  is not null
+    </select>
+    <!--列出所有锁的型号-->
+    <select id="listLockModel" resultMap="lockResultMap">
+        select distinct lock_model from set_mission h where h.lock_model  is not null
+    </select>
+    <!--通过ID获取数据-->
+    <select id="findById" parameterType="pd" resultType="pd">
+        select *  from set_mission
+        where
+        house_id = #{house_id}
+    </select>
+
+    <!--通过enquiry获取数据-->
+    <select id="houselistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from set_mission
+        where 1 = 1
+       /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            house_address LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            house_owner  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            owner_phone LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            house_id   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.set_condition != null and pd.set_condition != ''"> <!--状态检索 -->
+            and set_condition = #{pd.set_condition}
+        </if>
+        order by add_time desc
+    </select>
+    <!-- 房源列表(全部) -->
+    <select id="listAllHouse" parameterType="pd" resultType="pd" useCache="false">
+        select  *   from set_mission
+        where 1 = 1
+        /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="enquiry != null and enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            house_address LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            house_owner  LIKE CONCAT(CONCAT('%',#{enquiry}),'%')
+            or
+            owner_phone LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            house_id   LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            )
+        </if>
+        <if test="set_condition != null and set_condition != ''"><!-- 状态检索 -->
+            and set_condition = #{set_condition}
+        </if>
+        order by add_time desc
+    </select>
+    <!-- 批量删除房源 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from set_mission
+        where
+        house_id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 修改房源状态 -->
+    <update id="editStatus" parameterType="pd">
+        update  set_mission
+        set
+        set_condition = 1
+        where
+        house_id = #{house_id}
+    </update>
+
+    <!-- 修改房源状态 -->
+    <update id="editStatus2" parameterType="pd">
+        update  set_mission
+        set
+        set_condition = 2
+        where
+        house_id = #{house_id}
+    </update>
+
+
+
+</mapper>

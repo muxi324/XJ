@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="SendTaskMapper">
+
+
+
+    <!-- 新增-->
+    <insert id="save" parameterType="pd">
+        insert into mission(
+        flow_number,mission_condition,team,worker_name,worker_phone,lock_type,lock_model,door_type,lock_code,set_start_time,set_finish_time,mission_addition,house_id,house_owner_name,house_owner_phone,house_address,random_code,send_time)
+        values (  #{flow_number}, #{mission_condition}, #{team}, #{worker_name}, #{worker_phone}, #{lock_type},#{lock_model},#{door_type},#{lock_code},#{set_start_time},#{set_finish_time}, #{mission_addtion}, #{house_id}, #{house_owner_name}, #{house_owner_phone},#{house_address},
+        #{random_code},#{send_time}
+        )
+    </insert>
+
+
+    <!-- 修改图片 -->
+    <update id="editpic" parameterType="pd">
+        update  mission_pic
+        set
+        
+        pic    = #{lock_pic}
+        where
+        mission_id = #{mission_id}
+    </update>
+
+
+    <!--通过ID获取数据-->
+    <select id="findById" parameterType="pd" resultType="pd">
+        select *  from set_mission
+        where
+        house_id = #{house_id}
+    </select>
+
+    <!--统计house_id出现的次数，拼接flow_number -->
+    <select id="count" parameterType="pd" resultType="pd">
+        select count(*)+1 as cnt from mission
+        where
+        house_id = #{house_id}
+    </select>
+
+
+
+
+
+</mapper>

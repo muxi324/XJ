@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="QueryTaskMapper">
+
+
+
+    <!--通过id获取数据-->
+    <select id="findById" parameterType="pd" resultType="pd">
+        SELECT m.*,h.longitude,h.latitude,h.time  FROM mission m LEFT JOIN history_location h
+        ON m.mission_id = h.mission_id
+        WHERE
+        m.mission_id = #{mission_id}
+    </select>
+
+    <!--通过enquiry获取数据-->
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from mission
+        where 1 = 1
+       /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            flow_number LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            worker_name  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            house_owner_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            house_owner_phone  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            team   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''"><!-- 到期时间检索 -->
+            and send_time &gt;= #{pd.sendTimeStart}
+        </if>
+        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''"><!-- 到期时间检索 -->
+            and send_time &lt;= #{pd.sendTimeEnd}
+        </if>
+        <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
+            and mission_condition = #{pd.mission_condition}
+        </if>
+        order by mission_id desc
+    </select>
+    <!-- 列表(全部) -->
+    <select id="listAll" parameterType="pd" resultType="pd" >
+        select m.flow_number,  m.worker_name, m.send_time,  m.house_address,
+        m.house_owner_name, m.house_owner_phone, m.mission_condition
+        from mission m
+        where 1 = 1
+        <if test="enquiry != null and enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            m.flow_number LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            m.worker_name  LIKE CONCAT(CONCAT('%',#{enquiry}),'%')
+            or
+            m.house_owner_name LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            m.house_owner_phone  LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            m.team   LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            )
+        </if>
+
+        <if test="sendTimeStart!=null and sendTimeStart!=''"><!-- 下达时间检索 -->
+            and m.send_time &gt;= #{sendTimeStart}
+        </if>
+        <if test="sendTimeEnd!=null and sendTimeEnd!=''"><!-- 下达时间检索 -->
+            and m.send_time &lt;= #{sendTimeEnd}
+        </if>
+        <if test="mission_condition != null and mission_condition != ''"><!-- 状态检索 -->
+            and m.mission_condition = #{mission_condition}
+        </if>
+        order by m.mission_id desc
+    </select>
+
+
+
+
+</mapper>

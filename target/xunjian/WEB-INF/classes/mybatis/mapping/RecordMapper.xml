@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RecordMapper">
+    <!--总单数-->
+    <select id="listAll" parameterType="pd"  resultType="pd">
+        select DATE_FORMAT(t.send_time,'%Y-%m') month,count(t.mission_id) sum from mission t
+        where  1=1
+        AND  DATE_FORMAT(t.send_time,'%Y-%m')>
+        DATE_FORMAT(date_sub(curdate(), interval 12 month),'%Y-%m')
+        group by month
+    </select>
+    <!--拒单数-->
+
+    <!--审核通过数-->
+
+    <!--审核未通过数-->
+
+</mapper>

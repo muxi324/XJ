@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ElecMapMapper">
+    <!--通过员工获取数据-->
+    <select id="findByW" parameterType="pd" resultType="pd">
+        select *  from latest_location
+        where
+        worker_name = #{worker_name}
+    </select>
+    <!--通过房源获取数据-->
+    <select id="findByH" parameterType="pd" resultType="pd">
+        SELECT m.mission_id,m.house_id,m.worker_name,m.worker_phone,m.house_owner_name,m.house_address,m.finish_time,h.longitude,h.latitude
+                     FROM mission AS m
+                     LEFT JOIN history_location AS h
+		             ON m.mission_id = h.mission_id WHERE m.mission_condition=5
+    </select>
+    <!--所有员工最近位置-->
+    <select id="datalistWorker" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from latest_location
+       <!-- where 1 = 1
+        <if test="pd.enquiry != null and pd.enquiry != ''">
+            and
+            (
+            name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            team   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>-->
+    </select>
+    <!--所有已安装房源位置-->
+    <select id="datalistHouse" parameterType="Page" resultType="pd" useCache="false">
+        SELECT m.mission_id,m.house_id,m.worker_name,m.worker_phone,m.house_owner_name,m.house_address,m.finish_time,h.longitude,h.latitude
+        FROM mission AS m
+        LEFT JOIN history_location AS h
+        ON m.mission_id = h.mission_id WHERE m.mission_condition=5
+        <!-- where 1 = 1
+         <if test="pd.enquiry != null and pd.enquiry != ''">
+             and
+             (
+             house_address LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+             or
+             house_owner_name   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+             )
+         </if>-->
+    </select>
+    <!--所有未安装房源位置-->
+    <select id="datalistH" parameterType="Page" resultType="pd" useCache="false">
+        select  house_id,house_address,house_owner,owner_phone,longitude,latitude  from set_mission
+         where 1 = 1
+        <!-- <if test="pd.enquiry != null and pd.enquiry != ''">
+             and
+             (
+             name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+             or
+             team   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+             )
+         </if>-->
+        and set_condition=1
+    </select>
+
+
+
+</mapper>
