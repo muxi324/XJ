@@ -311,8 +311,9 @@
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
             legend: {
-                orient: 'vertical',
-                left: 'left',
+                orient: 'horizontal',
+                left: 'center',
+                top: '30',
                 data: ['报警异常','隐患异常','问题异常']
             },
             series : [
@@ -354,9 +355,10 @@
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
             legend: {
-                orient: 'vertical',
-                left: 'left',
-                data: ['日常巡检任务','临时任务','巡检任务']
+                orient: 'horizontal',
+                left: 'center',
+                top: '30',
+                data: ['日常巡检任务','临时任务','维修任务']
             },
             series : [
                 {
@@ -367,7 +369,7 @@
                     data:[
                         {value:17, name:'日常巡检任务'},
                         {value:5, name:'临时任务'},
-                        {value:9, name:'巡检任务'},
+                        {value:9, name:'维修任务'},
                     ],
                     itemStyle: {
                         emphasis: {
@@ -457,6 +459,9 @@
                 }
             ],
             legend: {
+                orient: 'horizontal',
+                left: 'center',
+                top: '30',
                 data:['问题异常','隐患异常','报警异常']
             },
             color: ['#003366', '#006699', '#e5323e'],
@@ -512,6 +517,9 @@
                 }
             ],
             legend: {
+                orient: 'horizontal',
+                left: 'center',
+                top: '30',
                 data:['日常任务','临时任务','维修任务']
             },
             color: ['blue', 'green', 'yellow'],
