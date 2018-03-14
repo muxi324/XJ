@@ -50,6 +50,23 @@ public class ExceptionController extends BaseController{
         return mv;
     }
 
+    @RequestMapping("/getExceptionDetail")
+    public ModelAndView getExceptionDetail(Page page) {
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        try {
+            pd = this.getPageData();
+            PageData result = exceptionService.findById(pd);
+            System.out.println(result.getString("workshop"));
+            mv.setViewName("exception/exceptionDetail");
+            mv.addObject("pd", pd);
+            mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mv;
+    }
+
     /* ===============================权限================================== */
     public Map<String, String> getHC(){
         Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
