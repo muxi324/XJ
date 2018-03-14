@@ -38,7 +38,7 @@
 	<!-- 阿里 druid数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">  
          <!-- 数据库基本信息配置 -->
-         <property name="url" value="${url}" />  
+         <property name="url" value="${url}" />
          <property name="username" value="${username}" />  
          <property name="password" value="${password}" />  
          <property name="driverClassName" value="${driverClassName}" />  

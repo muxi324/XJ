@@ -24,7 +24,7 @@
 </head>
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
-    <%--<input type="hidden" name="house_id" id="house_id" value="${pd.house_id }"/>--%>
+    <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id }"/>
     <label class="control-label" style="margin-left:45%">下发日常巡检任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
@@ -69,21 +69,21 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">开始时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="set_start_time" id="set_start_time" value="${pd.set_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input style="width:90%;" type="text" class="datetimepicker" name="period_start_time" id="period_start_time" value="${pd.period_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">结束时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="set_end_time" id="set_end_time" value="${pd.set_end_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input style="width:90%;" type="text" class="datetimepicker" name="period_end_time" id="period_end_time" value="${pd.period_end_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
                 <td><input style="width:90%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
-                <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" >在这里输入内容...</textarea></td>
+                <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
             </tr>
 
             <tr>
                 <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-mini btn-primary" onclick="save();">下发</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
+                    <a class="btn btn-small btn-primary" onclick="save();">下发</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
                 </td>
             </tr>
         </table>

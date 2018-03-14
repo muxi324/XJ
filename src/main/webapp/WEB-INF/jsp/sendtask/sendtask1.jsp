@@ -24,7 +24,7 @@
 </head>
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
-    <%--<input type="hidden" name="house_id" id="house_id" value="${pd.house_id }"/>--%>
+    <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id }"/>
     <label class="control-label" style="margin-left:45%">下发临时巡检任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
@@ -99,9 +99,10 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
-                <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" >在这里输入内容...</textarea></td>
+                <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
             </tr>
-            <h3 style="text-align: left;padding-top: 13px;">任务内容</h3>
+        </table>
+            <h3 style="padding-left:20px;padding-top: 13px;">任务内容</h3>
             <div  class="form-group" style="margin-top:10px;border: 1px solid #B1D1CE;width:80%;high:600px;">
                 <table style="width:100%;">
                     <tr>
@@ -118,7 +119,7 @@
                     </tr>
                 </table>
             </div>
-            <h3 style="text-align:left;padding-top: 13px;">所用物资</h3>
+            <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
             <div class="page-header position-relative">
                 <table style="width:100%;">
                     <tr>
@@ -128,21 +129,19 @@
                     </tr>
                 </table>
             </div>
-            <table id="table_report" class="table table-striped table-bordered table-hover">
-                <thead>
+            <table  border="1" bordercolor="#a0c6e5" style="border-collapse:collapse;" width="40%">
                 <tr>
                     <th class="center">序号</th>
                     <th class="center">物资名称</th>
                     <th class="center">所用数量</th>
                 </tr>
-                </thead>
-                <tbody>
-                </tbody>
+
             </table>
+        <table class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-mini btn-primary" onclick="save();">下发</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>
+                    <a class="btn btn-small btn-primary" onclick="save();">下发</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
                 </td>
             </tr>
         </table>
@@ -206,10 +205,10 @@
         top.jzts();
         var diag = new top.Dialog();
         diag.Drag=true;
-        diag.Title ="选择配件";
+        diag.Title ="选择物资";
         diag.URL = '<%=basePath%>sendtask/goselectMaterial.do';
-        diag.Width = 200;
-        diag.Height = 400;
+        diag.Width = 400;
+        diag.Height = 450;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
                 if('${page.currentPage}' == '0'){
