@@ -84,7 +84,7 @@
 			</form>
 		</div>
 	</div>
-	<div id="back_pic" class="container_wapper">
+	<div id="back_pic" class="background-repeat:no-repeat;background-size:100% 100%;background-attachment: fixed;">
 		<img src="static/login/images/background.jpg" />
 	</div>
 
