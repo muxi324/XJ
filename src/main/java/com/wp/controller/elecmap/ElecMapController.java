@@ -158,6 +158,19 @@ public class ElecMapController extends BaseController {
     }
 
 
+    @RequestMapping(value = "/workerPosition")
+    @ResponseBody
+    public Object getWorkerPosition(Page page){
+        List<PageData> wokerList = null;
+        try {
+            wokerList = elecMapService.listW(page);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return wokerList;
+    }
+
+
     /* ===============================权限================================== */
     public Map<String, String> getHC(){
         Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session

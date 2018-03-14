@@ -51,6 +51,28 @@
         {"lng":116.3077926636,"lat":40.0439119241,"url":"<%=basePath%>elecmap/errorDetail.do?errorId=3","id":3,"name":"故障点3","phoneNum":"010-345678"}
     ];
 
+    $.ajax({
+        type : "post",
+        async : true,
+        url :"<%=basePath%>elecmap/workerPosition.do",
+        dataType : "json",		//返回数据形式为json
+        success : function(result) {
+            if (result != null && result.length > 0) {
+                console.info(result);
+                $.each(result, function(index, content) {
+                    var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId=1","id":content.id,"name":content.name,"phoneNum":content.phone};
+                    points.push(point);
+                })
+            }
+            else {
+
+            }
+        },
+        error : function(errorMsg) {
+            alert("员工位置数据获取失败，可能是服务器开小差了");
+        }
+    })
+
     //创建标注点并添加到地图中
     function addMarker(points) {
         //循环建立标注点
