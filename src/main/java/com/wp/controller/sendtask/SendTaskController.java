@@ -78,6 +78,25 @@ public class SendTaskController extends BaseController {
     }
 
     /**
+     * 去选择物资页面
+     */
+    @RequestMapping(value="/goselectMaterial")
+    public ModelAndView goAdd(){
+        logBefore(logger, "去选择物资页面");
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        try {
+            mv.setViewName("sendtask/select_material");
+            mv.addObject("msg", "save");
+            mv.addObject("pd", pd);
+        } catch (Exception e) {
+            logger.error(e.toString(), e);
+        }
+        return mv;
+    }
+
+    /**
      * 发送任务
      */
     @RequestMapping(value="/sendTask")

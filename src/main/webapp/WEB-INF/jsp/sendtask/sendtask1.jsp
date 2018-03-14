@@ -129,14 +129,13 @@
                     </tr>
                 </table>
             </div>
-            <table  class="table table-striped " width="40%">
+            <table  border="1" bordercolor="#a0c6e5" style="border-collapse:collapse;" width="40%">
                 <tr>
                     <th class="center">序号</th>
                     <th class="center">物资名称</th>
                     <th class="center">所用数量</th>
                 </tr>
-                <tbody>
-                </tbody>
+
             </table>
         <table class="table table-striped table-bordered table-hover">
             <tr>
