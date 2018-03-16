@@ -1,4 +1,4 @@
-*.workspace
-*.uiDesigner
-idea/
+workspace.xml
+
+.idea/
 target/
