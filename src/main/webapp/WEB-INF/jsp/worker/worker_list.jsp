@@ -62,10 +62,10 @@
                             <th class="center">序号</th>
                             <th class="center">姓名</th>
                             <th class="center">手机号</th>
-                            <th class="center">身份证号</th>
-                            <th class="center">职位</th>
                             <th class="center">班组</th>
-                            <th class="center">住址</th>
+                            <th class="center">职位</th>
+                            <th class="center">工种</th>
+                            <th class="center">所属车间</th>
                             <th class="center">操作</th>
                         </tr>
                         </thead>
@@ -84,10 +84,10 @@
                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                             <td style="width: 60px;" class="center">${var.name}</td>
                             <td style="width: 100px;" class="center">${var.phone}</td>
-                            <td style="width: 139px;" class="center">${var.id_number}</td>
+                            <td style="width: 139px;" class="center">${var.team}</td>
                             <td style="width: 60px;" class="center">${var.post}</td>
-                            <td style="width: 60px;" class="center">${var.team}</td>
-                            <td style="width: 139px;" class="center">${var.address}</td>
+                            <td style="width: 60px;" class="center">${var.work_type}</td>
+                            <td style="width: 139px;" class="center">${var.workshop}</td>
                             <td style="width: 60px;" class="center">
                                 <div class='hidden-phone visible-desktop btn-group'>
 
