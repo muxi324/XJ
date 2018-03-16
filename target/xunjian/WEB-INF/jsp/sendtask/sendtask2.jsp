@@ -32,7 +32,7 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务名称:</td>
                 <td><input style="width:90%;" type="text" name="mission" id="mission" value="${pd.mission}" maxlength="200"  title=""/></td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务类型:</td>
-                <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="${pd.mission_type}" maxlength="200" placeholder="临时巡检任务" title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="临时巡检任务" maxlength="200" placeholder="临时巡检任务" title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务级别:</td>
@@ -151,16 +151,12 @@
                     </tr>
                 </table>
             </div>
-            <table  class="table table-striped table-bordered table-hover" width="40%">
-                <thead>
+            <table  border="1" bordercolor="#a0c6e5" style="border-collapse:collapse;" width="40%">
                 <tr>
                     <th class="center">序号</th>
                     <th class="center">物资名称</th>
                     <th class="center">所用数量</th>
                 </tr>
-                </thead>
-                <tbody>
-                </tbody>
             </table>
             <table class="table table-striped table-bordered table-hover">
                 <tr>

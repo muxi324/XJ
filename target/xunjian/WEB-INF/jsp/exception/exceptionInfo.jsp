@@ -45,11 +45,11 @@
                         <c:forEach items="${exceptionList}" var="var" varStatus="vs">
                             <tr>
                                 <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                <td style="width: 60px;" class="center">${var.workshop_id}</td>
-                                <td style="width: 60px;" class="center">${var.checkpoint_id}</td>
+                                <td style="width: 60px;" class="center">${var.workshop}</td>
+                                <td style="width: 60px;" class="center">${var.checkpoint}</td>
                                 <td style="width: 100px;" class="center">${var.level}</td>
                                 <td style="width: 100px;" class="center">${var.description}</td>
-                                <td style="width: 139px;" class="center">${var.report_woker_id}</td>
+                                <td style="width: 139px;" class="center">${var.report_woker}</td>
                                 <td style="width: 60px;" class="center">${var.report_time}</td>
                                 <td style="width: 60px;" class="center">${var.status}</td>
                                 <td style="width: 139px;" class="center">${var.is_read}</td>

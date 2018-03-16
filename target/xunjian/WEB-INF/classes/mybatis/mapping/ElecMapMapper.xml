@@ -17,16 +17,7 @@
     </select>
     <!--所有员工最近位置-->
     <select id="datalistWorker" parameterType="Page" resultType="pd" useCache="false">
-        select  *   from latest_location
-       <!-- where 1 = 1
-        <if test="pd.enquiry != null and pd.enquiry != ''">
-            and
-            (
-            name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-            or
-            team   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-            )
-        </if>-->
+        select  *   from worker_info
     </select>
     <!--所有已安装房源位置-->
     <select id="datalistHouse" parameterType="Page" resultType="pd" useCache="false">

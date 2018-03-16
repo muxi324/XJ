@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="WorkshopMapper">
+
+
+    <!-- 新增-->
+    <insert id="save" parameterType="pd">
+        insert into workshop_principal_info(  name,phone,post,workshop,create_time)
+        values (  #{name}, #{phone}, #{post}, #{workshop} ,#{create_time}  )
+    </insert>
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from workshop_principal_info
+        where
+        id = #{id}
+    </delete>
+    <!-- 修改 -->
+    <update id="edit" parameterType="pd">
+        update  workshop_principal_info
+        set
+        name = #{name},
+        phone = #{phone},
+        post   = #{post},
+        workshop   = #{workshop}
+        where
+        id = #{id}
+    </update>
+
+    <!-- 修改图片 -->
+    <update id="editpic" parameterType="pd">
+        update  worker_innfo
+        set
+        head_pic  = #{head_pic}
+        where
+        id = #{id}
+    </update>
+    <!--通过员工名获取数据-->
+    <select id="findById" parameterType="pd" resultType="pd">
+        select *  from workshop_principal_info
+        where
+        id = #{id}
+    </select>
+
+    <!--通过enquiry获取数据-->
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from workshop_principal_info
+        where 1 = 1
+       /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            phone  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            workshop LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            post   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        order by id asc
+    </select>
+    <!-- 列表(全部) -->
+    <select id="listAll" parameterType="pd" resultType="pd" >
+        select
+        w.name,
+        w.phone,
+        w.post,
+        w.workshop,
+        w.create_time
+        from workshop_principal_info w
+
+    </select>
+
+    <!-- 批量删除 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from workshop_principal_info
+        where
+        id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+
+
+</mapper>
