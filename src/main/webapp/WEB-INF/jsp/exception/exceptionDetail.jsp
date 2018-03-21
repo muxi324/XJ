@@ -22,8 +22,9 @@
     <div style="">
         <h2>异常照片</h2>
         <div id="exceptionPic">
-            <<img src="" alt="">>
+            <<img src="static/images/exception.jpg" alt="异常图片">>
         </div>
+        <a href="${basePath}sendtask/goSendTask2.do"><h2>解决异常</h2></a>
     </div>
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
