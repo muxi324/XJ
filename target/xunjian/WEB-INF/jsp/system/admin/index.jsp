@@ -54,7 +54,7 @@
 			</div>
 
 			<!-- 换肤 -->
-			<div id="ace-settings-container">
+			<%--<div id="ace-settings-container">
 				<div class="btn btn-app btn-mini btn-warning" id="ace-settings-btn">
 					<i class="icon-cog"></i>
 				</div>
@@ -79,7 +79,7 @@
 							onclick="menusf();" /><span class="lbl" style="padding-top: 5px;">菜单缩放</span></label>
 					</div>
 				</div>
-			</div>
+			</div>--%>
 			<!--/#ace-settings-container-->
 
 		</div>

@@ -30,6 +30,7 @@ com\wp\util\SmsUtil.class
 com\wp\controller\elecmap\ElecMapController.class
 com\wp\controller\system\user\UserController.class
 com\wp\util\JPushClientUtil.class
+com\wp\service\databank\WorkshopService.class
 com\wp\service\system\user\UserService.class
 com\wp\controller\base\BaseController.class
 com\wp\util\UuidUtil.class
@@ -39,6 +40,7 @@ com\wp\util\HttpHandler.class
 com\wp\resolver\MyExceptionResolver.class
 com\wp\entity\map\MapPoint.class
 com\wp\util\TwoDimensionCodeImage.class
+com\wp\controller\databank\WorkshopController.class
 com\wp\service\system\dictionaries\DictionariesService.class
 com\wp\listener\WebAppContextListener.class
 com\wp\controller\echarts\RecordController.class
@@ -66,6 +68,7 @@ com\wp\controller\lockmag\LockMagController.class
 com\wp\util\FileDownload.class
 com\wp\controller\system\tools\ToolController.class
 com\wp\controller\worker\WorkerController.class
+com\wp\controller\event\EventController.class
 com\wp\service\querytask\QueryTaskService.class
 com\wp\util\PublicUtil.class
 com\wp\dao\DaoSupport.class
@@ -88,6 +91,7 @@ com\wp\util\Freemarker.class
 com\wp\dao\DAO.class
 com\wp\controller\system\head\HeadController.class
 com\wp\filter\startFilter.class
+com\wp\service\event\EventService.class
 com\wp\util\MD5.class
 com\wp\util\ReflectHelper.class
 com\wp\util\LatLonUtil.class

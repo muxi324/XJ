@@ -5,4 +5,10 @@
     <select id="listException" parameterType="Page" resultType="pd" useCache="false">
         select  *   from exception
     </select>
+
+    <select id="findExceptionById" parameterType="pd" resultType="pd">
+        select *  from exception
+        where
+        id = #{exceptionId}
+    </select>
 </mapper>
