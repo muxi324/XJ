@@ -80,7 +80,7 @@
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">巡检区域范围:</td>
-                <td><input style="width:95%;" type="text" name="area_filed" id="area_filed" value="${pd.area_filed}" maxlength="150" placeholder="这里输入巡检区域范围" title=""/></td>
+                <td><input style="width:95%;" type="text" name="area_field" id="area_field" value="${pd.area_field}" maxlength="150" placeholder="这里输入巡检区域范围" title=""/></td>
             </tr>
 
             <div style=" clear:both; padding-top: 40px;"></div>

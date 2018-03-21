@@ -82,7 +82,7 @@
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                                             <td style="width: 60px;" class="center">${var.workshop}</td>
                                             <td style="width: 100px;" class="center">${var.area_name}</td>
-                                            <td style="width: 139px;" class="center">${var.area_filed}</td>
+                                            <td style="width: 139px;" class="center">${var.area_field}</td>
                                             <td style="width: 60px;" class="center">${var.add_time}</td>
                                             <td style="width: 60px;" class="center">
                                                 <div class='hidden-phone visible-desktop btn-group'>

@@ -43,7 +43,7 @@
                 </select>
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
-                <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.misison_source}" maxlength="200"  title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200"  title=""/></td>
             </tr>
             <%--三级联动--%>
             <tr>

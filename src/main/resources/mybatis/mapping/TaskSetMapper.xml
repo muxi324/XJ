@@ -1,96 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="TaskMagMapper">
+<mapper namespace="TaskSetMapper">
 
 
 
     <!--通过id获取数据-->
     <select id="findById" parameterType="pd" resultType="pd">
-        select *  from mission
+        select *  from set_mission
         where
-        mission_id = #{mission_id}
+        set_id = #{set_id}
     </select>
-    <!--任务详情-->
-    <select id="detail" parameterType="pd" resultType="pd">
-        select *  from mission
-        where
-        mission_id = #{mission_id}
-    </select>
+
     <!--保存-->
-    <update id="save" parameterType="pd">
-        update  mission
-        set
-        auditor = #{auditor},
-        auditor_opinion = #{auditor_opinion},
-        mission_condition = #{mission_condition},
-        auditor_time = #{auditor_time}
+    <insert id="save" parameterType="pd">
+       insert into set_mission(
+        mission,mission_type,mission_level,mission_source,cover_fields,mission_description,cycle_time,authen_method,auditor_level,auditor,
+       task_addition,set_name,set_time,detail_info) values (   #{mission},#{mission_type}, #{mission_level}, #{mission_source},#{cover_fields},
+        #{mission_description}, #{cycle_time},#{authen_method},#{auditor_level},#{auditor},#{task_addition},#{set_name}, #{set_time},#{detail_info}
+        )
+    </insert>
+
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from set_mission
         where
-        mission_id = #{mission_id}
+        set_id = #{set_id}
+    </delete>
+    <!-- 修改 -->
+    <update id="edit" parameterType="pd">
+        update  set_mission
+        set
+        mission = #{mission},
+        mission_type = #{mission_type},
+        mission_level = #{mission_level},
+        mission_source   = #{mission_source},
+        cover_fields  = #{cover_fields},
+        mission_description  = #{mission_description},
+        cycle_time   = #{cycle_time},
+        authen_method   = #{authen_method},
+        auditor_level    = #{auditor_level},
+        auditor    = #{auditor},
+        task_addition = #{task_addition},
+        set_name = #{set_name},
+        detail_info = #{detail_info}
+        where
+        set_id = #{set_id}
     </update>
     <!--通过enquiry获取数据-->
     <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
-        select  *   from mission
+        select  *   from set_mission
         where 1 = 1
 
         <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
             and
             (
-            flow_number LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            mission LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
-            worker_name  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            mission_source  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
             or
-            house_owner_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            mission_description LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
-            house_owner_phone  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-            or
-            team   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            cover_fields  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+
             )
         </if>
-        <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''"><!-- 下达时间检索 -->
-            and send_time &gt;= #{pd.sendTimeStart}
+        <if test="pd.setTimeStart!=null and pd.sentTimeStart!=''"><!-- 下达时间检索 -->
+            and set_time &gt;= #{pd.setTimeStart}
         </if>
-        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''"><!-- 下达时间检索 -->
-            and send_time &lt;= #{pd.sendTimeEnd}
+        <if test="pd.setTimeEnd!=null and pd.setTimeEnd!=''"><!-- 下达时间检索 -->
+            and set_time &lt;= #{pd.setTimeEnd}
         </if>
-        <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
-            and mission_condition = #{pd.mission_condition}
+        <if test="pd.mission_level != null and pd.mission_level != ''"><!-- 任务级别 -->
+            and mission_level = #{pd.mission_level}
         </if>
-        and mission_condition in(1,4)
-        order by mission_id desc
+        <if test="pd.mission_type != null and pd.mission_type != ''"><!-- 任务类型 -->
+            and mission_type = #{pd.mission_type}
+        </if>
+        order by set_id desc
     </select>
     <!-- 列表(全部) -->
     <select id="listAll" parameterType="pd" resultType="pd" useCache="false">
-        select  *   from mission
+        select  *   from set_mission
         where 1 = 1
 
-        <if test="enquiry != null and enquiry != ''"><!-- 关键词检索 -->
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
             and
             (
-            flow_number LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            mission LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
-            worker_name  LIKE CONCAT(CONCAT('%',#{enquiry}),'%')
+            mission_source  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
             or
-            house_owner_name LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            mission_description LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
-            house_owner_phone  LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
-            or
-            team   LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            cover_fields  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+
             )
         </if>
-
-        <if test="sendTimeStart!=null and sendTimeStart!=''"><!-- 下达时间检索 -->
-            and send_time &gt;= #{sendTimeStart}
+        <if test="pd.setTimeStart!=null and pd.sentTimeStart!=''"><!-- 下达时间检索 -->
+            and set_time &gt;= #{pd.setTimeStart}
         </if>
-        <if test="sendTimeEnd!=null and sendTimeEnd!=''"><!-- 下达时间检索 -->
-            and send_time &lt;= #{sendTimeEnd}
+        <if test="pd.setTimeEnd!=null and pd.setTimeEnd!=''"><!-- 下达时间检索 -->
+            and set_time &lt;= #{pd.setTimeEnd}
         </if>
-        <if test="mission_condition != null and mission_condition != ''"><!-- 状态检索 -->
-            and mission_condition = #{mission_condition}
+        <if test="pd.mission_level != null and pd.mission_level != ''"><!-- 任务级别 -->
+            and mission_level = #{pd.mission_level}
         </if>
-        and mission_condition in(1,4)
-        order by mission_id desc
+        <if test="pd.mission_type != null and pd.mission_type != ''"><!-- 任务类型 -->
+            and mission_type = #{pd.mission_type}
+        </if>
+        order by set_id desc
     </select>
+
+    <!-- 批量删除房源 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from set_mission
+        where
+        set_id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
 
 
 
