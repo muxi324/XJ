@@ -29,7 +29,7 @@
                 <th class="center">所属巡检点</th>
                 <th class="center">异常级别</th>
                 <th class="center">描述</th>
-                <th class="center">汇报工人id</th>
+                <th class="center">汇报工人</th>
                 <th class="center">汇报时间</th>
                 <th class="center">异常状态</th>
                 <th class="center">是否已读</th>
@@ -49,14 +49,23 @@
                                 <td style="width: 60px;" class="center">${var.checkpoint}</td>
                                 <td style="width: 100px;" class="center">${var.level}</td>
                                 <td style="width: 100px;" class="center">${var.description}</td>
+<<<<<<< HEAD
+                                <td style="width: 139px;" class="center">${var.report_worker}</td>
+=======
                                 <td style="width: 139px;" class="center">${var.report_woker}</td>
+>>>>>>> 95b49c0f0a431cd733e685bb12baf225c0eefe0b
                                 <td style="width: 60px;" class="center">${var.report_time}</td>
                                 <td style="width: 60px;" class="center">${var.status}</td>
-                                <td style="width: 139px;" class="center">${var.is_read}</td>
+                                <td style="width: 139px;" class="center">
+                                    <c:if test="${var.is_read == 0}">
+                                        否
+                                    </c:if>
+                                    <c:if test="${var.is_read == 1}">
+                                        是
+                                    </c:if>
+                                </td>
                                 <td style="width: 60px;" class="center">
-                                    <div class='hidden-phone visible-desktop btn-group'>
-                                        操作
-                                    </div>
+                                    <a href="<%=basePath%>exception/getExceptionDetail.do?exceptionId=${var.id}">查看详情</a>
                                 </td>
                             </tr>
                         </c:forEach>
