@@ -46,14 +46,14 @@
                 $("#phone").focus();
                 return false;
             }
-            if($("#id_number").val()==""){
-                $("#id_number").tips({
+            if($("#workshop").val()==""){
+                $("#workshop").tips({
                     side:3,
                     msg:'请输入身份证号',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#id_number").focus();
+                $("#workshop").focus();
                 return false;
             }
             if($("#team").val()==""){
@@ -113,13 +113,6 @@
                      <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="100" placeholder="这里输入姓名" title=""/></td>
                  </tr>
                  <tr>
-                     <td style="width:100px;text-align: right;padding-top: 13px;">性别:</td>
-                     <td><select id="sex" name="sex" class="form-control" value="${pd.sex}">
-                         <option value="男">男</option>
-                         <option value="女">女</option>
-                     </select></td>
-                 </tr>
-                 <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">联系电话:</td>
                      <td><input style="width:95%;" type="text" name="phone" id="phone" value="${pd.phone}" maxlength="150" placeholder="这里输入电话" title=""/></td>
                  </tr>
@@ -132,12 +125,12 @@
                      <td><input style="width:95%;" type="text" name="post" id="post" value="${pd.post}" maxlength="150" placeholder="这里输入职位" title=""/></td>
                  </tr>
                  <tr>
-                     <td style="width:100px;text-align: right;padding-top: 13px;">住址:</td>
-                     <td><input style="width:95%;" type="text" name="address" id="address" value="${pd.address}" maxlength="200" placeholder="这里输入住址" title=""/></td>
+                     <td style="width:100px;text-align: right;padding-top: 13px;">工种:</td>
+                     <td><input style="width:95%;" type="text" name="work_type" id="work_type" value="${pd.work_type}" maxlength="200" placeholder="这里输入工种" title=""/></td>
                  </tr>
                  <tr>
-                     <td style="width:100px;text-align: right;padding-top: 13px;">身份证号:</td>
-                     <td><input style="width:95%;" type="text" name="id_number" id="id_number" value="${pd.id_number}" maxlength="200" placeholder="这里输入身份证号" title=""/></td>
+                     <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
+                     <td><input style="width:95%;" type="text" name="workshop" id="workshop" value="${pd.workshop}" maxlength="200" placeholder="这里输入所属车间" title=""/></td>
                  </tr>
                  <tr>
                      <td style="width:100px;hight:250px; text-align: right;padding-top: 13px;">照 片</td>
@@ -146,7 +139,7 @@
                              <!--用来存放item-->
                              <div id="fileList" class="uploader-list">
                                  <c:if test="${pd != null && pd.head_pic != '' && pd.head_pic != null }">
-                                     <a href="<%=basePath%>uploadFiles/uploadImgs/${pd.head_pic}" target="_blank"><img src="<%=basePath%>uploadFiles/uploadImgs/${pd.head_pic}" width="210"/></a>
+                                     <a href="<%=basePath%>uploadFiles/uploadImgs/head_pic/${pd.head_pic}" target="_blank"><img src="<%=basePath%>uploadFiles/uploadImgs/head_pic/${pd.head_pic}" width="210"/></a>
                                      <div class="file-panel">
                                          <a class="btn btn-mini btn-cancel" onclick="removeFile();">删除</a>
                                      </div>

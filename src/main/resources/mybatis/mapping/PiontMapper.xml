@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="PointMapper">
+
+
+    <!-- 新增-->
+    <insert id="save" parameterType="pd">
+        insert into inspection_point(  point_name,point_field,workshop,area_name,add_time)
+        values (  #{point_name}, #{point_field}, #{workshop} ,#{area_name},#{add_time}  )
+    </insert>
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from inspection_point
+        where
+        id = #{id}
+    </delete>
+    <!-- 修改 -->
+    <update id="edit" parameterType="pd">
+        update  inspection_point
+        set
+        point_name = #{point_name},
+        point_field = #{point_field},
+        area_name = #{area_name},
+        workshop   = #{workshop}
+        where
+        id = #{id}
+    </update>
+
+
+    <!--通过员工名获取数据-->
+    <select id="findById" parameterType="pd" resultType="pd">
+        select *  from inspection_point
+        where
+        id = #{id}
+    </select>
+
+    <!--通过enquiry获取数据-->
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from inspection_point
+        where 1 = 1
+       /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            point_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            point_field  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            workshop LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            area_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        order by id asc
+    </select>
+    <!-- 列表(全部) -->
+    <select id="listAll" parameterType="pd" resultType="pd" >
+        select
+        point_name,
+        point_field,
+        workshop,
+        area_time,
+        add_time
+        from inspection_point
+
+    </select>
+
+    <!-- 批量删除 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from inspection_point
+        where
+        id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+
+
+</mapper>

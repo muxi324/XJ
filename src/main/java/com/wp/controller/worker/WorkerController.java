@@ -66,7 +66,7 @@ public class WorkerController extends BaseController {
                           @RequestParam(value = "file", required = false) MultipartFile file) {
         String  ffile = DateUtil.getDays(), fileName = "";
         if (null != file && !file.isEmpty()) {
-            String filePath = PathUtil.getClasspath() + Const.FILEPATHIMG + ffile;		//文件上传路径
+            String filePath = PathUtil.getClasspath() + Const.FILEPATHIMG1 + ffile;		//文件上传路径
             fileName = FileUpload.fileUp(file, filePath, this.get32UUID());				//执行上传
         }
         return ffile + "/" + fileName;
@@ -81,7 +81,7 @@ public class WorkerController extends BaseController {
             pd = this.getPageData();
             String id = pd.getString("id");
             String head_pic = pd.getString("head_pic");													 		//图片路径
-            DelAllFile.delFolder(PathUtil.getClasspath()+ Const.FILEPATHIMG + head_pic); 	//删除图片
+            DelAllFile.delFolder(PathUtil.getClasspath()+ Const.FILEPATHIMG1 + head_pic); 	//删除图片
             pd.put("head_pic", "");
             if(id != null){
                 workerService.editPic(pd);														//删除数据中图片数据
@@ -261,10 +261,10 @@ public class WorkerController extends BaseController {
                 List<String> titles = new ArrayList<String>();
                 titles.add("姓名");    //${var_index+1}
                 titles.add("手机号");
-                titles.add("身份证号");
-                titles.add("职位");
                 titles.add("班组");
-                titles.add("住址");
+                titles.add("职位");
+                titles.add("工种");
+                titles.add("所属车间");
                 dataMap.put("titles", titles);
                 List<PageData> varOList = workerService.listAll(pd);
                 List<PageData> varList = new ArrayList<PageData>();
@@ -272,10 +272,10 @@ public class WorkerController extends BaseController {
                     PageData vpd = new PageData();
                     vpd.put("var1", varOList.get(i).getString("name"));        //1
                     vpd.put("var2", varOList.get(i).getString("phone"));
-                    vpd.put("var3", varOList.get(i).getString("id_number"));
+                    vpd.put("var3", varOList.get(i).getString("team"));
                     vpd.put("var4", varOList.get(i).getString("post"));
-                    vpd.put("var5", varOList.get(i).getString("team"));
-                    vpd.put("var6", varOList.get(i).getString("address"));
+                    vpd.put("var5", varOList.get(i).getString("work_type"));
+                    vpd.put("var6", varOList.get(i).getString("workshop"));
                     varList.add(vpd);
                 }
                 dataMap.put("varList", varList);
@@ -327,13 +327,11 @@ public class WorkerController extends BaseController {
 
                 pd.put("name", pds.getString("var0"));
                 pd.put("phone", pds.getString("var1"));
-                pd.put("sex", pds.getString("var2"));
-                pd.put("id_number", pds.getString("var3"));
-                pd.put("address", pds.getString("var4"));
-                pd.put("head_pic", pds.getString("var5"));
-                pd.put("team", pds.getString("var6"));
-                pd.put("post", pds.getString("var7"));
-                pd.put("addition_info", pds.getString("var8"));
+                pd.put("post", pds.getString("var2"));
+                pd.put("team", pds.getString("var3"));
+                pd.put("work_type", pds.getString("var4"));
+               // pd.put("head_pic", pds.getString("var5"));
+                pd.put("workshop", pds.getString("var6"));
                 workerService.save(pd);
             }
             mv.addObject("msg","success");

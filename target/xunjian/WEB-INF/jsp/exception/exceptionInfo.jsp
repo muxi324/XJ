@@ -49,7 +49,11 @@
                                 <td style="width: 60px;" class="center">${var.checkpoint}</td>
                                 <td style="width: 100px;" class="center">${var.level}</td>
                                 <td style="width: 100px;" class="center">${var.description}</td>
+<<<<<<< HEAD
                                 <td style="width: 139px;" class="center">${var.report_worker}</td>
+=======
+                                <td style="width: 139px;" class="center">${var.report_woker}</td>
+>>>>>>> 95b49c0f0a431cd733e685bb12baf225c0eefe0b
                                 <td style="width: 60px;" class="center">${var.report_time}</td>
                                 <td style="width: 60px;" class="center">${var.status}</td>
                                 <td style="width: 139px;" class="center">

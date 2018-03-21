@@ -109,8 +109,10 @@ public class SendTaskController extends BaseController {
         pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("mission_condition", 1);
         sendTaskService.save(pd);
-        mv.addObject("msg","success");
-        mv.setViewName("save_result");
+        out.write("success");
+        out.close();
+       // mv.addObject("msg","success");
+       // mv.setViewName("save_result");
         String phonenumber = pd.getString("worker_phone");   //发送短信提醒
         String Content = "您有一条新任务，请注意查收。";
         //System.out.println(Content);
