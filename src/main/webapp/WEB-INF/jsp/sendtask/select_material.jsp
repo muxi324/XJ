@@ -103,11 +103,12 @@
                     <td style="width:70px;text-align: right;padding-top: 13px;">物资数量:</td>
                     <td><select id="material_num" name="material_num" class="form-control" value="${pd.material_num}">
                         <option >选择</option>
-                        <option >听针</option>
-                        <option >EMT220系列袖珍式测振仪</option>
-                        <option >DT-8819H手持式测温仪 </option>
-                        <option >万能电工用表</option>
-                        <option >6寸扳手</option>
+                        <option >1</option>
+                        <option >2</option>
+                        <option >3 </option>
+                        <option >4</option>
+                        <option >5</option>
+                        <option >6</option>
                     </select></td>
                 </tr>
 

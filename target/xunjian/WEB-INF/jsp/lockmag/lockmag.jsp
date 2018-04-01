@@ -57,10 +57,8 @@
 							<i id="nav-search-icon" class="icon-search"></i>
 						</span>
                             </td>
-
                             <td><input class="span10 date-picker" name="sendTimeStart" id="sendTimeStart" value="${pd.sendTimeStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
                             <td><input class="span10 date-picker" name="sendTimeEnd" id="sendTimeEnd" value="${pd.sendTimeEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
-
                             <td style="vertical-align:top;">
                                 <select class="chzn-select" name="status" id="status" data-placeholder="状态" style="vertical-align:top;width: 120px;">
                                     <option value=""></option>
