@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: wp
-  Date: 2018/3/14
-  Time: 16:34
+  Date: 2017/12/18
+  Time: 9:17
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,69 +18,90 @@
 <head>
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
     <%@ include file="../system/admin/top.jsp"%>
-
     <script type="text/javascript">
 
 
         //保存
         function save(){
-            if($("#area_name").val()==""){
-                $("#area_name").tips({
+            if($("#name").val()==""){
+                $("#name").tips({
                     side:3,
-                    msg:'请输入巡检区域名称',
+                    msg:'请输入姓名',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#area_name").focus();
+                $("#name").focus();
                 return false;
             }
-            if($("#area_filed").val()==""){
-                $("#area_filed").tips({
+            if($("#phone").val()==""){
+                $("#phone").tips({
                     side:3,
-                    msg:'请输入巡检区域范围',
+                    msg:'请输入手机号',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#area_filed").focus();
+                $("#phone").focus();
                 return false;
             }
             if($("#workshop").val()==""){
                 $("#workshop").tips({
                     side:3,
-                    msg:'请输入所属车间名称',
+                    msg:'请输入身份证号',
                     bg:'#AE81FF',
                     time:2
                 });
                 $("#workshop").focus();
                 return false;
             }
-
+            if($("#team").val()==""){
+                $("#team").tips({
+                    side:3,
+                    msg:'请输入班组',
+                    bg:'#AE81FF',
+                    time:2
+                });
+                $("#team").focus();
+                return false;
+            }
             $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
+            // hasW();
         }
-
-
-
 
     </script>
 </head>
 <body>
-<form action="inspt_area/${msg }.do" id="Form"   method="post">
-    <input type="hidden" name="id" id="id" value="${pd.id }"/>
+<form action="partsmag/${msg}.do" id="Form"   method="post">
+    <%-- <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/> --%>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
-                <td><input style="width:95%;" type="text" name="workshop" id="workshop" value="${pd.workshop}" maxlength="100" placeholder="这里输入所属车间" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">配件类型:</td>
+                <td> <select style="width:95%;" name="description" id="description" value="${pd.material_name}" data-placeholder="请选择配件类型" maxlength="150">
+                    <option value="">全部</option>
+                    <option value="螺栓" >螺栓</option>
+                    <option value="润滑油">润滑油</option>
+                    <option value="发电机">发电机</option>
+                    <option value="传送带">传送带</option>
+                    <option value="水管">水管</option>
+                </select></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">巡检区域名称:</td>
-                <td><input style="width:95%;" type="text" name="area_name" id="area_name" value="${pd.area_name}" maxlength="100" placeholder="这里输入巡检区域名称" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">配件编号:</td>
+                <td><input style="width:95%;" type="text" name="material_id" id="material_id" value="${pd.material_id}" maxlength="150" placeholder="请输入配件编号" title=""/></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">巡检区域范围:</td>
-                <td><input style="width:95%;" type="text" name="area_field" id="area_field" value="${pd.area_field}" maxlength="150" placeholder="这里输入巡检区域范围" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">配件名称:</td>
+                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
+                <td><input style="width:95%;" type="text" name="material_num" id="material_num" value="${pd.material_num}" maxlength="150" placeholder="这里输入数量" title=""/></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">负责人:</td>
+                <td><input style="width:95%;" type="text" name="worker_name" id="worker_name" value="${pd.worker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
             </tr>
 
             <div style=" clear:both; padding-top: 40px;"></div>

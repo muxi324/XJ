@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PartsMagMapper">
+
+
+
+    <!--通过id获取入库数据-->
+    <select id="findById" parameterType="pd" resultType="pd">
+        select *  from material_history
+        where
+        material_id = #{material_id} and is_consume = 1
+    </select>
+    <!--通过id获取出库数据-->
+    <select id="findById1" parameterType="pd" resultType="pd">
+        select *  from material_history
+        where
+        material_id = #{material_id} and is_consume = 0
+    </select>
+
+    <select id="selectStock" parameterType="pd" resultType="java.lang.Integer">
+        select stock from material
+        where
+        material_id = #{material_id}
+    </select>
+    <!-- 修改物资入库当前库存 -->
+    <update id="editStock" parameterType="pd">
+        update  material
+        set
+          stock = #{stock}
+         where
+        material_id = #{material_id}
+    </update>
+    <!-- 修改物资出库当前库存 -->
+    <update id="editStock1" parameterType="pd">
+        update  material
+        set
+        stock = #{stock}
+        where
+        material_id = #{material_id}
+    </update>
+    <!--保存-->
+    <insert id="save" parameterType="pd">
+       insert into material_history(
+        material_id,material_num,material_name,worker_name,aim,mission_id,event_id,is_consume,time)
+        values (   #{material_id},#{material_num}, #{material_name}, #{worker_name},#{aim},
+        #{mission_id}, #{event_id},#{is_consume},#{time}
+        )
+    </insert>
+
+
+    <!--通过enquiry获取数据-->
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from material
+        where 1 = 1
+
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.description != null and pd.description != ''"><!-- 配件类型 -->
+            and description = #{pd.description}
+        </if>
+        order by material_id desc
+    </select>
+
+
+    <!-- 批量删除 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from material
+        where
+        material_id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+
+
+
+</mapper>
