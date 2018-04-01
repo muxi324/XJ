@@ -75,7 +75,7 @@
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">巡检点范围:</td>
-                <td><input style="width:95%;" type="text" name="point_filed" id="point_filed" value="${pd.point_filed}" maxlength="150" placeholder="这里输入巡检点范围" title=""/></td>
+                <td><input style="width:95%;" type="text" name="point_field" id="point_field" value="${pd.point_field}" maxlength="150" placeholder="这里输入巡检点范围" title=""/></td>
             </tr>
 
             <div style=" clear:both; padding-top: 40px;"></div>
