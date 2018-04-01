@@ -2,6 +2,7 @@ package com.wp.controller.taskmag;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
+import com.wp.entity.map.MapPoint;
 import com.wp.service.house.HouseService;
 import com.wp.service.querytask.QueryTaskService;
 import com.wp.service.system.role.RoleService;
@@ -182,6 +183,43 @@ public class TaskMagController extends BaseController {
         } catch(Exception e){
             logger.error(e.toString(), e);
         }
+        return mv;
+    }
+
+    @RequestMapping("/getTaskLine")
+    public ModelAndView getDetailPath() {
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = this.getPageData();
+        String taskId = pd.getString("taskId");
+        //临时验证，以后连数据库取数
+        List<MapPoint> pointList = new ArrayList<MapPoint>();
+        if (null != taskId && taskId.equals("3")) {
+            MapPoint p1 = new MapPoint("116.3479614258","40.0270886473");
+            MapPoint p2 = new MapPoint("116.3585186005","40.0170321295");
+            MapPoint p3 = new MapPoint("116.3653850555","40.0078287883");
+            MapPoint p4 = new MapPoint("116.3742256165","39.9890238203");
+            MapPoint p5 = new MapPoint("116.3532829285","39.9859987616");
+            MapPoint p6 = new MapPoint("116.3556861877","39.9515957403");
+            pointList.add(p1);
+            pointList.add(p2);
+            pointList.add(p3);
+            pointList.add(p4);
+            pointList.add(p5);
+            pointList.add(p6);
+        }
+        mv.setViewName("elecmap/detailPath");
+        mv.addObject("pointList",pointList);
+        mv.addObject("pd", pd);
+        mv.addObject(Const.SESSION_QX,this.getHC());
+        return mv;
+    }
+
+    @RequestMapping("/getTaskPhoto")
+    public ModelAndView getTaskPhoto() {
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = this.getPageData();
+        String taskId = pd.getString("taskId");
+        mv.setViewName("taskmag/taskPhoto");
         return mv;
     }
 

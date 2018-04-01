@@ -19,13 +19,32 @@
     <%@ include file="../system/admin/top.jsp"%>
 </head>
 <body>
-    <div style="">
-        <h2>异常照片</h2>
-        <div id="exceptionPic">
-            <<img src="static/images/exception.jpg" alt="异常图片">>
-        </div>
-        <a href="${basePath}sendtask/goSendTask2.do"><h2>解决异常</h2></a>
-    </div>
+<table id="table_report" class="table table-striped table-bordered table-hover">
+    <tr>
+        <td style="width:110px;text-align: right;padding-top: 13px;">异常上报人:</td>
+        <td>${result.report_worker}</td>
+        <td style="width:110px;text-align: right;padding-top: 13px;">异常上报时间:</td>
+        <td>${result.report_time}</td>
+    </tr>
+    <tr>
+        <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
+        <td>${result.workshop}</td>
+        <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
+        <td>${result.checkpoint}</td>
+    </tr>
+    <tr>
+        <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>
+        <td>${result.level}</td>
+        <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
+        <td>${result.description}</td>
+    </tr>
+    <tr colspan="10">
+        <td>异常照片</td>
+        <td><img src="static/images/exception.jpg" alt="异常图片"></td>
+    </tr>
+</table>
+<a href="${basePath}sendtask/goSendTask2.do">解决异常</a>
+
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
 </html>

@@ -17,4 +17,8 @@ public class EventService {
         List<PageData> list = (List<PageData>) dao.findForList("EventMapper.listEvent",page);
         return list;
     }
+
+    public void save(PageData pd)throws Exception{
+        dao.save("EventMapper.save", pd);
+    }
 }
