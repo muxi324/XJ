@@ -21,4 +21,8 @@ public class EventService {
     public void save(PageData pd)throws Exception{
         dao.save("EventMapper.save", pd);
     }
+
+    public PageData getEventById(PageData pd) throws Exception {
+        return (PageData) dao.findForObject("EventMapper.getEventById",pd);
+    }
 }

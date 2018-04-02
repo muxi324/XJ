@@ -63,7 +63,7 @@
         <if test="pd.description != null and pd.description != ''"><!-- 配件类型 -->
             and description = #{pd.description}
         </if>
-        order by material_id desc
+        order by material_id
     </select>
 
 

@@ -34,4 +34,8 @@
         )
     </insert>
 
+    <select id="getEventById" parameterType="pd" resultType="pd" useCache="false">
+        select * from event_info where event_id = #{eventId}
+    </select>
+
 </mapper>

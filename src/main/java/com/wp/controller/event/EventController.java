@@ -75,10 +75,32 @@ public class EventController extends BaseController{
         return mv;
     }
 
+    @RequestMapping(value = "editEvent")
+    public ModelAndView editEvent() throws Exception {
+        ModelAndView mv = new ModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        PageData result = eventService.getEventById(pd);
+        mv.setViewName("taskManage/addEvent");
+        mv.addObject("pd", result);
+        return mv;
+    }
+
     @RequestMapping(value = "addWorkContent", method = {RequestMethod.GET})
     public ModelAndView addWorkContent() {
         ModelAndView mv = new ModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
         mv.setViewName("taskManage/addWorkContent");
+        mv.addObject("eventName",pd.getString("eventName"));
+        return mv;
+    }
+
+    @RequestMapping(value = "addWorkContent", method = {RequestMethod.POST})
+    public ModelAndView addWorkContent1(PrintWriter out) {
+        ModelAndView mv = new ModelAndView();
+        PageData pd = this.getPageData();
+
         return mv;
     }
 

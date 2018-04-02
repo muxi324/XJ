@@ -71,7 +71,7 @@
                                     <c:forEach items="${varList}" var="var" varStatus="vs">
                                         <tr>
                                             <td class='center' style="width: 30px;">
-                                                <label><input type='checkbox' name='ids' value="${var.id}" /><span class="lbl"></span></label>
+                                                <label><input type='checkbox' name='ids' value="${var.event_id}" /><span class="lbl"></span></label>
                                             </td>
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                                             <td style="width: 60px;" class="center">${var.workshop}</td>
@@ -86,12 +86,12 @@
                                                 <div class='hidden-phone visible-desktop btn-group'>
 
                                                     <c:if test="${QX.edit == 1 }">
-                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="edit('${var.id }');"><i class='icon-edit'></i></a></c:if>
+                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="location.href='<%=basePath%>eventManage/editEvent.do?eventId=${var.event_id}'"><i class='icon-edit'></i></a></c:if>
                                                         <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
                                                     </c:if>
                                                     &nbsp;&nbsp;&nbsp;
                                                     <c:if test="${QX.del == 1 }">
-                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
+                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="location.href='<%=basePath%>eventManage/delEvent.do?eventId=${var.event_id}'"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
                                                         <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
                                                     </c:if>
 
@@ -192,7 +192,7 @@
     }
 
     //删除
-    function del(Id){
+   function del(Id){
         bootbox.confirm("确定要删除吗?", function(result) {
             if(result) {
                 top.jzts();
@@ -204,23 +204,6 @@
         });
     }
 
-    //修改
-    function edit(Id){
-        top.jzts();
-        var diag = new top.Dialog();
-        diag.Drag=true;
-        diag.Title ="编辑";
-        diag.URL = '<%=basePath%>eventManage/goEdit.do?id='+Id;
-        diag.Width = 400;
-        diag.Height = 600;
-        diag.CancelEvent = function(){ //关闭事件
-            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-                nextPage(${page.currentPage});
-            }
-            diag.close();
-        };
-        diag.show();
-    }
 </script>
 
 <script type="text/javascript">

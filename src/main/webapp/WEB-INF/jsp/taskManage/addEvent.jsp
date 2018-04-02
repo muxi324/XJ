@@ -13,16 +13,16 @@
     <link rel="stylesheet" type="text/css" href="plugins/webuploader/style.css" />
 </head>
 <body>
-<form action="Manage/addEvent1.do" id="Form"   method="post">
+<form action="eventManage/addEvent1.do" id="Form"   method="post">
     <label class="control-label" style="margin-left:45%">添加巡检事件</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">事件名称:</td>
-                <td><input style="width:90%;" type="text" name="event_name" id="event_name"  maxlength="200"  title=""/></td>
+                <td><input style="width:90%;" type="text" name="event_name" id="event_name" value="${pd.event_name}" maxlength="200"  title=""/></td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
                 <td>
-                    <select name="workshop" id="workshop" class="form-control">
+                    <select name="workshop" id="workshop" class="form-control" value="${pd.workshop}">
                     <option value="1车间">1车间</option>
                     <option value="2车间">2车间</option>
                     <option value="3车间">3车间</option>
@@ -32,7 +32,7 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
                 <td>
-                    <select name="check_point" id="check_point" class="form-control">
+                    <select name="check_point" id="check_point" class="form-control" value="${pd.check_point}">
                     <option value="巡检点1">巡检点1</option>
                     <option value="巡检点2">巡检点2</option>
                     <option value="巡检点3">巡检点3</option>
@@ -40,7 +40,7 @@
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检范围:</td>
                 <td>
-                    <select name="check_scope" id="check_scope" class="form-control">
+                    <select name="check_scope" id="check_scope" class="form-control" value="${pd.check_scope}">
                         <option value="范围1">范围1</option>
                         <option value="范围2">范围2</option>
                         <option value="范围3">范围3</option>
@@ -51,29 +51,30 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                 <td>
-                <input style="width:90%;" type="text" name="instrument_place" id="instrument_place"  maxlength="200"  title=""/>
+                <input style="width:90%;" type="text" name="instrument_place" id="instrument_place"  maxlength="200" value="${pd.instrument_place}" title=""/>
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">事件级别:</td>
                 <td>
-                    <input style="width:90%;" type="text" name="event_level" id="event_level"  maxlength="200"  title=""/>
+                    <input style="width:90%;" type="text" name="event_level" id="event_level"  maxlength="200"  value="${pd.event_level}" title=""/>
                 </td>
             </tr>
             <tr>
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">建议巡检周期:</td>
                 <td>
-                    <input style="width:90%;" type="text" name="check_period" id="check_period"  maxlength="200"  title=""/>小时/次
+                    <input style="width:90%;" type="text" name="check_period" id="check_period"  maxlength="200" value="${pd.check_period}" title=""/>小时/次
                 </td>
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">巡检间隔:</td>
                 <td>
-                    大于<input style="width:90%;" type="text" name="check_interval" id="check_interval"  maxlength="200"  title=""/>小时
+                    大于<input style="width:90%;" type="text" name="check_interval" id="check_interval"  maxlength="200" value="${pd.check_interval}" title=""/>小时
                 </td>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a class="btn btn-small btn-primary" onclick="location.href='<%=basePath%>eventManage/addWorkContent.do'">新增工作内容</a>
+                    <a class="btn btn-small btn-primary" onclick="addWorkContent()">新增工作内容</a>
+                    <td style="width:110px;text-align: right;padding-top: 13px;">提示：请先保存事件信息再添加工作内容</td>
                 </td>
             </tr>
             <tr>
@@ -113,6 +114,21 @@
         $("#Form").submit();
         //$("#zhongxin").hide();
         $("#zhongxin2").show();
+    }
+
+    function addWorkContent() {
+        if($("#event_name").val()==""){
+            $("#event_name").tips({
+                side:3,
+                msg:'请填写事件名称',
+                bg:'#AE81FF',
+                time:2
+            });
+            $("#event_name").focus();
+            return false;
+        }
+        var eventName = $("#event_name").val();
+        location.href = "<%=basePath%>eventManage/addWorkContent.do?eventName="+eventName;
     }
 </script>
 <%@ include file="../system/admin/bottom.jsp"%>

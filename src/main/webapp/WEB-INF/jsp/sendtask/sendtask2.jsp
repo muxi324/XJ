@@ -133,7 +133,12 @@
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常工作内容:</td>
                         <td><input style="width:90%;" type="text" name="content" id="content" value="${pd.content}" maxlength="200"  title=""/></td>
                         <td style="width:140px;text-align: right;padding-top: 13px;">下次巡检是否关注:</td>
-                        <td><input  type="radio" name="attention" id="attention" value="${pd.attention}" /></td>
+                        <td>
+                            <select name="attention" id="attention" class="form-control" value="${pd.attention}" >
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常照片:</td>
