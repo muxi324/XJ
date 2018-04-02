@@ -25,7 +25,7 @@
     <div id="page-content" class="clearfix">
         <div class="row-fluid">
             <!-- 检索  -->
-            <form action="partsmag/${msg}.do" method="post" name="Form" id="Form">
+            <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
                 <table>
                     <tr>
                         <c:if test="${QX.cha == 1 }">
@@ -44,11 +44,9 @@
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
                         </th>
                         <th class="center">序号</th>
-                        <th class="center">出库数量</th>
-                        <th class="center">出库时间</th>
-                        <th class="center">领取人</th>
-                        <th class="center">用途</th>
-                        <th class="center">所用任务</th>
+                        <th class="center">入库数量</th>
+                        <th class="center">入库时间</th>
+                        <th class="center">负责人</th>
                     </tr>
                     </thead>
 
@@ -66,9 +64,7 @@
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
                                         <td style="width: 60px;" class="center">${var.time}</td>
-                                        <td style="width: 100px;" class="center">${var.worker_name}</td>
-                                        <td style="width: 100px;" class="center">${var.aim}</td>
-                                        <td style="width: 100px;" class="center">${var.mission_id}</td>
+                                        <td style="width: 100px;" class="center">${var.worker}</td>
                                     </tr>
 
                                 </c:forEach>
@@ -147,4 +143,3 @@
 </script>
 </body>
 </html>
-

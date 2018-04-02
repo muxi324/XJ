@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: wp
-  Date: 2017/12/18
-  Time: 9:17
+  Date: 2018/4/2
+  Time: 9:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -72,36 +72,47 @@
     </script>
 </head>
 <body>
-<form action="partsmag/${msg}.do" id="Form"   method="post">
+<form action="toolsmag/${msg}.do" id="Form"   method="post">
     <%-- <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/> --%>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件类型:</td>
-                <td> <select style="width:95%;" name="description" id="description" value="${pd.description}" data-placeholder="请选择配件类型" maxlength="150">
+                <td style="width:100px;text-align: right;padding-top: 13px;">工具类型:</td>
+                <td> <select style="width:95%;" name="description" id="description" value="${pd.description}" data-placeholder="请选择工具类型" maxlength="150">
                     <option value="">全部</option>
-                    <option value="螺栓" >螺栓</option>
-                    <option value="润滑油">润滑油</option>
-                    <option value="发电机">发电机</option>
-                    <option value="传送带">传送带</option>
-                    <option value="水管">水管</option>
+                    <option value="扳手" >扳手</option>
+                    <option value="测量计">测量计</option>
+                    <option value="绳索">绳索</option>
+                    <option value="螺丝刀">螺丝刀</option>
                 </select></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件编号:</td>
-                <td><input style="width:95%;" type="text" name="material_id" id="material_id" value="${pd.material_id}" maxlength="150" placeholder="请输入配件编号" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">工具编号:</td>
+                <td><input style="width:95%;" type="text" name="material_id" id="material_id" value="${pd.material_id}" maxlength="150" placeholder="请输入工具编号" title=""/></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件名称:</td>
-                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">工具名称:</td>
+                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入工具名称" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
                 <td><input style="width:95%;" type="text" name="material_num" id="material_num" value="${pd.material_num}" maxlength="150" placeholder="这里输入数量" title=""/></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">负责人:</td>
-                <td><input style="width:95%;" type="text" name="worker_name" id="worker_name" value="${pd.worker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">领取人:</td>
+                <td><input style="width:95%;" type="text" name="woker_name" id="woker_name" value="${pd.woker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">用途:</td>
+                <td><input style="width:95%;" type="text" name="aim" id="aim" value="${pd.aim}" maxlength="150" placeholder="这里输入用途" title=""/></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">所用于任务:</td>
+                <td><input style="width:95%;" type="text" name="mission_id" id="mission_id" value="${pd.mission_id}" maxlength="150" placeholder="这里输入所用于任务编号" title=""/></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">所用于事件:</td>
+                <td><input style="width:95%;" type="text" name="event_id" id="event_id" value="${pd.event_id}" maxlength="150" placeholder="这里输入所用于事件编号" title=""/></td>
             </tr>
 
             <div style=" clear:both; padding-top: 40px;"></div>

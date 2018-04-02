@@ -25,7 +25,7 @@
     <div id="page-content" class="clearfix">
         <div class="row-fluid">
             <!-- 检索  -->
-            <form action="partsmag/${msg}.do" method="post" name="Form" id="Form">
+            <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
                 <table>
                     <tr>
                         <c:if test="${QX.cha == 1 }">
