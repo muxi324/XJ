@@ -29,6 +29,7 @@ import java.util.*;
 @RequestMapping(value="/partsmag")
 public class PartsMagController extends BaseController {
     String menuUrl = "partsmag/list.do"; //菜单地址(权限用)
+
     @Resource(name="partsMagService")
     private PartsMagService partsMagService;
 
@@ -115,8 +116,12 @@ public class PartsMagController extends BaseController {
             pd.put("is_consume",1 );	//添加入库状态
             pd.put("time",  Tools.date2Str(new Date()));	//添加时间
             int ID = Integer.parseInt(pd.getString("material_id"));
-            pd.put("material_id", "ID");	//物资ID string改为int
-            int stock1 = partsMagService.selectStock(pd);
+            pd.put("material_id", ID);	//物资ID string改为int
+            Integer stock1 = partsMagService.selectStock(pd);
+            if (null == stock1) {
+                mv.addObject("msg","该商品还未入库");
+                return mv;
+            }
             int num = Integer.parseInt(pd.getString("material_num"));
             int stock = stock1+num;
             pd.put("stock",stock);

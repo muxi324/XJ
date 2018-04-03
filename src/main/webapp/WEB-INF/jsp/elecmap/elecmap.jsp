@@ -24,10 +24,11 @@
     </head>
     <body>
 
-        <div id="allmap" style="height: 75%"></div>
+        <div id="allmap" style="height: 85%"></div>
 
         <div id="r-result">
-            <input type="button" onclick="addMarker(points);" value="展示员工位置" />
+            <input type="button" onclick="addMarker(points);" value="展示全部员工位置" />
+            <input type="button" value="展示单个员工位置,请在右侧选择员工姓名"><select name="worker" id="worker"></select>
             <input type="button" onclick="addMarker1(errorPoints);" value="展示故障位置" />
         </div>
         <%@ include file="../system/admin/bottom.jsp"%>
@@ -39,11 +40,7 @@
     // 百度地图API功能
     $(top.hangge());
 
-    var points = [
-        {"lng":116.3588619232,"lat":39.9589645746,"url":"<%=basePath%>elecmap/detailPath.do?workerId=1","id":1,"name":"汪鹏","phoneNum":"13112345678"},
-        {"lng":116.3726806641,"lat":39.9767254644,"url":"<%=basePath%>elecmap/detailPath.do?workerId=2","id":2,"name":"宋胜男","phoneNum":"13212345678"},
-        {"lng":116.3446140289,"lat":39.9787643824,"url":"<%=basePath%>elecmap/detailPath.do?workerId=3","id":3,"name":"王子良","phoneNum":"13312345678"}
-    ];
+    var points = [];
 
     var errorPoints = [
         {"lng":116.3828086853,"lat":39.9417255221,"url":"<%=basePath%>elecmap/errorDetail.do?errorId=1","id":1,"name":"故障点1","phoneNum":"010-123456"},
@@ -60,6 +57,7 @@
             if (result != null && result.length > 0) {
                 console.info(result);
                 $.each(result, function(index, content) {
+                    $("#worker").append("<option value='"+content.name+"'>"+content.name+"</option>");
                     var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId=1","id":content.id,"name":content.name,"phoneNum":content.phone};
                     points.push(point);
                 })
@@ -72,6 +70,26 @@
             alert("员工位置数据获取失败，可能是服务器开小差了");
         }
     })
+
+    $("#worker").change(function(){
+        var name = $("#worker").val();
+        for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+            if (name == points[i].name) {
+                var point = new BMap.Point(points[i].lng, points[i].lat);
+                var marker = new BMap.Marker(point);
+                map.clearOverlays();
+                map.addOverlay(marker);
+                (function() {
+                    var thePoint = points[i];
+                    marker.addEventListener("click",
+                        function() {
+                            showInfo(this,thePoint);
+                        });
+                })();
+                break;
+            }
+        }
+    });
 
     //创建标注点并添加到地图中
     function addMarker(points) {

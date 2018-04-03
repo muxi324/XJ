@@ -18,6 +18,12 @@
 
 </head>
 <body style="overflow-x: hidden">
+    <!--    报警信息-->
+	<div>
+		<marquee id="affiche"  align="left" behavior="scroll" bgcolor="red" direction="right" height="50" width="100%" hspace="50" vspace="20" loop="-1" scrollamount="10" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
+			<a href="<%=basePath%>exception/exceptionInfo.do" ><font size="6">异常信息</font></a>
+		</marquee>
+	</div>
 
 	<div class="container-fluid" id="main-container">
 		
@@ -26,15 +32,10 @@
 
 				<div class="page-header position-relative">
 					<h1>
-						后台首页 <small><i class="icon-double-angle-right"></i> </small>
+						全厂综合数据统计 <small><i class="icon-double-angle-right"></i> </small>
 					</h1>
 				</div>
-				<!--    报警信息-->
-				<div>
-					<marquee id="affiche"  align="left" behavior="scroll" bgcolor="red" direction="right" height="50" width="100%" hspace="50" vspace="20" loop="-1" scrollamount="10" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
-						<a href="<%=basePath%>exception/exceptionInfo.do" ><font size="3">异常信息</font></a>
-					</marquee>
-				</div>
+
 				<!--/page-header-->
 				<div id="allStatistic">
 					<div id="tab" style="float:left; height:200px;min-height:100px;width:20%;margin:5% ">

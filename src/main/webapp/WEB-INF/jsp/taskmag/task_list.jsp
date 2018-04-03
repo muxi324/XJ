@@ -30,12 +30,12 @@
                     <tr>
                         <td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="${pd.enquiry }" placeholder="这里输入内容" />
+							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" placeholder="这里输入内容" />
 							<i id="nav-search-icon" class="icon-search"></i>
 						</span>
                         </td>
-                        <td><input class="span10 date-picker" name="sendTimeStart" id="sendTimeStart" value="${pd.sendTimeStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
-                        <td><input class="span10 date-picker" name="sendTimeEnd" id="sendTimeEnd" value="${pd.sendTimeEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
+                        <td><input class="span10 date-picker" name="sendTimeStart" id="sendTimeStart"  type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
+                        <td><input class="span10 date-picker" name="sendTimeEnd" id="sendTimeEnd"  type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
                         <td style="vertical-align:top;">
                             <select class="chzn-select" name="status" id="status" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
@@ -61,13 +61,14 @@
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
                         </th>
                         <th class="center">序号</th>
-                        <th class="center">任务联单号</th>
-                        <th class="center">安装员工</th>
-                        <th class="center">任务下达时间</th>
-                        <th class="center">房源地址</th>
-                        <th class="center">房源联系人</th>
-                        <th class="center">联系人电话</th>
+                        <th class="center">任务名称</th>
                         <th class="center">任务状态</th>
+                        <th class="center">任务下达时间</th>
+                        <th class="center">任务执行人</th>
+                        <th class="center">任务执行人电话</th>
+                        <th class="center">任务下达人</th>
+                        <th class="center">任务级别</th>
+                        <th class="center">任务类型</th>
                         <th class="center">操作</th>
                     </tr>
                     </thead>
@@ -84,29 +85,23 @@
                                             <label><input type='checkbox' name='ids' value="${var.mission_id}" /><span class="lbl"></span></label>
                                         </td>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                        <td style="width: 60px;" class="center">${var.flow_number}</td>
-                                        <td style="width: 60px;" class="center">${var.worker_name}</td>
-                                        <td style="width: 100px;" class="center">${var.send_time}</td>
-                                        <td style="width: 139px;" class="center">${var.house_address}</td>
-                                        <td style="width: 60px;" class="center">${var.house_owner_name}</td>
-                                        <td style="width: 60px;" class="center">${var.house_owner_phone}</td>
+                                        <td style="width: 60px;" class="center">${var.mission_name}</td>
                                         <td style="width: 60px;" class="center">
-                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-warning   arrowed-in">拒单</span></c:if>
+                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-warning   arrowed-in">任务进行中</span></c:if>
                                             <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务完成</span></c:if>
-
                                         </td>
+                                        <td style="width: 100px;" class="center">${var.send_time}</td>
+                                        <td style="width: 139px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 60px;" class="center">${var.worker_phone}</td>
+                                        <td style="width: 60px;" class="center">${var.set_name}</td>
+                                        <td style="width: 60px;" class="center">${var.mission_level}</td>
+                                        <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 30px;" class="center">
-                                            <div class='hidden-phone visible-desktop btn-group'>
-
-                                                <c:if test="${QX.cha == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="审核" onclick="check('${var.mission_id }');"><i class='icon-edit'></i></a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能审核"><i class='icon-edit'></i></a></c:if>
-                                                </c:if>
-
-                                            </div>
+                                            <a href="<%=basePath%>taskmag/getTaskLine.do?taskId=${var.id}">查看巡检路径</a>
+                                            <br/>---------
+                                            <a href="<%=basePath%>taskmag/getTaskPhoto.do?taskId=${var.id}">查看上传照片</a>
                                         </td>
                                     </tr>
-
                                 </c:forEach>
                             </c:if>
                             <c:if test="${QX.cha == 0 }">

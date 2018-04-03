@@ -30,6 +30,9 @@ public class PartsMagService {
    * 通过id获取入库当前库存数据
    */
     public Integer selectStock(PageData pd)throws Exception{
+        System.out.println("------------------------------------------");
+        System.out.println(pd.getString("material_id"));
+        System.out.println("------------------------------------------");
         return (Integer)dao.findForObject("PartsMagMapper.selectStock", pd);
     }
       /* 修改物资出库当前库存 */
