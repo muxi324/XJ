@@ -64,6 +64,7 @@
                         </th>
                         <th class="center">序号</th>
                         <th class="center">配件类别</th>
+                        <th class="center">配件编号</th>
                         <th class="center">配件名称</th>
                         <th class="center">当前库存</th>
                         <th class="center">操作</th>
@@ -79,23 +80,29 @@
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
                                         <td class='center' style="width: 30px;">
-                                            <label><input type='checkbox' name='ids' value="${var.id}" /><span class="lbl"></span></label>
+                                            <label><input type='checkbox' name='ids' value="${var.material_id}" /><span class="lbl"></span></label>
                                         </td>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.description}</td>
+                                        <td style="width: 60px;" class="center">${var.material_id}</td>
                                         <td style="width: 60px;" class="center">${var.name}</td>
                                         <td style="width: 60px;" class="center">${var.stock}</td>
                                         <td style="width: 30px;" class="center">
                                             <div class='hidden-phone visible-desktop btn-group'>
 
                                                 <c:if test="${QX.cha == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="出库" onclick="output('${var.id }');"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="出库" onclick="output('${var.material_id }');"><i class='icon-edit'></i></a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能查看"><i class='icon-edit'></i></a></c:if>
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.cha == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="入库" onclick="input('${var.id}');"  data-placement="left"><i class="icon-edit"></i> </a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能查看"><i class='icon-trash'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-success' title="入库" onclick="input('${var.material_id}');"  data-placement="left"><i class="icon-edit"></i> </a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-success' title="您不能查看"><i class='icon-edit'></i></a></c:if>
+                                                </c:if>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <c:if test="${QX.del == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.material_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能删除"><i class='icon-trash'></i></a></c:if>
                                                 </c:if>
 
                                             </div>
@@ -123,11 +130,11 @@
                         <tr>
                             <td style="vertical-align:top;">
                                 <c:if test="${QX.add == 1 }">
-                                    <a class="btn btn-small btn-success" onclick="add();">入库</a>
+                                    <a class="btn btn-small btn-success" onclick="add();">新增</a>
                                 </c:if>
-                                <c:if test="${QX.add == 1 }">
+                               <%-- <c:if test="${QX.add == 1 }">
                                     <a class="btn btn-small btn-success" onclick="decrease();">出库</a>
-                                </c:if>
+                                </c:if>--%>
                                 <c:if test="${QX.del == 1 }">
                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
                                 </c:if>
@@ -156,8 +163,7 @@
 <script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
 <!-- 引入 -->
 <script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
-<%--引入house_msg--%>
-<script type="text/javascript" src="static/js/myjs/mission_msg.js"></script>
+
 <script type="text/javascript">
     $(top.hangge());
 
@@ -166,14 +172,26 @@
         top.jzts();
         $("#Form").submit();
     }
+    //删除
+    function del(Id){
+        bootbox.confirm("确定要删除吗?", function(result) {
+            if(result) {
+                top.jzts();
+                var url = "<%=basePath%>partsmag/delete.do?material_id="+Id;
+                $.get(url,function(data){
+                    nextPage(${page.currentPage});
+                });
+            }
+        });
+    }
     //出库记录
     function output(Id){
         top.jzts();
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="出库记录";
-        diag.URL = '<%=basePath%>partsmag/goOutput.do?id='+Id;
-        diag.Width = 400;
+        diag.URL = '<%=basePath%>partsmag/goOutput.do?material_id='+Id;
+        diag.Width = 600;
         diag.Height = 500;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
@@ -194,8 +212,8 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="入库记录";
-        diag.URL = '<%=basePath%>partsmag/goInput.do?id='+Id;
-        diag.Width = 400;
+        diag.URL = '<%=basePath%>partsmag/goInput.do?material_id='+Id;
+        diag.Width = 600;
         diag.Height = 500;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
@@ -210,37 +228,16 @@
         };
         diag.show();
     }
-    //出库
-    function decrease(){
-        top.jzts();
-        var diag = new top.Dialog();
-        diag.Drag=true;
-        diag.Title ="出库";
-        diag.URL = '<%=basePath%>partsmag/goDecrease.do';
-        diag.Width = 400;
-        diag.Height = 500;
-        diag.CancelEvent = function(){ //关闭事件
-            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-                if('${page.currentPage}' == '0'){
-                    top.jzts();
-                    setTimeout("self.location=self.location",100);
-                }else{
-                    nextPage(${page.currentPage});
-                }
-            }
-            diag.close();
-        };
-        diag.show();
-    }
+
     //入库
     function add(){
         top.jzts();
         var diag = new top.Dialog();
         diag.Drag=true;
-        diag.Title ="入库";
-        diag.URL = '<%=basePath%>partsmag/goAdd.do';
+        diag.Title ="新增";
+        diag.URL = '<%=basePath%>partsmag/goNewAdd.do';
         diag.Width = 400;
-        diag.Height = 500;
+        diag.Height = 400;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
                 if('${page.currentPage}' == '0'){

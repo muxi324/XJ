@@ -22,6 +22,9 @@ public class PartsMagService {
     public void save(PageData pd)throws Exception{
         dao.save("PartsMagMapper.save", pd);
     }
+
+
+
     /* 修改物资入库当前库存 */
     public void editStock(PageData pd)throws Exception{
         dao.update("PartsMagMapper.editStock", pd);
@@ -35,11 +38,6 @@ public class PartsMagService {
         System.out.println("------------------------------------------");
         return (Integer)dao.findForObject("PartsMagMapper.selectStock", pd);
     }
-      /* 修改物资出库当前库存 */
-    public void editStock1(PageData pd)throws Exception{
-        dao.update("PartsMagMapper.editStock1", pd);
-    }
-
 
     /*
     *列表(全部)dd
@@ -49,16 +47,23 @@ public class PartsMagService {
     }
 
     /*
+  * 删除
+  */
+    public void delete(PageData pd)throws Exception{
+        dao.delete("PartsMagMapper.delete", pd);
+    }
+
+    /*
     * 通过id获取入库数据
     */
-    public PageData findById(PageData pd)throws Exception{
-        return (PageData)dao.findForObject("PartsMagMapper.findById", pd);
+    public List<PageData> findById(PageData pd)throws Exception{
+        return (List<PageData>) dao.findForList("PartsMagMapper.findById", pd);
     }
     /*
   * 通过id获取出库数据
   */
-    public PageData findById1(PageData pd)throws Exception{
-        return (PageData)dao.findForObject("PartsMagMapper.findById1", pd);
+    public List<PageData> findById1(PageData pd)throws Exception{
+        return (List<PageData>) dao.findForList("PartsMagMapper.findById1", pd);
     }
 
     /*

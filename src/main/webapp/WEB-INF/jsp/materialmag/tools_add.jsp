@@ -23,44 +23,44 @@
 
         //保存
         function save(){
+            if($("#material_id").val()==""){
+                $("#material_id").tips({
+                    side:3,
+                    msg:'请输入工具编号',
+                    bg:'#AE81FF',
+                    time:2
+                });
+                $("#material_id").focus();
+                return false;
+            }
             if($("#name").val()==""){
                 $("#name").tips({
                     side:3,
-                    msg:'请输入姓名',
+                    msg:'请输入工具名称',
                     bg:'#AE81FF',
                     time:2
                 });
                 $("#name").focus();
                 return false;
             }
-            if($("#phone").val()==""){
-                $("#phone").tips({
+            if($("#material_num").val()==""){
+                $("#material_num").tips({
                     side:3,
-                    msg:'请输入手机号',
+                    msg:'请输入数量',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#phone").focus();
+                $("#material_num").focus();
                 return false;
             }
-            if($("#workshop").val()==""){
-                $("#workshop").tips({
+            if($("#worker_name").val()==""){
+                $("#worker_name").tips({
                     side:3,
-                    msg:'请输入身份证号',
+                    msg:'请输入负责人',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#workshop").focus();
-                return false;
-            }
-            if($("#team").val()==""){
-                $("#team").tips({
-                    side:3,
-                    msg:'请输入班组',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#team").focus();
+                $("#worker_name").focus();
                 return false;
             }
             $("#Form").submit();
@@ -78,13 +78,7 @@
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">工具类型:</td>
-                <td> <select style="width:95%;" name="description" id="description" value="${pd.description}" data-placeholder="请选择工具类型" maxlength="150">
-                    <option value="">全部</option>
-                    <option value="扳手" >扳手</option>
-                    <option value="测量计">测量计</option>
-                    <option value="绳索">绳索</option>
-                    <option value="螺丝刀">螺丝刀</option>
-                </select></td>
+                <td> <input style="width:95%;" type="text" name="description" id="description" value="${pd.description}" maxlength="150" placeholder="请输入工具类型" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">工具编号:</td>
@@ -92,7 +86,7 @@
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">工具名称:</td>
-                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入工具名称" title=""/></td>
+                <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="150" placeholder="请输入工具名称" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
@@ -129,6 +123,7 @@
 
 <script type="text/javascript">
     $(top.hangge());
+
     $(function() {
 
         //单选框

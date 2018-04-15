@@ -49,14 +49,14 @@
             if($("#workshop").val()==""){
                 $("#workshop").tips({
                     side:3,
-                    msg:'请输入身份证号',
+                    msg:'请选择车间',
                     bg:'#AE81FF',
                     time:2
                 });
                 $("#workshop").focus();
                 return false;
             }
-            if($("#team").val()==""){
+           /* if($("#team").val()==""){
                 $("#team").tips({
                     side:3,
                     msg:'请输入班组',
@@ -65,7 +65,7 @@
                 });
                 $("#team").focus();
                 return false;
-            }
+            }*/
             $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
@@ -122,7 +122,13 @@
                  </tr>
                  <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">职位:</td>
-                     <td><input style="width:95%;" type="text" name="post" id="post" value="${pd.post}" maxlength="150" placeholder="这里输入职位" title=""/></td>
+                     <td><select name="post" id="post" class="form-control" value="${pd.post}">
+                         <option value="">请选择</option>
+                         <option value="车间主任">车间主任</option>
+                         <option value="班组长">班组长</option>
+                         <option value="检修员工">检修员工</option>
+                         <option value="系统维护">系统维护</option>
+                     </select></td>
                  </tr>
                  <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">工种:</td>
@@ -130,7 +136,12 @@
                  </tr>
                  <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
-                     <td><input style="width:95%;" type="text" name="workshop" id="workshop" value="${pd.workshop}" maxlength="200" placeholder="这里输入所属车间" title=""/></td>
+                     <td><select  type="text" name="workshop" id="workshop" value="${pd.workshop}"  class="form-control" >
+                         <option value="0">选择</option>
+                         <c:forEach items="${workshopList}" var="W">
+                             <option value="${W.workshop }">${W.workshop }</option>
+                         </c:forEach>
+                     </select></td>
                  </tr>
                  <tr>
                      <td style="width:100px;hight:250px; text-align: right;padding-top: 13px;">照 片</td>

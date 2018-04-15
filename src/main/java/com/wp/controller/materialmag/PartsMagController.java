@@ -3,6 +3,7 @@ package com.wp.controller.materialmag;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.service.materialmag.PartsMagService;
+import com.wp.service.materialmag.ToolsMagService;
 import com.wp.service.system.role.RoleService;
 import com.wp.util.*;
 import org.apache.shiro.SecurityUtils;
@@ -32,6 +33,8 @@ public class PartsMagController extends BaseController {
 
     @Resource(name="partsMagService")
     private PartsMagService partsMagService;
+    @Resource(name="toolsMagService")
+    private ToolsMagService toolsMagService;
 
     @Resource(name="roleService")
     private RoleService roleService;
@@ -69,15 +72,50 @@ public class PartsMagController extends BaseController {
     }
 
     /**
-     * 去入库页面
+     * 去新增页面
      */
-    @RequestMapping(value="/goAdd")
-    public ModelAndView goAdd(){
+    @RequestMapping(value="/goNewAdd")
+    public ModelAndView goNewAdd(){
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
             mv.setViewName("materialmag/parts_add");
+            mv.addObject("msg", "save");
+            mv.addObject("pd", pd);
+        } catch (Exception e) {
+            logger.error(e.toString(), e);
+        }
+        return mv;
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping(value="/delete")
+    public void delete(PrintWriter out){
+        logBefore(logger, "删除配件");
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
+        PageData pd = new PageData();
+        try{
+            pd = this.getPageData();
+            partsMagService.delete(pd);
+            out.write("success");
+            out.close();
+        } catch(Exception e){
+            logger.error(e.toString(), e);
+        }
+    }
+    /**
+     * 去入库页面
+     */
+    @RequestMapping(value="/goInputStorage")
+    public ModelAndView goAdd(){
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        try {
+            mv.setViewName("materialmag/parts_input");
             mv.addObject("msg", "save");
             mv.addObject("pd", pd);
         } catch (Exception e) {
@@ -95,7 +133,7 @@ public class PartsMagController extends BaseController {
         pd = this.getPageData();
         try {
             mv.setViewName("materialmag/parts_decrease");
-            mv.addObject("msg", "save");
+            mv.addObject("msg", "save1");
             mv.addObject("pd", pd);
         } catch (Exception e) {
             logger.error(e.toString(), e);
@@ -118,19 +156,33 @@ public class PartsMagController extends BaseController {
             int ID = Integer.parseInt(pd.getString("material_id"));
             pd.put("material_id", ID);	//物资ID string改为int
             Integer stock1 = partsMagService.selectStock(pd);
-            if (null == stock1) {
-                mv.addObject("msg","该商品还未入库");
-                return mv;
+            if (stock1 == null) {
+                //插入materail；
+                String  descrp = pd.getString("description");
+                String  name = pd.getString("material_name");
+                Integer  num = Integer.parseInt(pd.getString("material_num"));
+                pd.put("type",1 );	//添加物资种类配件
+                pd.put("description",descrp);
+                pd.put("name",name);
+                pd.put("stock",num);
+                pd.put("material_id", ID);
+                toolsMagService.firstsave(pd);
+                pd.put("type",1);	//添加物资种类配件
+                pd.put("material_name",name);
+                partsMagService.save(pd);
             }
             int num = Integer.parseInt(pd.getString("material_num"));
             int stock = stock1+num;
             pd.put("stock",stock);
             partsMagService.editStock(pd);
+            pd.put("type",1 );	//添加物资种类配件
+            String  name = pd.getString("material_name");
+            pd.put("material_name",name);
             partsMagService.save(pd);
         } catch (Exception e ){
             e.printStackTrace();
         }
-        mv.addObject("msg","success");
+       // mv.addObject("msg","success");
         mv.setViewName("save_result");
         return mv;
     }
@@ -143,16 +195,20 @@ public class PartsMagController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
-        pd.put("material_id", "");	//物资ID
         pd.put("is_consume",0 );	//添加出库状态
         pd.put("time",  Tools.date2Str(new Date()));	//添加时间
-        int stock1 = partsMagService.selectStock(pd);
+        Integer ID = Integer.parseInt(pd.getString("material_id"));
+        pd.put("material_id", ID);	//物资ID string改为int
+        Integer stock1 = partsMagService.selectStock(pd);
         int num = Integer.parseInt(pd.getString("material_num"));
         int stock = stock1-num;
         pd.put("stock",stock);
-        partsMagService.editStock1(pd);
+        partsMagService.editStock(pd);
+        pd.put("type",1 );	//添加物资种类配件
+        String  name = pd.getString("material_name");
+        pd.put("material_name",name);
         partsMagService.save(pd);
-        mv.addObject("msg","success");
+       // mv.addObject("msg","success");
         mv.setViewName("save_result");
         return mv;
     }
@@ -166,9 +222,22 @@ public class PartsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-            pd = partsMagService.findById1(pd);								//根据ID读取
+            String sendTimeStart = pd.getString("sendTimeStart");
+            String sendTimeEnd = pd.getString("sendTimeEnd");
+
+            if(sendTimeStart != null && !"".equals(sendTimeStart)){
+                sendTimeStart = sendTimeStart+" 00:00:00";
+                pd.put("sendTimeStart", sendTimeStart);
+            }
+            if(sendTimeEnd != null && !"".equals(sendTimeEnd)){
+                sendTimeEnd = sendTimeEnd+" 00:00:00";
+                pd.put("sendTimeEnd", sendTimeEnd);
+            }
+
+            List<PageData> varList = partsMagService.findById1(pd);								//根据ID读取
             mv.setViewName("materialmag/parts_output_history");
             mv.addObject("msg", "history");
+            mv.addObject("varList", varList);
             mv.addObject("pd", pd);
         } catch (Exception e) {
             logger.error(e.toString(), e);
@@ -184,9 +253,21 @@ public class PartsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-            pd = partsMagService.findById(pd);								//根据ID读取
+            String sendTimeStart = pd.getString("sendTimeStart");
+            String sendTimeEnd = pd.getString("sendTimeEnd");
+
+            if(sendTimeStart != null && !"".equals(sendTimeStart)){
+                sendTimeStart = sendTimeStart+" 00:00:00";
+                pd.put("sendTimeStart", sendTimeStart);
+            }
+            if(sendTimeEnd != null && !"".equals(sendTimeEnd)){
+                sendTimeEnd = sendTimeEnd+" 00:00:00";
+                pd.put("sendTimeEnd", sendTimeEnd);
+            }
+            List<PageData> varList = partsMagService.findById(pd);								//根据ID读取
             mv.setViewName("materialmag/parts_input_history");
             mv.addObject("msg", "Input_history");
+            mv.addObject("varList", varList);
             mv.addObject("pd", pd);
         } catch (Exception e) {
             logger.error(e.toString(), e);

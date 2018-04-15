@@ -23,50 +23,50 @@
 
         //保存
         function save(){
+            if($("#material_id").val()==""){
+                $("#material_id").tips({
+                    side:3,
+                    msg:'请输入工具编号',
+                    bg:'#AE81FF',
+                    time:2
+                });
+                $("#material_id").focus();
+                return false;
+            }
             if($("#name").val()==""){
                 $("#name").tips({
                     side:3,
-                    msg:'请输入姓名',
+                    msg:'请输入工具名称',
                     bg:'#AE81FF',
                     time:2
                 });
                 $("#name").focus();
                 return false;
             }
-            if($("#phone").val()==""){
-                $("#phone").tips({
+            if($("#material_num").val()==""){
+                $("#material_num").tips({
                     side:3,
-                    msg:'请输入手机号',
+                    msg:'请输入数量',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#phone").focus();
+                $("#material_num").focus();
                 return false;
             }
-            if($("#workshop").val()==""){
-                $("#workshop").tips({
+            if($("#worker_name").val()==""){
+                $("#worker_name").tips({
                     side:3,
-                    msg:'请输入身份证号',
+                    msg:'请输入负责人',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#workshop").focus();
-                return false;
-            }
-            if($("#team").val()==""){
-                $("#team").tips({
-                    side:3,
-                    msg:'请输入班组',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#team").focus();
+                $("#worker_name").focus();
                 return false;
             }
             $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
-            // hasW();
+
         }
 
     </script>
@@ -92,7 +92,7 @@
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">工具名称:</td>
-                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入工具名称" title=""/></td>
+                <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="150" placeholder="请输入工具名称" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
@@ -100,11 +100,11 @@
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">领取人:</td>
-                <td><input style="width:95%;" type="text" name="woker_name" id="woker_name" value="${pd.woker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
+                <td><input style="width:95%;" type="text" name="worker_name" id="worker_name" value="${pd.worker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">用途:</td>
-                <td><input style="width:95%;" type="text" name="aim" id="aim" value="${pd.aim}" maxlength="150" placeholder="这里输入用途" title=""/></td>
+                <td><input style="width:95%;" type="text" name="aim" id="aim" value="${pd.aim}" maxlength="150" placeholder="这里输入用途" /></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">所用于任务:</td>

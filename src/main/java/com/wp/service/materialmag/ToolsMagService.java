@@ -37,7 +37,12 @@ public class ToolsMagService {
         return (Integer)dao.findForObject("ToolsMagMapper.selectStock", pd);
     }
 
-
+    /*
+   * 删除
+   */
+    public void delete(PageData pd)throws Exception{
+        dao.delete("ToolsMagMapper.delete", pd);
+    }
 
     /*
     *列表(全部)dd
@@ -49,14 +54,14 @@ public class ToolsMagService {
     /*
     * 通过id获取入库数据
     */
-    public PageData findById(PageData pd)throws Exception{
-        return (PageData)dao.findForObject("ToolsMagMapper.findById", pd);
+    public List<PageData> findById(PageData pd)throws Exception{
+        return (List<PageData>)dao.findForList("ToolsMagMapper.findById", pd);
     }
     /*
   * 通过id获取出库数据
   */
-    public PageData findById1(PageData pd)throws Exception{
-        return (PageData)dao.findForObject("ToolsMagMapper.findById1", pd);
+    public List<PageData> findById1(PageData pd)throws Exception{
+        return (List<PageData>)dao.findForList("ToolsMagMapper.findById1", pd);
     }
 
     /*

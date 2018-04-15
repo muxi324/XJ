@@ -21,11 +21,11 @@
 
 </head>
 </body>
-<div class="container-fluid" id="main-container">
-    <div id="page-content" class="clearfix">
-        <div class="row-fluid">
-            <!-- 检索  -->
+
             <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
+                <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
+                <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
+                <div id="zhongxin">
                 <table>
                     <tr>
                         <c:if test="${QX.cha == 1 }">
@@ -63,8 +63,8 @@
                                         </td>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
-                                        <td style="width: 60px;" class="center">${var.time}</td>
-                                        <td style="width: 100px;" class="center">${var.worker}</td>
+                                        <td style="width: 100px;" class="center">${var.time}</td>
+                                        <td style="width: 60px;" class="center">${var.worker_name}</td>
                                     </tr>
 
                                 </c:forEach>
@@ -86,20 +86,18 @@
                 <div class="page-header position-relative">
                     <table style="width:100%;">
                         <tr>
+                            <td style="vertical-align:top;">
+                                <c:if test="${QX.add == 1 }">
+                                    <a class="btn btn-small btn-success" onclick="add('${pd.material_id}','${pd.material_name}');">入库</a>
+                                </c:if>
+                            </td>
                             <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                         </tr>
                     </table>
                 </div>
-
+                </div>
             </form>
-            <%--<table id="mission_msg"></table>--%>
-        </div>
-    </div>
-</div>
-<!-- 返回顶部  -->
-<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
-    <i class="icon-double-angle-up icon-only"></i>
-</a>
+
 <!-- 引入 -->
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
 <script src="static/js/ace-elements.min.js"></script>
@@ -110,8 +108,6 @@
 <script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
 <!-- 引入 -->
 <script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
-<%--引入house_msg--%>
-<script type="text/javascript" src="static/js/myjs/mission_msg.js"></script>
 <script type="text/javascript">
     $(top.hangge());
 
@@ -120,6 +116,7 @@
         top.jzts();
         $("#Form").submit();
     }
+
 
     $(function() {
         //下拉框
@@ -139,6 +136,29 @@
                 });
         });
     });
+
+    //入库
+    function add(material_id,material_name){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="入库";
+        diag.URL = '<%=basePath%>toolsmag/goInputStorage.do?material_id='+material_id+'&material_name='+material_name;
+        diag.Width = 400;
+        diag.Height = 300;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location=self.location",100);
+                }else{
+                    nextPage(${page.currentPage});
+                }
+            }
+            diag.close();
+        };
+        diag.show();
+    }
 
 </script>
 </body>

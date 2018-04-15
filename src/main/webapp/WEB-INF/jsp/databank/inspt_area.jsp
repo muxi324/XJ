@@ -60,8 +60,8 @@
                                 <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
                             </th>
                             <th class="center">序号</th>
-                            <th class="center">所属车间</th>
                             <th class="center">巡检区域名称</th>
+                            <th class="center">所属车间</th>
                             <th class="center">巡检区域范围</th>
                             <th class="center">创建时间</th>
                             <th class="center">操作</th>
@@ -80,8 +80,8 @@
                                                 <label><input type='checkbox' name='ids' value="${var.id}" /><span class="lbl"></span></label>
                                             </td>
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                            <td style="width: 60px;" class="center">${var.workshop}</td>
                                             <td style="width: 100px;" class="center">${var.area_name}</td>
+                                            <td style="width: 60px;" class="center">${var.workshop}</td>
                                             <td style="width: 139px;" class="center">${var.area_field}</td>
                                             <td style="width: 60px;" class="center">${var.add_time}</td>
                                             <td style="width: 60px;" class="center">

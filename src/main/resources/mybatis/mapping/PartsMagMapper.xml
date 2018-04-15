@@ -6,22 +6,45 @@
 
 
     <!--通过id获取入库数据-->
-    <select id="findById" parameterType="pd" resultType="pd">
+    <select id="findById" parameterType="pd" resultType="pd" useCache="false">
         select *  from material_history
-        where
-        material_id = #{material_id} and is_consume = 1
+        where  1=1
+        and material_id = #{material_id} and is_consume = 1 and type =1
+
+       <!-- <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+            and time &gt;= #{pd.sendTimeStart}
+        </if>
+        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+            and time &lt;= #{pd.sendTimeEnd}
+        </if>-->
+        order by id desc
+
     </select>
     <!--通过id获取出库数据-->
-    <select id="findById1" parameterType="pd" resultType="pd">
+    <select id="findById1" parameterType="Page" resultType="pd" useCache="false">
         select *  from material_history
-        where
-        material_id = #{material_id} and is_consume = 0
+        where  1=1
+         and material_id = #{material_id} and is_consume = 0 and type =1
+        <!--<if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+            and time &gt;= #{pd.sendTimeStart}
+        </if>
+        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+            and time &lt;= #{pd.sendTimeEnd}
+        </if>-->
+        order by id desc
     </select>
+
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from  material
+        where
+         material_id = #{material_id} and type =1
+    </delete>
 
     <select id="selectStock" parameterType="pd" resultType="java.lang.Integer">
         select stock from material
         where
-        material_id = #{material_id}
+        material_id = #{material_id} and type =1
     </select>
     <!-- 修改物资入库当前库存 -->
     <update id="editStock" parameterType="pd">
@@ -29,22 +52,15 @@
         set
           stock = #{stock}
          where
-        material_id = #{material_id}
+        material_id = #{material_id} and type =1
     </update>
-    <!-- 修改物资出库当前库存 -->
-    <update id="editStock1" parameterType="pd">
-        update  material
-        set
-        stock = #{stock}
-        where
-        material_id = #{material_id}
-    </update>
+
     <!--保存-->
     <insert id="save" parameterType="pd">
        insert into material_history(
-        material_id,material_num,material_name,worker_name,aim,mission_id,event_id,is_consume,time)
+        material_id,material_num,material_name,worker_name,aim,mission_id,event_id,type,is_consume,time)
         values (   #{material_id},#{material_num}, #{material_name}, #{worker_name},#{aim},
-        #{mission_id}, #{event_id},#{is_consume},#{time}
+        #{mission_id}, #{event_id},#{type},#{is_consume},#{time}
         )
     </insert>
 
@@ -53,7 +69,7 @@
     <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
         select  *   from material
         where 1 = 1
-
+        and type=1
         <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
             and
             (
@@ -63,15 +79,15 @@
         <if test="pd.description != null and pd.description != ''"><!-- 配件类型 -->
             and description = #{pd.description}
         </if>
-        order by material_id
+        order by material_id  ASC
     </select>
 
 
     <!-- 批量删除 -->
     <delete id="deleteAll" parameterType="String" flushCache="false">
         delete from material
-        where
-        material_id in
+        where  type =1
+        and material_id in
         <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
             #{item}
         </foreach>

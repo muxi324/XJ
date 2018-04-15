@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wp.entity.databank.Workshop;
+import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
@@ -40,6 +42,8 @@ public class WorkerController extends BaseController {
     String menuUrl = "worker/list.do"; //菜单地址(权限用)
     @Resource(name="workerService")
     private WorkerService workerService;
+    @Resource(name="workshopService")
+    private WorkshopService workshopService;
     @Resource(name="roleService")
     private RoleService roleService;
 
@@ -166,6 +170,8 @@ public class WorkerController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            List<Workshop> workshopList = workshopService.listWorkshop();			//列出所有锁的类型
+            mv.addObject("workshopList",workshopList);
             mv.setViewName("worker/worker_edit");
             mv.addObject("msg", "save");
             mv.addObject("pd", pd);

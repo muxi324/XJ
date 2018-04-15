@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="WorkshopMapper">
+    <resultMap type="com.wp.entity.databank.Workshop" id="workshopMap">
+        <result column="workshop" property="workshop"/>
+    </resultMap>
+
+    <!--列出所有车间-->
+    <select id="listWorkshop" resultMap="workshopMap">
+        select distinct workshop from workshop_principal_info where workshop  is not null
+    </select>
 
 
     <!-- 新增-->
