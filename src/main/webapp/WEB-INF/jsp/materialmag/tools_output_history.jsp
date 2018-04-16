@@ -21,11 +21,10 @@
 
 </head>
 </body>
-<div class="container-fluid" id="main-container">
-    <div id="page-content" class="clearfix">
-        <div class="row-fluid">
-            <!-- 检索  -->
+
             <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
+                <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
+                <div id="zhongxin">
                 <table>
                     <tr>
                         <c:if test="${QX.cha == 1 }">
@@ -65,10 +64,10 @@
                                         </td>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
-                                        <td style="width: 60px;" class="center">${var.time}</td>
-                                        <td style="width: 100px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 100px;" class="center">${var.time}</td>
+                                        <td style="width: 60px;" class="center">${var.worker_name}</td>
                                         <td style="width: 100px;" class="center">${var.aim}</td>
-                                        <td style="width: 100px;" class="center">${var.mission_id}</td>
+                                        <td style="width: 60px;" class="center">${var.mission_id}</td>
                                     </tr>
 
                                 </c:forEach>
@@ -90,16 +89,17 @@
                 <div class="page-header position-relative">
                     <table style="width:100%;">
                         <tr>
+                            <td style="vertical-align:top;">
+                                <c:if test="${QX.add == 1 }">
+                                    <a class="btn btn-small btn-success" onclick="decrease('${pd.material_id}','${pd.material_name}');">出库</a>
+                                </c:if>
+                            </td>
                             <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                         </tr>
                     </table>
                 </div>
-
+                </div>
             </form>
-            <%--<table id="mission_msg"></table>--%>
-        </div>
-    </div>
-</div>
 <!-- 返回顶部  -->
 <a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
     <i class="icon-double-angle-up icon-only"></i>
@@ -118,7 +118,6 @@
 <script type="text/javascript" src="static/js/myjs/mission_msg.js"></script>
 <script type="text/javascript">
     $(top.hangge());
-
     //检索
     function search(){
         top.jzts();

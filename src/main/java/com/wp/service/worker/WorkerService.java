@@ -24,6 +24,13 @@ public class WorkerService {
     }
 
     /*
+   * 修改
+   */
+    public void editWorkshop(PageData pd)throws Exception{
+        dao.update("WorkerMapper.updataWorkshop", pd);
+    }
+
+    /*
     * 删除
     */
     public void delete(PageData pd)throws Exception{

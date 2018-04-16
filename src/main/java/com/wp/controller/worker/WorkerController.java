@@ -58,6 +58,11 @@ public class WorkerController extends BaseController {
         pd = this.getPageData();
        // pd.put("id", "");	//ID
         pd.put("add_time",  Tools.date2Str(new Date()));	//添加时间
+        String post = pd.getString("post");
+        String p = "车间主任";  //如果职位是车间主任则将信息保存在workshop表中
+        if(post.equals(p)){
+            workerService.editWorkshop(pd);
+        }
         workerService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");

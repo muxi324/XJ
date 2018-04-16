@@ -14,6 +14,16 @@
         insert into worker_info(  name,phone,team,head_pic,post,work_type,workshop,add_time)
         values (  #{name}, #{phone},#{team}, #{head_pic},#{post}, #{work_type}, #{workshop},#{add_time}  )
     </insert>
+    <!--向车间管理表中加负责人-->
+    <update id="updataWorkshop" parameterType="pd">
+        update  workshop_principal_info
+        set
+        name = #{name},
+        phone = #{phone},
+        post   = #{post}
+        where
+        workshop   = #{workshop}
+    </update>
     <!-- 删除-->
     <delete id="delete" parameterType="pd">
         delete from worker_info
