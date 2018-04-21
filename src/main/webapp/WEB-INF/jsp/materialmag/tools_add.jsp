@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: wp
-  Date: 2017/12/18
-  Time: 9:17
+  Date: 2018/4/2
+  Time: 9:29
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,50 +17,50 @@
 <html lang="en">
 <head>
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
-    <script type="text/javascript" src="static/js/jquery-editable-select.min.js"></script>
-    <link type="text/css" href="static/css/jquery-editable-select.min.css" rel="stylesheet" />
     <%@ include file="../system/admin/top.jsp"%>
     <script type="text/javascript">
+
+
         //保存
         function save(){
+            if($("#material_id").val()==""){
+                $("#material_id").tips({
+                    side:3,
+                    msg:'请输入工具编号',
+                    bg:'#AE81FF',
+                    time:2
+                });
+                $("#material_id").focus();
+                return false;
+            }
             if($("#name").val()==""){
                 $("#name").tips({
                     side:3,
-                    msg:'请输入姓名',
+                    msg:'请输入工具名称',
                     bg:'#AE81FF',
                     time:2
                 });
                 $("#name").focus();
                 return false;
             }
-            if($("#phone").val()==""){
-                $("#phone").tips({
+            if($("#material_num").val()==""){
+                $("#material_num").tips({
                     side:3,
-                    msg:'请输入手机号',
+                    msg:'请输入数量',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#phone").focus();
+                $("#material_num").focus();
                 return false;
             }
-            if($("#workshop").val()==""){
-                $("#workshop").tips({
+            if($("#worker_name").val()==""){
+                $("#worker_name").tips({
                     side:3,
-                    msg:'请输入身份证号',
+                    msg:'请输入负责人',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#workshop").focus();
-                return false;
-            }
-            if($("#team").val()==""){
-                $("#team").tips({
-                    side:3,
-                    msg:'请输入班组',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#team").focus();
+                $("#worker_name").focus();
                 return false;
             }
             $("#Form").submit();
@@ -72,21 +72,21 @@
     </script>
 </head>
 <body>
-<form action="partsmag/${msg}.do" id="Form"   method="post">
+<form action="toolsmag/${msg}.do" id="Form"   method="post">
     <%-- <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/> --%>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件类型:</td>
-                <td><input style="width:95%;" type="text" name="description" id="description" value="${pd.description}" maxlength="150" placeholder="请输入配件类型" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">工具类型:</td>
+                <td> <input style="width:95%;" type="text" name="description" id="description" value="${pd.description}" maxlength="150" placeholder="请输入工具类型" title=""/></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件编号:</td>
-                <td><input style="width:95%;" type="text" name="material_id" id="material_id" value="${pd.material_id}" maxlength="150" placeholder="请输入配件编号" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">工具编号:</td>
+                <td><input style="width:95%;" type="text" name="material_id" id="material_id" value="${pd.material_id}" maxlength="150" placeholder="请输入工具编号" title=""/></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件名称:</td>
-                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">工具名称:</td>
+                <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="150" placeholder="请输入工具名称" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
@@ -134,8 +134,6 @@
         $('.date-picker').datepicker();
 
     });
-
-
 
 
 </script>

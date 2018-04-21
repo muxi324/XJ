@@ -16,6 +16,7 @@
 		<typeAlias type="com.wp.entity.house.House" alias="House"/>
 		<typeAlias type="com.wp.entity.mission.Mission" alias="Mission"/>
 		<typeAlias type="com.wp.entity.worker.Worker" alias="Worker"/>
+		<typeAlias type="com.wp.entity.databank.Workshop" alias="Workshop"/>
 		<typeAlias type="com.wp.util.PageData" alias="pd"/>
 		<!-- 分页 -->
 		<typeAlias type="com.wp.entity.Page" alias="Page"/>

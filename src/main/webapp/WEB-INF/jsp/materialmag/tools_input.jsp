@@ -72,22 +72,13 @@
     </script>
 </head>
 <body>
-<form action="partsmag/${msg}.do" id="Form"   method="post">
-    <%-- <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/> --%>
+<form action="toolsmag/${msg}.do" id="Form"   method="post">
+     <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
+     <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
+
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
-            <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件类型:</td>
-                <td><input style="width:95%;" type="text" name="description" id="description" value="${pd.description}" maxlength="150" placeholder="请输入配件类型" title=""/></td>
-            </tr>
-            <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件编号:</td>
-                <td><input style="width:95%;" type="text" name="material_id" id="material_id" value="${pd.material_id}" maxlength="150" placeholder="请输入配件编号" title=""/></td>
-            </tr>
-            <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件名称:</td>
-                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
-            </tr>
+
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
                 <td><input style="width:95%;" type="text" name="material_num" id="material_num" value="${pd.material_num}" maxlength="150" placeholder="这里输入数量" title=""/></td>
@@ -118,7 +109,7 @@
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/ace-elements.min.js"></script>
 <script src="static/js/ace.min.js"></script>
-
+<script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
 
 
 <script type="text/javascript">

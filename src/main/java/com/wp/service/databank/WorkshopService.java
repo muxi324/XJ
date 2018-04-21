@@ -2,6 +2,7 @@ package com.wp.service.databank;
 
 import com.wp.dao.DaoSupport;
 import com.wp.entity.Page;
+import com.wp.entity.databank.Workshop;
 import com.wp.util.PageData;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,11 @@ public class WorkshopService {
     //   修改图片
     public void editPic(PageData pd)throws Exception{
         dao.update("WorkshopMapper.editpic", pd);
+    }
+    //    取出所有车间
+    public List<Workshop> listWorkshop() throws Exception {
+        return (List<Workshop>) dao.findForList("WorkshopMapper.listWorkshop", null);
+
     }
 
     /*

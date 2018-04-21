@@ -21,11 +21,11 @@
 
 </head>
 </body>
-      <div id="zhongxin">
-            <!-- 检索  -->
-            <form action="partsmag/${msg}.do" method="post" name="Form" id="Form">
+
+            <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
                 <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
+                <div id="zhongxin">
                 <table>
                     <tr>
                         <c:if test="${QX.cha == 1 }">
@@ -95,15 +95,9 @@
                         </tr>
                     </table>
                 </div>
-
+                </div>
             </form>
 
-        </div>
-
-<!-- 返回顶部  -->
-<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
-    <i class="icon-double-angle-up icon-only"></i>
-</a>
 <!-- 引入 -->
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
 <script src="static/js/ace-elements.min.js"></script>
@@ -114,7 +108,6 @@
 <script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
 <!-- 引入 -->
 <script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
-
 <script type="text/javascript">
     $(top.hangge());
 
@@ -123,6 +116,7 @@
         top.jzts();
         $("#Form").submit();
     }
+
 
     $(function() {
         //下拉框
@@ -149,7 +143,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="入库";
-        diag.URL = '<%=basePath%>partsmag/goInputStorage.do?material_id='+material_id+'&material_name='+material_name;
+        diag.URL = '<%=basePath%>toolsmag/goInputStorage.do?material_id='+material_id+'&material_name='+material_name;
         diag.Width = 400;
         diag.Height = 300;
         diag.CancelEvent = function(){ //关闭事件

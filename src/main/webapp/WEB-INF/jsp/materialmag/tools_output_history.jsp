@@ -21,11 +21,10 @@
 
 </head>
 </body>
-      <div id="zhongxin">
-            <!-- 检索  -->
-            <form action="partsmag/${msg}.do" method="post" name="Form" id="Form">
+
+            <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
-                <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
+                <div id="zhongxin">
                 <table>
                     <tr>
                         <c:if test="${QX.cha == 1 }">
@@ -44,9 +43,11 @@
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
                         </th>
                         <th class="center">序号</th>
-                        <th class="center">入库数量</th>
-                        <th class="center">入库时间</th>
-                        <th class="center">负责人</th>
+                        <th class="center">出库数量</th>
+                        <th class="center">出库时间</th>
+                        <th class="center">领取人</th>
+                        <th class="center">用途</th>
+                        <th class="center">所用任务</th>
                     </tr>
                     </thead>
 
@@ -65,6 +66,8 @@
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
                                         <td style="width: 100px;" class="center">${var.time}</td>
                                         <td style="width: 60px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 100px;" class="center">${var.aim}</td>
+                                        <td style="width: 60px;" class="center">${var.mission_id}</td>
                                     </tr>
 
                                 </c:forEach>
@@ -88,18 +91,15 @@
                         <tr>
                             <td style="vertical-align:top;">
                                 <c:if test="${QX.add == 1 }">
-                                    <a class="btn btn-small btn-success" onclick="add('${pd.material_id}','${pd.material_name}');">入库</a>
+                                    <a class="btn btn-small btn-success" onclick="decrease('${pd.material_id}','${pd.material_name}');">出库</a>
                                 </c:if>
                             </td>
                             <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                         </tr>
                     </table>
                 </div>
-
+                </div>
             </form>
-
-        </div>
-
 <!-- 返回顶部  -->
 <a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
     <i class="icon-double-angle-up icon-only"></i>
@@ -114,10 +114,10 @@
 <script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
 <!-- 引入 -->
 <script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
-
+<%--引入house_msg--%>
+<script type="text/javascript" src="static/js/myjs/mission_msg.js"></script>
 <script type="text/javascript">
     $(top.hangge());
-
     //检索
     function search(){
         top.jzts();
@@ -143,29 +143,7 @@
         });
     });
 
-    //入库
-    function add(material_id,material_name){
-        top.jzts();
-        var diag = new top.Dialog();
-        diag.Drag=true;
-        diag.Title ="入库";
-        diag.URL = '<%=basePath%>partsmag/goInputStorage.do?material_id='+material_id+'&material_name='+material_name;
-        diag.Width = 400;
-        diag.Height = 300;
-        diag.CancelEvent = function(){ //关闭事件
-            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-                if('${page.currentPage}' == '0'){
-                    top.jzts();
-                    setTimeout("self.location=self.location",100);
-                }else{
-                    nextPage(${page.currentPage});
-                }
-            }
-            diag.close();
-        };
-        diag.show();
-    }
-
 </script>
 </body>
 </html>
+

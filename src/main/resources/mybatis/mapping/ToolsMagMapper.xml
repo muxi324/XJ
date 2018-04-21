@@ -1,50 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="PartsMagMapper">
+<mapper namespace="ToolsMagMapper">
 
 
 
     <!--通过id获取入库数据-->
-    <select id="findById" parameterType="pd" resultType="pd" useCache="false">
+    <select id="findById" parameterType="pd" resultType="pd">
         select *  from material_history
-        where  1=1
-        and material_id = #{material_id} and is_consume = 1 and type =1
-
-       <!-- <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &gt;= #{pd.sendTimeStart}
-        </if>
-        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &lt;= #{pd.sendTimeEnd}
-        </if>-->
+        where
+        material_id = #{material_id} and is_consume = 1  and type =2
+        <!-- <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+           and time &gt;= #{pd.sendTimeStart}
+       </if>
+       <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+           and time &lt;= #{pd.sendTimeEnd}
+       </if>-->
         order by id desc
-
     </select>
     <!--通过id获取出库数据-->
-    <select id="findById1" parameterType="Page" resultType="pd" useCache="false">
+    <select id="findById1" parameterType="pd" resultType="pd">
         select *  from material_history
-        where  1=1
-         and material_id = #{material_id} and is_consume = 0 and type =1
-        <!--<if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &gt;= #{pd.sendTimeStart}
-        </if>
-        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &lt;= #{pd.sendTimeEnd}
-        </if>-->
+        where
+        material_id = #{material_id} and is_consume = 0  and type =2
+        <!-- <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+           and time &gt;= #{pd.sendTimeStart}
+       </if>
+       <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
+           and time &lt;= #{pd.sendTimeEnd}
+       </if>-->
         order by id desc
     </select>
-
-    <!-- 删除-->
-    <delete id="delete" parameterType="pd">
-        delete from  material
-        where
-         material_id = #{material_id} and type =1
-    </delete>
 
     <select id="selectStock" parameterType="pd" resultType="java.lang.Integer">
         select stock from material
         where
-        material_id = #{material_id} and type =1
+        material_id = #{material_id}  and type =2
     </select>
     <!-- 修改物资入库当前库存 -->
     <update id="editStock" parameterType="pd">
@@ -52,7 +43,7 @@
         set
           stock = #{stock}
          where
-        material_id = #{material_id} and type =1
+        material_id = #{material_id}  and type =2
     </update>
 
     <!--保存-->
@@ -64,12 +55,25 @@
         )
     </insert>
 
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from  material
+        where
+        material_id = #{material_id} and type =2
+    </delete>
+    <!--保存-->
+    <insert id="firstsave" parameterType="pd">
+        insert into material(
+        material_id,type,description,name,stock)
+        values (  #{material_id},#{type},#{description}, #{name}, #{stock}  )
+    </insert>
+
 
     <!--通过enquiry获取数据-->
     <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
         select  *   from material
         where 1 = 1
-        and type=1
+        and type=2
         <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
             and
             (
@@ -78,16 +82,18 @@
         </if>
         <if test="pd.description != null and pd.description != ''"><!-- 配件类型 -->
             and description = #{pd.description}
+
         </if>
-        order by material_id  ASC
+        order by material_id ASC
     </select>
 
 
     <!-- 批量删除 -->
     <delete id="deleteAll" parameterType="String" flushCache="false">
         delete from material
-        where  type =1
-        and material_id in
+        where
+         type=2   and
+        material_id in
         <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
             #{item}
         </foreach>

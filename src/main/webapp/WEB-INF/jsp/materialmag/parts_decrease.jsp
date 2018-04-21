@@ -74,10 +74,11 @@
 </head>
 <body>
 <form action="partsmag/${msg}.do" id="Form"   method="post">
-    <%--<input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>--%>
+    <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
+    <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
-            <tr>
+           <%-- <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">配件类型:</td>
                 <td> <select  name="description" id="description" data-placeholder="请选择配件类型" style="width:95%;" maxlength="150">
                     <option value="">全部</option>
@@ -95,14 +96,14 @@
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">配件名称:</td>
                 <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
                 <td><input style="width:95%;" type="text" name="material_num" id="material_num" value="${pd.material_num}" maxlength="150" placeholder="这里输入数量" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">领取人:</td>
-                <td><input style="width:95%;" type="text" name="woker_name" id="woker_name" value="${pd.woker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
+                <td><input style="width:95%;" type="text" name="worker_name" id="worker_name" value="${pd.worker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">用途:</td>

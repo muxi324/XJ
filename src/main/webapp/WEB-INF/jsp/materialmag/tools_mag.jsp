@@ -25,7 +25,7 @@
     <div id="page-content" class="clearfix">
         <div class="row-fluid">
             <!-- 检索  -->
-            <form action="partsmag/list.do" method="post" name="Form" id="Form">
+            <form action="toolsmag/list.do" method="post" name="Form" id="Form">
                 <table>
                     <tr>
                         <td>
@@ -36,13 +36,12 @@
                         </td>
 
                         <td style="vertical-align:top;">
-                            <select class="chzn-select" name="description" id="description" data-placeholder="请选择配件类型" style="vertical-align:top;width: 120px;">
+                            <select class="chzn-select" name="description" id="description" data-placeholder="请选择工具类型" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
-                                <option value="螺栓" >螺栓</option>
-                                <option value="润滑油">润滑油</option>
-                                <option value="发电机">发电机</option>
-                                <option value="传送带">传送带</option>
-                                <option value="水管">水管</option>
+                                <option value="扳手" >扳手</option>
+                                <option value="测量计">测量计</option>
+                                <option value="绳索">绳索</option>
+                                <option value="螺丝刀">螺丝刀</option>
                             </select>
                         </td>
                         <c:if test="${QX.cha == 1 }">
@@ -63,9 +62,9 @@
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
                         </th>
                         <th class="center">序号</th>
-                        <th class="center">配件类别</th>
-                        <th class="center">配件编号</th>
-                        <th class="center">配件名称</th>
+                        <th class="center">工具类别</th>
+                        <th class="center">工具编号</th>
+                        <th class="center">工具名称</th>
                         <th class="center">当前库存</th>
                         <th class="center">操作</th>
                     </tr>
@@ -96,13 +95,13 @@
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.cha == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-success' title="入库" onclick="input('${var.material_id}');"  data-placement="left"><i class="icon-edit"></i> </a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-success' title="您不能查看"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="入库" onclick="input('${var.material_id}');"  data-placement="left"><i class="icon-edit"></i> </a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能查看"><i class='icon-trash'></i></a></c:if>
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.del == 1 }">
                                                     <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.material_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能删除"><i class='icon-trash'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
                                                 </c:if>
 
                                             </div>
@@ -132,9 +131,7 @@
                                 <c:if test="${QX.add == 1 }">
                                     <a class="btn btn-small btn-success" onclick="add();">新增</a>
                                 </c:if>
-                               <%-- <c:if test="${QX.add == 1 }">
-                                    <a class="btn btn-small btn-success" onclick="decrease();">出库</a>
-                                </c:if>--%>
+
                                 <c:if test="${QX.del == 1 }">
                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
                                 </c:if>
@@ -163,7 +160,8 @@
 <script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
 <!-- 引入 -->
 <script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
-
+<%--引入house_msg--%>
+<script type="text/javascript" src="static/js/myjs/mission_msg.js"></script>
 <script type="text/javascript">
     $(top.hangge());
 
@@ -172,6 +170,7 @@
         top.jzts();
         $("#Form").submit();
     }
+
     //删除
     function del(Id){
         bootbox.confirm("确定要删除吗?", function(result) {
@@ -190,7 +189,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="出库记录";
-        diag.URL = '<%=basePath%>partsmag/goOutput.do?material_id='+Id;
+        diag.URL = '<%=basePath%>toolsmag/goOutput.do?material_id='+Id;
         diag.Width = 600;
         diag.Height = 500;
         diag.CancelEvent = function(){ //关闭事件
@@ -212,7 +211,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="入库记录";
-        diag.URL = '<%=basePath%>partsmag/goInput.do?material_id='+Id;
+        diag.URL = '<%=basePath%>toolsmag/goInput.do?material_id='+Id;
         diag.Width = 600;
         diag.Height = 500;
         diag.CancelEvent = function(){ //关闭事件
@@ -235,7 +234,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="新增";
-        diag.URL = '<%=basePath%>partsmag/goNewAdd.do';
+        diag.URL = '<%=basePath%>toolsmag/goNewAdd.do';
         diag.Width = 400;
         diag.Height = 400;
         diag.CancelEvent = function(){ //关闭事件
@@ -309,8 +308,8 @@
                         top.jzts();
                         $.ajax({
                             type: "POST",
-                            url: '<%=basePath%>partsmag/deleteAll.do?tm='+new Date().getTime(),
-                            data: {house_ids:str},
+                            url: '<%=basePath%>toolsmag/deleteAll.do?tm='+new Date().getTime(),
+                            data: {ids:str},
                             dataType:'json',
                             //beforeSend: validateData,
                             cache: false,

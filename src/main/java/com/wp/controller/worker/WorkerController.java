@@ -13,6 +13,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wp.entity.databank.Workshop;
+import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
@@ -40,6 +42,8 @@ public class WorkerController extends BaseController {
     String menuUrl = "worker/list.do"; //菜单地址(权限用)
     @Resource(name="workerService")
     private WorkerService workerService;
+    @Resource(name="workshopService")
+    private WorkshopService workshopService;
     @Resource(name="roleService")
     private RoleService roleService;
 
@@ -54,6 +58,11 @@ public class WorkerController extends BaseController {
         pd = this.getPageData();
        // pd.put("id", "");	//ID
         pd.put("add_time",  Tools.date2Str(new Date()));	//添加时间
+        String post = pd.getString("post");
+        String p = "车间主任";  //如果职位是车间主任则将信息保存在workshop表中
+        if(post.equals(p)){
+            workerService.editWorkshop(pd);
+        }
         workerService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");
@@ -166,6 +175,8 @@ public class WorkerController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            List<Workshop> workshopList = workshopService.listWorkshop();			//列出所有锁的类型
+            mv.addObject("workshopList",workshopList);
             mv.setViewName("worker/worker_edit");
             mv.addObject("msg", "save");
             mv.addObject("pd", pd);
