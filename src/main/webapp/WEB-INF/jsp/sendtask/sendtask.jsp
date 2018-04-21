@@ -25,12 +25,14 @@
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id }"/>
-    <label class="control-label" style="margin-left:45%">下发日常巡检任务</label>
+    <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发日常巡检任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务名称:</td>
                 <td><input style="width:90%;" type="text" name="mission" id="mission" value="${pd.mission}" maxlength="200"  title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务类型:</td>
                 <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="日常巡检任务" maxlength="200" placeholder="日常巡检任务" title=""/></td>
             </tr>
@@ -42,6 +44,8 @@
                     <option value="3级">3级</option>
                 </select>
                 </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
                 <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.misison_source}" maxlength="200"  title=""/></td>
             </tr>
@@ -52,16 +56,15 @@
                     <option value="1班组">1班组</option>
                     <option value="2班组">2班组</option>
                     <option value="3班组">3班组</option>
-
-                </select>
-                </td>
+                </select></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
                 <td><select name="worker_name" id="worker_name" class="form-control" value="${pd.worker_name}" onchange="phonechoose()">
                     <option value="张三">张三</option>
                     <option value="张思">张思</option>
                     <option value="孙武">孙武</option>
-                </select>
-                </td>
+                </select></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
@@ -70,12 +73,16 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">开始时间:</td>
                 <td><input style="width:90%;" type="text" class="datetimepicker" name="period_start_time" id="period_start_time" value="${pd.period_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">结束时间:</td>
                 <td><input style="width:90%;" type="text" class="datetimepicker" name="period_end_time" id="period_end_time" value="${pd.period_end_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
                 <td><input style="width:90%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
                 <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
             </tr>

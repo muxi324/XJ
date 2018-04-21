@@ -25,12 +25,14 @@
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id}"/>
-    <label class="control-label" style="margin-left:45%">下发维修任务</label>
+    <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发维修任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务名称:</td>
                 <td><input style="width:90%;" type="text" name="mission" id="mission" value="${pd.mission}" maxlength="200"  title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务类型:</td>
                 <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="临时巡检任务" maxlength="200" placeholder="临时巡检任务" title=""/></td>
             </tr>
@@ -40,8 +42,9 @@
                     <option value="1级">1级</option>
                     <option value="2级">2级</option>
                     <option value="3级">3级</option>
-                </select>
-                </td>
+                </select></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
                 <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200"  title=""/></td>
             </tr>
@@ -52,16 +55,14 @@
                     <option value="1班组">1班组</option>
                     <option value="2班组">2班组</option>
                     <option value="3班组">3班组</option>
-
-                </select>
-                </td>
+                </select></td>
+            </tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
                 <td><select name="worker_name" id="worker_name" class="form-control" value="${pd.worker_name}" onchange="phonechoose()">
                     <option value="张三">张三</option>
                     <option value="张思">张思</option>
                     <option value="孙武">孙武</option>
-                </select>
-                </td>
+                </select></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
@@ -70,12 +71,16 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
                 <td><input style="width:90%;" type="text" class="datetimepicker" name="mission_set_start_time" id="mission_set_start_time" value="${pd.mission_set_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务结束时间:</td>
                 <td><input style="width:90%;" type="text" class="datetimepicker" name="mission_set_finish_time" id="mission_set_finish_time" value="${pd.mission_set_finish_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
                 <td><input style="width:90%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
                 <td><select name="authen_method" id="authen_method" class="form-control" value="${pd.authen_method}" >
                     <option value="自拍">自拍</option>
@@ -90,6 +95,8 @@
                     <option value="2级">2级</option>
                     <option value="3级">3级</option>
                 </select></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人</td>
                 <td><select name="auditor" id="auditor" class="form-control" value="${pd.auditor}" >
                     <option value="王一">王一</option>
@@ -103,35 +110,45 @@
             </tr>
         </table>
             <h3 style="padding-left:20px;padding-top: 13px;">任务内容</h3>
-            <div  class="form-group" style="margin-top:10px;border: 1px solid #B1D1CE;width:80%;high:600px;">
-                <table style="width:100%;">
+
+                <table style="width:100%;"class="table table-striped table-bordered table-hover">
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检区域:</td>
                         <td><input style="width:90%;" type="text" name="region" id="region" value="${pd.region}" maxlength="200"  title=""/></td>
+                    </tr>
+                    <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检点:</td>
                         <td><input style="width:90%;" type="text" name="check_point" id="check_point" value="${pd.check_point}" maxlength="200"  title=""/></td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常巡检事件:</td>
                         <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""/></td>
+                    </tr>
+                    <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                         <td><input style="width:90%;" type="text" name="instrument_place" id="instrument_place" value="${pd.instrument_place}" maxlength="200"  title=""/></td>
                    </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常上报人:</td>
                         <td><input style="width:90%;" type="text" name="report_worker" id="report_worker" value="${pd.report_worker}" maxlength="200"  title=""/></td>
+                    </tr>
+                    <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">上报时间:</td>
                         <td><input style="width:90%;" type="text" name="report_time" id="report_time" value="${pd.report_time}" maxlength="200"  title=""/></td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>
                         <td><input style="width:90%;" type="text" name="level" id="level" value="${pd.level}" maxlength="200"  title=""/></td>
+                    </tr>
+                    <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
                         <td><input style="width:90%;" type="text" name="description" id="description" value="${pd.description}" maxlength="200"  title=""/></td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常工作内容:</td>
                         <td><input style="width:90%;" type="text" name="content" id="content" value="${pd.content}" maxlength="200"  title=""/></td>
+                    </tr>
+                    <tr>
                         <td style="width:140px;text-align: right;padding-top: 13px;">下次巡检是否关注:</td>
                         <td>
                             <select name="attention" id="attention" class="form-control" value="${pd.attention}" >
@@ -145,7 +162,6 @@
                         <td><img style="width:95%;height:250px" src="uploadFiles/uploadImgs/excep_pic/${pd.excep_pic}" width="210"></td>
                     </tr>
                 </table>
-            </div>
             <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
             <div class="page-header position-relative">
                 <table style="width:100%;">

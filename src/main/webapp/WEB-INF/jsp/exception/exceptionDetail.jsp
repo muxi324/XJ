@@ -23,18 +23,24 @@
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常上报人:</td>
         <td>${result.report_worker}</td>
+    </tr>
+    <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常上报时间:</td>
         <td>${result.report_time}</td>
     </tr>
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
         <td>${result.workshop}</td>
+    </tr>
+    <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
         <td>${result.checkpoint}</td>
     </tr>
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>
         <td>${result.level}</td>
+    </tr>
+    <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
         <td>${result.description}</td>
     </tr>
