@@ -25,7 +25,7 @@
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="set_id" id="set_id" value="${pd.set_id }"/>
-    <label class="control-label" style="margin-left:45%">下发日常巡检任务</label>
+    <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发日常巡检任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
