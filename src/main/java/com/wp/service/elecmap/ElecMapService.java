@@ -2,6 +2,7 @@ package com.wp.service.elecmap;
 
 import com.wp.dao.DaoSupport;
 import com.wp.entity.Page;
+import com.wp.entity.map.MapPoint;
 import com.wp.util.PageData;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +48,7 @@ public class ElecMapService {
         return (List<PageData>)dao.findForList("ElecMapMapper.datalistH", page);
     }
 
+    public List<MapPoint> getPointById(String workerId) throws Exception {
+        return (List<MapPoint>) dao.findForList("ElecMapMapper.getPointById",workerId);
+    }
 }

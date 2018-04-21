@@ -51,13 +51,13 @@ public class UserService {
 	* 保存用户
 	*/
 	public void saveU(PageData pd)throws Exception{
-		dao.save("UserXMapper.saveU", pd);
+		dao.save("SysUserMapper.saveU", pd);
 	}
 	/*
 	* 修改用户
 	*/
 	public void editU(PageData pd)throws Exception{
-		dao.update("UserXMapper.editU", pd);
+		dao.update("SysUserMapper.editU", pd);
 	}
 	/*
 	* 换皮肤
@@ -81,7 +81,7 @@ public class UserService {
 	*用户列表(用户组)
 	*/
 	public List<PageData> listPdPageUser(Page page)throws Exception{
-		return (List<PageData>) dao.findForList("UserXMapper.userlistPage", page);
+		return (List<PageData>) dao.findForList("SysUserMapper.userlistPage", page);
 	}
 	
 	/*

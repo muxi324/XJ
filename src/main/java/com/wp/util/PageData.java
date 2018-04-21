@@ -117,5 +117,8 @@ public class PageData extends HashMap implements Map{
 		// TODO Auto-generated method stub
 		return map.values();
 	}
-	
+
+	public Map getMap() {
+		return map;
+	}
 }

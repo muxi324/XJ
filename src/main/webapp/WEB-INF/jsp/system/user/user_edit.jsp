@@ -291,6 +291,9 @@
 				<td><input type="email" name="EMAIL" id="EMAIL"  value="${pd.EMAIL }" maxlength="32" placeholder="这里输入邮箱" title="邮箱" onblur="hasE('${pd.USERNAME }')"/></td>
 			</tr>
 			<tr>
+				<td><input type="text" name="workshop" id="workshop"  value="${workshop }" maxlength="32" placeholder="这里输入所属车间" title="车间" onblur="hasE('${pd.USERNAME }')"/></td>
+			</tr>
+			<tr>
 				<td><input type="text" name="BZ" id="BZ"value="${pd.BZ }" placeholder="这里输入备注" maxlength="64" title="备注"/></td>
 			</tr>
 			<tr>

@@ -50,6 +50,8 @@
         and set_condition=1
     </select>
 
-
+    <select id="getPointById" parameterType="java.lang.String" resultType="com.wp.entity.map.MapPoint">
+        select longitude, latitude from worker_location where worker_id = #{workerId}
+    </select>
 
 </mapper>

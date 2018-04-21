@@ -66,4 +66,8 @@ public class TaskMagService {
     public PageData findById(PageData pd)throws Exception{
         return (PageData)dao.findForObject("TaskMagMapper.findById", pd);
     }
+
+    public List<PageData> getWorkContent(PageData pd) throws Exception {
+        return (List<PageData>) dao.findForList("TaskMagMapper.getWorkContent",pd);
+    }
 }

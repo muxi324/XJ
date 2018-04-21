@@ -116,9 +116,15 @@ public class ElecMapController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = this.getPageData();
         String workerId = pd.getString("workerId");
+        List<MapPoint> pointList = null;
+        try {
+            pointList = elecMapService.getPointById(workerId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //临时验证，以后连数据库取数
-        List<MapPoint> pointList = new ArrayList<MapPoint>();
-        if (null != workerId && workerId.equals("1")) {
+        //List<MapPoint> pointList = new ArrayList<MapPoint>();
+/*        if (null != workerId && workerId.equals("1")) {
             MapPoint p1 = new MapPoint("116.350658","39.938285");
             MapPoint p2 = new MapPoint("116.386446","39.939281");
             MapPoint p3 = new MapPoint("116.389034","39.913828");
@@ -127,7 +133,7 @@ public class ElecMapController extends BaseController {
             pointList.add(p2);
             pointList.add(p3);
             pointList.add(p4);
-        }
+        }*/
         mv.setViewName("elecmap/detailPath");
         mv.addObject("pointList",pointList);
         mv.addObject("pd", pd);

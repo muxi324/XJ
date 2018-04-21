@@ -8,8 +8,8 @@
     <!-- 新增-->
     <insert id="save" parameterType="pd">
         insert into mission(
-        mission_name,mission_type,mission_level,mission_source,period_start_time,period_end_time,time_dev,mission_condition,team,worker_name,worker_phone,mission_addition,send_time)
-        values (  #{mission},#{mission_type},#{mission_level},#{mission_source},#{period_start_time},#{period_end_time}, #{time_dev},#{mission_condition}, #{team}, #{worker_name}, #{worker_phone}, #{mission_addtion},
+        mission_name,set_id,mission_type,mission_level,mission_source,period_start_time,period_end_time,time_dev,mission_condition,team,worker_name,worker_phone,mission_addition,send_time)
+        values (  #{mission},#{set_id},#{mission_type},#{mission_level},#{mission_source},#{period_start_time},#{period_end_time}, #{time_dev},#{mission_condition}, #{team}, #{worker_name}, #{worker_phone}, #{mission_addtion},
          #{send_time}
         )
     </insert>

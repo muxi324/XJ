@@ -1,8 +1,10 @@
 package com.wp.controller.taskmag;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.house.House;
+import com.wp.service.event.EventService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskSetService;
 import com.wp.util.*;
@@ -35,6 +37,8 @@ public class TaskSetController extends BaseController {
     private TaskSetService taskSetService;
     @Resource(name="roleService")
     private RoleService roleService;
+    @Resource(name = "eventService")
+    private EventService eventService;
 
     /**
      * 列表
@@ -80,15 +84,31 @@ public class TaskSetController extends BaseController {
         return mv;
     }
 
+    @RequestMapping(value="/goSend")
+    public ModelAndView goSend() {
+        ModelAndView mv = new ModelAndView();
+        PageData pd = this.getPageData();
+        try {
+            pd = taskSetService.findById(pd);//根据ID读取
+            mv.addObject("pd", pd);
+            mv.setViewName("sendtask/sendtask");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mv;
+    }
+
     /**
      * 去新增任务页面
      */
     @RequestMapping(value="/goAdd")
-    public ModelAndView goAdd(){
+    public ModelAndView goAdd(Page page){
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            List<PageData> varList = eventService.list(page);
+            mv.addObject("varList", varList);
             mv.setViewName("taskmag/task_edit");
             mv.addObject("msg", "save");
             mv.addObject("pd", pd);
@@ -101,12 +121,24 @@ public class TaskSetController extends BaseController {
      * 去修改任务页面
      */
     @RequestMapping(value="/goEdit")
-    public ModelAndView goEdit(){
+    public ModelAndView goEdit(Page page){
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-            pd = taskSetService.findById(pd);								//根据ID读取
+            pd = taskSetService.findById(pd);//根据ID读取
+            String eventIds = pd.getString("event");
+            String[] arr = new String[0];
+            if (eventIds != null && !("".equals(eventIds))){
+                arr = eventIds.split(",");
+            }
+            List<String> list = new ArrayList<String>();
+            for (int i = 0; i<arr.length; i++) {
+                list.add(arr[i]);
+            }
+            List<PageData> varList = eventService.list(page);
+            mv.addObject("varList", varList);
+            mv.addObject("eventIdList", list);
             mv.setViewName("taskmag/task_edit");
             mv.addObject("msg", "edit");
             mv.addObject("pd", pd);

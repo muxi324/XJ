@@ -97,9 +97,9 @@
                                         <td style="width: 60px;" class="center">${var.mission_level}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 30px;" class="center">
-                                            <a href="<%=basePath%>taskmag/getTaskLine.do?taskId=${var.id}">查看巡检路径</a>
+                                            <a href="<%=basePath%>taskmag/getTaskLine.do?mission_id=${var.id}">查看巡检路径</a>
                                             <br/>---------
-                                            <a href="<%=basePath%>taskmag/getTaskPhoto.do?taskId=${var.id}">查看上传照片</a>
+                                            <a href="<%=basePath%>taskmag/goAuditTask.do?mission_id=${var.id}">任务审核</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -203,4 +203,5 @@
 
 </script>
 </body>
+<%@ include file="../system/admin/bottom.jsp"%>
 </html>

@@ -6,6 +6,7 @@ import com.wp.entity.system.Role;
 import com.wp.service.system.menu.MenuService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.system.user.UserService;
+import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -45,6 +46,8 @@ public class UserController extends BaseController {
 	private RoleService roleService;
 	@Resource(name="menuService")
 	private MenuService menuService;
+	@Resource(name = "workerService")
+	private WorkerService workerService;
 	
 	
 	/**
@@ -55,18 +58,27 @@ public class UserController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		
+
 		pd.put("USER_ID", this.get32UUID());	//ID
 		pd.put("RIGHTS", "");					//权限
 		pd.put("LAST_LOGIN", "");				//最后登录时间
 		pd.put("IP", "");						//IP
 		pd.put("STATUS", "0");					//状态
 		pd.put("SKIN", "default");				//默认皮肤
+
+		//添加worker表字段
+		pd.put("name",pd.getString("USERNAME"));
+		pd.put("phone",pd.getString("PHONE"));
+		pd.put("add_time",Tools.date2Str(new Date()));
+
 		
 		pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
 		
 		if(null == userService.findByUId(pd)){
-			if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){userService.saveU(pd);} //判断新增权限
+			if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){
+				userService.saveU(pd);
+				workerService.save(pd);
+			} //判断新增权限
 			mv.addObject("msg","success");
 		}else{
 			mv.addObject("msg","failed");

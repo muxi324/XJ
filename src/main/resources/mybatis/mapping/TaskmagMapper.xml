@@ -9,13 +9,13 @@
     <select id="findById" parameterType="pd" resultType="pd">
         select *  from mission
         where
-        mission_id = #{mission_id}
+        id = #{mission_id}
     </select>
     <!--任务详情-->
     <select id="detail" parameterType="pd" resultType="pd">
         select *  from mission
         where
-        mission_id = #{mission_id}
+        id = #{mission_id}
     </select>
     <!--保存-->
     <update id="save" parameterType="pd">
@@ -26,7 +26,7 @@
         mission_condition = #{mission_condition},
         auditor_time = #{auditor_time}
         where
-        mission_id = #{mission_id}
+        id = #{mission_id}
     </update>
     <!--通过enquiry获取数据-->
     <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
@@ -50,7 +50,7 @@
         <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
             and mission_condition = #{pd.mission_condition}
         </if>
-        order by mission_id desc
+        order by id desc
     </select>
     <!-- 列表(全部) -->
     <select id="listAll" parameterType="pd" resultType="pd" useCache="false">
@@ -75,10 +75,12 @@
         <if test="mission_condition != null and mission_condition != ''"><!-- 状态检索 -->
             and mission_condition = #{pd.mission_condition}
         </if>
-        order by mission_id desc
+        order by id desc
     </select>
 
-
+    <select id="getWorkContent" parameterType="pd" resultType="pd" useCache="false">
+        select * from mission_feedback where mission_id = #{mission_id} and event_id = #{event_id}
+    </select>
 
 
 </mapper>

@@ -23,8 +23,9 @@
     <link rel="stylesheet" type="text/css" href="plugins/webuploader/style.css" />
 </head>
 <body>
-<form action="taskset/${msg }.do" id="Form"   method="post">
+<form action="taskset/${msg}.do" id="Form"   method="post">
     <input type="hidden" name="set_id" id="set_id" value="${pd.set_id }"/>
+    <input type="hidden" name="select_eventId" id="select_eventId"/>
     <div id="zhongxin">
         <table  class="table table-striped table-bordered table-hover">
             <tr>
@@ -89,129 +90,113 @@
         <h3 style="padding-left:20px;padding-top: 13px;">选择事件</h3>
         <div id="page-content" class="clearfix">
             <div class="row-fluid">
-            <form action="taskset/list.do" method="post" name="Form1" id="Form1">
-                <table>
-                    <tr>
-                        <td>
-						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="${pd.enquiry }" placeholder="这里输入内容" />
-							<i id="nav-search-icon" class="icon-search"></i>
-						</span>
-                        </td>
-                        <td style="vertical-align:top;">
-                            <select class="chzn-select" name="workshop" id="workshop" data-placeholder="请选择车间" style="vertical-align:top;width: 120px;">
-                                <option value="">全部</option>
-                                <option value="车间1"  >车间1</option>
-                                <option value="车间2"  >车间2</option>
-                                <option value="车间3"  >车间3</option>
-                                <option value="车间4"  >车间4</option>
-                            </select>
-                        </td>
-                        <td style="vertical-align:top;">
-                            <select class="chzn-select" name="area_name" id="area_name" data-placeholder="请选择巡检区域" style="vertical-align:top;width: 120px;">
-                                <option value="">全部</option>
-                                <option value="区域1"  >区域1</option>
-                                <option value="区域2"  >区域2</option>
-                                <option value="区域3"  >区域3</option>
-                            </select>
-                        </td>
-                        <td style="vertical-align:top;">
-                            <select class="chzn-select" name="point_name" id="point_name" data-placeholder="请选择巡检点" style="vertical-align:top;width: 120px;">
-                                <option value="">全部</option>
-                                <option value="巡检点1"  >巡检点1</option>
-                                <option value="巡检点2"  >巡检点2</option>
-                                <option value="巡检点3"  >巡检点3</option>
-                            </select>
-                        </td>
-                        <c:if test="${QX.cha == 1 }">
-                            <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
-                        </c:if>
-                    </tr>
-                </table>
-                <!-- 表格  -->
-                <table id="table_report" class="table table-striped table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th class="center">
-                            <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                        </th>
-                        <th class="center">序号</th>
-                        <th class="center">所属车间</th>
-                        <th class="center">所属巡检区域</th>
-                        <th class="center">所属巡检点</th>
-                        <th class="center">事件名称</th>
-                        <th class="center">具体位置</th>
-                        <th class="center">操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- 开始循环 -->
-                    <c:choose>
-                        <c:when test="${not empty varList}">
-                            <c:if test="${QX.cha == 1 }">
-                                <c:forEach items="${varList}" var="var" varStatus="vs">
-                                    <tr>
-                                        <td class='center' style="width: 30px;">
-                                            <label><input type='checkbox' name='ids' value="${var.event_id}" /><span class="lbl"></span></label>
-                                        </td>
-                                        <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                        <td style="width: 60px;" class="center"> ${var.workshop}</td>
-                                        <td style="width: 139px;" class="center">${var.area_name}</td>
-                                        <td style="width: 60px;" class="center">${var.point_name}</td>
-                                        <td style="width: 100px;" class="center">${var.event_name}</td>
-                                        <td style="width: 60px;" class="center">${var.instrument_place}</td>
-                                        <td style="width: 60px;" class="center">
-                                            <div class='hidden-phone visible-desktop btn-group'>
-
-                                                <c:if test="${QX.edit == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="详情" onclick="edit('${var.event_id }');"><i class='icon-edit'></i></a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能查看"><i class='icon-edit'></i></a></c:if>
-                                                </c:if>
-
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                </c:forEach>
-                            </c:if>
-                            <c:if test="${QX.cha == 0 }">
-                                <tr>
-                                    <td colspan="100" class="center">您无权查看</td>
-                                </tr>
-                            </c:if>
-                        </c:when>
-                        <c:otherwise>
-                            <tr class="main_info">
-                                <td colspan="100" class="center" >没有相关数据</td>
-                            </tr>
-                        </c:otherwise>
-                    </c:choose>
-                    </tbody>
-                </table>
-                <div class="page-header position-relative">
-                    <table style="width:100%;">
+                <form action="taskset/searchEvent.do" method="post" name="Form1" id="Form1">
+                    <table>
                         <tr>
-                            <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+                            <td>
+                            <span class="input-icon">
+                                <input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="${pd.enquiry }" placeholder="这里输入内容" />
+                                <i id="nav-search-icon" class="icon-search"></i>
+                            </span>
+                            </td>
+                            <td style="vertical-align:top;">
+                                <select class="chzn-select" name="workshop" id="workshop" data-placeholder="请选择车间" style="vertical-align:top;width: 120px;">
+                                    <option value="">全部</option>
+                                    <option value="车间1"  >车间1</option>
+                                    <option value="车间2"  >车间2</option>
+                                    <option value="车间3"  >车间3</option>
+                                    <option value="车间4"  >车间4</option>
+                                </select>
+                            </td>
+                            <td style="vertical-align:top;">
+                                <select class="chzn-select" name="area_name" id="area_name" data-placeholder="请选择巡检区域" style="vertical-align:top;width: 120px;">
+                                    <option value="">全部</option>
+                                    <option value="区域1"  >区域1</option>
+                                    <option value="区域2"  >区域2</option>
+                                    <option value="区域3"  >区域3</option>
+                                </select>
+                            </td>
+                            <td style="vertical-align:top;">
+                                <select class="chzn-select" name="point_name" id="point_name" data-placeholder="请选择巡检点" style="vertical-align:top;width: 120px;">
+                                    <option value="">全部</option>
+                                    <option value="巡检点1"  >巡检点1</option>
+                                    <option value="巡检点2"  >巡检点2</option>
+                                    <option value="巡检点3"  >巡检点3</option>
+                                </select>
+                            </td>
+                            <c:if test="${QX.cha == 1 }">
+                                <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
+                            </c:if>
                         </tr>
                     </table>
-                </div>
-            </form>
-        </div>
-            <div style="padding-left:20px;padding-top: 25px;">
-                <table  class="table table-striped table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th class="center">
-                            <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                        </th>
-                        <th class="center">序号</th>
-                        <th class="center">事件名称</th>
-                        <th class="center">二维码</th>
-                        <th class="center">建议巡检周期</th>
-                        <th class="center">操作</th>
-                    </tr>
-                    </thead>
-                </table>
+                    <!-- 表格  -->
+                    <table id="table_report" class="table table-striped table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th class="center">
+                                <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
+                            </th>
+                            <th class="center">序号</th>
+                            <th class="center">所属车间</th>
+                            <th class="center">所属巡检区域</th>
+                            <th class="center">所属巡检点</th>
+                            <th class="center">事件名称</th>
+                            <th class="center">具体位置</th>
+                            <th class="center">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- 开始循环 -->
+                        <c:choose>
+                            <c:when test="${not empty varList}">
+                                <c:if test="${QX.cha == 1 }">
+                                    <c:forEach items="${varList}" var="var" varStatus="vs">
+                                        <tr>
+                                            <td class='center' style="width: 30px;">
+                                                <label><input type='checkbox' id="${var.event_id}" name='ids' value="${var.event_id}"/><span class="lbl"></span></label>
+                                            </td>
+                                            <td class='center' style="width: 30px;">${vs.index+1}</td>
+                                            <td style="width: 60px;" class="center"> ${var.workshop}</td>
+                                            <td style="width: 139px;" class="center">${var.check_scope}</td>
+                                            <td style="width: 60px;" class="center">${var.check_point}</td>
+                                            <td style="width: 100px;" class="center">${var.event_name}</td>
+                                            <td style="width: 60px;" class="center">${var.instrument_place}</td>
+                                            <td style="width: 60px;" class="center">
+                                                <div class='hidden-phone visible-desktop btn-group'>
+
+                                                    <c:if test="${QX.edit == 1 }">
+                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="详情" onclick="edit('${var.event_id }');"><i class='icon-edit'></i></a></c:if>
+                                                        <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能查看"><i class='icon-edit'></i></a></c:if>
+                                                    </c:if>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${QX.cha == 0 }">
+                                    <tr>
+                                        <td colspan="100" class="center">您无权查看</td>
+                                    </tr>
+                                </c:if>
+                            </c:when>
+                            <c:otherwise>
+                                <tr class="main_info">
+                                    <td colspan="100" class="center" >没有相关数据</td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
+                        </tbody>
+                    </table>
+                    <div class="page-header position-relative">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+                            </tr>
+                        </table>
+                    </div>
+                </form>
             </div>
         </div>
         <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
@@ -230,7 +215,6 @@
                 <th class="center">物资名称</th>
                 <th class="center">所用数量</th>
             </tr>
-
         </table>
         <table class="table table-striped table-bordered table-hover">
             <tr>
@@ -255,6 +239,18 @@
 
 <script type="text/javascript">
     $(top.hangge());
+
+    //页面加载时执行,读取任务绑定的事件，并在编辑页面的事件表格中选中
+    $(document).ready(function(){
+        var eventIds = [];
+        <c:forEach items="${eventIdList}" var="var" varStatus="vs">
+             eventIds.push(${var});
+        </c:forEach>
+        for (var i = 0; i<eventIds.length; i++) {
+            $("#"+eventIds[i]).attr("checked","checked");
+        }
+    });
+
     $(function() {
 
         //单选框
@@ -290,6 +286,16 @@
             return false;
         }
 
+        var chk_value =[];
+        $('input[name="ids"]:checked').each(function(){
+            chk_value.push($(this).val());
+        });
+        var selectEventIds = "";
+        for (var i = 0; i<chk_value.length; i++) {
+            selectEventIds += chk_value[i] + ",";
+        }
+        $("#select_eventId").val(selectEventIds.substring(0,selectEventIds.length-1));
+
         $("#Form").submit();
         $("#zhongxin").hide();
         $("#zhongxin2").show();
@@ -323,4 +329,5 @@
 
 
 </body>
+<%@ include file="../system/admin/bottom.jsp"%>
 </html>

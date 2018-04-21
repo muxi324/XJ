@@ -26,6 +26,6 @@
 	<script type="text/javascript" src="static/js/bootstrap-table.js"></script>
 	<script type="text/javascript" src="static/js/bootstrap-table-zh-CN.js"></script>--%>
 	<%--bootstrap--%>
-	<%--<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="static/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+	<%--<script type="text/javascript" src="static/js/bootstrap-datepicker.min.js"></script>
 	<script type="text/javascript" src="static/js/bootstrap-colorpicker.min.js"></script>--%>

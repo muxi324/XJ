@@ -5,7 +5,10 @@ import com.wp.entity.Page;
 import com.wp.service.event.EventService;
 import com.wp.util.Const;
 import com.wp.util.PageData;
+import com.wp.util.StringUtil;
 import com.wp.util.Tools;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -69,7 +72,12 @@ public class EventController extends BaseController{
         PageData pd = new PageData();
         pd = this.getPageData();
         pd.put("create_time",  Tools.date2Str(new Date()));
-        eventService.save(pd);
+        String eventName = eventService.getEventByName(pd.getString("event_name"));
+        if (eventName == null || "".equals(eventName)) {
+            eventService.save(pd);
+        } else {
+            eventService.update(pd);
+        }
         out.write("success");
         out.close();
         return mv;
@@ -97,10 +105,67 @@ public class EventController extends BaseController{
     }
 
     @RequestMapping(value = "addWorkContent", method = {RequestMethod.POST})
-    public ModelAndView addWorkContent1(PrintWriter out) {
+    public ModelAndView addWorkContent1(PrintWriter out) throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
+        String eventName = pd.getString("eventName");
+        String additions = eventService.getAdditionByName(eventName);
+        JSONArray workArray;
+        if (additions == null || additions.equals("")) {
+            workArray = new JSONArray();
+        } else {
+            workArray = JSONArray.fromObject(additions);
+        }
+        //构造新的工作内容json对象
+        JSONObject work = new JSONObject();
+        work.put("work_name",pd.getString("content_name"));
+        work.put("font_color",pd.getString("numFontColor"));
+        work.put("font_size",pd.getString("numFontSize"));
+        //构造note子json数组字符串
+        JSONArray noteArray = new JSONArray();
+        JSONObject note1 = new JSONObject();
+        note1.put("note_name","正常范围");
+        note1.put("note_content",pd.getString("backNum_downLimit") + "-" + pd.getString("backNum_upLimit"));
+        note1.put("note_color","numFontColor");
+        note1.put("note_size","numFontSize");
+        noteArray.add(note1);
+        JSONObject note2 = new JSONObject();
+        note2.put("note_name","异常标准");
+        note2.put("note_content", pd.getString("exception"));
+        note2.put("note_color","exceptionFontColor");
+        note2.put("note_size","exceptionFontSize");
+        noteArray.add(note2);
+        JSONObject note3= new JSONObject();
+        note3.put("note_name","特殊提示");
+        note3.put("note_content", pd.getString("notice"));
+        note3.put("note_color","noticeFontColor");
+        note3.put("note_size","noticeFontSize");
+        noteArray.add(note3);
+        work.put("work_note",noteArray);
+        //构造view子json数组字符串
+        JSONArray viewArray = new JSONArray();
+        if ("1".equals(pd.getString("is_takePhoto"))){
+            JSONObject view = new JSONObject();
+            view.put("view_clas","拍照");
+            view.put("view_name",pd.getString("content_name") + "拍照");
+            view.put("font_size",20);
+            view.put("font_color","#080808");
+            viewArray.add(view);
+        }
 
+        if ("1".equals(pd.getString("is_backNum"))) {
+            JSONObject view = new JSONObject();
+            view.put("view_clas","输入框");
+            view.put("view_name","输入" + pd.getString("content_name"));
+            view.put("font_size",20);
+            view.put("font_color","#080808");
+            viewArray.add(view);
+        }
+        work.put("view",viewArray);
+        workArray.add(work);
+        eventService.saveWorkContent(workArray.toString(),pd.getString("eventName"));
+        out.write("success");
+        out.close();
         return mv;
     }
 

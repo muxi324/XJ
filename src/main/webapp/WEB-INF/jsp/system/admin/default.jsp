@@ -11,16 +11,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<base href="<%=basePath%>">
-
-<!-- jsp文件头和头部 -->
-<%@ include file="top.jsp"%>
-
+    <base href="<%=basePath%>">
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body style="overflow-x: hidden">
     <!--    报警信息-->
 	<div>
-		<marquee id="affiche"  align="left" behavior="scroll" bgcolor="red" direction="right" height="50" width="100%" hspace="50" vspace="20" loop="-1" scrollamount="10" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
+		<marquee id="affiche"  align="center" behavior="scroll" bgcolor="red" direction="right" height="50" width="100%" hspace="50" vspace="20" loop="-1" scrollamount="10" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
 			<a href="<%=basePath%>exception/exceptionInfo.do" ><font size="6">异常信息</font></a>
 		</marquee>
 	</div>
@@ -98,7 +97,7 @@
 	<!-- page specific plugin scripts -->
 
 	<!--[if lt IE 9]>
-		<script type="text/javascript" src="static/js/excanvas.min.js"></script>
+	<script type="text/javascript" src="static/js/excanvas.min.js"></script>
 		<![endif]-->
 	<script type="text/javascript" src="static/js/jquery-ui-1.10.2.custom.min.js"></script>
 	<script type="text/javascript" src="static/js/jquery.ui.touch-punch.min.js"></script>
@@ -179,7 +178,7 @@
 					/* max: 120,
 					 min: -40, */
                     axisLabel : {
-                        formatter: '{value} 单'	//控制输出格式
+                        formatter: '{value} '	//控制输出格式
                     }
                 }
 
@@ -196,7 +195,7 @@
 
         myChart.showLoading();	//数据加载完之前先显示一段简单的loading动画
 
-        var sum=[];		//总单数数组（存放服务器返回的所有温度值）
+        var sum=[8, 40, 36, 10, 10, 20];		//总单数数组（存放服务器返回的所有温度值）
         var dates=[];		//时间数组
 
         $.ajax({	//使用JQuery内置的Ajax方法
@@ -210,7 +209,7 @@
                 if (result != null && result.length > 0) {
                     console.info(result);
                     for(var i=0;i<result.length;i++){
-                        sum.push(result[i].sum);		//挨个取出温度、湿度、压强等值并填入前面声明的温度、湿度、压强等数组
+                      //  sum.push(result[i].sum);		//挨个取出温度、湿度、压强等值并填入前面声明的温度、湿度、压强等数组
 //                        pass.push(result[i].pass);
 //                        fail.push(result[i].fail);
 //                        refuse.push(result[i].ref);
@@ -225,7 +224,7 @@
                         series: [	//填入系列（内容）数据
                             {
                                 // 根据名字对应到相应的系列
-                                name: '总任务单数',
+                                name: '总任务单数（单）',
                                 data: sum
                             }
                         ]
@@ -272,11 +271,10 @@
                 }
             ],
             legend: {
-                data:['数量']
+                data:['数量(单)']
             },
             color:[
                 'blue'	//总任务单数曲线颜色
-
             ],
             toolbox: {
                 feature: {
@@ -291,7 +289,7 @@
             },
             yAxis: {},
             series: [{
-                name: '数量',
+                name: '数量(单)',
                 type: 'line',
                 data: [5, 20, 36, 10, 10, 20]
             }]
@@ -411,7 +409,7 @@
                 }
             ],
             legend: {
-                data:['数量']
+                data:['数量(单)']
             },
             color:[
                 'blue'	//总任务单数曲线颜色
@@ -429,7 +427,7 @@
             },
             yAxis: {},
             series: [{
-                name: '数量',
+                name: '数量(单)',
                 type: 'line',
                 data: [5, 20, 36, 10, 10, 20]
             }]
@@ -463,7 +461,7 @@
                 orient: 'horizontal',
                 left: 'center',
                 top: '30',
-                data:['问题异常','隐患异常','报警异常']
+                data:['问题异常(个)','隐患异常(个)','报警异常(个)']
             },
             color: ['#003366', '#006699', '#e5323e'],
             toolbox: {
@@ -479,15 +477,15 @@
             },
             yAxis: {type:'value'},
             series: [{
-                name: '问题异常',
+                name: '问题异常(个)',
                 type: 'bar',
                 data: [5, 20, 36, 10, 10, 20]
             }, {
-                name: '隐患异常',
+                name: '隐患异常(个)',
                 type: 'bar',
                 data: [13, 24, 41, 6, 7, 21]
             }, {
-                name: '报警异常',
+                name: '报警异常(个)',
                 type: 'bar',
                 data: [12, 18, 25, 9, 13, 19]
             }]
@@ -521,7 +519,7 @@
                 orient: 'horizontal',
                 left: 'center',
                 top: '30',
-                data:['日常任务','临时任务','维修任务']
+                data:['日常任务(单)','临时任务(单)','维修任务(单)']
             },
             color: ['blue', 'green', 'yellow'],
             toolbox: {
@@ -537,15 +535,15 @@
             },
             yAxis: {type:'value'},
             series: [{
-                name: '日常任务',
+                name: '日常任务(单)',
                 type: 'bar',
                 data: [15, 20, 36, 10]
             }, {
-                name: '临时任务',
+                name: '临时任务(单)',
                 type: 'bar',
                 data: [13, 24, 41, 6]
             }, {
-                name: '维修任务',
+                name: '维修任务(单)',
                 type: 'bar',
                 data: [12, 8, 25, 9]
             }]

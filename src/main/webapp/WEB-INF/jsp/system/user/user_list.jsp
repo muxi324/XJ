@@ -68,7 +68,7 @@
 						<th>用户名</th>
 						<th>姓名</th>
 						<th>职位</th>
-						<th><i class="icon-envelope"></i>邮箱</th>
+						<th>所属车间</th>
 						<th><i class="icon-time hidden-phone"></i>最近登录</th>
 						<th>上次登录IP</th>
 						<th class="center">操作</th>
@@ -93,12 +93,7 @@
 								<td><a>${user.USERNAME }</a></td>
 								<td>${user.NAME }</td>
 								<td>${user.ROLE_NAME }</td>
-								<c:if test="${QX.FX_QX == 1 }">
-								<td><a title="发送电子邮件" style="text-decoration:none;cursor:pointer;" onclick="sendEmail('${user.EMAIL }');">${user.EMAIL }&nbsp;<i class="icon-envelope"></i></a></td>
-								</c:if>
-								<c:if test="${QX.FX_QX != 1 }">
-								<td><a title="您无权发送电子邮件" style="text-decoration:none;cursor:pointer;">${user.EMAIL }&nbsp;<i class="icon-envelope"></i></a></td>
-								</c:if>
+								<td>${user.workshop}</td>
 								<td>${user.LAST_LOGIN}</td>
 								<td>${user.IP}</td>
 								<td style="width: 60px;">
@@ -169,8 +164,7 @@
 		</div>
 		</form>
 	</div>
- 
- 
+
  
  
 	<!-- PAGE CONTENT ENDS HERE -->
@@ -206,8 +200,8 @@
 			top.jzts();
 			$("#userForm").submit();
 		}
-		
-		
+
+
 		//去发送电子邮件页面
 		function sendEmail(EMAIL){
 			 top.jzts();

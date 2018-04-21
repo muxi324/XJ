@@ -4,7 +4,7 @@
 <mapper namespace="RecordMapper">
     <!--总单数-->
     <select id="listAll" parameterType="pd"  resultType="pd">
-        select DATE_FORMAT(t.send_time,'%Y-%m') month,count(t.mission_id) sum from mission t
+        select DATE_FORMAT(t.send_time,'%Y-%m') month,count(t.set_id) sum from mission t
         where  1=1
         AND  DATE_FORMAT(t.send_time,'%Y-%m')>
         DATE_FORMAT(date_sub(curdate(), interval 12 month),'%Y-%m')

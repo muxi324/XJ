@@ -24,7 +24,7 @@
 </head>
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
-    <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id }"/>
+    <input type="hidden" name="set_id" id="set_id" value="${pd.set_id }"/>
     <label class="control-label" style="margin-left:45%">下发日常巡检任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
@@ -43,7 +43,7 @@
                 </select>
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
-                <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.misison_source}" maxlength="200"  title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200"  title=""/></td>
             </tr>
             <%--三级联动--%>
             <tr>

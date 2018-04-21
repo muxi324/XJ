@@ -17,7 +17,7 @@
             or
             check_scope LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
-            check_ponit   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            check_point   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
             instrument_place  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             )
@@ -34,8 +34,33 @@
         )
     </insert>
 
+    <update id="update" parameterType="pd">
+        update event_info set instrument_place=#{instrument_place},workshop=#{workshop},check_scope=#{check_scope},check_point=#{check_point},
+        check_period=#{check_period},check_interval=#{check_interval},event_level=#{event_level} where event_name = #{event_name}
+    </update>
+
     <select id="getEventById" parameterType="pd" resultType="pd" useCache="false">
         select * from event_info where event_id = #{eventId}
+    </select>
+
+    <select id="getEventByName" parameterType="java.lang.String" resultType="java.lang.String" useCache="false">
+        select event_name from event_info where event_name = #{eventName}
+    </select>
+
+    <select id="getAdditionByName" parameterType="java.lang.String" resultType="java.lang.String" useCache="false">
+        select additions from event_info where event_name = #{eventName}
+    </select>
+
+    <update id="updateWorkContent" parameterType="java.util.Map">
+         update event_info set additions = #{content} where event_name = #{eventName}
+    </update>
+
+    <select id="listByIds" resultType="pd" useCache="false">
+          select * from event_info where event_id in
+          <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+                 #{item}
+          </foreach>
     </select>
 
 </mapper>

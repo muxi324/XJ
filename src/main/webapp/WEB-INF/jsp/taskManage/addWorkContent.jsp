@@ -57,8 +57,8 @@
                         <option value="楷体">楷体</option>
                     </select>
                     <select name="numFontColor" id="numFontColor" class="form-control">
-                        <option value="red">红色</option>
-                        <option value="blue">蓝色</option>
+                        <option value="#FF0000">红色</option>
+                        <option value="#0000FF">蓝色</option>
                     </select>
                     <select name="numFontSize" id="numFontSize" class="form-control">
                         <option value="14">14</option>
@@ -116,8 +116,8 @@
                         <option value="楷体">楷体</option>
                     </select>
                     <select name="noticeFontColor" id="noticeFontColor" class="form-control">
-                        <option value="red">红色</option>
-                        <option value="blue">蓝色</option>
+                        <option value="#FF0000">红色</option>
+                        <option value="#0000FF">蓝色</option>
                     </select>
                     <select name="noticeFontSize" id="noticeFontSize" class="form-control">
                         <option value="14">14</option>
@@ -143,8 +143,8 @@
                         <option value="楷体">楷体</option>
                     </select>
                     <select name="exceptionFontColor" id="exceptionFontColor" class="form-control">
-                        <option value="red">红色</option>
-                        <option value="blue">蓝色</option>
+                        <option value="#FF0000">红色</option>
+                        <option value="#0000FF">蓝色</option>
                     </select>
                     <select name="exceptionFontSize" id="exceptionFontSize" class="form-control">
                         <option value="14">14</option>
@@ -162,8 +162,8 @@
                         <option value="楷体">楷体</option>
                     </select>
                     <select name="adviceFontColor" id="adviceFontColor" class="form-control">
-                        <option value="red">红色</option>
-                        <option value="blue">蓝色</option>
+                        <option value="#FF0000">红色</option>
+                        <option value="#0000FF">蓝色</option>
                     </select>
                     <select name="adviceFontSize" id="adviceFontSize" class="form-control">
                         <option value="14">14</option>

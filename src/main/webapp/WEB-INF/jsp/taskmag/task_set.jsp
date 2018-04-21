@@ -103,10 +103,14 @@
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.del == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.mission_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.set_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
                                                 </c:if>
-
+                                                &nbsp;&nbsp;&nbsp;
+                                                <c:if test="${QX.edit == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="下发任务" onclick="sendtask('${var.set_id }');"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-warning' title="您不能下发任务"><i class='icon-edit'></i></a></c:if>
+                                                </c:if>
                                             </div>
                                         </td>
                                     </tr>
@@ -171,26 +175,8 @@
 <%--<script type="text/javascript" src="static/js/myjs/house_msg.js"></script>--%>
 <script type="text/javascript">
     //去下达任务界面页面
-    function sendtask(house_address,house_id,house_owner,owner_phone,lock_type,lock_model,door_type,set_condition){
-
-        if (set_condition==1){
-            top.jzts();
-            var diag = new top.Dialog();
-            diag.Drag=true;
-            diag.Title ="下达任务";
-            diag.URL = '<%=basePath%>house/sendtask.do?house_address='+house_address+'&house_id='+house_id+
-                '&house_owner='+house_owner+'&owner_phone='+owner_phone+'&lock_type='+lock_type+'&lock_model='+lock_model+
-                '&door_type='+door_type+'&set_condition='+set_condition;
-            diag.Width = 660;
-            diag.Height = 470;
-            diag.CancelEvent = function(){ //关闭事件
-                diag.close();
-            };
-        }
-        else {
-            alert("");
-        }
-        diag.show();
+    function sendtask(set_id){
+        location.href =  '<%=basePath%>taskset/goSend.do?set_id='+ set_id;
     }
 
 
@@ -369,5 +355,6 @@
 </script>
 
 </body>
+<%@ include file="../system/admin/bottom.jsp"%>
 </html>
 

@@ -14,12 +14,12 @@
 <html>
     <head>
         <base href="<%=basePath%>">
-        <%@ include file="../system/admin/top.jsp"%>
         <style type="text/css">
             body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
         </style>
-        <script type="text/javascript" src="static/js/jquery-3.1.1.js"></script>
-
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=tkTgXO7ycraPnPgGGejoV8CZp58Nd559"></script>
     </head>
     <body>
@@ -27,12 +27,35 @@
         <div id="allmap" style="height: 85%"></div>
 
         <div id="r-result">
-            <input type="button" onclick="addMarker(points);" value="展示全部员工位置" />
-            <input type="button" value="展示单个员工位置,请在右侧选择员工姓名"><select name="worker" id="worker"></select>
-            <input type="button" onclick="addMarker1(errorPoints);" value="展示故障位置" />
+            <input type="button" onclick="showAll()" value="展示全部员工位置" />
+            <input type="button" onclick="showSome()" value="点击选择员工展示位置">
+            <input type="button" onclick="showError()" value="展示故障位置" />
         </div>
         <%@ include file="../system/admin/bottom.jsp"%>
     </body>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        请选择需要展示位置的员工
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <table id="worker" class="table table-striped table-bordered table-hover">
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="showWorkers()">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
 </html>
 
 
@@ -57,8 +80,12 @@
             if (result != null && result.length > 0) {
                 console.info(result);
                 $.each(result, function(index, content) {
-                    $("#worker").append("<option value='"+content.name+"'>"+content.name+"</option>");
-                    var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId=1","id":content.id,"name":content.name,"phoneNum":content.phone};
+                    var str = "<tr>" +
+                               "<td><input type='checkbox'name='workers' value='"+content.name+"'/></td>" +
+                               "<td>"+content.name+"</td>" +
+                               "</tr>";
+                    $("#worker").append(str);
+                    var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId="+content.id ,"id":content.id,"name":content.name,"phoneNum":content.phone};
                     points.push(point);
                 })
             }
@@ -71,14 +98,55 @@
         }
     })
 
-    $("#worker").change(function(){
-        var name = $("#worker").val();
-        for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
-            if (name == points[i].name) {
-                var point = new BMap.Point(points[i].lng, points[i].lat);
-                var marker = new BMap.Marker(point);
-                map.clearOverlays();
-                map.addOverlay(marker);
+    function showSome() {
+        $("#myModal").modal('show');
+    }
+    
+    function showWorkers() {
+        map.clearOverlays();
+        var chk_value =[];
+        $('input[name="workers"]:checked').each(function(){
+            chk_value.push($(this).val());
+        });
+        for (var j =0; j<chk_value.length; j++) {
+            var name = chk_value[j];
+            for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+                if (name == points[i].name) {
+                    var point = new BMap.Point(points[i].lng, points[i].lat);
+                    var marker = new BMap.Marker(point);
+                    map.addOverlay(marker);
+                    (function() {
+                        var thePoint = points[i];
+                        marker.addEventListener("click",
+                            function() {
+                                showInfo(this,thePoint);
+                            });
+                    })();
+                    break;
+                }
+            }
+        }
+        $("#myModal").modal('hide');
+    }
+    var flag = 0;
+    function showAll() {
+        flag = addMarker(points,flag);
+    }
+    //创建标注点并添加到地图中
+    function addMarker(points,flag) {
+        if (flag == 0) {
+            //循环建立标注点
+            for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+                var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
+                /*            var myIcon = new BMap.Icon("http://7xic1p.com1.z0.glb.clouddn.com/markers.png", new BMap.Size(23, 25), {
+                                // 指定定位位置
+                                offset: new BMap.Size(10, 25),
+                                // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置
+                                imageOffset: new BMap.Size(0, 0 - i * 25) // 设置图片偏移
+                            });*/
+                var marker = new BMap.Marker(point); //将点转化成标注点
+                map.addOverlay(marker);  //将标注点添加到地图上
+                //添加监听事件
                 (function() {
                     var thePoint = points[i];
                     marker.addEventListener("click",
@@ -86,55 +154,45 @@
                             showInfo(this,thePoint);
                         });
                 })();
-                break;
             }
+            flag = 1;
+        } else {
+            map.clearOverlays();
+            flag = 0;
         }
-    });
-
-    //创建标注点并添加到地图中
-    function addMarker(points) {
-        //循环建立标注点
-        for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
-            var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
-/*            var myIcon = new BMap.Icon("http://7xic1p.com1.z0.glb.clouddn.com/markers.png", new BMap.Size(23, 25), {
-                // 指定定位位置
-                offset: new BMap.Size(10, 25),
-                // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置
-                imageOffset: new BMap.Size(0, 0 - i * 25) // 设置图片偏移
-            });*/
-
-            var marker = new BMap.Marker(point); //将点转化成标注点
-            map.addOverlay(marker);  //将标注点添加到地图上
-            //添加监听事件
-            (function() {
-                var thePoint = points[i];
-                marker.addEventListener("click",
-                    function() {
-                        showInfo(this,thePoint);
-                    });
-            })();
-        }
+        return flag;
     }
 
     var errorIcon = new BMap.Icon('static/img/errorIcon.png', new BMap.Size(20, 32), {
         anchor: new BMap.Size(10, 30)
     });
 
-    function addMarker1(points) {
-        //循环建立标注点
-        for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
-            var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
-            var marker = new BMap.Marker(point,{icon: errorIcon}); //将点转化成标注点
-            map.addOverlay(marker);  //将标注点添加到地图上
-            //添加监听事件
-            (function() {
-                var thePoint = points[i];
-                marker.addEventListener("click",
-                    function() {
-                        showInfo1(this,thePoint);
-                    });
-            })();
+    errorFlag = 0;
+    function showError() {
+        errorFlag = addMarker1(errorPoints,errorFlag);
+    }
+    function addMarker1(points,errorFlag1) {
+        if (errorFlag1 == 0) {
+            //循环建立标注点
+            for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+                var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
+                var marker = new BMap.Marker(point,{icon: errorIcon}); //将点转化成标注点
+                map.addOverlay(marker);  //将标注点添加到地图上
+                //添加监听事件
+                (function() {
+                    var thePoint = points[i];
+                    marker.addEventListener("click",
+                        function() {
+                            showInfo1(this,thePoint);
+                        });
+                })();
+            }
+            errorFlag1 = 1;
+        } else {
+            map.clearOverlays();
+            errorFlag1 = 0;
         }
+        return errorFlag1;
     }
 
     function showInfo(thisMarker,point) {

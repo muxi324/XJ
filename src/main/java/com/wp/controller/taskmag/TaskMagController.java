@@ -3,10 +3,12 @@ package com.wp.controller.taskmag;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.map.MapPoint;
+import com.wp.service.event.EventService;
 import com.wp.service.house.HouseService;
 import com.wp.service.querytask.QueryTaskService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskMagService;
+import com.wp.service.taskmag.TaskSetService;
 import com.wp.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -37,6 +39,10 @@ public class TaskMagController extends BaseController {
     private RoleService roleService;
     @Resource(name="HouseService")
     private HouseService houseService;
+    @Resource(name="taskSetService")
+    private TaskSetService taskSetService;
+    @Resource(name = "eventService")
+    private EventService eventService;
 
     /**
      * 列表
@@ -190,10 +196,10 @@ public class TaskMagController extends BaseController {
     public ModelAndView getDetailPath() {
         ModelAndView mv = this.getModelAndView();
         PageData pd = this.getPageData();
-        String taskId = pd.getString("taskId");
+        String taskId = pd.getString("mission_id");
         //临时验证，以后连数据库取数
         List<MapPoint> pointList = new ArrayList<MapPoint>();
-        if (null != taskId && taskId.equals("3")) {
+        if (null != taskId) {
             MapPoint p1 = new MapPoint("116.3479614258","40.0270886473");
             MapPoint p2 = new MapPoint("116.3585186005","40.0170321295");
             MapPoint p3 = new MapPoint("116.3653850555","40.0078287883");
@@ -220,6 +226,60 @@ public class TaskMagController extends BaseController {
         PageData pd = this.getPageData();
         String taskId = pd.getString("taskId");
         mv.setViewName("taskmag/taskPhoto");
+        return mv;
+    }
+
+    @RequestMapping("/goAuditTask")
+    public ModelAndView auditTask() {
+        ModelAndView mv = new ModelAndView();
+        PageData pd = this.getPageData();
+        String missionId = pd.getString("mission_id");
+        List<PageData> eventList = null;
+        try {
+            pd = taskMagService.findById(pd);
+            PageData setMissionData = taskSetService.findById(pd);
+            String eventIds = setMissionData.getString("event");
+            String[] idArr = new String[0];
+            if (eventIds != null && !eventIds.equals("")) {
+                 idArr = eventIds.split(",");
+            }
+            List<String> idList = new ArrayList<String>();
+            for (int i=0; i<idArr.length; i++) {
+                idList.add(idArr[i]);
+            }
+            eventList = eventService.listByIds(idList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mv.addObject("pd",pd);
+        mv.addObject("varList",eventList);
+        mv.addObject("missionId",missionId);
+        mv.setViewName("taskmag/auditTask");
+        mv.addObject(Const.SESSION_QX,this.getHC());
+        return mv;
+    }
+
+    @RequestMapping("/getWorkContentDetail")
+    public ModelAndView getWorkContentDetail() {
+        ModelAndView mv = new ModelAndView();
+        PageData pd = this.getPageData();
+        List<PageData> list = null;
+        try {
+            list = taskMagService.getWorkContent(pd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        mv.addObject("varList",list);
+        mv.setViewName("taskmag/workcontentdetail");
+        return mv;
+    }
+
+    @RequestMapping("/auditMisson.do")
+    public ModelAndView auditMisson(PrintWriter out){
+        ModelAndView mv = new ModelAndView();
+        PageData pd = this.getPageData();
+        out.write("success");
+        mv.setViewName("taskmag/auditResult");
         return mv;
     }
 
