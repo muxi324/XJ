@@ -27,7 +27,7 @@
 	<div class="container-fluid" id="main-container">
 		
 
-			<div id="page-content" class="clearfix">
+			<div id="page-content" class="clearfix" >
 
 				<div class="page-header position-relative">
 					<h1>
@@ -37,29 +37,29 @@
 
 				<!--/page-header-->
 				<div id="allStatistic">
-					<div id="tab" style="float:left; height:200px;min-height:100px;width:20%;margin:5% ">
-						<table>
+					<div id="tab" style="float:left; height:200px;width:25%;margin:2%;background-color: #00a2d4;font-size: 20px;text-align:center;">
+						<table style="margin-left: 20px">
 							<tr>
-								<td>本日全厂日常巡检单数：</td>
+								<td style="margin-left: 15px">前一日全厂日常巡检单数：</td>
 								<td id="td1">100</td>
 							</tr>
 							<tr>
-								<td>本日全厂临时巡检单数：</td>
+								<td style="margin-left: 15px">前一日全厂临时巡检单数：</td>
 								<td id="td2">100</td>
 							</tr>
 							<tr>
-								<td>本日全厂维修任务数：</td>
+								<td style="margin-left: 15px">前一日全厂维修任务数：</td>
 								<td id="td3">100</td>
 							</tr>
 							<tr>
-								<td>本日全厂日常巡异常数：</td>
+								<td style="margin-left: 15px">前一日全厂上报异常数：</td>
 								<td id="td4">100</td>
 							</tr>
 						</table>
 					</div>
-					<div id="exception" style="float:left; height:200px;min-height:100px;width:25%;margin:5% ">
+					<div id="exception" style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
 					</div>
-					<div id="task" style="float:left; height:200px;min-height:100px;width:25%;margin:5% ">
+					<div id="task" style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
 					</div>
 				</div>
 				<div>
@@ -125,7 +125,7 @@
         // 指定图表的配置项和数据
         var option = {
             title: {	//图表标题
-                text: '本厂日常巡检任务曲线'
+                text: '全厂日常巡检任务曲线'
             },
             tooltip: {
                 trigger: 'axis', //坐标轴触发提示框，多用于柱状、折线图中
@@ -151,6 +151,9 @@
                 }
             ],
             legend: {	//图表上方的类别显示
+                orient: 'horizontal',
+                left: 'center',
+                top: '30',
                 show:true,
                 data:['总任务单数（单）']
             },
@@ -253,7 +256,7 @@
         var myChart1 = echarts.init(document.getElementById('main1'));
         var option1 = {
             title: {
-                text: '本厂临时巡检统计任务曲线'
+                text: '全厂临时巡检统计任务曲线'
             },
             tooltip: {
 				//坐标轴触发提示框，多用于柱状、折线图中
@@ -271,6 +274,9 @@
                 }
             ],
             legend: {
+                orient: 'horizontal',
+                left: 'center',
+                top: '30',
                 data:['数量(单)']
             },
             color:[
@@ -302,7 +308,7 @@
         var myChart2 = echarts.init(document.getElementById('exception'));
         var option2 = {
             title : {
-                text: '每日全厂异常类型分布',
+                text: '今日全厂异常类型分布',
                 x:'center'
             },
             tooltip : {
@@ -346,7 +352,7 @@
         var myChart3 = echarts.init(document.getElementById('task'));
         var option3 = {
             title : {
-                text: '每日全厂任务数量分布',
+                text: '今日全厂任务数量分布',
                 x:'center'
             },
             tooltip : {
@@ -391,7 +397,7 @@
         var myChart4 = echarts.init(document.getElementById('repair'));
         var option4 = {
             title: {
-                text: '本厂维修任务曲线'
+                text: '全厂维修任务曲线'
             },
             tooltip: {
                 //坐标轴触发提示框，多用于柱状、折线图中
@@ -409,6 +415,9 @@
                 }
             ],
             legend: {
+                orient: 'horizontal',
+                left: 'center',
+                top: '30',
                 data:['数量(单)']
             },
             color:[

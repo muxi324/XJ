@@ -24,6 +24,7 @@
 
             <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
+                <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
                 <div id="zhongxin">
                 <table>
                     <tr>
@@ -142,6 +143,29 @@
                 });
         });
     });
+
+    //出库
+    function decrease(material_id,material_name){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="出库";
+        diag.URL = '<%=basePath%>toolsmag/goDecrease.do?material_id='+material_id+'&material_name='+material_name;
+        diag.Width = 400;
+        diag.Height = 400;
+        diag.CancelEvent = function(){ //关闭事件
+            /* if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+             if('${page.currentPage}' == '0'){
+             top.jzts();
+             setTimeout("self.location=self.location",100);
+             }else{
+             (${page.currentPage});
+             }
+             }*/
+            diag.close();
+        };
+        diag.show();
+    }
 
 </script>
 </body>
