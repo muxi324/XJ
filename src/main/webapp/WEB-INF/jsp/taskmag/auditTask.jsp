@@ -45,8 +45,37 @@
         <td style="width:110px;text-align: right;padding-top: 13px;"></td>
         <td style="width:110px;text-align: right;padding-top: 13px;"></td>
     </tr>
+    <form action="taskmag/auditMisson.do" id="Form"   method="post">
+        <input type="hidden" id="missionId" name="missionId" value="${missionId}">
+        <table id="t" class="table table-striped table-bordered table-hover">
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人:</td>
+                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${USERNAME}" size="18" maxlength="200"  title=""></td>
+            </tr>
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">审核意见:</td>
+                <td>
+                    <textarea cols="50" rows="10" name="opinion" id="opinion">在这里输入内容...</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">审核结果:</td>
+                <td>
+                    <select class="form-control" name="mission_condition" id="mission_condition">
+                        <option value="6">审核通过</option>
+                        <option value="7"  >审核未通过</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" colspan="10">
+                    <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </form>
     <tr>
-        <td style="text-align: center;" colspan="10">该任务绑定事件</td>
+        <td style="text-align: center;" colspan="10">该任务所包含事件</td>
     </tr>
     <table id="event" class="table table-striped table-bordered table-hover">
         <thead>
@@ -94,29 +123,7 @@
         </c:otherwise>
     </c:choose>
     </table>
-    <form action="taskmag/auditMisson.do" id="Form"   method="post">
-        <input type="hidden" id="missionId" name="missionId" value="${missionId}">
-        <table id="t" class="table table-striped table-bordered table-hover">
-        <tr>
-            <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人:</td>
-            <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${user.USERNAME}" size="18" maxlength="200"  title=""></td>
-        </tr>
-        <tr>
-            <td style="width:110px;text-align: right;padding-top: 13px;">审核意见:</td>
-            <td>
-                <select class="form-control" name="opinion" id="opinion">
-                    <option value="审核通过">审核通过</option>
-                    <option value="审核未通过"  >审核未通过</option>
-                </select>
-            </td>
-        </tr>
-         <tr>
-             <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
-             </td>
-          </tr>
-        </table>
-    </form>
+
 </table>
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
