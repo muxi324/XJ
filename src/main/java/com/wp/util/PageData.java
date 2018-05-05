@@ -1,5 +1,6 @@
 package com.wp.util;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
-public class PageData extends HashMap implements Map{
+public class PageData extends HashMap implements Map,Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	

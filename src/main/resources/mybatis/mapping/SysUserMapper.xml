@@ -47,7 +47,7 @@
     </select>
 
     <!-- 新增用户 -->
-    <insert id="saveU" parameterType="pd" flushCache="false">
+    <insert id="saveU" parameterType="com.wp.util.PageData" flushCache="false">
         insert into SYS_USER (
         USER_ID,
         USERNAME,

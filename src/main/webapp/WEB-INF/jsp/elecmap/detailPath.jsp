@@ -7,10 +7,12 @@
 <html>
     <head>
         <base href="<%=basePath%>">
-        <%@ include file="../system/admin/top.jsp"%>
         <style type="text/css">
             body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
         </style>
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=tkTgXO7ycraPnPgGGejoV8CZp58Nd559"></script>
     </head>
     <body>
@@ -68,6 +70,31 @@
         strokeColor:"red" //折线颜色
     });
 
+    function addMarker(points) {
+        for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+            var marker = new BMap.Marker(points[i]);
+            map.addOverlay(marker);
+            if (i == 0) {
+                marker.addEventListener("mouseover",
+                    function() {
+                        showInfo(this,thePoint,"起点");
+                    });
+            } else if (i == points.length - 1) {
+                marker.addEventListener("mouseover",
+                    function() {
+                        showInfo(this,thePoint,"终点");
+                    });
+            }
+        }
+    }
+
+    function showInfo(thisMarker,point,sContent) {
+        //获取点的信息
+        var infoWindow = new BMap.InfoWindow(sContent); //创建信息窗口对象
+        thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow
+    }
+
+    addMarker(points);  //增加点
     map.addOverlay(polyline);          //增加折线
 
 </script>

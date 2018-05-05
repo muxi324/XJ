@@ -20,6 +20,8 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">工作内容名称:</td>
                 <td><input style="width:90%;" type="text" name="content_name" id="content_name"  maxlength="200"  title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">工作内容属性:</td>
                 <td>
                     <select name="content_type" id="content_type" class="form-control">
@@ -45,11 +47,15 @@
                         <option value="0">否</option>
                     </select>
                 </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">数值类正常范围:</td>
                 <td>
                     <input style="width:90%;" type="text" name="backNum_upLimit" id="backNum_upLimit" placeholder="数值上限" maxlength="100"  title=""/>
                     <input style="width:90%;" type="text" name="backNum_downLimit" id="backNum_downLimit" placeholder="数值下限"  maxlength="100"  title=""/>
                 </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">正常范围数值类的字体、大小、颜色:</td>
                 <td>
                     <select name="numFontClass" id="numFontClass" class="form-control">
@@ -92,6 +98,8 @@
                         <option value="0">否</option>
                     </select>
                 </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">选项标准:</td>
                 <td><input style="width:90%;" type="text" name="select_content" id="select_content"  maxlength="200"  title=""/></td>
             </tr>
@@ -103,12 +111,16 @@
                         <option value="0">否</option>
                     </select>
                 </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">百分比标准:</td>
                 <td><input style="width:90%;" type="text" name="percent_content" id="percent_content"  maxlength="200"  title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">特殊提示:</td>
                 <td><input style="width:90%;" type="text" name="notice" id="notice"  maxlength="200"  title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">特殊提示字体、大小、颜色:</td>
                 <td>
                     <select name="noticeFontClass" id="noticeFontClass" class="form-control">
@@ -134,8 +146,12 @@
                         <option value="报警型">报警型</option>
                     </select>
                 </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">异常标准:</td>
                 <td><input style="width:90%;" type="text" name="exception" id="exception"  maxlength="200"  title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">异常标准字体、大小、颜色:</td>
                 <td>
                     <select name="exceptionFontClass" id="exceptionFontClass" class="form-control">
@@ -155,6 +171,8 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">建议措施:</td>
                 <td><input style="width:90%;" type="text" name="advice" id="advice"  maxlength="200"  title=""/></td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">建议措施字体、大小、颜色:</td>
                 <td>
                     <select name="adviceFontClass" id="adviceFontClass" class="form-control">
@@ -179,6 +197,8 @@
                     <option value="0">否</option>
                 </select>
                 </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">上报对象:</td>
                 <td>
                     <select name="reportObject" id="reportObject" class="form-control">

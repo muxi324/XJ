@@ -117,7 +117,7 @@
                     map.addOverlay(marker);
                     (function() {
                         var thePoint = points[i];
-                        marker.addEventListener("click",
+                        marker.addEventListener("mouseover",
                             function() {
                                 showInfo(this,thePoint);
                             });
@@ -149,7 +149,7 @@
                 //添加监听事件
                 (function() {
                     var thePoint = points[i];
-                    marker.addEventListener("click",
+                    marker.addEventListener("mouseover",
                         function() {
                             showInfo(this,thePoint);
                         });
@@ -181,7 +181,7 @@
                 //添加监听事件
                 (function() {
                     var thePoint = points[i];
-                    marker.addEventListener("click",
+                    marker.addEventListener("mouseover",
                         function() {
                             showInfo1(this,thePoint);
                         });

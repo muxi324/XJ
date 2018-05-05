@@ -63,4 +63,8 @@
           </foreach>
     </select>
 
+    <select id="getEventByNameForPageData" resultType="pd" parameterType="java.lang.String">
+        select * from event_info where event_name = #{eventName}
+    </select>
+
 </mapper>
