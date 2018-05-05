@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务类型:</td>
-                <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="临时巡检任务" maxlength="200" placeholder="临时巡检任务" title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="维修任务" maxlength="200" placeholder="维修任务" title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务级别:</td>

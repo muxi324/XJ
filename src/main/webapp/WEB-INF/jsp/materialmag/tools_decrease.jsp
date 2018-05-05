@@ -73,10 +73,11 @@
 </head>
 <body>
 <form action="toolsmag/${msg}.do" id="Form"   method="post">
-    <%-- <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/> --%>
+    <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
+    <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
-            <tr>
+           <%-- <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">工具类型:</td>
                 <td> <select style="width:95%;" name="description" id="description" value="${pd.description}" data-placeholder="请选择工具类型" maxlength="150">
                     <option value="">全部</option>
@@ -93,7 +94,7 @@
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">工具名称:</td>
                 <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="150" placeholder="请输入工具名称" title=""/></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
                 <td><input style="width:95%;" type="text" name="material_num" id="material_num" value="${pd.material_num}" maxlength="150" placeholder="这里输入数量" title=""/></td>

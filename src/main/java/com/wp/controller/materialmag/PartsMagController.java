@@ -208,7 +208,7 @@ public class PartsMagController extends BaseController {
         String  name = pd.getString("material_name");
         pd.put("material_name",name);
         partsMagService.save(pd);
-       // mv.addObject("msg","success");
+        mv.addObject("msg","success");
         mv.setViewName("save_result");
         return mv;
     }
