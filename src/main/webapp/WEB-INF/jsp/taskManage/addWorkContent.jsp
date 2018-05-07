@@ -50,15 +50,16 @@
                     <input style="width:90%;" type="text" name="backNum_upLimit" id="backNum_upLimit" placeholder="数值上限" maxlength="100"  title=""/>
                     <input style="width:90%;" type="text" name="backNum_downLimit" id="backNum_downLimit" placeholder="数值下限"  maxlength="100"  title=""/>
                 </td>
-                <td style="width:110px;text-align: right;padding-top: 13px;">正常范围数值类的字体、大小、颜色:</td>
+                <td style="width:110px;text-align: right;padding-top: 13px;">正常范围数值类的字体大小、颜色:</td>
                 <td>
-                    <select name="numFontClass" id="numFontClass" class="form-control">
+                 <%--   <select name="numFontClass" id="numFontClass" class="form-control">
                         <option value="宋体">宋体</option>
                         <option value="楷体">楷体</option>
-                    </select>
+                    </select>--%>
                     <select name="numFontColor" id="numFontColor" class="form-control">
                         <option value="#FF0000">红色</option>
                         <option value="#0000FF">蓝色</option>
+                        <option value="#000000">黑色</option>
                     </select>
                     <select name="numFontSize" id="numFontSize" class="form-control">
                         <option value="14">14</option>
@@ -109,15 +110,16 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">特殊提示:</td>
                 <td><input style="width:90%;" type="text" name="notice" id="notice"  maxlength="200"  title=""/></td>
-                <td style="width:110px;text-align: right;padding-top: 13px;">特殊提示字体、大小、颜色:</td>
+                <td style="width:110px;text-align: right;padding-top: 13px;">特殊提示字体大小、颜色:</td>
                 <td>
-                    <select name="noticeFontClass" id="noticeFontClass" class="form-control">
+                  <%--  <select name="noticeFontClass" id="noticeFontClass" class="form-control">
                         <option value="宋体">宋体</option>
                         <option value="楷体">楷体</option>
-                    </select>
+                    </select>--%>
                     <select name="noticeFontColor" id="noticeFontColor" class="form-control">
                         <option value="#FF0000">红色</option>
                         <option value="#0000FF">蓝色</option>
+                        <option value="#000000">黑色</option>
                     </select>
                     <select name="noticeFontSize" id="noticeFontSize" class="form-control">
                         <option value="14">14</option>
@@ -136,15 +138,16 @@
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">异常标准:</td>
                 <td><input style="width:90%;" type="text" name="exception" id="exception"  maxlength="200"  title=""/></td>
-                <td style="width:110px;text-align: right;padding-top: 13px;">异常标准字体、大小、颜色:</td>
+                <td style="width:110px;text-align: right;padding-top: 13px;">异常标准字体大小、颜色:</td>
                 <td>
-                    <select name="exceptionFontClass" id="exceptionFontClass" class="form-control">
+                    <%--<select name="exceptionFontClass" id="exceptionFontClass" class="form-control">
                         <option value="宋体">宋体</option>
                         <option value="楷体">楷体</option>
-                    </select>
+                    </select>--%>
                     <select name="exceptionFontColor" id="exceptionFontColor" class="form-control">
                         <option value="#FF0000">红色</option>
                         <option value="#0000FF">蓝色</option>
+                        <option value="#000000">黑色</option>
                     </select>
                     <select name="exceptionFontSize" id="exceptionFontSize" class="form-control">
                         <option value="14">14</option>
@@ -155,15 +158,16 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">建议措施:</td>
                 <td><input style="width:90%;" type="text" name="advice" id="advice"  maxlength="200"  title=""/></td>
-                <td style="width:110px;text-align: right;padding-top: 13px;">建议措施字体、大小、颜色:</td>
+                <td style="width:110px;text-align: right;padding-top: 13px;">建议措施字体大小、颜色:</td>
                 <td>
-                    <select name="adviceFontClass" id="adviceFontClass" class="form-control">
+                   <%-- <select name="adviceFontClass" id="adviceFontClass" class="form-control">
                         <option value="宋体">宋体</option>
                         <option value="楷体">楷体</option>
-                    </select>
+                    </select>--%>
                     <select name="adviceFontColor" id="adviceFontColor" class="form-control">
                         <option value="#FF0000">红色</option>
                         <option value="#0000FF">蓝色</option>
+                        <option value="#000000">黑色</option>
                     </select>
                     <select name="adviceFontSize" id="adviceFontSize" class="form-control">
                         <option value="14">14</option>
