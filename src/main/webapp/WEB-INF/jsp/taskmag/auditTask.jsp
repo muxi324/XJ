@@ -45,8 +45,37 @@
         <td style="width:110px;text-align: right;padding-top: 13px;"></td>
         <td style="width:110px;text-align: right;padding-top: 13px;"></td>
     </tr>
+    <form  id="Form"   >
+        <input type="hidden" id="missionId" name="missionId" value="${missionId}">
+        <table id="t" class="table table-striped table-bordered table-hover">
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人:</td>
+                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${USERNAME}" size="18" maxlength="200"  title=""></td>
+            </tr>
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">审核意见:</td>
+                <td>
+                    <textarea cols="50" rows="10" name="opinion" id="opinion">在这里输入内容...</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">审核结果:</td>
+                <td>
+                    <select class="form-control" name="mission_condition" id="mission_condition">
+                        <option value="6">审核通过</option>
+                        <option value="7"  >审核未通过</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center;" colspan="10">
+                    <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </form>
     <tr>
-        <td style="text-align: center;" colspan="10">该任务绑定事件</td>
+        <td style="text-align: center;" colspan="10">该任务所包含事件</td>
     </tr>
     <table id="event" class="table table-striped table-bordered table-hover">
         <thead>
@@ -63,60 +92,38 @@
             <th class="center">查看详情</th>
         </tr>
         </thead>
-    <c:choose>
-        <c:when test="${not empty varList}">
-            <c:if test="${QX.cha == 1 }">
-                <c:forEach items="${varList}" var="var" varStatus="vs">
+        <c:choose>
+            <c:when test="${not empty varList}">
+                <c:if test="${QX.cha == 1 }">
+                    <c:forEach items="${varList}" var="var" varStatus="vs">
+                        <tr>
+                            <td class='center' style="width: 30px;">
+                                <label><input type='checkbox' id="${var.event_id}" name='ids' value="${var.event_id}"/><span class="lbl"></span></label>
+                            </td>
+                            <td class='center' style="width: 30px;">${vs.index+1}</td>
+                            <td style="width: 60px;" class="center"> ${var.workshop}</td>
+                            <td style="width: 139px;" class="center">${var.check_scope}</td>
+                            <td style="width: 60px;" class="center">${var.check_point}</td>
+                            <td style="width: 100px;" class="center">${var.event_name}</td>
+                            <td style="width: 60px;" class="center">${var.instrument_place}</td>
+                            <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${missionId}">查看详情</a></td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${QX.cha == 0 }">
                     <tr>
-                        <td class='center' style="width: 30px;">
-                            <label><input type='checkbox' id="${var.event_id}" name='ids' value="${var.event_id}"/><span class="lbl"></span></label>
-                        </td>
-                        <td class='center' style="width: 30px;">${vs.index+1}</td>
-                        <td style="width: 60px;" class="center"> ${var.workshop}</td>
-                        <td style="width: 139px;" class="center">${var.check_scope}</td>
-                        <td style="width: 60px;" class="center">${var.check_point}</td>
-                        <td style="width: 100px;" class="center">${var.event_name}</td>
-                        <td style="width: 60px;" class="center">${var.instrument_place}</td>
-                        <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${missionId}">查看详情</a></td>
+                        <td colspan="100" class="center">您无权查看</td>
                     </tr>
-                </c:forEach>
-            </c:if>
-            <c:if test="${QX.cha == 0 }">
-                <tr>
-                    <td colspan="100" class="center">您无权查看</td>
+                </c:if>
+            </c:when>
+            <c:otherwise>
+                <tr class="main_info">
+                    <td colspan="100" class="center" >没有相关数据</td>
                 </tr>
-            </c:if>
-        </c:when>
-        <c:otherwise>
-            <tr class="main_info">
-                <td colspan="100" class="center" >没有相关数据</td>
-            </tr>
-        </c:otherwise>
-    </c:choose>
+            </c:otherwise>
+        </c:choose>
     </table>
-    <form action="taskmag/auditMisson.do" id="Form"   method="post">
-        <input type="hidden" id="missionId" name="missionId" value="${missionId}">
-        <table id="t" class="table table-striped table-bordered table-hover">
-        <tr>
-            <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人:</td>
-            <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${user.USERNAME}" size="18" maxlength="200"  title=""></td>
-        </tr>
-        <tr>
-            <td style="width:110px;text-align: right;padding-top: 13px;">审核意见:</td>
-            <td>
-                <select class="form-control" name="opinion" id="opinion">
-                    <option value="审核通过">审核通过</option>
-                    <option value="审核未通过"  >审核未通过</option>
-                </select>
-            </td>
-        </tr>
-         <tr>
-             <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
-             </td>
-          </tr>
-        </table>
-    </form>
+
 </table>
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
@@ -124,6 +131,19 @@
 <script type="text/javascript">
     $(top.hangge());
     function save(){
-        $("#Form").submit();
+       // $("#Form").submit();
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "<%=basePath%>taskmag/auditMisson.do" ,//url
+            data: $('#Form').serialize(),
+            success: function (result) {
+                //打印服务端返回的数据(调试用)
+                alert("任务审核成功！");
+            },
+            error : function() {
+                alert("出现异常！");
+            }
+        });
     }
 </script>

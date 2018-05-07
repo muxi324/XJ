@@ -87,8 +87,14 @@
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.mission_name}</td>
                                         <td style="width: 60px;" class="center">
-                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-warning   arrowed-in">任务进行中</span></c:if>
-                                            <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务完成</span></c:if>
+                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-info   arrowed-in">任务已下发</span></c:if>
+                                            <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收</span></c:if>
+                                            <c:if test="${var.mission_condition == '3' }"><span class="label label-info   arrowed-in">接收未执行</span></c:if>
+                                            <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务执行中</span></c:if>
+                                            <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">任务完成待审核</span></c:if>
+                                            <c:if test="${var.mission_condition == '6' }"><span class="label label-warning   arrowed-in">任务审核通过</span></c:if>
+                                            <c:if test="${var.mission_condition == '7' }"><span class="label label-warning      arrowed-in">任务审核未通过</span></c:if>
+                                            <c:if test="${var.mission_condition == '8' }"><span class="label label-warning      arrowed-in">拒收已处理</span></c:if>
                                         </td>
                                         <td style="width: 100px;" class="center">${var.send_time}</td>
                                         <td style="width: 139px;" class="center">${var.worker_name}</td>
@@ -97,10 +103,12 @@
                                         <td style="width: 60px;" class="center">${var.mission_level}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 30px;" class="center">
-                                            <a href="<%=basePath%>taskmag/getTaskLine.do?mission_id=${var.id}">查看巡检路径</a>
-                                            <br/>---------
                                             <a href="<%=basePath%>taskmag/goAuditTask.do?mission_id=${var.id}">任务审核</a>
                                         </td>
+                                        <!--
+                                        <td style="width: 30px;" class="center">
+                                            <a href="taskmag/getTaskLine.do?mission_id=">查看巡检路径</a>
+                                        </td>-->
                                     </tr>
                                 </c:forEach>
                             </c:if>

@@ -148,21 +148,21 @@ public class EventController extends BaseController{
         JSONObject note2 = new JSONObject();
         note2.put("note_name","异常标准");
         note2.put("note_content", pd.getString("exception"));
-        note2.put("note_color","exceptionFontColor");
-        note2.put("note_size","exceptionFontSize");
+        note2.put("font_color","exceptionFontColor");
+        note2.put("font_size","exceptionFontSize");
         noteArray.add(note2);
         JSONObject note3= new JSONObject();
         note3.put("note_name","特殊提示");
         note3.put("note_content", pd.getString("notice"));
-        note3.put("note_color","noticeFontColor");
-        note3.put("note_size","noticeFontSize");
+        note3.put("font_color","noticeFontColor");
+        note3.put("font_size","noticeFontSize");
         noteArray.add(note3);
         work.put("work_note",noteArray);
         //构造view子json数组字符串
         JSONArray viewArray = new JSONArray();
         if ("1".equals(pd.getString("is_takePhoto"))){
             JSONObject view = new JSONObject();
-            view.put("view_clas","拍照");
+            view.put("view_class","拍照");
             view.put("view_name",pd.getString("content_name") + "拍照");
             view.put("font_size",20);
             view.put("font_color","#080808");
@@ -171,7 +171,7 @@ public class EventController extends BaseController{
 
         if ("1".equals(pd.getString("is_backNum"))) {
             JSONObject view = new JSONObject();
-            view.put("view_clas","输入框");
+            view.put("view_class","输入框");
             view.put("view_name","输入" + pd.getString("content_name"));
             view.put("font_size",20);
             view.put("font_color","#080808");
