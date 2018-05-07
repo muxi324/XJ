@@ -168,7 +168,7 @@ public class TaskMagController extends BaseController {
             titles.add("房源地址");
             titles.add("房源联系人");
             titles.add("联系人电话");
-           // titles.add("任务状态");
+            // titles.add("任务状态");
             dataMap.put("titles", titles);
             List<PageData> varOList = taskMagService.listAll(pd);
             List<PageData> varList = new ArrayList<PageData>();
@@ -180,7 +180,7 @@ public class TaskMagController extends BaseController {
                 vpd.put("var4", varOList.get(i).getString("house_address"));
                 vpd.put("var5", varOList.get(i).getString("house_owner_name"));
                 vpd.put("var6", varOList.get(i).getString("house_owner_phone"));
-               // vpd.put("var7", varOList.get(i).getString("mission_condition"));
+                // vpd.put("var7", varOList.get(i).getString("mission_condition"));
                 varList.add(vpd);
             }
             dataMap.put("varList", varList);
@@ -241,7 +241,7 @@ public class TaskMagController extends BaseController {
             String eventIds = setMissionData.getString("event");
             String[] idArr = new String[0];
             if (eventIds != null && !eventIds.equals("")) {
-                 idArr = eventIds.split(",");
+                idArr = eventIds.split(",");
             }
             List<String> idList = new ArrayList<String>();
             for (int i=0; i<idArr.length; i++) {
@@ -256,6 +256,7 @@ public class TaskMagController extends BaseController {
         mv.addObject("missionId",missionId);
         mv.setViewName("taskmag/auditTask");
         mv.addObject(Const.SESSION_QX,this.getHC());
+        mv.addObject("USERNAME",getUserName());
         return mv;
     }
 
@@ -275,11 +276,16 @@ public class TaskMagController extends BaseController {
     }
 
     @RequestMapping("/auditMisson.do")
-    public ModelAndView auditMisson(PrintWriter out){
+    public ModelAndView auditMisson(PrintWriter out) throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
-        out.write("success");
-        mv.setViewName("taskmag/auditResult");
+        taskMagService.auditTask(pd);
+        mv.setViewName("taskmag/task_list");
+        Page page = new Page();
+        page.setPd(new PageData());
+        List<PageData> varList = taskMagService.list(page);	//列出${objectName}列表
+        mv.addObject("varList", varList);
+        mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
         return mv;
     }
 
@@ -288,6 +294,12 @@ public class TaskMagController extends BaseController {
         Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
         Session session = currentUser.getSession();
         return (Map<String, String>)session.getAttribute(Const.SESSION_QX);
+    }
+
+    public String getUserName() {
+        Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
+        Session session = currentUser.getSession();
+        return (String) session.getAttribute(Const.SESSION_USERNAME);
     }
 	/* ===============================权限================================== */
 
