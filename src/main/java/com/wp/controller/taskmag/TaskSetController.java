@@ -3,10 +3,12 @@ package com.wp.controller.taskmag;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
-import com.wp.entity.house.House;
+
+import com.wp.entity.worker.Worker;
 import com.wp.service.event.EventService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskSetService;
+import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -39,6 +41,8 @@ public class TaskSetController extends BaseController {
     private RoleService roleService;
     @Resource(name = "eventService")
     private EventService eventService;
+    @Resource(name = "workerService")
+    private WorkerService workerService;
 
     /**
      * 列表
@@ -91,6 +95,8 @@ public class TaskSetController extends BaseController {
         try {
             pd = taskSetService.findById(pd);//根据ID读取
             mv.addObject("pd", pd);
+            List<Worker> teamList = workerService.listTeam();//列出所有班组
+            mv.addObject("teamList",teamList);
             mv.setViewName("sendtask/sendtask");
         } catch (Exception e) {
             e.printStackTrace();

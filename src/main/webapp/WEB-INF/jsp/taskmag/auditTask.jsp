@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -6,7 +6,8 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
     <%@ include file="../system/admin/top.jsp"%>
@@ -92,36 +93,36 @@
             <th class="center">查看详情</th>
         </tr>
         </thead>
-    <c:choose>
-        <c:when test="${not empty varList}">
-            <c:if test="${QX.cha == 1 }">
-                <c:forEach items="${varList}" var="var" varStatus="vs">
+        <c:choose>
+            <c:when test="${not empty varList}">
+                <c:if test="${QX.cha == 1 }">
+                    <c:forEach items="${varList}" var="var" varStatus="vs">
+                        <tr>
+                            <td class='center' style="width: 30px;">
+                                <label><input type='checkbox' id="${var.event_id}" name='ids' value="${var.event_id}"/><span class="lbl"></span></label>
+                            </td>
+                            <td class='center' style="width: 30px;">${vs.index+1}</td>
+                            <td style="width: 60px;" class="center"> ${var.workshop}</td>
+                            <td style="width: 139px;" class="center">${var.check_scope}</td>
+                            <td style="width: 60px;" class="center">${var.check_point}</td>
+                            <td style="width: 100px;" class="center">${var.event_name}</td>
+                            <td style="width: 60px;" class="center">${var.instrument_place}</td>
+                            <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${missionId}">查看详情</a></td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${QX.cha == 0 }">
                     <tr>
-                        <td class='center' style="width: 30px;">
-                            <label><input type='checkbox' id="${var.event_id}" name='ids' value="${var.event_id}"/><span class="lbl"></span></label>
-                        </td>
-                        <td class='center' style="width: 30px;">${vs.index+1}</td>
-                        <td style="width: 60px;" class="center"> ${var.workshop}</td>
-                        <td style="width: 139px;" class="center">${var.check_scope}</td>
-                        <td style="width: 60px;" class="center">${var.check_point}</td>
-                        <td style="width: 100px;" class="center">${var.event_name}</td>
-                        <td style="width: 60px;" class="center">${var.instrument_place}</td>
-                        <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${missionId}">查看详情</a></td>
+                        <td colspan="100" class="center">您无权查看</td>
                     </tr>
-                </c:forEach>
-            </c:if>
-            <c:if test="${QX.cha == 0 }">
-                <tr>
-                    <td colspan="100" class="center">您无权查看</td>
+                </c:if>
+            </c:when>
+            <c:otherwise>
+                <tr class="main_info">
+                    <td colspan="100" class="center" >没有相关数据</td>
                 </tr>
-            </c:if>
-        </c:when>
-        <c:otherwise>
-            <tr class="main_info">
-                <td colspan="100" class="center" >没有相关数据</td>
-            </tr>
-        </c:otherwise>
-    </c:choose>
+            </c:otherwise>
+        </c:choose>
     </table>
 
 </table>
@@ -131,6 +132,19 @@
 <script type="text/javascript">
     $(top.hangge());
     function save(){
-        $("#Form").submit();
+       // $("#Form").submit();
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "<%=basePath%>taskmag/auditMisson.do" ,//url
+            data: $('#Form').serialize(),
+            success: function (result) {
+                //打印服务端返回的数据(调试用)
+                alert("任务审核成功！");
+            },
+            error : function() {
+                alert("出现异常！");
+            }
+        });
     }
 </script>

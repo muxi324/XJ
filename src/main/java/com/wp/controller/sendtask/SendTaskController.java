@@ -48,6 +48,8 @@ public class SendTaskController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
+        List<Worker> teamList = workerService.listTeam();//列出所有班组
+        mv.addObject("teamList",teamList);
         mv.setViewName("sendtask/sendtask");
         mv.addObject("pd", pd);
         return mv;
@@ -129,8 +131,8 @@ public class SendTaskController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         String myGroup = pd.getString("groupdata");
-        List<PageData> list = workerService.listGroup(pd);
-
+        pd.put("team", myGroup);
+        List<PageData> list = workerService.listWorker(pd);
         System.out.println("======"+ JSONArray.fromObject(list)+"====");
         try {
             HttpHandler.send(response, list);
@@ -146,9 +148,9 @@ public class SendTaskController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
-        String myPhone = pd.getString("workerdata");
-        List<PageData> list = workerService.listPhone(pd);
-
+        String worker = pd.getString("workerdata");
+        pd.put("name", worker);
+        List<PageData> list = workerService.findPhoneByName(pd);
         System.out.println("======"+ JSONArray.fromObject(list)+"====");
         try {
             HttpHandler.send(response, list);

@@ -50,4 +50,8 @@ public class EventService {
     public List<PageData> listByIds(List<String> list) throws Exception {
           return  (List<PageData>)dao.findForList("EventMapper.listByIds",list);
     }
+
+    public PageData getEventByNameForPageData(String eventName) throws Exception {
+        return (PageData) dao.findForObject("EventMapper.getEventByNameForPageData",eventName);
+    }
 }

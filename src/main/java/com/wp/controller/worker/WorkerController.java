@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.wp.entity.databank.Workshop;
 import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.role.RoleService;
+import com.wp.service.system.user.UserService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
@@ -46,6 +48,8 @@ public class WorkerController extends BaseController {
     private WorkshopService workshopService;
     @Resource(name="roleService")
     private RoleService roleService;
+    @Resource(name="userService")
+    private UserService userService;
 
     /**
      * 保存
@@ -63,6 +67,25 @@ public class WorkerController extends BaseController {
         if(post.equals(p)){
             workerService.editWorkshop(pd);
         }
+
+        PageData pageData = new PageData();
+        //添加sysuser字段
+        pageData.put("USERNAME",pd.getString("name"));
+        pageData.put("NAME",pd.getString("name"));
+        pageData.put("USER_ID", this.get32UUID());	//ID
+        pageData.put("RIGHTS", "");					//权限
+        pageData.put("LAST_LOGIN", "");				//最后登录时间
+        pageData.put("IP", "");						//IP
+        pageData.put("STATUS", "0");					//状态
+        pageData.put("SKIN", "default");
+        pageData.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("name"), "1"));
+        pageData.put("PHONE",pd.getString("phone"));
+        pageData.put("NUMBER","");
+        pageData.put("EMAIL","");
+        pageData.put("BZ","");
+        pageData.put("workshop",pd.getString("workshop"));
+        userService.saveU(pageData);
+
         workerService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");
@@ -175,7 +198,7 @@ public class WorkerController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-            List<Workshop> workshopList = workshopService.listWorkshop();			//列出所有锁的类型
+            List<Workshop> workshopList = workshopService.listWorkshop();
             mv.addObject("workshopList",workshopList);
             mv.setViewName("worker/worker_edit");
             mv.addObject("msg", "save");

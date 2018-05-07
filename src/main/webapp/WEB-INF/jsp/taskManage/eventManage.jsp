@@ -1,10 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <base href="<%=basePath%>">
     <%@ include file="../system/admin/top.jsp"%>
@@ -12,12 +15,8 @@
 <body>
 
 <div class="container-fluid" id="main-container">
-
-
     <div id="page-content" class="clearfix">
-
         <div class="row-fluid">
-
             <div class="row-fluid">
 
                 <!-- 检索  -->
@@ -56,7 +55,7 @@
                             <th class="center">事件名称</th>
                             <th class="center">具体位置</th>
                             <th class="center">创建时间</th>
-                            <th class="center">二维码</th>
+                            <%--<th class="center">二维码</th>--%>
                             <th class="center">任务记录</th>
                             <th class="center">操作</th>
                         </tr>
@@ -76,12 +75,12 @@
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                                             <td style="width: 60px;" class="center">${var.workshop}</td>
                                             <td style="width: 100px;" class="center">${var.check_scope}</td>
-                                            <td style="width: 139px;" class="center">${var.check_point}</td>
-                                            <td style="width: 60px;" class="center">${var.event_name}</td>
-                                            <td style="width: 60px;" class="center">${var.instrument_place}</td>
-                                            <td style="width: 139px;" class="center">${var.create_time}</td>
-                                            <td style="width: 139px;" class="center">${var.qrcode}</td>
-                                            <td style="width: 139px;" class="center">查看操作记录（未完成）</td>
+                                            <td style="width: 100px;" class="center">${var.check_point}</td>
+                                            <td style="width: 100px;" class="center">${var.event_name}</td>
+                                            <td style="width: 100px;" class="center">${var.instrument_place}</td>
+                                            <td style="width: 100px;" class="center">${var.create_time}</td>
+                                            <%--<td style="width: 139px;" class="center">${var.qrcode}</td>--%>
+                                            <td style="width: 100px;" class="center">查看操作记录</td>
                                             <td style="width: 60px;" class="center">
                                                 <div class='hidden-phone visible-desktop btn-group'>
 

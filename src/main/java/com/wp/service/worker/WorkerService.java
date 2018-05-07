@@ -71,14 +71,14 @@ public class WorkerService {
     /*
     *班组员工列表
     */
-    public List<PageData> listGroup(PageData pd)throws Exception{
-        return (List<PageData>)dao.findForList("WorkerMapper.listGroup", pd);
+    public List<PageData> listWorker(PageData pd)throws Exception{
+        return (List<PageData>)dao.findForList("WorkerMapper.listWorker", pd);
     }
 
     /*
   *班组员工电话列表
   */
-    public List<PageData> listPhone(PageData pd)throws Exception{
+    public List<PageData> findPhoneByName(PageData pd)throws Exception{
         return (List<PageData>)dao.findForList("WorkerMapper.listPhone", pd);
     }
 

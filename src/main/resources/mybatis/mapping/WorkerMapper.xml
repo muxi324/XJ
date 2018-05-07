@@ -101,21 +101,13 @@
     </select>
 
     <!-- 班组员工列表-->
-    <select id="listGroup" parameterType="pd" resultType="pd" >
-        select
-         name
-        from worker_info
-        WHERE
-        team = #{groupdata}
+    <select id="listWorker" parameterType="pd" resultType="pd" >
+        select distinct name from worker_info WHERE  team = #{team}
     </select>
 
     <!-- 员工手机列表-->
     <select id="listPhone" parameterType="pd" resultType="pd" >
-        select
-        phone
-        from worker_info
-        WHERE
-        name = #{workerdata}
+        select phone from worker_info WHERE name = #{name}
     </select>
     <!-- 批量删除 -->
     <delete id="deleteAll" parameterType="String" flushCache="false">

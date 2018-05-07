@@ -117,6 +117,15 @@
                      <td><input style="width:95%;" type="text" name="phone" id="phone" value="${pd.phone}" maxlength="150" placeholder="这里输入电话" title=""/></td>
                  </tr>
                  <tr>
+                     <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
+                     <td><select  type="text" name="workshop" id="workshop" value="${pd.workshop}"  class="form-control" >
+                         <option value="0">选择</option>
+                         <c:forEach items="${workshopList}" var="W">
+                             <option value="${W.workshop }">${W.workshop }</option>
+                         </c:forEach>
+                     </select></td>
+                 </tr>
+                 <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">班组:</td>
                      <td><input style="width:95%;" type="text" name="team" id="team" value="${pd.team}" maxlength="150" placeholder="这里输入班组" title=""/></td>
                  </tr>
@@ -128,21 +137,14 @@
                          <option value="班组长">班组长</option>
                          <option value="检修员工">检修员工</option>
                          <option value="系统维护">系统维护</option>
+                         <option value="离职">离职</option>
                      </select></td>
                  </tr>
                  <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">工种:</td>
                      <td><input style="width:95%;" type="text" name="work_type" id="work_type" value="${pd.work_type}" maxlength="200" placeholder="这里输入工种" title=""/></td>
                  </tr>
-                 <tr>
-                     <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
-                     <td><select  type="text" name="workshop" id="workshop" value="${pd.workshop}"  class="form-control" >
-                         <option value="0">选择</option>
-                         <c:forEach items="${workshopList}" var="W">
-                             <option value="${W.workshop }">${W.workshop }</option>
-                         </c:forEach>
-                     </select></td>
-                 </tr>
+
                  <tr>
                      <td style="width:100px;hight:250px; text-align: right;padding-top: 13px;">照 片</td>
                      <td >

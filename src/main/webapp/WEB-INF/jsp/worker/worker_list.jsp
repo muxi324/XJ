@@ -56,9 +56,9 @@
 
                         <thead>
                         <tr>
-                            <th class="center">
+                           <%-- <th class="center">
                                 <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                            </th>
+                            </th>--%>
                             <th class="center">序号</th>
                             <th class="center">姓名</th>
                             <th class="center">手机号</th>
@@ -78,16 +78,16 @@
                         <c:if test="${QX.cha == 1 }">
                         <c:forEach items="${varList}" var="var" varStatus="vs">
                         <tr>
-                            <td class='center' style="width: 30px;">
+                           <%-- <td class='center' style="width: 30px;">
                                 <label><input type='checkbox' name='ids' value="${var.id}" /><span class="lbl"></span></label>
-                            </td>
+                            </td>--%>
                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                             <td style="width: 60px;" class="center">${var.name}</td>
                             <td style="width: 100px;" class="center">${var.phone}</td>
-                            <td style="width: 139px;" class="center">${var.team}</td>
+                            <td style="width: 60px;" class="center">${var.team}</td>
                             <td style="width: 60px;" class="center">${var.post}</td>
                             <td style="width: 60px;" class="center">${var.work_type}</td>
-                            <td style="width: 139px;" class="center">${var.workshop}</td>
+                            <td style="width: 100px;" class="center">${var.workshop}</td>
                             <td style="width: 60px;" class="center">
                                 <div class='hidden-phone visible-desktop btn-group'>
 

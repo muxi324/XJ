@@ -41,19 +41,19 @@
 						<table style="margin-left: 20px">
 							<tr>
 								<td style="margin-left: 15px">前一日全厂日常巡检单数：</td>
-								<td id="td1">100</td>
+								<td id="td1">20</td>
 							</tr>
 							<tr>
 								<td style="margin-left: 15px">前一日全厂临时巡检单数：</td>
-								<td id="td2">100</td>
+								<td id="td2">5</td>
 							</tr>
 							<tr>
 								<td style="margin-left: 15px">前一日全厂维修任务数：</td>
-								<td id="td3">100</td>
+								<td id="td3">1</td>
 							</tr>
 							<tr>
 								<td style="margin-left: 15px">前一日全厂上报异常数：</td>
-								<td id="td4">100</td>
+								<td id="td4">2</td>
 							</tr>
 						</table>
 					</div>
@@ -88,9 +88,7 @@
 	<!-- basic scripts -->
 	<script src="static/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript">
-		window.jQuery
-				|| document
-						.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");
+		window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");
 	</script>
 
 	<script src="static/js/bootstrap.min.js"></script>

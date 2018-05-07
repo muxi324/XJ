@@ -70,4 +70,8 @@ public class TaskMagService {
     public List<PageData> getWorkContent(PageData pd) throws Exception {
         return (List<PageData>) dao.findForList("TaskMagMapper.getWorkContent",pd);
     }
+
+    public void auditTask(PageData pd) throws Exception {
+        dao.update("TaskMagMapper.auditTask",pd);
+    }
 }

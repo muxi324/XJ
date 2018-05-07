@@ -50,7 +50,7 @@
 						</div>
 					</div>
 				</div>
-				<div style="float:right;padding-right:10%;">
+				<%--<div style="float:right;padding-right:10%;">
 					<div style="float: left;margin-top:3px;margin-right:2px;">
 						<font color="white">记住密码</font>
 					</div>
@@ -58,7 +58,7 @@
 						<input name="form-field-checkbox" id="saveid" type="checkbox"
 							onclick="savePaw();" style="padding-top:0px;" />
 					</div>
-				</div>
+				</div>--%>
 				<div class="form-actions">
 					<div style="width:86%;padding-left:8%;">
 
@@ -80,7 +80,18 @@
 							class="flip-link btn btn-info" id="to-recover">登录</a></span>
 
 					</div>
+					<div style="clear: both"></div>
+					<div style="width:86%;padding-left:8%;">
+						<div style="float: left;margin-top:3px;margin-right:2px;">
+							<font color="white">记住密码</font>
+						</div>
+						<div style="float: left;">
+							<input name="form-field-checkbox" id="saveid" type="checkbox"
+								   onclick="savePaw();" style="padding-top:0px;" />
+						</div>
+					</div>
 				</div>
+
 			</form>
 		</div>
 	</div>

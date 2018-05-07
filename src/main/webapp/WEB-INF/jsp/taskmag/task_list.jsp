@@ -39,8 +39,14 @@
                         <td style="vertical-align:top;">
                             <select class="chzn-select" name="status" id="status" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
-                                <option value="1" <c:if test="${pd.mission_condition==1}">selected</c:if>>拒单</option>
-                                <option value="4" <c:if test="${pd.mission_condition==4}">selected</c:if>>任务完成</option>
+                                <option value="1" <c:if test="${pd.mission_condition==1}">selected</c:if>>任务已下发</option>
+                                <option value="2" <c:if test="${pd.mission_condition==2}">selected</c:if>>拒收</option>
+                                <option value="3" <c:if test="${pd.mission_condition==3}">selected</c:if>>接收未执行</option>
+                                <option value="4" <c:if test="${pd.mission_condition==4}">selected</c:if>>任务执行中</option>
+                                <option value="5" <c:if test="${pd.mission_condition==5}">selected</c:if>>任务完成待审核</option>
+                                <option value="6" <c:if test="${pd.mission_condition==6}">selected</c:if>>审核通过</option>
+                                <option value="7" <c:if test="${pd.mission_condition==7}">selected</c:if>>审核未通过</option>
+                                <option value="8" <c:if test="${pd.mission_condition==8}">selected</c:if>>拒收已处理</option>
                             </select>
                         </td>
                         <c:if test="${QX.cha == 1 }">
@@ -57,9 +63,9 @@
 
                     <thead>
                     <tr>
-                        <th class="center">
+                       <%-- <th class="center">
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                        </th>
+                        </th>--%>
                         <th class="center">序号</th>
                         <th class="center">任务名称</th>
                         <th class="center">任务状态</th>
@@ -81,26 +87,34 @@
                             <c:if test="${QX.cha == 1 }">
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td class='center' style="width: 30px;">
+                                        <%--<td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.mission_id}" /><span class="lbl"></span></label>
-                                        </td>
+                                        </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                        <td style="width: 60px;" class="center">${var.mission_name}</td>
-                                        <td style="width: 60px;" class="center">
-                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-warning   arrowed-in">任务进行中</span></c:if>
-                                            <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务完成</span></c:if>
+                                        <td style="width: 100px;" class="center">${var.mission_name}</td>
+                                        <td style="width: 50px;" class="center">
+                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-info   arrowed-in">任务已下发</span></c:if>
+                                            <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收</span></c:if>
+                                            <c:if test="${var.mission_condition == '3' }"><span class="label label-info   arrowed-in">接收未执行</span></c:if>
+                                            <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务执行中</span></c:if>
+                                            <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">任务完成待审核</span></c:if>
+                                            <c:if test="${var.mission_condition == '6' }"><span class="label label-success   arrowed-in">审核通过</span></c:if>
+                                            <c:if test="${var.mission_condition == '7' }"><span class="label label-success      arrowed-in">审核未通过</span></c:if>
+                                            <c:if test="${var.mission_condition == '8' }"><span class="label label-primary     arrowed-in">拒收已处理</span></c:if>
                                         </td>
                                         <td style="width: 100px;" class="center">${var.send_time}</td>
-                                        <td style="width: 139px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 60px;" class="center">${var.worker_name}</td>
                                         <td style="width: 60px;" class="center">${var.worker_phone}</td>
                                         <td style="width: 60px;" class="center">${var.set_name}</td>
-                                        <td style="width: 60px;" class="center">${var.mission_level}</td>
+                                        <td style="width: 50px;" class="center">${var.mission_level}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
-                                        <td style="width: 30px;" class="center">
-                                            <a href="<%=basePath%>taskmag/getTaskLine.do?mission_id=${var.id}">查看巡检路径</a>
-                                            <br/>---------
+                                        <td style="width: 60px;" class="center">
                                             <a href="<%=basePath%>taskmag/goAuditTask.do?mission_id=${var.id}">任务审核</a>
                                         </td>
+                                        <!--
+                                        <td style="width: 30px;" class="center">
+                                            <a href="taskmag/getTaskLine.do?mission_id=">查看巡检路径</a>
+                                        </td>-->
                                     </tr>
                                 </c:forEach>
                             </c:if>
