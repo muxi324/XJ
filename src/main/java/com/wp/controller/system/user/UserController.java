@@ -2,7 +2,9 @@ package com.wp.controller.system.user;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
+import com.wp.entity.databank.Workshop;
 import com.wp.entity.system.Role;
+import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.menu.MenuService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.system.user.UserService;
@@ -48,6 +50,8 @@ public class UserController extends BaseController {
 	private MenuService menuService;
 	@Resource(name = "workerService")
 	private WorkerService workerService;
+	@Resource(name="workshopService")
+	private WorkshopService workshopService;
 	
 	
 	/**
@@ -209,7 +213,8 @@ public class UserController extends BaseController {
 		List<Role> roleList;
 		
 		roleList = roleService.listAllERRoles();			//列出所有二级角色
-		
+		List<Workshop> workshopList = workshopService.listWorkshop();
+		mv.addObject("workshopList",workshopList);
 		mv.setViewName("system/user/user_edit");
 		mv.addObject("msg", "saveU");
 		mv.addObject("pd", pd);

@@ -118,10 +118,10 @@
                  </tr>
                  <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
-                     <td><select  type="text" name="workshop" id="workshop" value="${pd.workshop}"  class="form-control" >
-                         <option value="0">选择</option>
+                     <td><select   name="workshop" id="workshop" value="${pd.workshop}" class="form-control"  data-placeholder="请选择车间" >
+                         <option value="">请选择</option>
                          <c:forEach items="${workshopList}" var="W">
-                             <option value="${W.workshop }">${W.workshop }</option>
+                             <option value="${W.workshop }" <c:if test="${W.workshop  == pd.workshop}">selected</c:if>>${W.workshop }</option>
                          </c:forEach>
                      </select></td>
                  </tr>

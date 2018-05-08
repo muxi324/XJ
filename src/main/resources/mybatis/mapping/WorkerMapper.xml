@@ -102,7 +102,7 @@
 
     <!-- 班组员工列表-->
     <select id="listWorker" parameterType="pd" resultType="pd" >
-        select distinct name from worker_info WHERE  team = #{team}
+        select distinct name from worker_info WHERE  team = #{team} and post != '离职'
     </select>
 
     <!-- 员工手机列表-->

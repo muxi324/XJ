@@ -68,8 +68,8 @@ public class WorkerController extends BaseController {
             workerService.editWorkshop(pd);
         }
 
-        PageData pageData = new PageData();
         //添加sysuser字段
+      /*  PageData pageData = new PageData();
         pageData.put("USERNAME",pd.getString("name"));
         pageData.put("NAME",pd.getString("name"));
         pageData.put("USER_ID", this.get32UUID());	//ID
@@ -84,7 +84,7 @@ public class WorkerController extends BaseController {
         pageData.put("EMAIL","");
         pageData.put("BZ","");
         pageData.put("workshop",pd.getString("workshop"));
-        userService.saveU(pageData);
+        userService.saveU(pageData);*/
 
         workerService.save(pd);
         mv.addObject("msg","success");
@@ -220,9 +220,11 @@ public class WorkerController extends BaseController {
         pd = this.getPageData();
         try {
             pd = workerService.findById(pd);	//根据ID读取
+            mv.addObject("pd", pd);
+            List<Workshop> workshopList = workshopService.listWorkshop();
+            mv.addObject("workshopList",workshopList);
             mv.setViewName("worker/worker_edit");
             mv.addObject("msg", "edit");
-            mv.addObject("pd", pd);
         } catch (Exception e) {
             logger.error(e.toString(), e);
         }

@@ -70,7 +70,7 @@
 						<th>职位</th>
 						<th>所属车间</th>
 						<th><i class="icon-time hidden-phone"></i>最近登录</th>
-						<th>上次登录IP</th>
+					<%--	<th>上次登录IP</th>--%>
 						<th class="center">操作</th>
 					</tr>
 				</thead>
@@ -95,7 +95,7 @@
 								<td>${user.ROLE_NAME }</td>
 								<td>${user.workshop}</td>
 								<td>${user.LAST_LOGIN}</td>
-								<td>${user.IP}</td>
+								<%--<td>${user.IP}</td>--%>
 								<td style="width: 60px;">
 									<div class='hidden-phone visible-desktop btn-group'>
 										
@@ -148,9 +148,9 @@
 					<c:if test="${QX.add == 1 }">
 					<a class="btn btn-small btn-success" onclick="add();">新增</a>
 					</c:if>
-					<c:if test="${QX.FX_QX == 1 }">
+				<%--	<c:if test="${QX.FX_QX == 1 }">
 					<a title="批量发送电子邮件" class="btn btn-small btn-info" onclick="makeAll('确定要给选中的用户发送邮件吗?');"><i class="icon-envelope-alt"></i></a>
-					</c:if>
+					</c:if>--%>
 					<c:if test="${QX.FW_QX == 1 }">
 					<a title="批量发送短信" class="btn btn-small btn-warning" onclick="makeAll('确定要给选中的用户发送短信吗?');"><i class="icon-envelope"></i></a>
 					</c:if>

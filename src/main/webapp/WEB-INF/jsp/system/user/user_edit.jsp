@@ -40,7 +40,7 @@
 			
 			$("#role_id").tips({
 				side:3,
-	            msg:'选择角色',
+	            msg:'选择职位',
 	            bg:'#AE81FF',
 	            time:2
 	        });
@@ -137,7 +137,7 @@
 			return false;
 		}
 		
-		if($("#EMAIL").val()==""){
+	/*	if($("#EMAIL").val()==""){
 			
 			$("#EMAIL").tips({
 				side:3,
@@ -156,7 +156,7 @@
 	        });
 			$("#EMAIL").focus();
 			return false;
-		}
+		}*/
 		
 		if($("#user_id").val()==""){
 			hasU();
@@ -248,7 +248,7 @@
 		<table>
 			
 			<c:if test="${fx != 'head'}">
-			<c:if test="${pd.ROLE_ID != '1'}">	
+			<c:if test="${pd.ROLE_ID != '1'}">
 			<tr class="info">
 				<td>
 				<select class="chzn-select" name="ROLE_ID" id="role_id" data-placeholder="请选择职位" style="vertical-align:top;">
@@ -268,18 +268,15 @@
 			<c:if test="${fx == 'head'}">
 				<input name="ROLE_ID" id="role_id" value="${pd.ROLE_ID }" type="hidden" />
 			</c:if>
-			
 			<tr>
-				<td><input type="text" name="USERNAME" id="loginname" value="${pd.USERNAME }" maxlength="32" placeholder="这里输入用户名" title="用户名"/></td>
-			</tr>
-			<tr>
-				<td><input type="text" name="NUMBER" id="NUMBER" value="${pd.NUMBER }" maxlength="32" placeholder="这里输入编号" title="编号" onblur="hasN('${pd.USERNAME }')"/></td>
-			</tr>
-			<tr>
-				<td><input type="password" name="PASSWORD" id="password"  maxlength="32" placeholder="输入密码" title="密码"/></td>
-			</tr>
-			<tr>
-				<td><input type="password" name="chkpwd" id="chkpwd"  maxlength="32" placeholder="确认密码" title="确认密码" /></td>
+				<td>
+					<select   name="workshop" id="workshop" value="${pd.workshop}"  class="chzn-select" data-placeholder="请选择车间" >
+						<option value=""></option>
+						<c:forEach items="${workshopList}" var="W">
+							<option value="${W.workshop }">${W.workshop }</option>
+						</c:forEach>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td><input type="text" name="NAME" id="name"  value="${pd.NAME }"  maxlength="32" placeholder="这里输入姓名" title="姓名"/></td>
@@ -288,11 +285,22 @@
 				<td><input type="number" name="PHONE" id="PHONE"  value="${pd.PHONE }"  maxlength="32" placeholder="这里输入手机号" title="手机号"/></td>
 			</tr>
 			<tr>
-				<td><input type="email" name="EMAIL" id="EMAIL"  value="${pd.EMAIL }" maxlength="32" placeholder="这里输入邮箱" title="邮箱" onblur="hasE('${pd.USERNAME }')"/></td>
+				<td><input type="text" name="NUMBER" id="NUMBER" value="${pd.NUMBER }" maxlength="32" placeholder="这里输入编号" title="编号" onblur="hasN('${pd.USERNAME }')"/></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="workshop" id="workshop"  value="${workshop }" maxlength="32" placeholder="这里输入所属车间" title="车间" onblur="hasE('${pd.USERNAME }')"/></td>
+				<td><input type="text" name="USERNAME" id="loginname" value="${pd.USERNAME }" maxlength="32" placeholder="这里输入用户名" title="用户名"/></td>
 			</tr>
+			<tr>
+				<td><input type="password" name="PASSWORD" id="password"  maxlength="32" placeholder="输入密码" title="密码"/></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="chkpwd" id="chkpwd"  maxlength="32" placeholder="确认密码" title="确认密码" /></td>
+			</tr>
+
+			<%--<tr>
+				<td><input type="email" name="EMAIL" id="EMAIL"  value="${pd.EMAIL }" maxlength="32" placeholder="这里输入邮箱" title="邮箱" onblur="hasE('${pd.USERNAME }')"/></td>
+			</tr>--%>
+
 			<tr>
 				<td><input type="text" name="BZ" id="BZ"value="${pd.BZ }" placeholder="这里输入备注" maxlength="64" title="备注"/></td>
 			</tr>
