@@ -110,6 +110,7 @@ public class SendTaskController extends BaseController {
         pd = this.getPageData();
         pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("mission_condition", 1);
+        pd.put("set_name",getUserName());
         sendTaskService.save(pd);
         out.write("success");
         out.close();
@@ -207,6 +208,12 @@ public class SendTaskController extends BaseController {
         Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
         Session session = currentUser.getSession();
         return (Map<String, String>)session.getAttribute(Const.SESSION_QX);
+    }
+
+    public String getUserName() {
+        Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
+        Session session = currentUser.getSession();
+        return (String) session.getAttribute(Const.SESSION_USERNAME);
     }
 	/* ===============================权限================================== */
 }

@@ -228,10 +228,15 @@ public class PartsMagController extends BaseController {
             if(sendTimeStart != null && !"".equals(sendTimeStart)){
                 sendTimeStart = sendTimeStart+" 00:00:00";
                 pd.put("sendTimeStart", sendTimeStart);
+            } else {
+                pd.put("sendTimeStart", null);
             }
+
             if(sendTimeEnd != null && !"".equals(sendTimeEnd)){
                 sendTimeEnd = sendTimeEnd+" 00:00:00";
                 pd.put("sendTimeEnd", sendTimeEnd);
+            } else {
+                pd.put("sendTimeEnd", null);
             }
 
             List<PageData> varList = partsMagService.findById1(pd);								//根据ID读取
@@ -259,11 +264,17 @@ public class PartsMagController extends BaseController {
             if(sendTimeStart != null && !"".equals(sendTimeStart)){
                 sendTimeStart = sendTimeStart+" 00:00:00";
                 pd.put("sendTimeStart", sendTimeStart);
+            } else {
+                pd.put("sendTimeStart", null);
             }
+
             if(sendTimeEnd != null && !"".equals(sendTimeEnd)){
                 sendTimeEnd = sendTimeEnd+" 00:00:00";
                 pd.put("sendTimeEnd", sendTimeEnd);
+            } else {
+                pd.put("sendTimeEnd", null);
             }
+
             List<PageData> varList = partsMagService.findById(pd);								//根据ID读取
             mv.setViewName("materialmag/parts_input_history");
             mv.addObject("msg", "Input_history");

@@ -10,27 +10,26 @@
         select *  from material_history
         where  1=1
         and material_id = #{material_id} and is_consume = 1 and type =1
-
-       <!-- <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &gt;= #{pd.sendTimeStart}
+        <if test="sendTimeStart!=null and sendTimeStart!=''">
+            and time &gt;= #{sendTimeStart}
         </if>
-        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &lt;= #{pd.sendTimeEnd}
-        </if>-->
+        <if test="sendTimeEnd!=null and sendTimeEnd!=''">
+            and time &lt;= #{sendTimeEnd}
+        </if>
         order by id desc
-
     </select>
+
     <!--通过id获取出库数据-->
-    <select id="findById1" parameterType="Page" resultType="pd" useCache="false">
+    <select id="findById1" parameterType="pd" resultType="pd" useCache="false">
         select *  from material_history
         where  1=1
-         and material_id = #{material_id} and is_consume = 0 and type =1
-        <!--<if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &gt;= #{pd.sendTimeStart}
+        and material_id = #{material_id} and is_consume = 0 and type =1
+        <if test="sendTimeStart!=null and sendTimeStart!=''">
+            and time &gt;= #{sendTimeStart}
         </if>
-        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''">&lt;!&ndash; 到期时间检索 &ndash;&gt;
-            and time &lt;= #{pd.sendTimeEnd}
-        </if>-->
+        <if test="sendTimeEnd!=null and sendTimeEnd!=''">
+            and time &lt;= #{sendTimeEnd}
+        </if>
         order by id desc
     </select>
 
