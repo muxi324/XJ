@@ -31,7 +31,7 @@
                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                         <td style="width: 60px;" class="center"> ${var.work_name}</td>
                         <td style="width: 100px;" class="center">${var.data}</td>
-                        <td style="width: 139px;" class="center"><a href="<%=basePath%>taskmag/getTaskPhoto.do?mission_id=${mission_id}&event_id=${event_id}&work_name=${var.work_name}">查看图片</a></td>
+                        <td style="width: 139px;" class="center"><a onclick="pic('${mission_id}','${event_id}','${var.work_name }')">查看图片</a></td>
                        <%-- <td style="width: 100px;" class="center">
                             <img style="width:100px;height:100px" src="C:\apache-tomcat-8.5.23\webapps\water${var.pic}" width="210"></td>--%>
                     </tr>
@@ -50,6 +50,36 @@
         </c:otherwise>
     </c:choose>
 </table>
+
+<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/ace-elements.min.js"></script>
+<script src="static/js/ace.min.js"></script>
+<!-- 引入 -->
+<script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
+<script type="text/javascript">
+
+    $(top.hangge());
+
+    function pic(mission_id,event_id,work_name){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="查看照片";
+        diag.URL = '<%=basePath%>taskmag/getTaskPhoto.do?mission_id='+mission_id+'&event_id='+event_id+'&work_name='+work_name;
+        diag.Width = 400;
+        diag.Height = 450;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                nextPage(${page.currentPage});
+            }
+            diag.close();
+        };
+        diag.show();
+    }
+</script>
+
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
 </html>
+

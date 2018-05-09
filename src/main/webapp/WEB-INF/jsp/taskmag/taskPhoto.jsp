@@ -18,7 +18,17 @@
 <body>
   <%-- <img src="uploadFiles/uploadImgs/check.jpg">--%>
   <div id="zhongxin" class="center" >
-    <img style="width:300px;height:300px" src="C:\apache-tomcat-8.5.23\webapps\water${pd.pic}" width="210">
+    <img style="width:300px;height:300px" src="/imgFile/${pd.pic}" width="210">
   </div>
 </body>
+<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/ace-elements.min.js"></script>
+<script src="static/js/ace.min.js"></script>
+<!-- 引入 -->
+<script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
+<script type="text/javascript">
+
+    $(top.hangge());
+</script>
 </html>
