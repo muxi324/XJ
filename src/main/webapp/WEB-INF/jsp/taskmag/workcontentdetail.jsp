@@ -13,6 +13,8 @@
 </head>
 <body>
 <table id="table_report" class="table table-striped table-bordered table-hover">
+    <input type="hidden" id="mission_id" name="mission_id" value="${mission_id}">
+    <input type="hidden" id="event_id" name="event_id" value="${event_id}">
     <thead>
     <tr>
         <th class="center">序号</th>
@@ -28,8 +30,10 @@
                     <tr>
                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                         <td style="width: 60px;" class="center"> ${var.work_name}</td>
-                        <td style="width: 139px;" class="center">${var.data}</td>
-                        <td style="width: 139px;" class="center"><a href="<%=basePath%>taskmag/getTaskPhoto.do">查看图片</a></td>
+                        <td style="width: 100px;" class="center">${var.data}</td>
+                        <td style="width: 139px;" class="center"><a href="<%=basePath%>taskmag/getTaskPhoto.do?mission_id=${mission_id}&event_id=${event_id}&work_name=${var.work_name}">查看图片</a></td>
+                       <%-- <td style="width: 100px;" class="center">
+                            <img style="width:100px;height:100px" src="C:\apache-tomcat-8.5.23\webapps\water${var.pic}" width="210"></td>--%>
                     </tr>
                 </c:forEach>
             </c:if>

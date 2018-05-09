@@ -68,6 +68,7 @@
                         </th>--%>
                         <th class="center">序号</th>
                         <th class="center">任务名称</th>
+                        <th class="center">任务单号</th>
                         <th class="center">任务状态</th>
                         <th class="center">任务下达时间</th>
                         <th class="center">任务执行人</th>
@@ -92,6 +93,7 @@
                                         </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 100px;" class="center">${var.mission_name}</td>
+                                        <td style="width: 50px;" class="center">${var.id}</td>
                                         <td style="width: 50px;" class="center">
                                             <c:if test="${var.mission_condition == '1' }"><span class="label label-info   arrowed-in">任务已下发</span></c:if>
                                             <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收</span></c:if>
@@ -106,7 +108,7 @@
                                         <td style="width: 60px;" class="center">${var.worker_name}</td>
                                         <td style="width: 60px;" class="center">${var.worker_phone}</td>
                                         <td style="width: 60px;" class="center">${var.set_name}</td>
-                                        <td style="width: 50px;" class="center">${var.mission_level}</td>
+                                        <td style="width: 40px;" class="center">${var.mission_level}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 60px;" class="center">
                                             <a href="<%=basePath%>taskmag/goAuditTask.do?mission_id=${var.id}">任务审核</a>

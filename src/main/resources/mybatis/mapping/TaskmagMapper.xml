@@ -11,6 +11,12 @@
         where
         id = #{mission_id}
     </select>
+
+    <select id="findPicById" parameterType="pd" resultType="pd">
+        select *  from mission_feedback
+        where
+        mission_id = #{mission_id} and event_id =#{event_id} and work_name=#{work_name}
+    </select>
     <!--任务详情-->
     <select id="detail" parameterType="pd" resultType="pd">
         select *  from mission

@@ -224,8 +224,14 @@ public class TaskMagController extends BaseController {
     public ModelAndView getTaskPhoto() {
         ModelAndView mv = this.getModelAndView();
         PageData pd = this.getPageData();
-        String taskId = pd.getString("taskId");
-        mv.setViewName("taskmag/taskPhoto");
+        String work_name = pd.getString("work_name");
+        try {
+            pd = taskMagService.findPicById(pd);	//根据ID读取
+            mv.addObject("pd", pd);
+            mv.setViewName("taskmag/taskPhoto");
+            } catch (Exception e) {
+                logger.error(e.toString(), e);
+        }
         return mv;
     }
 
@@ -265,12 +271,16 @@ public class TaskMagController extends BaseController {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
         List<PageData> list = null;
+        String mission_id = pd.getString("mission_id");
+        String event_id = pd.getString("event_id");
         try {
             list = taskMagService.getWorkContent(pd);
         } catch (Exception e) {
             e.printStackTrace();
         }
         mv.addObject("varList",list);
+        mv.addObject("mission_id",mission_id);
+        mv.addObject("event_id",event_id);
         mv.setViewName("taskmag/workcontentdetail");
         return mv;
     }

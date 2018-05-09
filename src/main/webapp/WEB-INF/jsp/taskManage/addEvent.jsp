@@ -23,6 +23,8 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">事件名称:</td>
                 <td><input style="width:90%;" type="text" name="event_name" id="event_name" value="${pd.event_name}" maxlength="200"  title=""/></td>
+                <input type="hidden" name="font_color" id="font_color" value="#000000"/>
+                <input type="hidden" name="font_size" id="font_size" value="20"/>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
