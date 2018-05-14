@@ -7,6 +7,7 @@ import com.wp.entity.echarts.Record;
 import com.wp.service.echarts.RecordService;
 import com.wp.util.PageData;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,7 @@ public class RecordController extends BaseController {
      * 进入首页后的默认页面
      * @return
      */
-    @RequestMapping(value="/login_default")
+    @RequestMapping(value="/cycle_task")
     @ResponseBody
     public Object defaultPage() throws Exception{
         //ModelAndView mv = this.getModelAndView();
@@ -60,6 +61,38 @@ public class RecordController extends BaseController {
 //        JSONArray jsondata = JSONArray.fromObject(returnMap);
 
         return pdlist;
+    }
+//     全厂每月临时巡检任务
+    @RequestMapping(value="/temporary_task")
+    @ResponseBody
+    public Object temporaryTask() throws Exception{
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        List<PageData> pdlist = recordService.listTempTask(this.getPageData());
+        return pdlist;
+    }
+//    全厂每月维修任务单数
+    @RequestMapping(value="/repair_task")
+    @ResponseBody
+    public Object repairTask() throws Exception{
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        List<PageData> pdlist = recordService.listRepairTask(this.getPageData());
+        return pdlist;
+    }
+    //本厂异常各类型统计
+    @RequestMapping(value="/exception")
+    @ResponseBody
+    public Object Exception() throws Exception{
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        List<PageData> pdlist1 = recordService.listProblemException(this.getPageData());
+        List<PageData> pdlist2 = recordService.listDangerException(this.getPageData());
+        List<PageData> pdlist3 = recordService.listAlarmException(this.getPageData());
+        returnMap.put("problem", pdlist1);
+        returnMap.put("danger", pdlist2);
+        returnMap.put("alarm", pdlist3);
+        JSONArray jsondata = JSONArray.fromObject(returnMap);
+        System.out.println("======"+jsondata+"======");
+        return jsondata ;
+
     }
 }
 

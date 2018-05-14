@@ -46,7 +46,7 @@
     </tr>
     <tr colspan="10">
         <td>异常照片</td>
-        <td><img src="static/images/exception.jpg" alt="异常图片"></td>
+        <td><img src="/exceptionpic/${result.pic}" alt="异常图片"></td>
     </tr>
 </table>
 <a href="${basePath}sendtask/goSendTask2.do">解决异常</a>

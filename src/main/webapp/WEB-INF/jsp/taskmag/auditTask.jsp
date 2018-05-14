@@ -76,7 +76,7 @@
         </table>
     </form>
     <tr>
-        <td style="text-align: center;" colspan="10">该任务所包含事件</td>
+        <label class="control-label" style="margin-left:45%;margin-top: 5px;margin-bottom: 5px">该任务所包含事件</label>
     </tr>
     <table id="event" class="table table-striped table-bordered table-hover">
         <thead>
@@ -124,6 +124,13 @@
             </c:otherwise>
         </c:choose>
     </table>
+    <div class="page-header position-relative">
+        <table style="width:100%;">
+            <tr>
+                <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+            </tr>
+        </table>
+    </div>
 
 </table>
 </body>

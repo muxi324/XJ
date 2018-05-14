@@ -26,11 +26,11 @@
 
                 <th class="center">序号</th>
                 <th class="center">所属车间</th>
-                <th class="center">所属巡检点</th>
+              <%--  <th class="center">所属巡检点</th>--%>
                 <th class="center">异常级别</th>
                 <th class="center">描述</th>
-                <th class="center">汇报工人</th>
-                <th class="center">汇报时间</th>
+                <th class="center">异常上报人</th>
+                <th class="center">上报时间</th>
                 <th class="center">异常状态</th>
                 <th class="center">是否已读</th>
                 <th class="center">操作</th>
@@ -46,13 +46,16 @@
                             <tr>
                                 <td class='center' style="width: 30px;">${vs.index+1}</td>
                                 <td style="width: 60px;" class="center">${var.workshop}</td>
-                                <td style="width: 60px;" class="center">${var.checkpoint}</td>
-                                <td style="width: 100px;" class="center">${var.level}</td>
-                                <td style="width: 100px;" class="center">${var.description}</td>
-                                <td style="width: 139px;" class="center">${var.report_worker}</td>
-                                <td style="width: 60px;" class="center">${var.report_time}</td>
-                                <td style="width: 60px;" class="center">${var.status}</td>
-                                <td style="width: 139px;" class="center">
+                            <%--    <td style="width: 60px;" class="center">${var.checkpoint}</td>--%>
+                                <td style="width: 30px;" class="center">${var.level}</td>
+                                <td style="width: 139px;" class="center">${var.description}</td>
+                                <td style="width: 60px;" class="center">${var.report_worker}</td>
+                                <td style="width: 100px;" class="center">${var.report_time}</td>
+                                <td style="width: 60px;" class="center">
+                                    <c:if test="${var.status == '1' }"><span class="label label-warning   arrowed-in">未处理</span></c:if>
+                                    <c:if test="${var.status == '2' }"><span class="label label-success   arrowed-in">已处理</span></c:if>
+                                </td>
+                                <td style="width: 50px;" class="center">
                                     <c:if test="${var.is_read == 0}">
                                         否
                                     </c:if>
@@ -74,6 +77,13 @@
             </c:choose>
             </tbody>
         </table>
+        <div class="page-header position-relative">
+            <table style="width:100%;">
+                <tr>
+                    <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+                </tr>
+            </table>
+        </div>
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
 </html>

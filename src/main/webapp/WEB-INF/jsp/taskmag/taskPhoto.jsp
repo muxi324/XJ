@@ -17,8 +17,8 @@
 </head>
 <body>
   <%-- <img src="uploadFiles/uploadImgs/check.jpg">--%>
-  <div id="zhongxin" class="center" >
-    <img style="width:300px;height:300px" src="/imgFile/${pd.pic}" width="210">
+  <div id="zhongxin" class="center padding-top:20px" >
+    <img style="width:300px;height:300px;" src="/imgFile/${pd.pic}" width="210">
   </div>
 </body>
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>

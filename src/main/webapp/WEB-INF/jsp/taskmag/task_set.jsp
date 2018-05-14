@@ -89,8 +89,8 @@
                                             <label><input type='checkbox' name='ids' value="${var.set_id}" /><span class="lbl"></span></label>
                                         </td>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                        <td style="width: 60px;" class="center"> ${var.mission}</td>
-                                        <td style="width: 60px;" class="center">${var.mission_level}</td>
+                                        <td style="width: 100px;" class="center"> ${var.mission}</td>
+                                        <td style="width: 50px;" class="center">${var.mission_level}</td>
                                         <td style="width: 140px;" class="center">${var.mission_description}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 70px;" class="center">${var.set_time}</td>

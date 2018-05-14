@@ -12,6 +12,7 @@
     <%@ include file="../system/admin/top.jsp"%>
 </head>
 <body>
+<label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">工作内容</label>
 <table id="table_report" class="table table-striped table-bordered table-hover">
     <input type="hidden" id="mission_id" name="mission_id" value="${mission_id}">
     <input type="hidden" id="event_id" name="event_id" value="${event_id}">
@@ -50,6 +51,13 @@
         </c:otherwise>
     </c:choose>
 </table>
+<div class="page-header position-relative">
+    <table style="width:100%;">
+        <tr>
+            <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+        </tr>
+    </table>
+</div>
 
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
 <script src="static/js/bootstrap.min.js"></script>
