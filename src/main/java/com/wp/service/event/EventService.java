@@ -24,6 +24,25 @@ public class EventService {
         dao.save("EventMapper.save", pd);
     }
 
+    /*
+   *列表(全部)dd
+   */
+    public List<PageData> listAll(PageData pd)throws Exception{
+        return (List<PageData>)dao.findForList("EventMapper.listAll", pd);
+    }
+
+
+    public void delete(PageData pd)throws Exception{
+        dao.delete("EventMapper.delete", pd);
+    }
+
+    /*
+    * 批量删除
+    */
+    public void deleteAll(String[] event_ids)throws Exception{
+        dao.delete("EventMapper.deleteAll", event_ids);
+    }
+
     public PageData getEventById(PageData pd) throws Exception {
         return (PageData) dao.findForObject("EventMapper.getEventById",pd);
     }

@@ -34,6 +34,13 @@
         )
     </insert>
 
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from event_info
+        where
+        event_id = #{event_id}
+    </delete>
+
     <update id="update" parameterType="pd">
         update event_info set instrument_place=#{instrument_place},workshop=#{workshop},check_scope=#{check_scope},check_point=#{check_point},
         check_period=#{check_period},check_interval=#{check_interval},event_level=#{event_level} where event_name = #{event_name}
@@ -67,4 +74,35 @@
         select * from event_info where event_name = #{eventName}
     </select>
 
+    <!-- 批量删除房源 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from event_info
+        where
+        event_id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <select id="listAll" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from event_info
+        where 1 = 1
+        /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            event_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            workshop  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            check_scope LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            check_point   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            instrument_place  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        order by event_id asc
+    </select>
 </mapper>

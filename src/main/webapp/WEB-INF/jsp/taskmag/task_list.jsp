@@ -145,7 +145,6 @@
                 </div>
 
             </form>
-            <%--<table id="mission_msg"></table>--%>
         </div>
     </div>
 </div>

@@ -5,6 +5,7 @@ import com.wp.entity.Page;
 import com.wp.entity.exception.ExceptionInfo;
 import com.wp.service.exception.ExceptionService;
 import com.wp.util.Const;
+import com.wp.util.Jurisdiction;
 import com.wp.util.PageData;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -34,10 +35,31 @@ public class ExceptionController extends BaseController{
 
     @RequestMapping("/exceptionInfo")
     public ModelAndView getExceptionInfo(Page page) {
+        logBefore(logger, "异常列表");
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         try {
             pd = this.getPageData();
+            String  enquiry = pd.getString("enquiry");
+            if(null != enquiry && !"".equals(enquiry)){
+                pd.put("enquiry", enquiry.trim());
+            }else {
+                pd.put("enquiry", "");
+            }
+            String sendTimeStart = pd.getString("reportTimeStart");
+            String sendTimeEnd = pd.getString("reportTimeEnd");
+
+            if(sendTimeStart != null && !"".equals(sendTimeStart)){
+                sendTimeStart = sendTimeStart+" 00:00:00";
+                pd.put("reportTimeStart", sendTimeStart);
+            }
+            if(sendTimeEnd != null && !"".equals(sendTimeEnd)){
+                sendTimeEnd = sendTimeEnd+" 00:00:00";
+                pd.put("reportTimeEnd", sendTimeEnd);
+            }
+            String  level = pd.getString("level");
+            pd.put("level", level);
             page.setPd(pd);
             List<PageData> exceptionList = exceptionService.listException(page);
             mv.setViewName("exception/exceptionInfo");

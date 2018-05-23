@@ -38,22 +38,22 @@
 		<!--/page-header-->
 		<div id="allStatistic">
 			<div id="tab" style="float:left; height:200px;width:25%;margin:2%;background-color: #00a2d4;font-size: 20px;text-align:center;">
-				<table style="margin-left: 20px" style="margin-top:10px">
-					<tr>
-						<td style="margin-left: 15px">前一日全厂日常巡检单数：</td>
-						<td id="td1">20</td>
+				<table style="margin-left: 20px" style="margin-top:15px; ">
+					<tr >
+						<td style="margin-left: 15px;padding-top:15px;">2018年全厂日常巡检单数：</td>
+						<td id="td1"style="margin-left: 15px;padding-top:15px;">300</td>
 					</tr>
 					<tr>
-						<td style="margin-left: 15px">前一日全厂临时巡检单数：</td>
-						<td id="td2">5</td>
+						<td style="margin-left: 15px">2018年全厂临时巡检单数：</td>
+						<td id="td2">100</td>
 					</tr>
 					<tr>
-						<td style="margin-left: 15px">前一日全厂维修任务数：</td>
-						<td id="td3">1</td>
+						<td style="margin-left: 15px">2018年全厂维修任务数：</td>
+						<td id="td3">50</td>
 					</tr>
 					<tr>
-						<td style="margin-left: 15px">前一日全厂上报异常数：</td>
-						<td id="td4">2</td>
+						<td style="margin-left: 15px">2018年全厂上报异常数：</td>
+						<td id="td4">60</td>
 					</tr>
 				</table>
 			</div>

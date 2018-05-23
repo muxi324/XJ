@@ -17,124 +17,115 @@
 <div class="container-fluid" id="main-container">
     <div id="page-content" class="clearfix">
         <div class="row-fluid">
-            <div class="row-fluid">
-
-                <!-- 检索  -->
-                <form action="eventManage/list.do" method="post" name="Form" id="Form">
-                    <table>
-                        <tr>
-                            <td>
+            <!-- 检索  -->
+            <form action="eventManage/list.do" method="post" name="Form" id="Form">
+                <table>
+                    <tr>
+                        <td>
 						<span class="input-icon">
 							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="" placeholder="这里输入关键词" />
 							<i id="nav-search-icon" class="icon-search"></i>
 						</span>
-                            </td>
-                            <c:if test="${QX.cha == 1 }">
-                                <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
-                                <c:if test="${QX.edit == 1 }">
-                                    <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td>
-                                    <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
-                                </c:if>
+                        </td>
+                        <c:if test="${QX.cha == 1 }">
+                            <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
+                            <c:if test="${QX.edit == 1 }">
+                                <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td>
+                                <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
                             </c:if>
-                        </tr>
-                    </table>
-                    <!-- 检索  -->
-
-
-                    <table id="table_report" class="table table-striped table-bordered table-hover">
-
-                        <thead>
-                        <tr>
-                            <th class="center">
-                                <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                            </th>
-                            <th class="center">序号</th>
-                            <th class="center">所属车间</th>
-                            <th class="center">所属巡检区域</th>
-                            <th class="center">所属巡检点</th>
-                            <th class="center">事件名称</th>
-                            <th class="center">具体位置</th>
-                            <th class="center">创建时间</th>
-                            <%--<th class="center">二维码</th>--%>
-                            <th class="center">任务记录</th>
-                            <th class="center">操作</th>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-
-                        <!-- 开始循环 -->
-                        <c:choose>
-                            <c:when test="${not empty varList}">
-                                <c:if test="${QX.cha == 1 }">
-                                    <c:forEach items="${varList}" var="var" varStatus="vs">
-                                        <tr>
-                                            <td class='center' style="width: 30px;">
-                                                <label><input type='checkbox' name='ids' value="${var.event_id}" /><span class="lbl"></span></label>
-                                            </td>
-                                            <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                            <td style="width: 60px;" class="center">${var.workshop}</td>
-                                            <td style="width: 100px;" class="center">${var.check_scope}</td>
-                                            <td style="width: 100px;" class="center">${var.check_point}</td>
-                                            <td style="width: 100px;" class="center">${var.event_name}</td>
-                                            <td style="width: 100px;" class="center">${var.instrument_place}</td>
-                                            <td style="width: 100px;" class="center">${var.create_time}</td>
-                                            <%--<td style="width: 139px;" class="center">${var.qrcode}</td>--%>
-                                            <td style="width: 100px;" class="center">查看操作记录</td>
-                                            <td style="width: 60px;" class="center">
-                                                <div class='hidden-phone visible-desktop btn-group'>
-
-                                                    <c:if test="${QX.edit == 1 }">
-                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="location.href='<%=basePath%>eventManage/editEvent.do?eventId=${var.event_id}'"><i class='icon-edit'></i></a></c:if>
-                                                        <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
-                                                    </c:if>
-                                                    &nbsp;&nbsp;&nbsp;
-                                                    <c:if test="${QX.del == 1 }">
-                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="location.href='<%=basePath%>eventManage/delEvent.do?eventId=${var.event_id}'"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
-                                                        <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
-                                                    </c:if>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                    </c:forEach>
-                                </c:if>
-                                <c:if test="${QX.cha == 0 }">
+                        </c:if>
+                    </tr>
+                </table>
+                <!-- 检索  -->
+                <table id="table_report" class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th class="center">
+                            <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
+                        </th>
+                        <th class="center">序号</th>
+                        <th class="center">所属车间</th>
+                        <th class="center">所属巡检区域</th>
+                        <th class="center">所属巡检点</th>
+                        <th class="center">事件名称</th>
+                        <th class="center">具体位置</th>
+                        <th class="center">创建时间</th>
+                        <%--<th class="center">二维码</th>--%>
+                        <th class="center">任务记录</th>
+                        <th class="center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- 开始循环 -->
+                    <c:choose>
+                        <c:when test="${not empty varList}">
+                            <c:if test="${QX.cha == 1 }">
+                                <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td colspan="100" class="center">您无权查看</td>
+                                        <td class='center' style="width: 30px;">
+                                            <label><input type='checkbox' name='ids' value="${var.event_id}" /><span class="lbl"></span></label>
+                                        </td>
+                                        <td class='center' style="width: 30px;">${vs.index+1}</td>
+                                        <td style="width: 60px;" class="center">${var.workshop}</td>
+                                        <td style="width: 100px;" class="center">${var.check_scope}</td>
+                                        <td style="width: 100px;" class="center">${var.check_point}</td>
+                                        <td style="width: 100px;" class="center">${var.event_name}</td>
+                                        <td style="width: 100px;" class="center">${var.instrument_place}</td>
+                                        <td style="width: 100px;" class="center">${var.create_time}</td>
+                                            <%--<td style="width: 139px;" class="center">${var.qrcode}</td>--%>
+                                        <td style="width: 100px;" class="center">查看操作记录</td>
+                                        <td style="width: 60px;" class="center">
+                                            <div class='hidden-phone visible-desktop btn-group'>
+
+                                                <c:if test="${QX.edit == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="location.href='<%=basePath%>eventManage/editEvent.do?eventId=${var.event_id}'"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
+                                                </c:if>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <c:if test="${QX.del == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.event_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
+                                                </c:if>
+
+                                            </div>
+                                        </td>
                                     </tr>
-                                </c:if>
-                            </c:when>
-                            <c:otherwise>
-                                <tr class="main_info">
-                                    <td colspan="100" class="center" >没有相关数据</td>
+
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${QX.cha == 0 }">
+                                <tr>
+                                    <td colspan="100" class="center">您无权查看</td>
                                 </tr>
-                            </c:otherwise>
-                        </c:choose>
-
-
-                        </tbody>
-                    </table>
-
-                    <div class="page-header position-relative">
-                        <table style="width:100%;">
-                            <tr>
-                                <td style="vertical-align:top;">
-                                    <c:if test="${QX.add == 1 }">
-                                        <a class="btn btn-small btn-success" onclick="location.href='<%=basePath%>eventManage/addEvent.do'">新增</a>
-                                    </c:if>
-                                    <c:if test="${QX.del == 1 }">
-                                        <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
-                                    </c:if>
-                                </td>
-                                <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+                            </c:if>
+                        </c:when>
+                        <c:otherwise>
+                            <tr class="main_info">
+                                <td colspan="100" class="center" >没有相关数据</td>
                             </tr>
-                        </table>
-                    </div>
-                </form>
-            </div>
+                        </c:otherwise>
+                    </c:choose>
 
+
+                    </tbody>
+                </table>
+
+                <div class="page-header position-relative">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="vertical-align:top;">
+                                <c:if test="${QX.add == 1 }">
+                                    <a class="btn btn-small btn-success" onclick="location.href='<%=basePath%>eventManage/addEvent.do'">新增</a>
+                                </c:if>
+                                <c:if test="${QX.del == 1 }">
+                                    <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
+                                </c:if>
+                            </td>
+                            <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
             <!-- PAGE CONTENT ENDS HERE -->
         </div><!--/row-->
 
@@ -191,11 +182,11 @@
     }
 
     //删除
-   function del(Id){
+    function del(Id){
         bootbox.confirm("确定要删除吗?", function(result) {
             if(result) {
                 top.jzts();
-                var url = "<%=basePath%>eventManage/delete.do?id="+Id+"&tm="+new Date().getTime();
+                var url = "<%=basePath%>eventManage/delete.do?event_id="+Id;
                 $.get(url,function(data){
                     nextPage(${page.currentPage});
                 });

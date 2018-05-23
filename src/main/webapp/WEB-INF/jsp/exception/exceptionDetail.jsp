@@ -20,6 +20,7 @@
 </head>
 <body>
 <table id="table_report" class="table table-striped table-bordered table-hover">
+    <input type="hidden" id="id" name="id" value="${result.id}">
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常上报人:</td>
         <td>${result.report_worker}</td>
@@ -38,7 +39,11 @@
     </tr>
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>
-        <td>${result.level}</td>
+        <td>
+            <c:if test="${result.level==1}"> 问题型</c:if>
+            <c:if test="${result.level==2}"> 隐患型</c:if>
+            <c:if test="${result.level==3}"> 报警型</c:if>
+        </td>
     </tr>
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
@@ -46,10 +51,10 @@
     </tr>
     <tr colspan="10">
         <td>异常照片</td>
-        <td><img src="/exceptionpic/${result.pic}" alt="异常图片"></td>
+        <td><img src="/imgFile/${result.pic}" alt="异常图片"></td>
     </tr>
 </table>
-<a href="${basePath}sendtask/goSendTask2.do">解决异常</a>
+<a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask2.do?exceptionId=${result.id}">解决异常</a>
 
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>

@@ -5,10 +5,7 @@ import com.wp.entity.Page;
 import com.wp.entity.databank.Workshop;
 import com.wp.service.databank.WorkshopService;
 import com.wp.service.event.EventService;
-import com.wp.util.Const;
-import com.wp.util.PageData;
-import com.wp.util.StringUtil;
-import com.wp.util.Tools;
+import com.wp.util.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
@@ -17,20 +14,17 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping(value="/eventManage")
@@ -43,6 +37,8 @@ public class EventController extends BaseController{
 
     @RequestMapping(value = "list")
     public ModelAndView listEvent(Page page) {
+        logBefore(logger, "事件列表");
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
         ModelAndView mv = new ModelAndView();
         PageData pd = new PageData();
         try{
@@ -63,6 +59,23 @@ public class EventController extends BaseController{
             logger.error(e.toString(), e);
         }
         return mv;
+    }
+    /**
+     * 删除
+     */
+    @RequestMapping(value="/delete")
+    public void delete(PrintWriter out){
+        logBefore(logger, "删除事件");
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
+        PageData pd = new PageData();
+        try{
+            pd = this.getPageData();
+            eventService.delete(pd);
+            out.write("success");
+            out.close();
+        } catch(Exception e){
+            logger.error(e.toString(), e);
+        }
     }
 
     @RequestMapping(value = "/addEvent")
@@ -248,6 +261,156 @@ public class EventController extends BaseController{
         }
 
         return result;
+    }
+
+    /**
+     * 批量删除
+     */
+    @RequestMapping(value="/deleteAll")
+    @ResponseBody
+    public Object deleteAll() {
+        PageData pd = new PageData();
+        Map<String,Object> map = new HashMap<String,Object>();
+        try {
+            pd = this.getPageData();
+            List<PageData> pdList = new ArrayList<PageData>();
+            String set_ids = pd.getString("event_ids");
+
+            if(null != set_ids && !"".equals(set_ids)){
+                String Arrayhouse_ids[] = set_ids.split(",");
+                if(Jurisdiction.buttonJurisdiction(menuUrl, "del")){eventService.deleteAll(Arrayhouse_ids);}
+                pd.put("msg", "ok");
+            }else{
+                pd.put("msg", "no");
+            }
+
+            pdList.add(pd);
+            map.put("list", pdList);
+        } catch (Exception e) {
+            logger.error(e.toString(), e);
+        } finally {
+            logAfter(logger);
+        }
+        return AppUtil.returnObject(pd, map);
+    }
+    /*
+	 * 导出到excel
+	 * @return
+	 */
+    @RequestMapping(value="/excel")
+    public ModelAndView exportExcel(){
+        logBefore(logger, "导出任务列表到excel");
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        try{
+            //检索条件===
+            String  enquiry = URLDecoder.decode(pd.getString("enquiry"),"UTF-8");
+            if(null != enquiry && !"".equals(enquiry)){
+                pd.put("enquiry", enquiry.trim());
+            }else {
+                pd.put("enquiry", "");
+            }
+            String setTimeStart = pd.getString("setTimeStart");
+            String setTimeEnd = pd.getString("setTimeEnd");
+            if(setTimeStart != null && !"".equals(setTimeStart)){
+                setTimeStart = setTimeStart+" 00:00:00";
+                pd.put("setTimeStart", setTimeStart);
+            }
+            if(setTimeEnd != null && !"".equals(setTimeEnd)){
+                setTimeEnd = setTimeEnd+" 00:00:00";
+                pd.put("setTimeEnd", setTimeEnd);
+            }
+            String  mission_level = pd.getString("mission_level");
+            pd.put("mission_level", mission_level);
+            String  mission_type = pd.getString("mission_type");
+            pd.put("mission_type", mission_type);
+
+            //检索条件===
+            Map<String,Object> dataMap = new HashMap<String,Object>();
+            List<String> titles = new ArrayList<String>();
+
+            titles.add("所属车间");
+            titles.add("所属巡检区域");
+            titles.add("所属巡检点");
+            titles.add("事件名称");
+            titles.add("具体位置");
+            titles.add("创建时间");
+            dataMap.put("titles", titles);
+            List<PageData> varOList = eventService.listAll(pd);
+            List<PageData> varList = new ArrayList<PageData>();
+            for(int i=0;i<varOList.size();i++){
+                PageData vpd = new PageData();
+                vpd.put("var1", varOList.get(i).getString("workshop"));
+                vpd.put("var2", varOList.get(i).getString("check_scope"));
+                vpd.put("var3", varOList.get(i).getString("check_point"));
+                vpd.put("var4", varOList.get(i).getString("event_name"));
+                vpd.put("var5", varOList.get(i).getString("instrument_place"));
+                vpd.put("var6", varOList.get(i).getString("create_time"));
+                varList.add(vpd);
+            }
+            dataMap.put("varList", varList);
+            ObjectExcelView erv = new ObjectExcelView();
+            mv = new ModelAndView(erv,dataMap);
+        } catch(Exception e){
+            logger.error(e.toString(), e);
+        }
+        return mv;
+    }
+
+    /**
+     * 打开上传EXCEL页面
+     */
+    @RequestMapping(value="/goUploadExcel")
+    public ModelAndView goUploadExcel()throws Exception{
+        ModelAndView mv = this.getModelAndView();
+        mv.setViewName("worker/uploadexcel");
+        return mv;
+    }
+
+    /**
+     * 下载模版
+     */
+    @RequestMapping(value="/downExcel")
+    public void downExcel(HttpServletResponse response)throws Exception{
+
+        FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Taskset.xls", "Taskset.xls");
+
+    }
+
+    /**
+     * 从EXCEL导入到数据库
+     */
+    @SuppressWarnings("unused")
+    @RequestMapping(value="/readExcel",method = RequestMethod.POST)
+    public ModelAndView readExcel(
+            @RequestParam(value="excel",required=false) MultipartFile file
+    ) throws Exception {
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        if (null != file && !file.isEmpty()) {
+            String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE;								//文件上传路径
+            String fileName =  FileUpload.fileUp(file, filePath, "taskexcel");							//执行上传
+
+            List<PageData> listPd = (List) ObjectExcelRead.readExcel(filePath, fileName, 2, 0, 0);
+
+            for(PageData pds : listPd) {
+
+                pd.put("workshop", pds.getString("var0"));
+                pd.put("check_scope", pds.getString("var1"));
+                pd.put("check_point", pds.getString("var2"));
+                pd.put("event_name", pds.getString("var3"));
+               // pd.put("instrument_place", pds.getString("var4"));
+               // pd.put("mission_description", pds.getString("var5"));
+                //pd.put("cycle_time", pds.getString("var6"));
+                pd.put("create_time", new Date());
+                eventService.save(pd);
+            }
+            mv.addObject("msg","success");
+        }
+        mv.setViewName("save_result");
+        return mv;
     }
 
     /* ===============================权限================================== */

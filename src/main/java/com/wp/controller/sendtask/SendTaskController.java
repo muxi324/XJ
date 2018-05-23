@@ -2,6 +2,7 @@ package com.wp.controller.sendtask;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.worker.Worker;
+import com.wp.service.exception.ExceptionService;
 import com.wp.service.sendtask.SendTaskService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
@@ -39,6 +40,8 @@ public class SendTaskController extends BaseController {
     private SendTaskService sendTaskService;
     @Resource(name = "workerService")
     private WorkerService workerService;
+    @Resource(name = "exceptionService")
+    private ExceptionService exceptionService;
 
     /**
      * 去发送日常巡检任务
@@ -74,8 +77,10 @@ public class SendTaskController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
+        PageData result = exceptionService.findById(pd);
         mv.setViewName("sendtask/sendtask2");
         mv.addObject("pd", pd);
+        mv.addObject("pd", result);
         return mv;
     }
 

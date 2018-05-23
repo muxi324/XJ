@@ -4,6 +4,31 @@
 <mapper namespace="ExceptionMapper">
     <select id="listException" parameterType="Page" resultType="pd" useCache="false">
         select  *   from exception
+        where 1 = 1
+        /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            report_worker LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            workshop  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            description LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            checkpoint   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.reportTimeStart!=null and pd.reportTimeStart!=''">
+            and report_time &gt;= #{pd.reportTimeStart}
+        </if>
+        <if test="pd.reportTimeEnd!=null and pd.reportTimeEnd!=''">
+            and report_time &lt;= #{pd.reportTimeEnd}
+        </if>
+        <if test="pd.level != null and pd.level != ''"><!-- 状态检索 -->
+            and level = #{pd.level}
+        </if>
+        order by id desc
     </select>
 
     <select id="findExceptionById" parameterType="pd" resultType="pd">

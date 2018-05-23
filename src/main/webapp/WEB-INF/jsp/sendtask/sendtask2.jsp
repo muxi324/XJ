@@ -88,7 +88,7 @@
                     <option value="签名">签名</option>
                 </select></td>
             </tr>
-            <tr>
+ <%--           <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核级别</td>
                 <td><select name="auditor_level" id="auditor_level" class="form-control" value="${pd.auditor_level}" >
                     <option value="1级">1级</option>
@@ -103,7 +103,7 @@
                     <option value="张三">张三</option>
                     <option value="王旺">王旺</option>
                 </select></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
                 <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
@@ -138,7 +138,11 @@
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>
-                        <td><input style="width:90%;" type="text" name="level" id="level" value="${pd.level}" maxlength="200"  title=""/></td>
+                        <td><input style="width:90%;" type="text" name="level" id="level"  maxlength="200"  title=""/>
+                            <c:if test="${pd.level==1}"> 问题型</c:if>
+                            <c:if test="${pd.level==2}"> 隐患型</c:if>
+                            <c:if test="${pd.level==3}"> 报警型</c:if>
+                        </td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
@@ -159,7 +163,7 @@
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常照片:</td>
-                        <td><img style="width:95%;height:250px" src="uploadFiles/uploadImgs/excep_pic/${pd.excep_pic}" width="210"></td>
+                        <td><img style="width:95%;height:250px" src="/imgFile/${pd.pic}" width="210"></td>
                     </tr>
                 </table>
             <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
