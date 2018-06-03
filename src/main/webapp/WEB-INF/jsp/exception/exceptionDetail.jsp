@@ -51,7 +51,7 @@
     </tr>
     <tr colspan="10">
         <td>异常照片</td>
-        <td><img src="/imgFile/${result.pic}" alt="异常图片"></td>
+        <td><img src="/imgFile/${result.pic}" alt="异常图片"width="210"></td>
     </tr>
 </table>
 <a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask2.do?exceptionId=${result.id}">解决异常</a>

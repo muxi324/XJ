@@ -32,9 +32,7 @@
                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                         <td style="width: 60px;" class="center"> ${var.work_name}</td>
                         <td style="width: 100px;" class="center">${var.data}</td>
-                        <td style="width: 139px;" class="center"><a onclick="pic('${mission_id}','${event_id}','${var.work_name }')">查看图片</a></td>
-                       <%-- <td style="width: 100px;" class="center">
-                            <img style="width:100px;height:100px" src="C:\apache-tomcat-8.5.23\webapps\water${var.pic}" width="210"></td>--%>
+                        <td style="width: 139px;" class="center"><a onclick="pic('${mission_id}','${event_id}','${var.work_name }')"> <img style="width:80px;height:80px" src="/imgFile/${var.pic}" width="100"></a></td>
                     </tr>
                 </c:forEach>
             </c:if>

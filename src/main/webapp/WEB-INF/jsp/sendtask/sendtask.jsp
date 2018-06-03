@@ -67,6 +67,7 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
                 <td><select name="worker_name" id="worker_name" class="form-control" value="${pd.worker_name}" onchange="phonechoose()">
                         <option value="">请先选择班组</option>
+
                 </select></td>
             </tr>
             <tr>

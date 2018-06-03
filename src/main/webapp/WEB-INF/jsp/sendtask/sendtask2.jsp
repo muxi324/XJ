@@ -163,7 +163,7 @@
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常照片:</td>
-                        <td><img style="width:95%;height:250px" src="/imgFile/${pd.pic}" width="210"></td>
+                        <td><img style="height:250px" src="/imgFile/${pd.pic}" width="210"></td>
                     </tr>
                 </table>
             <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>

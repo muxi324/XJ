@@ -164,7 +164,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="新增";
-        diag.URL = '<%=basePath%>eventManage/goAdd.do';
+        diag.URL = '<%=basePath%>eventManage/addEvent.do';
         diag.Width = 400;
         diag.Height = 600;
         diag.CancelEvent = function(){ //关闭事件

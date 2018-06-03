@@ -375,7 +375,8 @@
                     }
                 }
             }
-        ]
+        ],
+        color: ['red','yellow','blue']
     };
     if (option2 && typeof option2 === "object") {
         myChart2.setOption(option2, true);

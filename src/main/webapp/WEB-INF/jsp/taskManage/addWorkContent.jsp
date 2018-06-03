@@ -4,7 +4,8 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <base href="<%=basePath%>">
     <%@ include file="../system/admin/top.jsp"%>
@@ -175,7 +176,7 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+          <%--  <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">是否及时上报:</td>
                 <td>
                     <select name="isTimelyReport" id="isTimelyReport" class="form-control">
@@ -191,7 +192,7 @@
                         <option value="工厂负责人">工厂负责人</option>
                     </select>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="text-align: center;" colspan="10">
                     <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;

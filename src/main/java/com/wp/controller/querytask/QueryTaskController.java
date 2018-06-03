@@ -2,8 +2,10 @@ package com.wp.controller.querytask;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
+import com.wp.service.event.EventService;
 import com.wp.service.querytask.QueryTaskService;
 import com.wp.service.system.role.RoleService;
+import com.wp.service.taskmag.TaskSetService;
 import com.wp.util.Const;
 import com.wp.util.Jurisdiction;
 import com.wp.util.ObjectExcelView;
@@ -34,7 +36,10 @@ public class QueryTaskController extends BaseController {
         private QueryTaskService queryTaskService;
         @Resource(name="roleService")
         private RoleService roleService;
-
+        @Resource(name="taskSetService")
+        private TaskSetService taskSetService;
+        @Resource(name = "eventService")
+        private EventService eventService;
 
         /**
          * 详情
@@ -43,16 +48,31 @@ public class QueryTaskController extends BaseController {
         public ModelAndView goDetail(){
             logBefore(logger, "去任务详情页面");
             ModelAndView mv = this.getModelAndView();
-            PageData pd = new PageData();
-            pd = this.getPageData();
+            PageData pd = this.getPageData();
+            String missionId = pd.getString("mission_id");
+            List<PageData> eventList = null;
             try {
                 pd = queryTaskService.findById(pd);	//根据ID读取
-                mv.setViewName("querytask/task_detail");
-                mv.addObject("msg", "detail");
-                mv.addObject("pd", pd);
+                PageData setMissionData = taskSetService.findById(pd);
+                String eventIds = setMissionData.getString("event");
+                String[] idArr = new String[0];
+                if (eventIds != null && !eventIds.equals("")) {
+                    idArr = eventIds.split(",");
+                }
+                List<String> idList = new ArrayList<String>();
+                for (int i=0; i<idArr.length; i++) {
+                    idList.add(idArr[i]);
+                }
+                eventList = eventService.listByIds(idList);
             } catch (Exception e) {
-                logger.error(e.toString(), e);
+                e.printStackTrace();
             }
+            mv.addObject("pd",pd);
+            mv.addObject("varList",eventList);
+            mv.addObject("id",missionId);
+            mv.setViewName("querytask/task_detail");
+            mv.addObject("msg", "detail");
+            mv.addObject("pd", pd);
             return mv;
         }
 
