@@ -65,8 +65,12 @@ public class SendTaskController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
+        PageData result = exceptionService.findById(pd);
+        List<Worker> teamList = workerService.listTeam();//列出所有班组
+        mv.addObject("teamList",teamList);
         mv.setViewName("sendtask/sendtask1");
         mv.addObject("pd", pd);
+        mv.addObject("pd", result);
         return mv;
     }
     /**
@@ -78,6 +82,8 @@ public class SendTaskController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         PageData result = exceptionService.findById(pd);
+        List<Worker> teamList = workerService.listTeam();//列出所有班组
+        mv.addObject("teamList",teamList);
         mv.setViewName("sendtask/sendtask2");
         mv.addObject("pd", pd);
         mv.addObject("pd", result);

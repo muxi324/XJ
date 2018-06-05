@@ -56,7 +56,7 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">审核意见:</td>
                 <td>
-                    <textarea cols="50" rows="10" name="opinion" id="opinion">在这里输入内容...</textarea>
+                    <textarea cols="50" rows="10" name="opinion" id="opinion" placeholder="在这里输入内容..."></textarea>
                 </td>
             </tr>
             <tr>
@@ -81,9 +81,9 @@
     <table id="event" class="table table-striped table-bordered table-hover">
         <thead>
         <tr>
-            <th class="center">
+           <%-- <th class="center">
                 <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-            </th>
+            </th>--%>
             <th class="center">序号</th>
             <th class="center">所属车间</th>
             <th class="center">所属巡检区域</th>
@@ -98,9 +98,9 @@
                 <c:if test="${QX.cha == 1 }">
                     <c:forEach items="${varList}" var="var" varStatus="vs">
                         <tr>
-                            <td class='center' style="width: 30px;">
+                           <%-- <td class='center' style="width: 30px;">
                                 <label><input type='checkbox' id="${var.event_id}" name='ids' value="${var.event_id}"/><span class="lbl"></span></label>
-                            </td>
+                            </td>--%>
                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                             <td style="width: 60px;" class="center"> ${var.workshop}</td>
                             <td style="width: 139px;" class="center">${var.check_scope}</td>

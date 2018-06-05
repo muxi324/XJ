@@ -108,7 +108,7 @@
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.edit == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="下发任务" onclick="sendtask('${var.set_id }');"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="下发任务"  onclick="sendtask('${var.set_id }');"><i class='icon-edit'></i></a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-warning' title="您不能下发任务"><i class='icon-edit'></i></a></c:if>
                                                 </c:if>
                                             </div>

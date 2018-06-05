@@ -163,7 +163,7 @@
         return flag;
     }
 
-    var errorIcon = new BMap.Icon('static/img/errorIcon.png', new BMap.Size(20, 32), {
+    var errorIcon = new BMap.Icon('static/img/90.png', new BMap.Size(20, 32), {
         anchor: new BMap.Size(10, 30)
     });
 

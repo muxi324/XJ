@@ -19,8 +19,6 @@
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
     <%@ include file="../system/admin/top.jsp"%>
     <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css" /><!-- 日期框 -->
-    <link rel="stylesheet" type="text/css" href="plugins/webuploader/webuploader.css" />
-    <link rel="stylesheet" type="text/css" href="plugins/webuploader/style.css" />
 </head>
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
@@ -109,8 +107,7 @@
 <script src="static/js/ace.min.js"></script>
 <script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
 <script type="text/javascript" src="static/js/bootstrap-datetimepicker.min.js"></script><!-- 日期框 -->
-<script type="text/javascript" src="plugins/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="plugins/webuploader/upload.js"></script>
+
 
 <script type="text/javascript">
 
@@ -122,9 +119,10 @@
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
         //日期框
-        $('.datetimepicker').datetimepicker();
-
+        $('.datetimepicker').datetimepicker({autoclose:true});//当在日期表中选择完时间后日期表就会自动关闭
     });
+
+
 
 
     //保存

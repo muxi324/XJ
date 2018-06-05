@@ -52,21 +52,24 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">班组:</td>
                 <td><select name="team" id="team" class="form-control" value="${pd.team}" onchange="groupchoose()">
-                    <option value="1班组">1班组</option>
+                  <%--  <option value="1班组">1班组</option>
                     <option value="2班组">2班组</option>
-                    <option value="3班组">3班组</option>
+                    <option value="3班组">3班组</option>--%>
+                    <option value="0">选择</option>
+                    <c:forEach items="${teamList}" var="t">
+                        <option value="${t.team }">${t.team }</option>
+                    </c:forEach>
                 </select></td>
             </tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
                 <td><select name="worker_name" id="worker_name" class="form-control" value="${pd.worker_name}" onchange="phonechoose()">
-                    <option value="张三">张三</option>
-                    <option value="张思">张思</option>
-                    <option value="孙武">孙武</option>
+                    <option value="">请先选择班组</option>
                 </select></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
-                <td><input style="width:90%;" type="text" name="worker_phone" id="worker_phone" value="${pd.worker_phone}" maxlength="200"  title=""/></td>
+                <td><select  name="worker_phone" id="worker_phone" class="form-control" value="${pd.worker_phone}" >
+                </select></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
@@ -213,7 +216,7 @@
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
         //日期框
-        $('.datetimepicker').datetimepicker();
+        $('.datetimepicker').datetimepicker({autoclose:true});
 
     });
 
@@ -246,6 +249,69 @@
         $("#zhongxin2").show();
 
     }
+
+    //根据班组选择员工
+    function groupchoose(){
+        var group = document.getElementById('team');
+        var index = group.selectedIndex;
+        var senddata = group.options[index].value;
+        //alert(senddata);
+        var url ='<%=basePath%>sendtask/groupchoose.do';
+        // alert(url);
+        $.ajax({
+            type:'POST',
+            url: url,
+            dataType: 'json',
+            data:{'groupdata':senddata
+            },
+            success: function (data) {
+                var workers = document.getElementById('worker_name');
+                workers.options.length=0;
+                var datalength = data.length;
+                for(var i=0;i<datalength;i++){
+                    workers.options.add(new Option(data[i].name));
+                }
+                /* alert(data.length);
+                 alert(data[0].name);*/
+                console.log(workers);
+            },
+            error :function(){
+                alert("未知错误！");
+            }
+
+        })
+    };
+
+    function phonechoose(){
+        var worker = document.getElementById('worker_name');
+        var index = worker.selectedIndex;
+        var senddata = worker.options[index].value;
+        //alert(senddata);
+        var url ='<%=basePath%>sendtask/phonechoose.do';
+        // alert(url);
+        $.ajax({
+            type:'POST',
+            url: url,
+            dataType: 'json',
+            data:{'workerdata':senddata
+            },
+            success: function (data) {
+                var phones = document.getElementById('worker_phone');
+                phones.options.length=0;
+                var datalength = data.length;
+                for(var i=0;i<datalength;i++){
+                    phones.options.add(new Option(data[i].phone))
+                }
+                /* alert(data.length);
+                 alert(data[0].name);*/
+                // console.log(phones);
+            },
+            error :function(){
+                alert("未知错误！");
+            }
+
+        })
+    };
 
     function selectMaterial(){
         top.jzts();

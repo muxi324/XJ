@@ -54,8 +54,8 @@
         <td><img src="/imgFile/${result.pic}" alt="异常图片"width="210"></td>
     </tr>
 </table>
-<a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask2.do?exceptionId=${result.id}">解决异常</a>
-
+<a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask2.do?exceptionId=${result.id}">下发维修任务</a>
+<a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask1.do?exceptionId=${result.id}">下发临时巡检任务</a>
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
 </html>
