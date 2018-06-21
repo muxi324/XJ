@@ -50,10 +50,10 @@
                         </td>
                         <c:if test="${QX.cha == 1 }">
                             <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
-                            <c:if test="${QX.edit == 1 }">
+                           <%-- <c:if test="${QX.edit == 1 }">
                                 <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td>
                                 <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
-                            </c:if>
+                            </c:if>--%>
                         </c:if>
                     </tr>
                 </table>
@@ -326,7 +326,10 @@
     //导出excel
     function toExcel(){
         var enquiry = document.getElementById("nav-search-input").value;
-        var status = document.getElementById("status").value;
+        var setTimeStart = document.getElementById("setTimeStart").value;
+        var setTimeEnd = document.getElementById("setTimeEnd").value;
+        var mission_level = document.getElementById("mission_level").value;
+        var mission_type = document.getElementById("mission_type").value;
         window.location.href='<%=basePath%>taskset/excel.do?enquiry='+encodeURI(encodeURI(enquiry))+'&setTimeStart='+setTimeStart+'&setTimeEnd='+setTimeEnd
             +'&mission_level='+mission_level +'&mission_type='+mission_type;
     }

@@ -35,11 +35,9 @@ public class ElecMapService {
     public List<PageData> listW(Page page)throws Exception{
         return (List<PageData>)dao.findForList("ElecMapMapper.datalistWorker", page);
     }
-    /*
-    *   已安装房源列表
-    */
-    public List<PageData> listHouse(Page page)throws Exception{
-        return (List<PageData>)dao.findForList("ElecMapMapper.datalistHouse", page);
+
+    public List<PageData> listException(Page page)throws Exception{
+        return (List<PageData>)dao.findForList("ElecMapMapper.findException", page);
     }
     /*
    *   未安装房源列表

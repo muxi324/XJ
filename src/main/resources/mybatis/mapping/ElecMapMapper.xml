@@ -8,12 +8,9 @@
         where
         worker_name = #{worker_name}
     </select>
-    <!--通过房源获取数据-->
-    <select id="findByH" parameterType="pd" resultType="pd">
-        SELECT m.mission_id,m.house_id,m.worker_name,m.worker_phone,m.house_owner_name,m.house_address,m.finish_time,h.longitude,h.latitude
-                     FROM mission AS m
-                     LEFT JOIN history_location AS h
-		             ON m.mission_id = h.mission_id WHERE m.mission_condition=5
+    <!--获取异常位置-->
+    <select id="findException" parameterType="pd" resultType="pd">
+        SELECT *   FROM exception
     </select>
     <!--所有员工最近位置-->
     <select id="datalistWorker" parameterType="Page" resultType="pd" useCache="false">

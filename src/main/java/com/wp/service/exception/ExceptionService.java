@@ -20,4 +20,8 @@ public class ExceptionService {
     public PageData findById(PageData pd)throws Exception{
         return (PageData)dao.findForObject("ExceptionMapper.findExceptionById", pd);
     }
+
+    public void editState(PageData pd)throws Exception{
+        dao.update("ExceptionMapper.editState", pd);
+    }
 }

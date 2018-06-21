@@ -56,6 +56,8 @@
 </table>
 <a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask2.do?exceptionId=${result.id}">下发维修任务</a>
 <a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask1.do?exceptionId=${result.id}">下发临时巡检任务</a>
+<div style="padding-bottom: 30px;">
+</div>
 </body>
 <%@ include file="../system/admin/bottom.jsp"%>
 </html>

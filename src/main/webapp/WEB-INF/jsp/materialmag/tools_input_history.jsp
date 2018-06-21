@@ -22,7 +22,7 @@
 </head>
 </body>
 
-            <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
+            <form action="toolsmag/goInput.do" method="post" name="Form" id="Form">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
                 <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
                 <div id="zhongxin">
@@ -148,12 +148,12 @@
         diag.Height = 300;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-               /* if('${page.currentPage}' == '0'){
+               if('${page.currentPage}' == '0'){
                     top.jzts();
                     setTimeout("self.location=self.location",100);
                 }else{
                     nextPage(${page.currentPage});
-                }*/
+                }
             }
             diag.close();
         };

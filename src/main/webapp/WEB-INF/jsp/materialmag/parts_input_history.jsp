@@ -23,7 +23,7 @@
 </body>
       <div id="zhongxin">
             <!-- 检索  -->
-            <form action="partsmag/${msg}.do" method="post" name="Form" id="Form">
+            <form action="partsmag/goInput.do" method="post" name="Form" id="Form">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
                 <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
                 <table>

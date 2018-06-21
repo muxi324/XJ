@@ -36,7 +36,7 @@
                         <td><input class="span10 date-picker" name="reportTimeStart" id="reportTimeStart" value="${pd.reportTimeStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
                         <td><input class="span10 date-picker" name="reportTimeEnd" id="reportTimeEnd" value="${pd.reportTimeEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
                         <td style="vertical-align:top;">
-                            <select class="chzn-select" name="level" id="level" data-placeholder="请选择异常级别" style="vertical-align:top;width: 120px;">
+                            <select class="chzn-select" name="level" id="level" placeholder="请选择异常级别" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
                                 <option value="1" <c:if test="${pd.level==1}">selected</c:if> >问题型</option>
                                 <option value="2" <c:if test="${pd.level==2}">selected</c:if> >隐患型</option>
@@ -64,7 +64,7 @@
                     <th class="center">异常上报人</th>
                     <th class="center">上报时间</th>
                     <th class="center">异常状态</th>
-                    <th class="center">是否已读</th>
+                    <%--<th class="center">是否已读</th>--%>
                     <th class="center">操作</th>
                 </tr>
                 </thead>
@@ -91,12 +91,12 @@
                                         <c:if test="${var.status == '1' }"><span class="label label-warning   arrowed-in">未处理</span></c:if>
                                         <c:if test="${var.status == '2' }"><span class="label label-success   arrowed-in">已处理</span></c:if>
                                     </td>
-                                    <td style="width: 20px;" class="center">
+                                   <%-- <td style="width: 20px;" class="center">
                                         <c:if test="${var.is_read == 0}">否</c:if>
                                         <c:if test="${var.is_read == 1}">是</c:if>
-                                    </td>
+                                    </td>--%>
                                     <td style="width: 60px;" class="center">
-                                        <a href="<%=basePath%>exception/getExceptionDetail.do?exceptionId=${var.id}">查看详情</a>
+                                        <a target="mainFrame" href="<%=basePath%>exception/getExceptionDetail.do?exceptionId=${var.id}">查看详情</a>
                                     </td>
                                 </tr>
                             </c:forEach>

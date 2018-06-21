@@ -62,16 +62,18 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">审核结果:</td>
                 <td>
-                    <select class="form-control" name="mission_condition" id="mission_condition">
+                    <select class="form-control" name="mission_condition" id="mission_condition" value="">
                         <option value="6">审核通过</option>
-                        <option value="7"  >审核未通过</option>
+                        <option value="7">审核未通过</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td style="text-align: center;" colspan="10">
                     <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-small btn-primary" onclick="resend();">重新下发任务</a>
                 </td>
+
             </tr>
         </table>
     </form>
@@ -138,6 +140,42 @@
 </html>
 <script type="text/javascript">
     $(top.hangge());
+
+    $(document).ready(function(){
+        var options = $("#mission_condition").find("option:selected").val(); //获取选中的项的值
+        if(options == 7) {
+            var trHtml = "<tr>" +
+                "<td id = 'addContent'>" +
+                "<a class='btn btn-small btn-primary' onclick='resend();'>重新下发任务</a>" +
+                "</td>" +
+                "</tr>";
+            $("#t").append(trHtml);
+        }
+    });
+    //重新下发任务
+    function resend(){
+        var missionId= $("#missionId").val();
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="下发任务";
+        diag.URL = '<%=basePath%>taskmag/noPass.do?missionId='+missionId;
+        diag.Width = 700;
+        diag.Height = 800;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location=self.location",100);
+                }else{
+                    nextPage(${page.currentPage});
+                }
+            }
+            diag.close();
+        };
+        diag.show();
+    }
+
     function save(){
        // $("#Form").submit();
         $.ajax({

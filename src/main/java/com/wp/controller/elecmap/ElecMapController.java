@@ -176,6 +176,20 @@ public class ElecMapController extends BaseController {
         return wokerList;
     }
 
+    //异常位置
+    @RequestMapping(value = "/exceptionPosition")
+    @ResponseBody
+    public Object getExceptionPosition(Page page){
+        List<PageData> exceptionList = null;
+        try {
+            exceptionList = elecMapService.listException(page);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return exceptionList;
+    }
+
+
 
     /* ===============================权限================================== */
     public Map<String, String> getHC(){

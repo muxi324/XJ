@@ -109,10 +109,10 @@
                 <td style="width:100px;text-align: right;padding-top: 13px;">用途:</td>
                 <td><input style="width:95%;" type="text" name="aim" id="aim" value="${pd.aim}" maxlength="150" placeholder="这里输入用途" title=""/></td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">所用于任务:</td>
                 <td><input style="width:95%;" type="text" name="mission_id" id="mission_id" value="${pd.mission_id}" maxlength="150" placeholder="这里输入所用于任务编号" title=""/></td>
-            </tr>
+            </tr>--%>
            <%-- <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">所用于事件:</td>
                 <td><input style="width:95%;" type="text" name="event_id" id="event_id" value="${pd.event_id}" maxlength="150" placeholder="这里输入所用于事件编号" title=""/></td>

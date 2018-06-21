@@ -16,7 +16,7 @@
     <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
         select  *   from mission
         where 1 = 1
-       /* and u.USERNAME != 'admin'
+        /*and u.USERNAME != 'admin'
         and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
         <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
             and

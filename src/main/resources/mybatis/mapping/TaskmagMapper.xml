@@ -27,8 +27,7 @@
     <update id="save" parameterType="pd">
         update  mission
         set
-        auditor = #{auditor},
-        auditor_opinion = #{auditor_opinion},
+        auditor = #{USERNAME},
         mission_condition = #{mission_condition},
         auditor_time = #{auditor_time}
         where
@@ -56,6 +55,7 @@
         <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
             and mission_condition = #{pd.mission_condition}
         </if>
+        and mission_condition in(2,5)
         order by id desc
     </select>
     <!-- 列表(全部) -->
@@ -81,6 +81,7 @@
         <if test="mission_condition != null and mission_condition != ''"><!-- 状态检索 -->
             and mission_condition = #{pd.mission_condition}
         </if>
+        and mission_condition in(2,5)
         order by id desc
     </select>
 
@@ -89,7 +90,9 @@
     </select>
 
     <update id="auditTask" parameterType="pd" >
-        update mission set mission_condition = #{mission_condition},auditor_opinion=#{opinion} where id = #{missionId}
+        update mission set mission_condition = #{mission_condition},
+        auditor_opinion=#{opinion}, auditor = #{USERNAME}, auditor_time = #{auditor_time}
+         where id = #{missionId}
     </update>
 
 </mapper>

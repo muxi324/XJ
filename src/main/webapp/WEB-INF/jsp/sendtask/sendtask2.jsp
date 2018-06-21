@@ -25,6 +25,7 @@
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id}"/>
+    <input type="hidden" name="id" id="exceptionId" value="${pd.id}"/> <!--异常id-->
     <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发维修任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
@@ -141,10 +142,10 @@
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>
-                        <td><input style="width:90%;" type="text" name="level" id="level"  maxlength="200"  title=""/>
+                        <td><input style="width:90%;" type="text" name="level" id="level"  maxlength="200"
                             <c:if test="${pd.level==1}"> 问题型</c:if>
                             <c:if test="${pd.level==2}"> 隐患型</c:if>
-                            <c:if test="${pd.level==3}"> 报警型</c:if>
+                            <c:if test="${pd.level==3}"> 报警型</c:if> />
                         </td>
                     </tr>
                     <tr>
@@ -209,6 +210,7 @@
 
 <script type="text/javascript">
     $(top.hangge());
+
     $(function() {
 
         //单选框

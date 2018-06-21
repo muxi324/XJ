@@ -23,7 +23,7 @@
 </body>
         <div id="zhongxin">
             <!-- 检索  -->
-            <form action="partsmag/${msg}.do" method="post" name="Form" id="Form">
+            <form action="partsmag/goOutput.do" method="post" name="Form" id="Form">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
                 <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
                 <table>
@@ -48,7 +48,7 @@
                         <th class="center">出库时间</th>
                         <th class="center">领取人</th>
                         <th class="center">用途</th>
-                        <th class="center">所用任务</th>
+                       <%-- <th class="center">所用任务</th>--%>
                     </tr>
                     </thead>
 
@@ -68,7 +68,7 @@
                                         <td style="width: 100px;" class="center">${var.time}</td>
                                         <td style="width: 60px;" class="center">${var.worker_name}</td>
                                         <td style="width: 100px;" class="center">${var.aim}</td>
-                                        <td style="width: 60px;" class="center">${var.mission_id}</td>
+                                      <%--  <td style="width: 60px;" class="center">${var.mission_id}</td>--%>
                                     </tr>
 
                                 </c:forEach>
@@ -156,14 +156,14 @@
         diag.Width = 400;
         diag.Height = 400;
         diag.CancelEvent = function(){ //关闭事件
-           /* if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
                 if('${page.currentPage}' == '0'){
                     top.jzts();
                     setTimeout("self.location=self.location",100);
                 }else{
                     (${page.currentPage});
                 }
-            }*/
+            }
             diag.close();
         };
         diag.show();

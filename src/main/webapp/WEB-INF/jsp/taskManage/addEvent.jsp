@@ -40,21 +40,13 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
                 <td>
-                    <select name="check_point" id="check_point" class="form-control" value="${pd.check_point}">
-                    <option value="巡检点1">巡检点1</option>
-                    <option value="巡检点2">巡检点2</option>
-                    <option value="巡检点3">巡检点3</option>
-                    </select>
+                    <input style="width:90%;" type="text" name="check_point" id="check_point"  maxlength="200" value="${pd.check_point}" >
                 </td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检范围:</td>
                 <td>
-                    <select name="check_scope" id="check_scope" class="form-control" value="${pd.check_scope}">
-                        <option value="范围1">范围1</option>
-                        <option value="范围2">范围2</option>
-                        <option value="范围3">范围3</option>
-                    </select>
+                    <input style="width:90%;" type="text" name="check_scope" id="check_scope"  maxlength="200" value="${pd.check_scope}" >
                 </td>
             </tr>
             <tr>

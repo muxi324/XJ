@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 </head>
 <body style="overflow-x: hidden">
 <!--    报警信息-->
@@ -36,8 +37,8 @@
 		</div>
 
 		<!--/page-header-->
-		<div id="allStatistic">
-			<div id="tab" style="float:left; height:200px;width:25%;margin:2%;background-color: #00a2d4;font-size: 20px;text-align:center;">
+		<div id="allStatistic" class="row">
+			<div id="tab" class="col-md-4"style="float:left; height:200px;margin:2%;background-color: #00a2d4;font-size: 20px;text-align:center;">
 				<table style="margin-left: 20px" style="margin-top:15px; ">
 					<tr >
 						<td style="margin-left: 15px;padding-top:15px;">2018年全厂日常巡检单数：</td>
@@ -57,9 +58,9 @@
 					</tr>
 				</table>
 			</div>
-			<div id="exception" style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
+			<div id="exception" class="col-md-4"style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
 			</div>
-			<div id="task" style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
+			<div id="task" class="col-md-4" style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
 			</div>
 		</div>
 		<div>

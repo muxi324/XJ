@@ -244,7 +244,7 @@ import java.util.*;
         @RequestMapping(value="/goUploadExcel")
         public ModelAndView goUploadExcel()throws Exception{
             ModelAndView mv = this.getModelAndView();
-            mv.setViewName("worker/uploadexcel");
+            mv.setViewName("databank/uploadexcel1");
             return mv;
         }
 
@@ -279,8 +279,8 @@ import java.util.*;
                     pd.put("workshop", pds.getString("var0"));
                     pd.put("name", pds.getString("var1"));
                     pd.put("phone", pds.getString("var2"));
-                    pd.put("post", pds.getString("var3"));
-                    pd.put("create_time", pds.getString("var4"));
+                  /*  pd.put("post", pds.getString("var3"));
+                    pd.put("create_time", pds.getString("var4"));*/
                     workshopService.save(pd);
                 }
                 mv.addObject("msg","success");

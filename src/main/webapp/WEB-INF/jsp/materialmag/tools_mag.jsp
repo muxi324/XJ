@@ -35,7 +35,7 @@
 						</span>
                         </td>
 
-                        <td style="vertical-align:top;">
+                       <%-- <td style="vertical-align:top;">
                             <select class="chzn-select" name="description" id="description" data-placeholder="请选择工具类型" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
                                 <option value="扳手" >扳手</option>
@@ -43,7 +43,7 @@
                                 <option value="绳索">绳索</option>
                                 <option value="螺丝刀">螺丝刀</option>
                             </select>
-                        </td>
+                        </td>--%>
                         <c:if test="${QX.cha == 1 }">
                             <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
                             <%-- <c:if test="${QX.edit == 1 }">

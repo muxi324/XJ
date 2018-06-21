@@ -29,7 +29,7 @@
         <div id="r-result">
             <input type="button" onclick="showAll()" value="展示全部员工位置" />
             <input type="button" onclick="showSome()" value="点击选择员工展示位置">
-            <input type="button" onclick="showError()" value="展示故障位置" />
+            <input type="button" onclick="showError()" value="展示异常位置" />
         </div>
         <%@ include file="../system/admin/bottom.jsp"%>
     </body>
@@ -64,13 +64,6 @@
     $(top.hangge());
 
     var points = [];
-
-    var errorPoints = [
-        {"lng":116.3828086853,"lat":39.9417255221,"url":"<%=basePath%>elecmap/errorDetail.do?errorId=1","id":1,"name":"故障点1","phoneNum":"010-123456"},
-        {"lng":116.4228057861,"lat":39.9750153573,"url":"<%=basePath%>elecmap/errorDetail.do?errorId=2","id":2,"name":"故障点2","phoneNum":"010-234567"},
-        {"lng":116.3077926636,"lat":40.0439119241,"url":"<%=basePath%>elecmap/errorDetail.do?errorId=3","id":3,"name":"故障点3","phoneNum":"010-345678"}
-    ];
-
     $.ajax({
         type : "post",
         async : true,
@@ -167,32 +160,60 @@
         anchor: new BMap.Size(10, 30)
     });
 
-    errorFlag = 0;
+
+    var exceptionPoints = [];
+    $.ajax({	//使用JQuery内置的Ajax方法
+        type: "post",		//post请求方式
+        async: true,		//异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "<%=basePath%>elecmap/exceptionPosition.do",	//请求发送到ShowInfoIndexServlet处
+        dataType: "json",		//返回数据形式为json
+        success: function (exceptionList) {
+            if (exceptionList != null && exceptionList.length > 0) {
+                console.info(exceptionList);
+                $.each(exceptionList, function(index, content) {
+                    var point = {"jingdu":content.jingdu,"weidu":content.weidu,"report_worker":content.report_worker,
+                        "workshop":content.workshop,"description":content.description,"report_time":content.report_time,
+                        "level":content.level,"url":"exception/getExceptionDetail.do?exceptionId="+content.id};
+                    exceptionPoints.push(point);
+                })
+            }
+            else {
+
+            }
+            console.log(exceptionPoints);
+        },
+
+        error : function(errorMsg) {
+            alert("异常数据获取失败，可能是服务器开小差了");
+        }
+    })
+    var errorFlag = 0;
     function showError() {
-        errorFlag = addMarker1(errorPoints,errorFlag);
+        errorFlag = addMarker1(exceptionPoints,errorFlag);
     }
-    function addMarker1(points,errorFlag1) {
-        if (errorFlag1 == 0) {
+
+    function addMarker1(exceptionPoints,errorFlag) {
+        if (errorFlag == 0) {
             //循环建立标注点
-            for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
-                var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
+            for(var i=0, pointsLen = exceptionPoints.length; i<pointsLen; i++) {
+                var point = new BMap.Point(exceptionPoints[i].jingdu, exceptionPoints[i].weidu); //将标注点转化成地图上的点
                 var marker = new BMap.Marker(point,{icon: errorIcon}); //将点转化成标注点
                 map.addOverlay(marker);  //将标注点添加到地图上
                 //添加监听事件
                 (function() {
-                    var thePoint = points[i];
+                    var thePoint = exceptionPoints[i];
                     marker.addEventListener("mouseover",
                         function() {
                             showInfo1(this,thePoint);
                         });
                 })();
             }
-            errorFlag1 = 1;
+            errorFlag = 1;
         } else {
             map.clearOverlays();
-            errorFlag1 = 0;
+            errorFlag = 0;
         }
-        return errorFlag1;
+        return errorFlag;
     }
 
     function showInfo(thisMarker,point) {
@@ -216,12 +237,13 @@
         var sContent =
             '<ul style="margin:0 0 5px 0;padding:0.2em 0">'
             +'<li style="line-height: 26px;font-size: 15px;">'
-            +'<span style="width: 100px;display: inline-block;">故障点编号：</span>' + point.id + '</li>'
+            +'<span style="width: 100px;display: inline-block;">异常所属车间：</span>' + point.workshop + '</li>'
             +'<li style="line-height: 26px;font-size: 15px;">'
-            +'<span style="width: 100px;display: inline-block;">故障点名称：</span>' + point.name + '</li>'
+            +'<span style="width: 100px;display: inline-block;">异常描述：</span>' + point.description + '</li>'
             +'<li style="line-height: 26px;font-size: 15px;">'
-            +'<span style="width: 100px;display: inline-block;">故障点座机：</span>' + point.phoneNum + '</li>'
-            +'<li style="line-height: 26px;font-size: 15px;"><span style="width: 50px;display: inline-block;">查看：</span><a href="'+point.url+'">故障详情</a></li>'
+            +'<span style="width: 100px;display: inline-block;">异常上报人：</span>' + point.report_worker + '</li>'
+            +'<span style="width: 100px;display: inline-block;">上报时间：</span>' + point.report_time + '</li>'
+            +'<li style="line-height: 26px;font-size: 15px;"><span style="width: 50px;display: inline-block;">查看：</span><a href="'+point.url+'">异常详情</a></li>'
             +'</ul>';
         var infoWindow = new BMap.InfoWindow(sContent); //创建信息窗口对象
         thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow

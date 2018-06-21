@@ -86,7 +86,7 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">是否需要反馈选项类:</td>
                 <td>
                     <select name="is_backSelect" id="is_backSelect" class="form-control"  >
@@ -107,7 +107,7 @@
                 </td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">百分比标准:</td>
                 <td><input style="width:90%;" type="text" name="percent_content" id="percent_content"  maxlength="200"  title=""/></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">特殊提示:</td>
                 <td><input style="width:90%;" type="text" name="notice" id="notice"  maxlength="200"  title=""/></td>

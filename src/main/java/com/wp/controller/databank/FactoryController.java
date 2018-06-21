@@ -244,7 +244,7 @@ import java.util.*;
         @RequestMapping(value="/goUploadExcel")
         public ModelAndView goUploadExcel()throws Exception{
             ModelAndView mv = this.getModelAndView();
-            mv.setViewName("worker/uploadexcel");
+            mv.setViewName("databank/uploadexcel");
             return mv;
         }
 
@@ -254,7 +254,7 @@ import java.util.*;
         @RequestMapping(value="/downExcel")
         public void downExcel(HttpServletResponse response)throws Exception{
 
-            FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Workshop.xls", "Workshop.xls");
+            FileDownload.fileDownload(response, PathUtil.getClasspath() + Const.FILEPATHFILE + "Factory.xls", "Factory.xls");
 
         }
 
@@ -270,7 +270,7 @@ import java.util.*;
             PageData pd = new PageData();
             if (null != file && !file.isEmpty()) {
                 String filePath = PathUtil.getClasspath() + Const.FILEPATHFILE;								//文件上传路径
-                String fileName =  FileUpload.fileUp(file, filePath, "workshopexcel");							//执行上传
+                String fileName =  FileUpload.fileUp(file, filePath, "factoryexcel");							//执行上传
 
                 List<PageData> listPd = (List) ObjectExcelRead.readExcel(filePath, fileName, 2, 0, 0);
 

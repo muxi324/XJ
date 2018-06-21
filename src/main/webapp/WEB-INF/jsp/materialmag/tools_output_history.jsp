@@ -22,7 +22,7 @@
 </head>
 </body>
 
-            <form action="toolsmag/${msg}.do" method="post" name="Form" id="Form">
+            <form action="toolsmag/goOutput.do" method="post" name="Form" id="Form">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
                 <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
                 <div id="zhongxin">
@@ -48,7 +48,7 @@
                         <th class="center">出库时间</th>
                         <th class="center">领取人</th>
                         <th class="center">用途</th>
-                        <th class="center">所用任务</th>
+                       <%-- <th class="center">所用任务</th>--%>
                     </tr>
                     </thead>
 
@@ -68,7 +68,7 @@
                                         <td style="width: 100px;" class="center">${var.time}</td>
                                         <td style="width: 60px;" class="center">${var.worker_name}</td>
                                         <td style="width: 100px;" class="center">${var.aim}</td>
-                                        <td style="width: 60px;" class="center">${var.mission_id}</td>
+                                      <%--  <td style="width: 60px;" class="center">${var.mission_id}</td>--%>
                                     </tr>
 
                                 </c:forEach>

@@ -23,6 +23,7 @@
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id }"/>
+    <input type="hidden" name="id" id="exceptionId" value="${pd.id}"/> <!--异常id-->
     <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发临时巡检任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
@@ -172,6 +173,7 @@
 
 <script type="text/javascript">
     $(top.hangge());
+
     $(function() {
 
         //单选框

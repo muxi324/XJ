@@ -36,4 +36,12 @@
         where
         id = #{exceptionId}
     </select>
+
+    <update id="editState" parameterType="pd">
+        update  exception
+        set
+        status = #{state}
+        where
+        id = #{id}
+    </update>
 </mapper>

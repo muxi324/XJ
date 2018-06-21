@@ -241,7 +241,7 @@ public class PartsMagController extends BaseController {
 
             List<PageData> varList = partsMagService.findById1(pd);								//根据ID读取
             mv.setViewName("materialmag/parts_output_history");
-            mv.addObject("msg", "history");
+            //mv.addObject("msg", "history");
             mv.addObject("varList", varList);
             mv.addObject("pd", pd);
         } catch (Exception e) {

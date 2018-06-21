@@ -123,14 +123,23 @@ public class SendTaskController extends BaseController {
         pd.put("mission_condition", 1);
         pd.put("set_name",getUserName());
         sendTaskService.save(pd);
+        if(pd.getString("id") != null){
+            String missionType=pd.getString("mission_type");
+            if(missionType.equals("维修任务") || missionType.equals("临时巡检任务") ){
+                String exceptionId =pd.getString("id");
+                pd.put("id",exceptionId);
+                pd.put("state",2);
+                exceptionService.editState(pd);  //修改异常状态
+            }
+        }
         out.write("success");
         out.close();
-       // mv.addObject("msg","success");
-       // mv.setViewName("save_result");
         String phonenumber = pd.getString("worker_phone");   //发送短信提醒
         String Content = "您有一条新任务，请注意查收。";
         //System.out.println(Content);
         SendMessage.sendMessage(phonenumber, Content);
+        mv.addObject("msg","success");
+        mv.setViewName("save_result");
         return mv;
     }
 

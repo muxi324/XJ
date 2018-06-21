@@ -76,6 +76,8 @@
             <tr>
                 <td style="width:90px;text-align: right;padding-top: 13px;">手机:</td>
                 <td><input style="width:95%;" type="text" name="worker_phone" id="worker_phone" value="${pd.worker_phone}" maxlength="200" readonly="true" title=""/></td>
+                <td style="width:90px;text-align: right;padding-top: 13px;"></td>
+                <td><input style="width:95%;" type="text" name="" id="" value="" maxlength="200" readonly="true" title=""/></td>
             </tr>
             <tr>
                 <td style="width:90px;text-align: right;padding-top: 13px;">开始时间:</td>

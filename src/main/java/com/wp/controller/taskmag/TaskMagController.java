@@ -3,12 +3,14 @@ package com.wp.controller.taskmag;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.map.MapPoint;
+import com.wp.entity.worker.Worker;
 import com.wp.service.event.EventService;
 import com.wp.service.house.HouseService;
 import com.wp.service.querytask.QueryTaskService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskMagService;
 import com.wp.service.taskmag.TaskSetService;
+import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -43,6 +45,8 @@ public class TaskMagController extends BaseController {
     private TaskSetService taskSetService;
     @Resource(name = "eventService")
     private EventService eventService;
+    @Resource(name = "workerService")
+    private WorkerService workerService;
 
     /**
      * 列表
@@ -139,10 +143,52 @@ public class TaskMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         pd.put("auditor_time",  Tools.date2Str(new Date()));	//审核时间
-        pd.put("mission_condition",7);
+        pd.put("mission_condition",8);
+        String mission_id= pd.getString("missionId");
+        pd.put("mission_id",mission_id);
+        pd = taskMagService.findById(pd);
+        String missionType= pd.getString("mission_type");
+        List<Worker> teamList = workerService.listTeam();//列出所有班组
+        String set_id= pd.getString("set_id");
+        String mission_name= pd.getString("mission_name");
+        pd.put("set_id",set_id);
+        pd.put("mission_name",mission_name);
+        mv.addObject("teamList",teamList);
+        mv.addObject("pd",pd);  //把pd灌输到前端pd
+        if(missionType.equals("日常巡检任务")){
+           mv.setViewName("sendtask/sendtask");
+        }else if(missionType.equals("维修任务")){
+            mv.setViewName("sendtask/sendtask2");
+        }else if(missionType.equals("临时巡检任务")){
+            mv.setViewName("sendtask/sendtask1");
+        }
         taskMagService.refuse(pd);
-        pd = houseService.findById(pd);
-        mv.setViewName("house/sendtask");
+        return mv;
+    }
+
+    /**
+     * 处理审核未通过
+     */
+    @RequestMapping(value="/noPass")
+    public ModelAndView noPass() throws Exception{
+        logBefore(logger, "处理审核未通过信息");
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;}
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        String mission_id= pd.getString("missionId");
+        pd.put("mission_id",mission_id);
+        pd = taskMagService.findById(pd);
+        String missionType= pd.getString("mission_type");
+        List<Worker> teamList = workerService.listTeam();//列出所有班组
+        mv.addObject("teamList",teamList);
+        if(missionType.equals("日常巡检任务")){
+            mv.setViewName("sendtask/sendtask");
+        }else if(missionType.equals("维修任务")){
+            mv.setViewName("sendtask/sendtask2");
+        }else if(missionType.equals("临时巡检任务")){
+            mv.setViewName("sendtask/sendtask1");
+        }
         mv.addObject("pd",pd);  //把pd灌输到前端pd
         return mv;
     }
@@ -254,13 +300,20 @@ public class TaskMagController extends BaseController {
                 idList.add(idArr[i]);
             }
             eventList = eventService.listByIds(idList);
+            String status = pd.getString("mission_condition");
+            //System.out.println(status+"=====");
+            if(status.indexOf("2") != -1) {
+                mv.setViewName("taskmag/refuse_task1");  // 判断当mission_condition=1时返回refuse_task1；
+            }else{
+                mv.setViewName("taskmag/auditTask");                                          // mission_condition=4时返回finish_task1；
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
         mv.addObject("pd",pd);
         mv.addObject("varList",eventList);
         mv.addObject("missionId",missionId);
-        mv.setViewName("taskmag/auditTask");
+      //  mv.setViewName("taskmag/auditTask");
         mv.addObject(Const.SESSION_QX,this.getHC());
         mv.addObject("USERNAME",getUserName());
         return mv;
@@ -289,6 +342,7 @@ public class TaskMagController extends BaseController {
     public ModelAndView auditMisson(PrintWriter out) throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
+        pd.put("auditor_time",  Tools.date2Str(new Date()));	//审核时间
         taskMagService.auditTask(pd);
         mv.setViewName("taskmag/task_list");
         Page page = new Page();

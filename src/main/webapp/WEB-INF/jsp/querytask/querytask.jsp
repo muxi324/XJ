@@ -25,7 +25,7 @@
     <div id="page-content" class="clearfix">
         <div class="row-fluid">
             <!-- 检索  -->
-            <form action="taskmag/list.do" method="post" name="Form" id="Form">
+            <form action="querytask/list.do" method="post" name="Form" id="Form">
                 <table>
                     <tr>
                         <td>
