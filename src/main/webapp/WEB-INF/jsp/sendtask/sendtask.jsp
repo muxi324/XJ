@@ -24,16 +24,17 @@
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="set_id" id="set_id" value="${pd.set_id }"/>
     <input type="hidden" name="event" id="event" value="${pd.event }"/>
+    <input type="hidden" name="mission_condition" id="mission_condition" value="${pd.mission_condition }"/>
     <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发日常巡检任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务名称:</td>
-                <td><input style="width:90%;" type="text" name="mission" id="mission" value="${pd.mission}" maxlength="200"  title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_name" id="mission_name" value="${pd.mission_name}" maxlength="200" /></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务类型:</td>
-                <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="日常巡检任务" maxlength="200" placeholder="日常巡检任务" title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_type" id="mission_type" value="日常巡检任务" maxlength="200" placeholder="日常巡检任务" /></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务级别:</td>
@@ -46,7 +47,7 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
-                <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200"  title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200" /></td>
             </tr>
             <%--三级联动--%>
             <tr>

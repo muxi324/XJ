@@ -33,6 +33,16 @@
         where
         id = #{mission_id}
     </update>
+
+    <update id="refuseAudit" parameterType="pd">
+        update  mission
+        set
+        auditor = #{USERNAME},
+        mission_condition = #{mission_condition},
+        auditor_time = #{auditor_time}
+        where
+        id = #{mission_id}
+    </update>
     <!--通过enquiry获取数据-->
     <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
         select  *   from mission

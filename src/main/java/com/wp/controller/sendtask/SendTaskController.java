@@ -4,6 +4,7 @@ import com.wp.controller.base.BaseController;
 import com.wp.entity.worker.Worker;
 import com.wp.service.exception.ExceptionService;
 import com.wp.service.sendtask.SendTaskService;
+import com.wp.service.taskmag.TaskMagService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import com.wp.util.mail.SimpleMailSender;
@@ -44,6 +45,8 @@ public class SendTaskController extends BaseController {
     private WorkerService workerService;
     @Resource(name = "exceptionService")
     private ExceptionService exceptionService;
+    @Resource(name="taskMagService")
+    private TaskMagService taskMagService;
 
     /**
      * 去发送日常巡检任务
@@ -124,9 +127,8 @@ public class SendTaskController extends BaseController {
         pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("mission_condition", 1);
         pd.put("set_name",getUserName());
-
         sendTaskService.save(pd);
-        if(pd.getString("id") != null){
+        if(pd.getString("id") != null){   //异常处理任务
             String missionType=pd.getString("mission_type");
             if(missionType.equals("维修任务") || missionType.equals("临时巡检任务") ){
                 String exceptionId =pd.getString("id");
@@ -137,6 +139,11 @@ public class SendTaskController extends BaseController {
             String result = "下发任务成功！";
             return result;
         }
+        /*if(pd.getString("mission_condition").equals(2)){   //处理拒单重发任务修改拒单状态
+                taskMagService.refuse(pd);
+            }*/
+
+
         //周期任务
         if (StringUtils.isNotEmpty(pd.getString("cron"))) {
             String cron = pd.getString("cron");

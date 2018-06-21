@@ -39,8 +39,8 @@
                         <td style="vertical-align:top;">
                             <select class="chzn-select" name="status" id="status" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
-                                <option value="2" <c:if test="${pd.mission_condition==2}">selected</c:if>>拒收</option>
-                                <option value="5" <c:if test="${pd.mission_condition==5}">selected</c:if>>任务完成待审核</option>
+                                <option value="2" <c:if test="${pd.mission_condition==2}">selected</c:if>>拒收待处理</option>
+                                <option value="5" <c:if test="${pd.mission_condition==5}">selected</c:if>>完成待审核</option>
                             </select>
                         </td>
                         <c:if test="${QX.cha == 1 }">
