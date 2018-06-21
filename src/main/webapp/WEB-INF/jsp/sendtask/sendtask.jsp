@@ -63,25 +63,47 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
-                <td><select name="worker_name" id="worker_name" class="form-control" value="${pd.worker_name}" onchange="phonechoose()">
+                <td>
+                    <select name="worker_name" id="worker_name" class="form-control" value="${pd.worker_name}" onchange="phonechoose()">
                         <option value="">请先选择班组</option>
-
-                </select></td>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
-                <td><select  name="worker_phone" id="worker_phone" class="form-control" value="${pd.worker_phone}" >
-                    </select></td>
+                <td>
+                    <select  name="worker_phone" id="worker_phone" class="form-control" value="${pd.worker_phone}" >
+                    </select>
+                </td>
             </tr>
             <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">任务启动方式:</td>
+                <td>
+                    <select  name="misson_start_type" id="misson_start_type" class="form-control">
+                        <option value="period">周期启动</option>
+                        <option value="startEnd">按开始结束时间启动</option>
+                    </select>
+                </td>
+            </tr>
+            <tr id="p1">
+                <td style="width:110px;text-align: right;padding-top: 13px;">请选择任务执行的周期:</td>
+                <td>
+                <select name="cron" id="cron" class="form-control">
+                    <option value="0 0 8 * * ?">每一天(每天八点下发任务)</option>
+                    <!--<option value="*/10 * * * * ?">每一天(每天八点下发任务)</option>-->
+                    <option value="0 0 8,14 * * ?">每半天（早八点，下午两点下发任务）</option>
+                </select>
+                </td>
+            </tr>
+            <tr id="s1" hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">开始时间:</td>
                 <td><input style="width:90%;" type="text" class="datetimepicker" name="period_start_time" id="period_start_time" value="${pd.period_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
             </tr>
-            <tr>
+            <tr id="s2" hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">结束时间:</td>
                 <td><input style="width:90%;" type="text" class="datetimepicker" name="period_end_time" id="period_end_time" value="${pd.period_end_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
             </tr>
-            <tr>
+            <tr id="s3" hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
                 <td><input style="width:90%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
             </tr>
@@ -124,7 +146,20 @@
     });
 
 
-
+    $('#misson_start_type').change(function(){
+        var startType=$(this).children('option:selected').val();
+        if (startType == "period") {
+            $('#s1').attr("hidden","hidden");
+            $('#s2').attr("hidden","hidden");
+            $('#s3').attr("hidden","hidden");
+            $('#p1').removeAttr("hidden");
+        } else if (startType == "startEnd") {
+            $('#p1').attr("hidden","hidden");
+            $('#s1').removeAttr("hidden");
+            $('#s2').removeAttr("hidden");
+            $('#s3').removeAttr("hidden");
+        }
+    });
 
     //保存
     function save(){
@@ -148,9 +183,22 @@
             $("#mission").focus();
             return false;
         }
-        $("#Form").submit();
+       // $("#Form").submit();
         //$("#zhongxin").hide();
-        $("#zhongxin2").show();
+       // $("#zhongxin2").show();
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "<%=basePath%>sendtask/sendTask.do" ,//url
+            data: $('#Form').serialize(),
+            success: function (result) {
+                //打印服务端返回的数据(调试用)
+                alert("下发任务成功！");
+            },
+            error : function() {
+                alert("出现异常！");
+            }
+        });
 
     }
     //根据班组选择员工
