@@ -7,7 +7,9 @@ import com.wp.service.sendtask.SendTaskService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import com.wp.util.mail.SimpleMailSender;
+import com.wp.util.quartz.QuartzManager;
 import net.sf.json.JSONArray;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -114,7 +116,7 @@ public class SendTaskController extends BaseController {
      */
     @RequestMapping(value="/sendTask")
     @ResponseBody
-    public ModelAndView save(PrintWriter out) throws Exception{
+    public String save() throws Exception{
        // if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;}
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
@@ -122,16 +124,26 @@ public class SendTaskController extends BaseController {
         pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("mission_condition", 1);
         pd.put("set_name",getUserName());
-        sendTaskService.save(pd);
-        out.write("success");
-        out.close();
-       // mv.addObject("msg","success");
-       // mv.setViewName("save_result");
-        String phonenumber = pd.getString("worker_phone");   //发送短信提醒
-        String Content = "您有一条新任务，请注意查收。";
-        //System.out.println(Content);
-        SendMessage.sendMessage(phonenumber, Content);
-        return mv;
+        //周期任务
+        if (StringUtils.isNotEmpty(pd.getString("cron"))) {
+            String cron = pd.getString("cron");
+            QuartzManager.addJob("xunjian_period"+pd.getString("send_time"),"xunjian_period","xunjian_period","xunjian_period"+pd.getString("send_time"),
+                                SendPeriodTaskJob.class,cron,pd);
+        } else if (StringUtils.isNotEmpty(pd.getString("period_start_time")) && StringUtils.isNotEmpty(pd.getString("period_end_time"))) {
+            //定时任务
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Date startTime = sdf.parse(pd.getString("period_start_time"));
+            Date endTime = sdf.parse(pd.getString("period_end_time"));
+            QuartzManager.addStartAndEndJob("xujian_start"+pd.getString("send_time"),"xujian_start","xujian_start"+pd.getString("send_time"),"xujian_start",
+                    SendPeriodTaskJob.class,startTime,endTime,pd);
+        } else {//非周期任务或定时任务
+            sendTaskService.save(pd);
+            String phonenumber = pd.getString("worker_phone");   //发送短信提醒
+            String Content = "您有一条新任务，请注意查收。";
+            SendMessage.sendMessage(phonenumber, Content);
+        }
+        String result = "下发任务成功！";
+        return result;
     }
 
 
