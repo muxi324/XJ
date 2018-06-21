@@ -93,7 +93,7 @@ public class TaskMagController extends BaseController {
     /**
      * 去审核页面
      */
-    @RequestMapping(value="/goCheck")
+    /*@RequestMapping(value="/goCheck")
     public ModelAndView goCheck(){
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
@@ -113,7 +113,7 @@ public class TaskMagController extends BaseController {
             logger.error(e.toString(), e);
         }
         return mv;
-    }
+    }*/
 
     /**
      * 审核已完成
@@ -146,13 +146,16 @@ public class TaskMagController extends BaseController {
         pd.put("mission_condition",8);
         String mission_id= pd.getString("missionId");
         pd.put("mission_id",mission_id);
-        pd = taskMagService.findById(pd);
+        taskMagService.refuse(pd);
+        pd  = taskMagService.findById(pd);
         String missionType= pd.getString("mission_type");
         List<Worker> teamList = workerService.listTeam();//列出所有班组
         String set_id= pd.getString("set_id");
         String mission_name= pd.getString("mission_name");
+        String event = pd.getString("event");
         pd.put("set_id",set_id);
         pd.put("mission_name",mission_name);
+        pd.put("event",event);
         mv.addObject("teamList",teamList);
         mv.addObject("pd",pd);  //把pd灌输到前端pd
         if(missionType.equals("日常巡检任务")){
@@ -162,7 +165,6 @@ public class TaskMagController extends BaseController {
         }else if(missionType.equals("临时巡检任务")){
             mv.setViewName("sendtask/sendtask1");
         }
-        taskMagService.refuse(pd);
         return mv;
     }
 
@@ -179,6 +181,8 @@ public class TaskMagController extends BaseController {
         String mission_id= pd.getString("missionId");
         pd.put("mission_id",mission_id);
         pd = taskMagService.findById(pd);
+        String event = pd.getString("event");
+        pd.put("event",event);
         String missionType= pd.getString("mission_type");
         List<Worker> teamList = workerService.listTeam();//列出所有班组
         mv.addObject("teamList",teamList);
@@ -303,7 +307,7 @@ public class TaskMagController extends BaseController {
             String status = pd.getString("mission_condition");
             //System.out.println(status+"=====");
             if(status.indexOf("2") != -1) {
-                mv.setViewName("taskmag/refuse_task1");  // 判断当mission_condition=1时返回refuse_task1；
+                mv.setViewName("taskmag/refuse_task1");  // 判断当mission_condition=2时返回refuse_task1；
             }else{
                 mv.setViewName("taskmag/auditTask");                                          // mission_condition=4时返回finish_task1；
             }

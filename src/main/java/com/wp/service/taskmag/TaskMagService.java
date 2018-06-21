@@ -58,7 +58,7 @@ public class TaskMagService {
    * 拒单处理
    */
     public void refuse(PageData pd)throws Exception{
-        dao.update("TaskMagMapper.save", pd);
+        dao.update("TaskMagMapper.refuseAudit", pd);
     }
     /*
   * 通过id获取数据

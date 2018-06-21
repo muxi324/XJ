@@ -26,12 +26,13 @@
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id}"/>
     <input type="hidden" name="id" id="exceptionId" value="${pd.id}"/> <!--异常id-->
+    <input type="hidden" name="mission_condition" id="mission_condition" value="${pd.mission_condition }"/>
     <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发维修任务</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务名称:</td>
-                <td><input style="width:90%;" type="text" name="mission" id="mission" value="${pd.mission}" maxlength="200"  title=""/></td>
+                <td><input style="width:90%;" type="text" name="mission_name" id="mission_name" value="${pd.mission_name}" maxlength="200"  title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务类型:</td>
@@ -246,9 +247,9 @@
             return false;
         }
 
-        $("#Form").submit();
+        /*$("#Form").submit();
         $("#zhongxin").hide();
-        $("#zhongxin2").show();
+        $("#zhongxin2").show();*/
 
     }
 

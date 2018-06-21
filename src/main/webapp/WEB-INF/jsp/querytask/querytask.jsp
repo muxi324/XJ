@@ -39,12 +39,12 @@
                         <td style="vertical-align:top;">
                             <select class="chzn-select" name="status" id="status" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
-                                <option value="1" <c:if test="${pd.mission_condition==1}">selected</c:if>>任务已下发</option>
-                                <option value="2" <c:if test="${pd.mission_condition==2}">selected</c:if>>拒收</option>
+                                <option value="1" <c:if test="${pd.mission_condition==1}">selected</c:if>>任务待接收</option>
+                                <option value="2" <c:if test="${pd.mission_condition==2}">selected</c:if>>拒收待处理</option>
                                 <option value="3" <c:if test="${pd.mission_condition==3}">selected</c:if>>接收未执行</option>
                                 <option value="4" <c:if test="${pd.mission_condition==4}">selected</c:if>>任务执行中</option>
-                                <option value="5" <c:if test="${pd.mission_condition==5}">selected</c:if>>任务完成待审核</option>
-                                <option value="6" <c:if test="${pd.mission_condition==6}">selected</c:if>>审核通过</option>
+                                <option value="5" <c:if test="${pd.mission_condition==5}">selected</c:if>>完成待审核</option>
+                                <option value="6" <c:if test="${pd.mission_condition==6}">selected</c:if>>审核已通过</option>
                                 <option value="7" <c:if test="${pd.mission_condition==7}">selected</c:if>>审核未通过</option>
                                 <option value="8" <c:if test="${pd.mission_condition==8}">selected</c:if>>拒收已处理</option>
                             </select>
