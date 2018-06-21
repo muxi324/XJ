@@ -71,8 +71,9 @@ public class UserController extends BaseController {
 		pd.put("SKIN", "default");				//默认皮肤
 
 		//添加worker表字段
-		pd.put("name",pd.getString("USERNAME"));
+		pd.put("name",pd.getString("NAME"));
 		pd.put("phone",pd.getString("PHONE"));
+		pd.put("post","ROLE_ID");
 		pd.put("add_time",Tools.date2Str(new Date()));
 
 		

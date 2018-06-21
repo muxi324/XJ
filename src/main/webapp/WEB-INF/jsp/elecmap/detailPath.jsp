@@ -16,7 +16,18 @@
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=tkTgXO7ycraPnPgGGejoV8CZp58Nd559"></script>
     </head>
     <body>
-        <div id="allmap"></div>
+        <div id="allmap" style="height: 85%"></div>
+        <!--<div id="date">
+            <table>
+                <tr id="s1">
+                    <td style="width:110px;text-align: right;padding-top: 13px;">开始时间:</td>
+                    <td><input style="width:90%;" type="text" class="datetimepicker" name="start_time" id="start_time"  maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                    <td style="width:110px;text-align: right;padding-top: 13px;">结束时间:</td>
+                    <td><input style="width:90%;" type="text" class="datetimepicker" name="end_time" id="end_time"  maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                    <td><input type="button" id="query" class="btn btn-small btn-primary">查询</td>
+                </tr>
+            </table>
+        </div>-->
     </body>
     <%@ include file="../system/admin/bottom.jsp"%>
 </html>

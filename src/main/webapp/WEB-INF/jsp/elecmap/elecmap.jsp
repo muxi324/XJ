@@ -64,6 +64,8 @@
     $(top.hangge());
 
     var points = [];
+    var flag = 0;
+
     $.ajax({
         type : "post",
         async : true,
@@ -80,6 +82,7 @@
                     $("#worker").append(str);
                     var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId="+content.id ,"id":content.id,"name":content.name,"phoneNum":content.phone};
                     points.push(point);
+                    showAll();
                 })
             }
             else {
@@ -121,7 +124,7 @@
         }
         $("#myModal").modal('hide');
     }
-    var flag = 0;
+
     function showAll() {
         flag = addMarker(points,flag);
     }
