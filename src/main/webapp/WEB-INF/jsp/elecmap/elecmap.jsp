@@ -94,7 +94,9 @@
     function showSome() {
         $("#myModal").modal('show');
     }
-    
+    var workerIcon = new BMap.Icon('static/img/worker.png', new BMap.Size(20, 32), {
+        anchor: new BMap.Size(10, 30)
+    });
     function showWorkers() {
         map.clearOverlays();
         var chk_value =[];
@@ -106,7 +108,7 @@
             for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
                 if (name == points[i].name) {
                     var point = new BMap.Point(points[i].lng, points[i].lat);
-                    var marker = new BMap.Marker(point);
+                    var marker = new BMap.Marker(point,{icon: workerIcon});
                     map.addOverlay(marker);
                     (function() {
                         var thePoint = points[i];
@@ -137,7 +139,7 @@
                                 // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置
                                 imageOffset: new BMap.Size(0, 0 - i * 25) // 设置图片偏移
                             });*/
-                var marker = new BMap.Marker(point); //将点转化成标注点
+                var marker = new BMap.Marker(point,{icon: workerIcon}); //将点转化成标注点
                 map.addOverlay(marker);  //将标注点添加到地图上
                 //添加监听事件
                 (function() {
@@ -250,8 +252,8 @@
     }
 
     var map = new BMap.Map("allmap");    // 创建Map实例
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-    map.setCurrentCity("北京");// 设置地图显示的城市 此项是必须设置的
+    map.centerAndZoom(new BMap.Point(116.056167,39.496554), 11);  // 初始化地图,设置中心点坐标和地图级别
+    map.setCurrentCity("阔丹凌云厂");// 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
 
 

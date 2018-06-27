@@ -94,6 +94,8 @@ public class TaskSetController extends BaseController {
         PageData pd = this.getPageData();
         try {
             pd = taskSetService.findById(pd);//根据ID读取
+            String  mission_name = pd.getString("mission");
+            pd.put("mission_name", mission_name);
             mv.addObject("pd", pd);
             List<Worker> teamList = workerService.listTeam();//列出所有班组
             mv.addObject("teamList",teamList);

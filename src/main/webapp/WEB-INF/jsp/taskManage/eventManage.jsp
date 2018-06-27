@@ -173,7 +173,7 @@
                     top.jzts();
                     setTimeout("self.location=self.location",100);
                 }else{
-                    nextPage(${page.currentPage});
+                    prototype.nextPage(${page.currentPage});
                 }
             }
             diag.close();
@@ -188,7 +188,7 @@
                 top.jzts();
                 var url = "<%=basePath%>eventManage/delete.do?event_id="+Id;
                 $.get(url,function(data){
-                    nextPage(${page.currentPage});
+                    prototype.nextPage(${page.currentPage});
                 });
             }
         });
