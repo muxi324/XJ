@@ -246,11 +246,22 @@
             $("#mission").focus();
             return false;
         }
-
-        /*$("#Form").submit();
+/*        $("#Form").submit();
         $("#zhongxin").hide();
         $("#zhongxin2").show();*/
-
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "<%=basePath%>sendtask/sendTask.do" ,//url
+            data: $('#Form').serialize(),
+            success: function (result) {
+                //打印服务端返回的数据(调试用)
+                alert("下发维修任务成功！");
+            },
+            error : function() {
+                alert("出现异常！");
+            }
+        });
     }
 
     //根据班组选择员工

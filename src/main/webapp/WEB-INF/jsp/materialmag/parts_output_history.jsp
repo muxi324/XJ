@@ -161,7 +161,7 @@
                     top.jzts();
                     setTimeout("self.location=self.location",100);
                 }else{
-                    (${page.currentPage});
+
                 }
             }
             diag.close();
