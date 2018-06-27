@@ -188,7 +188,7 @@
                 top.jzts();
                 var url = "<%=basePath%>eventManage/delete.do?event_id="+Id;
                 $.get(url,function(data){
-                    prototype.nextPage(${page.currentPage});
+                   /* prototype.nextPage(${page.currentPage});*/
                 });
             }
         });
