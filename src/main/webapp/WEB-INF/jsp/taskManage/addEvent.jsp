@@ -58,10 +58,14 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">事件级别:</td>
                 <td>
-                    <input style="width:90%;" type="text" name="event_level" id="event_level"  maxlength="200"  value="${pd.event_level}" title=""/>
+                    <select name="event_level" id="event_level" class="form-control" value="${pd.event_level}">
+                        <option value="1级">1级</option>
+                        <option value="2级">2级</option>
+                        <option value="3级">3级</option>
+                    </select>
                 </td>
             </tr>
-            <tr>
+        <%--    <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">建议巡检周期:</td>
                 <td>
                     <input style="width:90%;" type="text" name="check_period" id="check_period"  maxlength="200" value="${pd.check_period}" title=""/>小时/次
@@ -73,7 +77,7 @@
                     大于<input style="width:90%;" type="text" name="check_interval" id="check_interval"  maxlength="200" value="${pd.check_interval}" title=""/>小时
                 </td>
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="text-align: center;" colspan="10">
                     <a class="btn btn-small btn-primary" onclick="save();">保存并添加工作内容</a>&nbsp;&nbsp;&nbsp;

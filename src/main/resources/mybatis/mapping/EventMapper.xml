@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="EventMapper">
 
-    <select id="listEvent" parameterType="Page" resultType="pd" useCache="false">
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
         select  *   from event_info
         where 1 = 1
         /* and u.USERNAME != 'admin'

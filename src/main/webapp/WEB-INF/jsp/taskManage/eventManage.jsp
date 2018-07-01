@@ -51,7 +51,7 @@
                         <th class="center">具体位置</th>
                         <th class="center">创建时间</th>
                         <%--<th class="center">二维码</th>--%>
-                        <th class="center">任务记录</th>
+                     <%--   <th class="center">任务记录</th>--%>
                         <th class="center">操作</th>
                     </tr>
                     </thead>
@@ -73,7 +73,7 @@
                                         <td style="width: 100px;" class="center">${var.instrument_place}</td>
                                         <td style="width: 100px;" class="center">${var.create_time}</td>
                                             <%--<td style="width: 139px;" class="center">${var.qrcode}</td>--%>
-                                        <td style="width: 100px;" class="center">查看操作记录</td>
+                                       <%-- <td style="width: 100px;" class="center">查看操作记录</td>--%>
                                         <td style="width: 60px;" class="center">
                                             <div class='hidden-phone visible-desktop btn-group'>
 
@@ -188,7 +188,7 @@
                 top.jzts();
                 var url = "<%=basePath%>eventManage/delete.do?event_id="+Id;
                 $.get(url,function(data){
-                   /* prototype.nextPage(${page.currentPage});*/
+                   nextPage(${page.currentPage});
                 });
             }
         });
