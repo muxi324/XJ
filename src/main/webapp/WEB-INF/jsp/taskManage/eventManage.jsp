@@ -13,7 +13,6 @@
     <%@ include file="../system/admin/top.jsp"%>
 </head>
 <body>
-
 <div class="container-fluid" id="main-container">
     <div id="page-content" class="clearfix">
         <div class="row-fluid">

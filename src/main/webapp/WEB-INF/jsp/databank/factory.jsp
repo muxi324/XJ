@@ -61,10 +61,10 @@
                             </th>
                             <th class="center">序号</th>
                             <th class="center">工厂名称</th>
-                            <th class="center">负责人</th>
-                            <th class="center">手机号</th>
+                            <!--<th class="center">负责人</th>
+                            <th class="center">手机号</th>-->
                             <%--<th class="center">职位</th>--%>
-                            <%--<th class="center">创建时间</th>--%>
+                            <th class="center">创建时间</th>
                             <th class="center">操作</th>
                         </tr>
                         </thead>
@@ -82,10 +82,10 @@
                                             </td>
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                                             <td style="width: 60px;" class="center">${var.factory}</td>
-                                            <td style="width: 60px;" class="center">${var.name}</td>
-                                            <td style="width: 60px;" class="center">${var.phone}</td>
+                                         <%--   <td style="width: 60px;" class="center">${var.name}</td>
+                                            <td style="width: 60px;" class="center">${var.phone}</td>--%>
                                             <%--<td style="width: 60px;" class="center">${var.post}</td>--%>
-                                            <%--<td style="width: 60px;" class="center">${var.create_time}</td>--%>
+                                            <td style="width: 60px;" class="center">${var.create_time}</td>
                                             <td style="width: 60px;" class="center">
                                                 <div class='hidden-phone visible-desktop btn-group'>
 

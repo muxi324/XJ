@@ -63,7 +63,8 @@
         EMAIL,
         NUMBER,
         PHONE,
-        workshop
+        workshop,
+        factory_id
         ) values (
         #{USER_ID},
         #{USERNAME},
@@ -79,7 +80,8 @@
         #{EMAIL},
         #{NUMBER},
         #{PHONE},
-        #{workshop}
+        #{workshop},
+        #{factory_id}
         )
     </insert>
 

@@ -19,6 +19,7 @@ import com.wp.service.system.role.RoleService;
 import com.wp.service.system.user.UserService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
@@ -85,7 +86,7 @@ public class WorkerController extends BaseController {
         pageData.put("BZ","");
         pageData.put("workshop",pd.getString("workshop"));
         userService.saveU(pageData);*/
-
+        pd.put("factory_id",FactoryUtil.getFactoryId());
         workerService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");
@@ -176,6 +177,10 @@ public class WorkerController extends BaseController {
                 pd.put("enquiry", enquiry.trim());
             }else {
                 pd.put("enquiry", "");
+            }
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
             }
             page.setPd(pd);
             List<PageData>	varList = workerService.list(page);	//列出${objectName}列表
@@ -391,7 +396,4 @@ public class WorkerController extends BaseController {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(format,true));
     }
-
-
-
 }

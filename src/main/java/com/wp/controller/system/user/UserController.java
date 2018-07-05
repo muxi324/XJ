@@ -4,6 +4,7 @@ import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.databank.Workshop;
 import com.wp.entity.system.Role;
+import com.wp.service.databank.FactoryService;
 import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.menu.MenuService;
 import com.wp.service.system.role.RoleService;
@@ -52,6 +53,8 @@ public class UserController extends BaseController {
 	private WorkerService workerService;
 	@Resource(name="workshopService")
 	private WorkshopService workshopService;
+	@Resource(name="factoryService")
+	private FactoryService factoryService;
 	
 	
 	/**
@@ -73,7 +76,8 @@ public class UserController extends BaseController {
 		//添加worker表字段
 		pd.put("name",pd.getString("NAME"));
 		pd.put("phone",pd.getString("PHONE"));
-		pd.put("post","ROLE_ID");
+		// TODO: 2018/6/25 转换role_id与role名称
+		//pd.put("post",pd.getString("ROLE_ID"));
 		pd.put("add_time",Tools.date2Str(new Date()));
 
 		
@@ -208,149 +212,43 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value="/goAddU")
 	public ModelAndView goAddU()throws Exception{
-		ModelAndView mv = this.getModelAndView();
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		List<Role> roleList;
-		
-		roleList = roleService.listAllERRoles();			//列出所有二级角色
-		List<Workshop> workshopList = workshopService.listWorkshop();
-		mv.addObject("workshopList",workshopList);
-		mv.setViewName("system/user/user_edit");
-		mv.addObject("msg", "saveU");
-		mv.addObject("pd", pd);
-		mv.addObject("roleList", roleList);
+				PrintUtil.print("fac id is:" + FactoryUtil.getFactoryId());
+				ModelAndView mv = this.getModelAndView();
+				PageData pd = new PageData();
+				pd = this.getPageData();
+				List<Role> roleList;
 
-		return mv;
-	}
-	
-	/**
-	 * 显示用户列表(用户组)
-	 */
-	@RequestMapping(value="/listUsers")
-	public ModelAndView listUsers(Page page)throws Exception{
-		ModelAndView mv = this.getModelAndView();
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		
-		String USERNAME = pd.getString("USERNAME");
-		
-		if(null != USERNAME && !"".equals(USERNAME)){
-			USERNAME = USERNAME.trim();
-			pd.put("USERNAME", USERNAME);
-		}
-		
-		String lastLoginStart = pd.getString("lastLoginStart");
-		String lastLoginEnd = pd.getString("lastLoginEnd");
-		
-		if(lastLoginStart != null && !"".equals(lastLoginStart)){
-			lastLoginStart = lastLoginStart+" 00:00:00";
-			pd.put("lastLoginStart", lastLoginStart);
-		}
-		if(lastLoginEnd != null && !"".equals(lastLoginEnd)){
-			lastLoginEnd = lastLoginEnd+" 00:00:00";
-			pd.put("lastLoginEnd", lastLoginEnd);
-		} 
-		
-		page.setPd(pd);
-		List<PageData>	userList = userService.listPdPageUser(page);			//列出用户列表
-		List<Role> roleList = roleService.listAllERRoles();						//列出所有二级角色
-		
-		mv.setViewName("system/user/user_list");
-		mv.addObject("userList", userList);
-		mv.addObject("roleList", roleList);
-		mv.addObject("pd", pd);
-		mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
-		return mv;
-	}
-
-	
-	/**
-	 * 显示用户列表(tab方式)
-	 */
-	@RequestMapping(value="/listtabUsers")
-	public ModelAndView listtabUsers(Page page)throws Exception{
-		ModelAndView mv = this.getModelAndView();
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		List<PageData>	userList = userService.listAllUser(pd);			//列出用户列表
-		mv.setViewName("system/user/user_tb_list");
-		mv.addObject("userList", userList);
-		mv.addObject("pd", pd);
-		mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
-		return mv;
-	}
-	
-	/**
-	 * 删除用户
-	 */
-	@RequestMapping(value="/deleteU")
-	public void deleteU(PrintWriter out){
-		PageData pd = new PageData();
-		try{
-			pd = this.getPageData();
-			if(Jurisdiction.buttonJurisdiction(menuUrl, "del")){userService.deleteU(pd);}
-			out.write("success");
-			out.close();
-		} catch(Exception e){
-			logger.error(e.toString(), e);
-		}
-		
-	}
-	
-	/**
-	 * 批量删除
-	 */
-	@RequestMapping(value="/deleteAllU")
-	@ResponseBody
-	public Object deleteAllU() {
-		PageData pd = new PageData();
-		Map<String,Object> map = new HashMap<String,Object>();
-		try {
-			pd = this.getPageData();
-			List<PageData> pdList = new ArrayList<PageData>();
-			String USER_IDS = pd.getString("USER_IDS");
-			
-			if(null != USER_IDS && !"".equals(USER_IDS)){
-				String ArrayUSER_IDS[] = USER_IDS.split(",");
-				if(Jurisdiction.buttonJurisdiction(menuUrl, "del")){userService.deleteAllU(ArrayUSER_IDS);}
-				pd.put("msg", "ok");
-			}else{
-				pd.put("msg", "no");
+				roleList = roleService.listAllERRoles();			//列出所有二级角色
+				List<Workshop> workshopList = workshopService.listWorkshop();
+				List<PageData> factoryList =  factoryService.listAllFac();
+				mv.addObject("workshopList",workshopList);
+				mv.addObject("factoryList",factoryList);
+				mv.setViewName("system/user/user_edit");
+				mv.addObject("msg", "saveU");
+				mv.addObject("pd", pd);
+				mv.addObject("roleList", roleList);
+				return mv;
 			}
-			
-			pdList.add(pd);
-			map.put("list", pdList);
-		} catch (Exception e) {
-			logger.error(e.toString(), e);
-		} finally {
-			logAfter(logger);
-		}
-		return AppUtil.returnObject(pd, map);
-	}
-	//===================================================================================================
-	
-	
-	
-	/*
-	 * 导出用户信息到EXCEL
-	 * @return
-	 */
-	@RequestMapping(value="/excel")
-	public ModelAndView exportExcel(){
-		ModelAndView mv = this.getModelAndView();
-		PageData pd = new PageData();
-		pd = this.getPageData();
-		try{
-			if(Jurisdiction.buttonJurisdiction(menuUrl, "cha")){
-				//检索条件===
+
+			/**
+			 * 显示用户列表(用户组)
+			 */
+			@RequestMapping(value="/listUsers")
+			public ModelAndView listUsers(Page page)throws Exception{
+				ModelAndView mv = this.getModelAndView();
+				PageData pd = new PageData();
+				pd = this.getPageData();
+
 				String USERNAME = pd.getString("USERNAME");
+
 				if(null != USERNAME && !"".equals(USERNAME)){
 					USERNAME = USERNAME.trim();
 					pd.put("USERNAME", USERNAME);
 				}
+
 				String lastLoginStart = pd.getString("lastLoginStart");
 				String lastLoginEnd = pd.getString("lastLoginEnd");
+
 				if(lastLoginStart != null && !"".equals(lastLoginStart)){
 					lastLoginStart = lastLoginStart+" 00:00:00";
 					pd.put("lastLoginStart", lastLoginStart);
@@ -358,22 +256,130 @@ public class UserController extends BaseController {
 				if(lastLoginEnd != null && !"".equals(lastLoginEnd)){
 					lastLoginEnd = lastLoginEnd+" 00:00:00";
 					pd.put("lastLoginEnd", lastLoginEnd);
-				} 
-				//检索条件===
-				
-				Map<String,Object> dataMap = new HashMap<String,Object>();
-				List<String> titles = new ArrayList<String>();
-				
-				titles.add("用户名"); 		//1
-				titles.add("编号");  		//2
-				titles.add("姓名");			//3
-				titles.add("职位");			//4
-				titles.add("手机");			//5
-				titles.add("邮箱");			//6
-				titles.add("最近登录");		//7
-				titles.add("上次登录IP");	//8
-				
-				dataMap.put("titles", titles);
+				}
+
+				page.setPd(pd);
+				List<PageData>	userList = userService.listPdPageUser(page);			//列出用户列表
+				List<Role> roleList = roleService.listAllERRoles();						//列出所有二级角色
+
+				mv.setViewName("system/user/user_list");
+				mv.addObject("userList", userList);
+				mv.addObject("roleList", roleList);
+				mv.addObject("pd", pd);
+				mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
+				return mv;
+			}
+
+
+			/**
+			 * 显示用户列表(tab方式)
+			 */
+			@RequestMapping(value="/listtabUsers")
+			public ModelAndView listtabUsers(Page page)throws Exception{
+				ModelAndView mv = this.getModelAndView();
+				PageData pd = new PageData();
+				pd = this.getPageData();
+				List<PageData>	userList = userService.listAllUser(pd);			//列出用户列表
+				mv.setViewName("system/user/user_tb_list");
+				mv.addObject("userList", userList);
+				mv.addObject("pd", pd);
+				mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
+				return mv;
+			}
+
+			/**
+			 * 删除用户
+			 */
+			@RequestMapping(value="/deleteU")
+			public void deleteU(PrintWriter out){
+				PageData pd = new PageData();
+				try{
+					pd = this.getPageData();
+					if(Jurisdiction.buttonJurisdiction(menuUrl, "del")){userService.deleteU(pd);}
+					out.write("success");
+					out.close();
+				} catch(Exception e){
+					logger.error(e.toString(), e);
+				}
+
+			}
+
+			/**
+			 * 批量删除
+			 */
+			@RequestMapping(value="/deleteAllU")
+			@ResponseBody
+			public Object deleteAllU() {
+				PageData pd = new PageData();
+				Map<String,Object> map = new HashMap<String,Object>();
+				try {
+					pd = this.getPageData();
+					List<PageData> pdList = new ArrayList<PageData>();
+					String USER_IDS = pd.getString("USER_IDS");
+
+					if(null != USER_IDS && !"".equals(USER_IDS)){
+						String ArrayUSER_IDS[] = USER_IDS.split(",");
+						if(Jurisdiction.buttonJurisdiction(menuUrl, "del")){userService.deleteAllU(ArrayUSER_IDS);}
+						pd.put("msg", "ok");
+					}else{
+						pd.put("msg", "no");
+					}
+
+					pdList.add(pd);
+					map.put("list", pdList);
+				} catch (Exception e) {
+					logger.error(e.toString(), e);
+				} finally {
+					logAfter(logger);
+				}
+				return AppUtil.returnObject(pd, map);
+			}
+			//===================================================================================================
+
+
+
+			/*
+			 * 导出用户信息到EXCEL
+			 * @return
+			 */
+			@RequestMapping(value="/excel")
+			public ModelAndView exportExcel(){
+				ModelAndView mv = this.getModelAndView();
+				PageData pd = new PageData();
+				pd = this.getPageData();
+				try{
+					if(Jurisdiction.buttonJurisdiction(menuUrl, "cha")){
+						//检索条件===
+						String USERNAME = pd.getString("USERNAME");
+						if(null != USERNAME && !"".equals(USERNAME)){
+							USERNAME = USERNAME.trim();
+							pd.put("USERNAME", USERNAME);
+						}
+						String lastLoginStart = pd.getString("lastLoginStart");
+						String lastLoginEnd = pd.getString("lastLoginEnd");
+						if(lastLoginStart != null && !"".equals(lastLoginStart)){
+							lastLoginStart = lastLoginStart+" 00:00:00";
+							pd.put("lastLoginStart", lastLoginStart);
+						}
+						if(lastLoginEnd != null && !"".equals(lastLoginEnd)){
+							lastLoginEnd = lastLoginEnd+" 00:00:00";
+							pd.put("lastLoginEnd", lastLoginEnd);
+						}
+						//检索条件===
+
+						Map<String,Object> dataMap = new HashMap<String,Object>();
+						List<String> titles = new ArrayList<String>();
+
+						titles.add("用户名"); 		//1
+						titles.add("编号");  		//2
+						titles.add("姓名");			//3
+						titles.add("职位");			//4
+						titles.add("手机");			//5
+						titles.add("邮箱");			//6
+						titles.add("最近登录");		//7
+						titles.add("上次登录IP");	//8
+
+						dataMap.put("titles", titles);
 				
 				List<PageData> userList = userService.listAllUser(pd);
 				List<PageData> varList = new ArrayList<PageData>();

@@ -16,7 +16,7 @@ public class EventService {
     private DaoSupport dao;
 
     public List<PageData> list(Page page) throws Exception {
-        List<PageData> list = (List<PageData>) dao.findForList("EventMapper.listEvent",page);
+        List<PageData> list = (List<PageData>) dao.findForList("EventMapper.datalistPage",page);
         return list;
     }
 

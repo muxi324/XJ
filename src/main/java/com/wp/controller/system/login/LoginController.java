@@ -90,7 +90,8 @@ public class LoginController extends BaseController {
 		//shiro管理的session
 		Subject currentUser = SecurityUtils.getSubject();
 		Session session = currentUser.getSession();
-		String sessionCode = (String)session.getAttribute(Const.SESSION_SECURITY_CODE);		//获取session中的验证码
+		String sessionCode = (String)session.getAttribute(Const.SESSION_SECURITY_CODE);//获取session中的验证码
+
 
 		if(null == code || "".equals(code)){
 			errInfo = "nullcode"; //验证码为空
@@ -115,7 +116,7 @@ public class LoginController extends BaseController {
 					user.setSTATUS(pd.getString("STATUS"));
 					session.setAttribute(Const.SESSION_USER, user);
 					session.removeAttribute(Const.SESSION_SECURITY_CODE);
-
+					session.setAttribute(Const.FACTORY_ID,pd.getString("factory_id"));
 					//shiro加入身份验证
 					Subject subject = SecurityUtils.getSubject();
 					UsernamePasswordToken token = new UsernamePasswordToken(USERNAME, PASSWORD);

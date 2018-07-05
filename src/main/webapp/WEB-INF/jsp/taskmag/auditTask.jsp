@@ -13,6 +13,9 @@
     <%@ include file="../system/admin/top.jsp"%>
 </head>
 <body>
+<c:if test="${not empty errorMsg}">
+    ${errorMsg}
+</c:if>
 <table id="table_report" class="table table-striped table-bordered table-hover">
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">任务名称:</td>
@@ -186,6 +189,7 @@
             success: function (result) {
                 //打印服务端返回的数据(调试用)
                 alert("任务审核成功！");
+                window.location.href='<%=basePath%>taskmag/list.do';
             },
             error : function() {
                 alert("出现异常！");

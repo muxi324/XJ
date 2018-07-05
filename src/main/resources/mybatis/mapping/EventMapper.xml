@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="EventMapper">
 
-    <select id="listEvent" parameterType="Page" resultType="pd" useCache="false">
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
         select  *   from event_info
         where 1 = 1
         /* and u.USERNAME != 'admin'
@@ -22,15 +22,18 @@
             instrument_place  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             )
         </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
         order by event_id asc
     </select>
 
     <!-- 新增-->
     <insert id="save" parameterType="pd">
         insert into event_info(
-        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size)
+        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,factory_id)
         values (#{event_name},#{instrument_place},#{workshop},#{check_scope},#{check_point},#{check_period},#{check_interval},#{event_level},
-        #{create_time},#{font_color},#{font_size}
+        #{create_time},#{font_color},#{font_size},#{factory_id}
         )
     </insert>
 

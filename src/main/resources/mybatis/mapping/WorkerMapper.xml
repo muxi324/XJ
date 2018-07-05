@@ -11,8 +11,8 @@
 
     <!-- 新增-->
     <insert id="save" parameterType="pd">
-        insert into worker_info(  name,phone,team,head_pic,post,work_type,workshop,add_time)
-        values (  #{name}, #{phone},#{team}, #{head_pic},#{post}, #{work_type}, #{workshop},#{add_time}  )
+        insert into worker_info(  name,phone,team,head_pic,post,work_type,workshop,add_time,factory_id)
+        values (  #{name}, #{phone},#{team}, #{head_pic},#{post}, #{work_type}, #{workshop},#{add_time},#{factory_id} )
     </insert>
     <!--向车间管理表中加负责人-->
     <update id="updataWorkshop" parameterType="pd">
@@ -79,6 +79,9 @@
             or
             post   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             )
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
         </if>
         order by id asc
     </select>

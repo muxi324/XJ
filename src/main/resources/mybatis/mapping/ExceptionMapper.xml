@@ -28,6 +28,9 @@
         <if test="pd.level != null and pd.level != ''"><!-- 状态检索 -->
             and level = #{pd.level}
         </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
         order by id desc
     </select>
 

@@ -16,9 +16,9 @@
     <insert id="save" parameterType="pd">
        insert into set_mission(
         mission,mission_type,mission_level,mission_source,cover_fields,mission_description,cycle_time,authen_method,auditor_level,auditor,
-       task_addition,set_name,set_time,detail_info,event) values ( #{mission},#{mission_type}, #{mission_level}, #{mission_source},#{cover_fields},
-        #{mission_description}, #{cycle_time},#{authen_method},#{auditor_level},#{auditor},#{task_addition},#{set_name}, #{set_time},#{detail_info},#{select_eventId}
-        )
+       task_addition,set_name,set_time,detail_info,event,factory_id) values ( #{mission},#{mission_type}, #{mission_level}, #{mission_source},#{cover_fields},
+        #{mission_description}, #{cycle_time},#{authen_method},#{auditor_level},#{auditor},#{task_addition},#{set_name}, #{set_time},#{detail_info},#{select_eventId},
+        #{factory_id})
     </insert>
 
     <!-- 删除-->
@@ -77,6 +77,9 @@
         </if>
         <if test="pd.mission_type != null and pd.mission_type != ''"><!-- 任务类型 -->
             and mission_type = #{pd.mission_type}
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
         </if>
         order by set_id desc
     </select>

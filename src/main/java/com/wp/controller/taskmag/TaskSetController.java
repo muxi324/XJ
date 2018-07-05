@@ -10,6 +10,7 @@ import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskSetService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -76,6 +77,10 @@ public class TaskSetController extends BaseController {
             pd.put("mission_level", mission_level);
             String  mission_type = pd.getString("mission_type");
             pd.put("mission_type", mission_type);
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
             page.setPd(pd);
             List<PageData> varList = taskSetService.list(page);	//列出${objectName}列表
             mv.setViewName("taskmag/task_set");
@@ -164,6 +169,7 @@ public class TaskSetController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         pd.put("set_time",  Tools.date2Str(new Date()));	//添加时间
+        pd.put("factory_id",FactoryUtil.getFactoryId());
         taskSetService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");

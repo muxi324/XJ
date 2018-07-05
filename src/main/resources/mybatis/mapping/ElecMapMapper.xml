@@ -15,6 +15,10 @@
     <!--所有员工最近位置-->
     <select id="datalistWorker" parameterType="Page" resultType="pd" useCache="false">
         select  *   from worker_info
+        where 1 = 1
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
     </select>
     <!--所有已安装房源位置-->
     <select id="datalistHouse" parameterType="Page" resultType="pd" useCache="false">

@@ -76,4 +76,7 @@ public class FactoryService {
         dao.delete("FactoryMapper.deleteAll", ArrayDATA_IDS);
     }
 
+    public List<PageData> listAllFac() throws Exception {
+        return  (List<PageData>)dao.findForList("FactoryMapper.listAllFac",null);
+    }
 }

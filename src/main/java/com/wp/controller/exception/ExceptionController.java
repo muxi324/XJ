@@ -5,8 +5,10 @@ import com.wp.entity.Page;
 import com.wp.entity.exception.ExceptionInfo;
 import com.wp.service.exception.ExceptionService;
 import com.wp.util.Const;
+import com.wp.util.FactoryUtil;
 import com.wp.util.Jurisdiction;
 import com.wp.util.PageData;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -60,6 +62,10 @@ public class ExceptionController extends BaseController{
             }
             String  level = pd.getString("level");
             pd.put("level", level);
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
             page.setPd(pd);
             List<PageData> exceptionList = exceptionService.listException(page);
             mv.setViewName("exception/exceptionInfo");

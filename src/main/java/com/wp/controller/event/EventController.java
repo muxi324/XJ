@@ -8,6 +8,7 @@ import com.wp.service.event.EventService;
 import com.wp.util.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -35,11 +36,11 @@ public class EventController extends BaseController{
     @Resource(name="workshopService")
     private WorkshopService workshopService;
 
-    @RequestMapping(value = "list")
+    @RequestMapping(value = "/list")
     public ModelAndView listEvent(Page page) {
         logBefore(logger, "事件列表");
         if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         try{
             pd = this.getPageData();
@@ -48,6 +49,10 @@ public class EventController extends BaseController{
                 pd.put("enquiry", enquiry.trim());
             }else {
                 pd.put("enquiry", "");
+            }
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
             }
             page.setPd(pd);
             List<PageData> varList = eventService.list(page);	//列出${objectName}列表
@@ -100,6 +105,7 @@ public class EventController extends BaseController{
         PageData pd = new PageData();
         pd = this.getPageData();
         pd.put("create_time",  Tools.date2Str(new Date()));
+        pd.put("factory_id",FactoryUtil.getFactoryId());
         String eventName = eventService.getEventByName(pd.getString("event_name"));
         if (eventName == null || "".equals(eventName)) {
             eventService.save(pd);

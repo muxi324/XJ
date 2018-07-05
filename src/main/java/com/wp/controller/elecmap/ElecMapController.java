@@ -6,9 +6,11 @@ import com.wp.entity.map.MapPoint;
 import com.wp.service.elecmap.ElecMapService;
 import com.wp.service.system.role.RoleService;
 import com.wp.util.Const;
+import com.wp.util.FactoryUtil;
 import com.wp.util.PageData;
 import com.wp.util.StringUtil;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -169,6 +171,12 @@ public class ElecMapController extends BaseController {
     public Object getWorkerPosition(Page page){
         List<PageData> wokerList = null;
         try {
+            PageData pd = new PageData();
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
+            page.setPd(pd);
             wokerList = elecMapService.listW(page);
         } catch (Exception e) {
             e.printStackTrace();

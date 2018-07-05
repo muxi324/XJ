@@ -127,6 +127,9 @@ public class SendTaskController extends BaseController {
         pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("mission_condition", 1);
         pd.put("set_name",getUserName());
+        if (StringUtils.isEmpty(pd.getString("time_dev"))) {
+            pd.put("time_dev","0");
+        }
         sendTaskService.save(pd);
         if(pd.getString("id") != null){   //异常处理任务
             String missionType=pd.getString("mission_type");

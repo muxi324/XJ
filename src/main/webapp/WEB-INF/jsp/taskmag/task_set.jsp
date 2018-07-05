@@ -203,7 +203,7 @@
                     top.jzts();
                     setTimeout("self.location=self.location",100);
                 }else{
-                    nextPage(${page.currentPage});
+                    window.location.href='<%=basePath%>taskset/list.do';
                 }
             }
             diag.close();
@@ -218,7 +218,7 @@
                 top.jzts();
                 var url = "<%=basePath%>taskset/delete.do?set_id="+Id;
                 $.get(url,function(data){
-                    nextPage(${page.currentPage});
+                    window.location.href='<%=basePath%>taskset/list.do';
                 });
             }
         });
@@ -235,7 +235,7 @@
         diag.Height = 800;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-                nextPage(${page.currentPage});
+                window.location.href='<%=basePath%>taskset/list.do';
             }
             diag.close();
         };
@@ -313,7 +313,7 @@
                             cache: false,
                             success: function(data){
                                 $.each(data.list, function(i, list){
-                                    nextPage(${page.currentPage});
+                                    window.location.href='<%=basePath%>taskset/list.do';
                                 });
                             }
                         });
@@ -348,7 +348,7 @@
                     top.jzts();
                     setTimeout("self.location.reload()",100);
                 }else{
-                    nextPage(${page.currentPage});
+                    window.location.href='<%=basePath%>taskset/list.do';
                 }
             }
             diag.close();

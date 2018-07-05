@@ -294,6 +294,11 @@ public class TaskMagController extends BaseController {
         try {
             pd = taskMagService.findById(pd);
             PageData setMissionData = taskSetService.findById(pd);
+            if (setMissionData == null) {
+                mv.addObject("errorMsg","此任务数据不存在");
+                mv.setViewName("taskmag/auditTask");
+                return mv;
+            }
             String eventIds = setMissionData.getString("event");
             String[] idArr = new String[0];
             if (eventIds != null && !eventIds.equals("")) {
