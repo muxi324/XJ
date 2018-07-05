@@ -12,60 +12,57 @@
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <html>
-    <head>
-        <base href="<%=basePath%>">
-        <style type="text/css">
-            body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
-        </style>
-        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=tkTgXO7ycraPnPgGGejoV8CZp58Nd559"></script>
-    </head>
-    <body>
+<head>
+    <base href="<%=basePath%>">
+    <style type="text/css">
+        body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+    </style>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=tkTgXO7ycraPnPgGGejoV8CZp58Nd559"></script>
+</head>
+<body>
 
-        <div id="allmap" style="height: 85%"></div>
+<div id="allmap" style="height: 85%"></div>
 
-        <div id="r-result">
-            <input type="button" onclick="showAll()" value="展示全部员工位置" />
-            <input type="button" onclick="showSome()" value="点击选择员工展示位置">
-            <input type="button" onclick="showError()" value="展示异常位置" />
-        </div>
-        <%@ include file="../system/admin/bottom.jsp"%>
-    </body>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">
-                        请选择需要展示位置的员工
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <table id="worker" class="table table-striped table-bordered table-hover">
+<div id="r-result">
+    <input type="button" onclick="showAll()" value="展示全部员工位置" />
+    <input type="button" onclick="showSome()" value="点击选择员工展示位置">
+    <input type="button" onclick="showError()" value="展示异常位置" />
+</div>
+<%@ include file="../system/admin/bottom.jsp"%>
+</body>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    请选择需要展示位置的员工
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table id="worker" class="table table-striped table-bordered table-hover">
 
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="showWorkers()">确定</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-    </div>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="showWorkers()">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 </html>
 
 
 <script type="text/javascript">
     // 百度地图API功能
     $(top.hangge());
-
     var points = [];
-    var flag = 0;
-
     $.ajax({
         type : "post",
         async : true,
@@ -76,28 +73,25 @@
                 console.info(result);
                 $.each(result, function(index, content) {
                     var str = "<tr>" +
-                               "<td><input type='checkbox'name='workers' value='"+content.name+"'/></td>" +
-                               "<td>"+content.name+"</td>" +
-                               "</tr>";
+                        "<td><input type='checkbox'name='workers' value='"+content.name+"'/></td>" +
+                        "<td>"+content.name+"</td>" +
+                        "</tr>";
                     $("#worker").append(str);
                     var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId="+content.id ,"id":content.id,"name":content.name,"phoneNum":content.phone};
                     points.push(point);
-                    showAll();
                 })
             }
             else {
-
             }
         },
         error : function(errorMsg) {
             alert("员工位置数据获取失败，可能是服务器开小差了");
         }
     })
-
     function showSome() {
         $("#myModal").modal('show');
     }
-    
+
     function showWorkers() {
         map.clearOverlays();
         var chk_value =[];
@@ -124,7 +118,7 @@
         }
         $("#myModal").modal('hide');
     }
-
+    var flag = 0;
     function showAll() {
         flag = addMarker(points,flag);
     }
@@ -135,11 +129,11 @@
             for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
                 var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
                 /*            var myIcon = new BMap.Icon("http://7xic1p.com1.z0.glb.clouddn.com/markers.png", new BMap.Size(23, 25), {
-                                // 指定定位位置
-                                offset: new BMap.Size(10, 25),
-                                // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置
-                                imageOffset: new BMap.Size(0, 0 - i * 25) // 设置图片偏移
-                            });*/
+                 // 指定定位位置
+                 offset: new BMap.Size(10, 25),
+                 // 当需要从一幅较大的图片中截取某部分作为标注图标时，需要指定大图的偏移位置
+                 imageOffset: new BMap.Size(0, 0 - i * 25) // 设置图片偏移
+                 });*/
                 var marker = new BMap.Marker(point); //将点转化成标注点
                 map.addOverlay(marker);  //将标注点添加到地图上
                 //添加监听事件
@@ -158,12 +152,9 @@
         }
         return flag;
     }
-
     var errorIcon = new BMap.Icon('static/img/90.png', new BMap.Size(20, 32), {
         anchor: new BMap.Size(10, 30)
     });
-
-
     var exceptionPoints = [];
     $.ajax({	//使用JQuery内置的Ajax方法
         type: "post",		//post请求方式
@@ -181,11 +172,9 @@
                 })
             }
             else {
-
             }
             console.log(exceptionPoints);
         },
-
         error : function(errorMsg) {
             alert("异常数据获取失败，可能是服务器开小差了");
         }
@@ -194,7 +183,6 @@
     function showError() {
         errorFlag = addMarker1(exceptionPoints,errorFlag);
     }
-
     function addMarker1(exceptionPoints,errorFlag) {
         if (errorFlag == 0) {
             //循环建立标注点
@@ -218,7 +206,6 @@
         }
         return errorFlag;
     }
-
     function showInfo(thisMarker,point) {
         //获取点的信息
         var sContent =
@@ -234,7 +221,6 @@
         var infoWindow = new BMap.InfoWindow(sContent); //创建信息窗口对象
         thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow
     }
-
     function showInfo1(thisMarker,point) {
         //获取点的信息
         var sContent =
@@ -251,13 +237,10 @@
         var infoWindow = new BMap.InfoWindow(sContent); //创建信息窗口对象
         thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow
     }
-
     var map = new BMap.Map("allmap");    // 创建Map实例
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-    map.setCurrentCity("北京");// 设置地图显示的城市 此项是必须设置的
+    map.centerAndZoom(new BMap.Point(116.056167,39.496554), 11);  // 初始化地图,设置中心点坐标和地图级别
+    map.setCurrentCity("阔丹凌云厂");// 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
-
-
     //添加地图控件
     var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});// 左上角，添加比例尺
     var top_left_navigation = new BMap.NavigationControl();  //左上角，添加默认缩放平移控件
@@ -265,5 +248,4 @@
     map.addControl(top_left_control);
     map.addControl(top_left_navigation);
     map.addControl(top_right_navigation);
-
 </script>

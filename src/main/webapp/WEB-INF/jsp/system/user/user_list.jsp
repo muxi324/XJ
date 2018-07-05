@@ -99,9 +99,9 @@
 								<td style="width: 60px;">
 									<div class='hidden-phone visible-desktop btn-group'>
 										
-										<c:if test="${QX.FW_QX == 1 }">
+										<%--<c:if test="${QX.FW_QX == 1 }">
 										<a class='btn btn-mini btn-warning' title="发送短信" onclick="sendSms('${user.PHONE }');"><i class='icon-envelope'></i></a>
-										</c:if>
+										</c:if>--%>
 										
 										<c:if test="${QX.edit == 1 }">
 											<c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="editUser('${user.USER_ID }');"><i class='icon-edit'></i></a></c:if>
@@ -151,9 +151,9 @@
 				<%--	<c:if test="${QX.FX_QX == 1 }">
 					<a title="批量发送电子邮件" class="btn btn-small btn-info" onclick="makeAll('确定要给选中的用户发送邮件吗?');"><i class="icon-envelope-alt"></i></a>
 					</c:if>--%>
-					<c:if test="${QX.FW_QX == 1 }">
+					<%--<c:if test="${QX.FW_QX == 1 }">
 					<a title="批量发送短信" class="btn btn-small btn-warning" onclick="makeAll('确定要给选中的用户发送短信吗?');"><i class="icon-envelope"></i></a>
-					</c:if>
+					</c:if>--%>
 					<c:if test="${QX.del == 1 }">
 					<a title="批量删除" class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" ><i class='icon-trash'></i></a>
 					</c:if>

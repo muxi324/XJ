@@ -61,12 +61,11 @@
             mission_source  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
             or
             mission_description LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-            or
-            cover_fields  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-
+           /* or
+            cover_fields  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')*/
             )
         </if>
-        <if test="pd.setTimeStart!=null and pd.sentTimeStart!=''"><!-- 下达时间检索 -->
+        <if test="pd.setTimeStart!=null and pd.setTimeStart!=''"><!-- 下达时间检索 -->
             and set_time &gt;= #{pd.setTimeStart}
         </if>
         <if test="pd.setTimeEnd!=null and pd.setTimeEnd!=''"><!-- 下达时间检索 -->
@@ -101,7 +100,7 @@
 
             )
         </if>
-        <if test="pd.setTimeStart!=null and pd.sentTimeStart!=''"><!-- 下达时间检索 -->
+        <if test="pd.setTimeStart!=null and pd.setTimeStart!=''"><!-- 下达时间检索 -->
             and set_time &gt;= #{pd.setTimeStart}
         </if>
         <if test="pd.setTimeEnd!=null and pd.setTimeEnd!=''"><!-- 下达时间检索 -->

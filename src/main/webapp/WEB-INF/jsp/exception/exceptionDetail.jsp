@@ -49,8 +49,8 @@
         <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
         <td>${result.description}</td>
     </tr>
-    <tr colspan="10">
-        <td>异常照片</td>
+    <tr>
+        <td style="width:110px;text-align: right;padding-top: 13px;">异常照片</td>
         <td><img src="/imgFile/${result.pic}" alt="异常图片"width="210"></td>
     </tr>
 </table>

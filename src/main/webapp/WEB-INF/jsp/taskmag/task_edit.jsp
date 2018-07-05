@@ -197,7 +197,7 @@
                 </form>
             </div>
         </div>
-        <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
+       <%-- <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
         <div class="page-header position-relative">
             <table style="width:100%;">
                 <tr>
@@ -213,7 +213,7 @@
                 <th class="center">物资名称</th>
                 <th class="center">所用数量</th>
             </tr>
-        </table>
+        </table>--%>
         <table class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="text-align: center;" colspan="10">
