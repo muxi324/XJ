@@ -14,6 +14,7 @@
         u.NUMBER,
         u.PHONE,
         u.workshop,
+        u.factory_id,
         r.ROLE_ID,
         r.ROLE_NAME
         from SYS_USER u, SYS_ROLE r
