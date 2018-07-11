@@ -1,3 +1,5 @@
+import com.wp.util.PathUtil;
+import com.wp.util.PrintUtil;
 import com.wp.util.quartz.QuartzJobExample;
 import com.wp.util.quartz.QuartzManager;
 import org.junit.Test;
@@ -14,6 +16,7 @@ import java.util.Date;
 public class TestByXm {
     private static String JOB_GROUP_NAME = "EXTJWEB_JOBGROUP_NAME";
     private static String TRIGGER_GROUP_NAME = "EXTJWEB_TRIGGERGROUP_NAME";
+
     @Test
     public void testQurtz() throws ParseException {
         String string = "2018-06-13 16:50:06";
@@ -30,5 +33,12 @@ public class TestByXm {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testPath() {
+        String path = "C:/Users/mac/apache-tomcat-8.5.27/webapps/xunjian/uploadFiles/qrImg/挤出线监测4.png";
+        int x = path.indexOf("/qrImg");
+        System.out.println(path.substring(x,path.length()));
     }
 }

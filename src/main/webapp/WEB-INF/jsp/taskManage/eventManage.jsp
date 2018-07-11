@@ -49,7 +49,7 @@
                         <th class="center">事件名称</th>
                         <th class="center">具体位置</th>
                         <th class="center">创建时间</th>
-                        <%--<th class="center">二维码</th>--%>
+                        <th class="center">二维码</th>
                      <%--   <th class="center">任务记录</th>--%>
                         <th class="center">操作</th>
                     </tr>
@@ -71,7 +71,7 @@
                                         <td style="width: 100px;" class="center">${var.event_name}</td>
                                         <td style="width: 100px;" class="center">${var.instrument_place}</td>
                                         <td style="width: 100px;" class="center">${var.create_time}</td>
-                                            <%--<td style="width: 139px;" class="center">${var.qrcode}</td>--%>
+                                        <td style="width: 100px;" class="center"><a class='btn btn-mini btn-info' title="查看" onclick="showQrCode('${var.qrcode}');"><i class='icon-edit'></i></a></td>
                                        <%-- <td style="width: 100px;" class="center">查看操作记录</td>--%>
                                         <td style="width: 60px;" class="center">
                                             <div class='hidden-phone visible-desktop btn-group'>
@@ -155,6 +155,28 @@
     function search(){
         top.jzts();
         $("#Form").submit();
+    }
+
+    function showQrCode(url) {
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="新增";
+        diag.URL = '<%=basePath%>eventManage/qrcode.do?path='+url;
+        diag.Width = 400;
+        diag.Height = 600;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location=self.location",100);
+                }else{
+                    nextPage(${page.currentPage});
+                }
+            }
+            diag.close();
+        };
+        diag.show();
     }
 
     //新增

@@ -55,7 +55,23 @@ public class EventController extends BaseController{
                 pd.put("factory_id",FactoryUtil.getFactoryId());
             }
             page.setPd(pd);
-            List<PageData> varList = eventService.list(page);	//列出${objectName}列表
+            List<PageData> varList = eventService.list(page);	//列出${objectName}
+            for (PageData p : varList) {
+                String qrcode = p.getString("qrcode");
+                //二维码不存在补充二维码
+                if (StringUtils.isEmpty(qrcode)) {
+                    String qrContent = "事件名: " + p.getString("event_name") + "  具体位置: " + p.getString("instrument_place");
+                    String encoderImgId = p.getString("event_name") + ".png";
+                    try {
+                        String filePath = "C:/apache-tomcat-8.5.23/webapps/qrupload/qrImg/" + encoderImgId;  //存放路径
+                        TwoDimensionCode.encoderQRCode(qrContent, filePath, "png");							//执行生成二维码
+                        p.put("qrcode",filePath);
+                        eventService.update(p);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
             mv.setViewName("taskManage/eventManage");
             mv.addObject("varList", varList);
             mv.addObject("pd", pd);
@@ -63,6 +79,18 @@ public class EventController extends BaseController{
         } catch(Exception e){
             logger.error(e.toString(), e);
         }
+        return mv;
+    }
+    @RequestMapping(value = "/qrcode")
+    public ModelAndView qrCode() {
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        String path = pd.getString("path");
+        int x = path.indexOf("qrImg");
+        String picPath = path.substring(x,path.length());
+        mv.addObject("picPath",picPath);
+        mv.setViewName("taskManage/qrCode");
         return mv;
     }
     /**
@@ -108,6 +136,15 @@ public class EventController extends BaseController{
         pd.put("factory_id",FactoryUtil.getFactoryId());
         String eventName = eventService.getEventByName(pd.getString("event_name"));
         if (eventName == null || "".equals(eventName)) {
+            String qrContent = "事件名: " + pd.getString("event_name") + "具体位置: " + pd.getString("instrument_place");
+            String encoderImgId = pd.getString("event_name") + Tools.date2Str(new Date())  + ".png";
+            try {
+                String filePath = "C:/apache-tomcat-8.5.23/webapps/qrupload/qrImg/" + encoderImgId;  //存放路径
+                TwoDimensionCode.encoderQRCode(qrContent, filePath, "png");							//执行生成二维码
+                pd.put("qrcode",filePath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             eventService.save(pd);
         } else {
             eventService.update(pd);

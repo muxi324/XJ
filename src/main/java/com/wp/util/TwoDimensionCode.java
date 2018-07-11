@@ -94,6 +94,9 @@ public class TwoDimensionCode {
 			BufferedImage bufImg = qRCodeCommon(content, imgType, size);
 
 			File imgFile = new File(imgPath);
+			if (!imgFile.exists()) {
+				imgFile.mkdirs();
+			}
 			// 生成二维码QRCode图片
 			ImageIO.write(bufImg, imgType, imgFile);
 		} catch (Exception e) {
@@ -242,14 +245,14 @@ public class TwoDimensionCode {
 	}
 
 	public static void main(String[] args) {
-		String imgPath = "F:/a.png";
+		String imgPath = "C:/Users/mac/workshop/a.png";
 		/*String encoderContent = "Hello 大大、小小,welcome to QRCode!"
 				+ "\nMyblog [ http://sjsky.iteye.com ]"
 				+ "\nEMail [ sjsky007@gmail.com ]";*/
 		
 		String encoderContent = "http://www.baidu.com";
-		TwoDimensionCode handler = new TwoDimensionCode();
-		handler.encoderQRCode(encoderContent, imgPath, "png");
+		//TwoDimensionCode handler = new TwoDimensionCode();
+		TwoDimensionCode.encoderQRCode(encoderContent, imgPath, "png");
 		// try {
 		// OutputStream output = new FileOutputStream(imgPath);
 		// handler.encoderQRCode(content, output);

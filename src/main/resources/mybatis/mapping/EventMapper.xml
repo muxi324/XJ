@@ -31,9 +31,9 @@
     <!-- 新增-->
     <insert id="save" parameterType="pd">
         insert into event_info(
-        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,factory_id)
+        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id)
         values (#{event_name},#{instrument_place},#{workshop},#{check_scope},#{check_point},#{check_period},#{check_interval},#{event_level},
-        #{create_time},#{font_color},#{font_size},#{factory_id}
+        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id}
         )
     </insert>
 
@@ -45,7 +45,7 @@
     </delete>
 
     <update id="update" parameterType="pd">
-        update event_info set instrument_place=#{instrument_place},workshop=#{workshop},check_scope=#{check_scope},check_point=#{check_point},
+        update event_info set instrument_place=#{instrument_place},workshop=#{workshop},check_scope=#{check_scope},check_point=#{check_point},qrcode=#{qrcode},
         check_period=#{check_period},check_interval=#{check_interval},event_level=#{event_level} where event_name = #{event_name}
     </update>
 
