@@ -95,7 +95,7 @@
 								<td>${user.NAME }</td>
 								<td>${user.ROLE_NAME }</td>
 								<td>${user.workshop}</td>
-								<td>${user.factory_id}厂</td>
+								<td>${user.factory}</td>
 								<td>${user.LAST_LOGIN}</td>
 								<%--<td>${user.IP}</td>--%>
 								<td style="width: 60px;">

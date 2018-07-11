@@ -85,6 +85,11 @@ public class UserController extends BaseController {
 		
 		if(null == userService.findByUId(pd)){
 			if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){
+				String factory_id =pd.getString("factory_id");
+				pd.put("id", factory_id);
+				pd = factoryService.findById(pd);
+				String factory = pd.getString("factory");
+				pd.put("factory", factory);
 				userService.saveU(pd);
 				workerService.save(pd);
 			} //判断新增权限
@@ -171,7 +176,13 @@ public class UserController extends BaseController {
 		if(pd.getString("PASSWORD") != null && !"".equals(pd.getString("PASSWORD"))){
 			pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
 		}
-		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){userService.editU(pd);}
+		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){
+			String factory_id =pd.getString("factory_id");
+			pd.put("id", factory_id);
+			pd = factoryService.findById(pd);
+			String factory = pd.getString("factory");
+			pd.put("factory", factory);
+			userService.editU(pd);}
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -198,6 +209,10 @@ public class UserController extends BaseController {
 		}
 		
 		List<Role> roleList = roleService.listAllERRoles();			//列出所有二级角色
+		List<Workshop> workshopList = workshopService.listWorkshop();
+		List<PageData> factoryList =  factoryService.listAllFac();
+		mv.addObject("workshopList",workshopList);
+		mv.addObject("factoryList",factoryList);
 		pd = userService.findByUiId(pd);							//根据ID读取
 		mv.setViewName("system/user/user_edit");
 		mv.addObject("msg", "editU");

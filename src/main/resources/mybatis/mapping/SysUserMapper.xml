@@ -14,6 +14,7 @@
         u.NUMBER,
         u.PHONE,
         u.workshop,
+        u.factory,
         u.factory_id,
         r.ROLE_ID,
         r.ROLE_NAME

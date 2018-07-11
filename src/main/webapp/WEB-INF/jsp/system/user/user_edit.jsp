@@ -270,6 +270,7 @@
 			</c:if>
 			<tr>
 				<td>
+
 					<select   name="factory_id" id="factory_id" value="${pd.factory_id}"  class="chzn-select" data-placeholder="请选择工厂" >
 						<option value=""></option>
 						<c:forEach items="${factoryList}" var="f">
