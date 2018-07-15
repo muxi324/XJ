@@ -221,7 +221,7 @@
         if($("#content_name").val()==""){
             $("#content_name").tips({
                 side:3,
-                msg:'请选择检修员工姓名',
+                msg:'请填写工作内容名称',
                 bg:'#AE81FF',
                 time:2
             });

@@ -62,10 +62,15 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value="/saveU")
 	public ModelAndView saveU(PrintWriter out) throws Exception{
+		if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;}
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-
+		/*String factory_id =pd.getString("factory_id");
+		pd.put("id", factory_id);
+		pd = factoryService.findById(pd);
+		String factory = pd.getString("factory");
+		pd.put("factory", factory);*/
 		pd.put("USER_ID", this.get32UUID());	//ID
 		pd.put("RIGHTS", "");					//权限
 		pd.put("LAST_LOGIN", "");				//最后登录时间
@@ -79,24 +84,10 @@ public class UserController extends BaseController {
 		// TODO: 2018/6/25 转换role_id与role名称
 		//pd.put("post",pd.getString("ROLE_ID"));
 		pd.put("add_time",Tools.date2Str(new Date()));
-
-		
 		pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
-		
-		if(null == userService.findByUId(pd)){
-			if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){
-				String factory_id =pd.getString("factory_id");
-				pd.put("id", factory_id);
-				pd = factoryService.findById(pd);
-				String factory = pd.getString("factory");
-				pd.put("factory", factory);
-				userService.saveU(pd);
-				workerService.save(pd);
-			} //判断新增权限
-			mv.addObject("msg","success");
-		}else{
-			mv.addObject("msg","failed");
-		}
+		userService.saveU(pd);
+		workerService.save(pd);
+		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
 	}
