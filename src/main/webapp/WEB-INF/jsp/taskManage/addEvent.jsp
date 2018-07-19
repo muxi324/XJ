@@ -81,7 +81,7 @@
             <tr>
                 <td style="text-align: center;" colspan="10">
                     <a class="btn btn-small btn-primary" onclick="save();">保存并添加工作内容</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
+                    <a class="btn btn-small btn-danger" onclick="document.getElementById('Form').reset();">取消</a>
                 </td>
             </tr>
             <tr>

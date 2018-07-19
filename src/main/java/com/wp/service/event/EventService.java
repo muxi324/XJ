@@ -73,4 +73,9 @@ public class EventService {
     public PageData getEventByNameForPageData(String eventName) throws Exception {
         return (PageData) dao.findForObject("EventMapper.getEventByNameForPageData",eventName);
     }
+
+    public List<PageData> list1(Page page) throws Exception {
+        List<PageData> list = (List<PageData>) dao.findForList("EventMapper.list1",page);
+        return list;
+    }
 }

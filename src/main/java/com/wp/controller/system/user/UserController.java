@@ -11,6 +11,7 @@ import com.wp.service.system.role.RoleService;
 import com.wp.service.system.user.UserService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
@@ -164,16 +165,14 @@ public class UserController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		PrintUtil.print(pd.getString("USER_ID"));
 		if(pd.getString("PASSWORD") != null && !"".equals(pd.getString("PASSWORD"))){
 			pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
 		}
-		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){
+		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")) {
 			String factory_id =pd.getString("factory_id");
-			pd.put("id", factory_id);
-			pd = factoryService.findById(pd);
-			String factory = pd.getString("factory");
-			pd.put("factory", factory);
-			userService.editU(pd);}
+			userService.editU(pd);
+		}
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -187,6 +186,7 @@ public class UserController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		PrintUtil.print(pd.getString("USER_ID"));
 		
 		//顶部修改个人资料
 		String fx = pd.getString("fx");
@@ -263,10 +263,20 @@ public class UserController extends BaseController {
 					lastLoginEnd = lastLoginEnd+" 00:00:00";
 					pd.put("lastLoginEnd", lastLoginEnd);
 				}
-
+				String loginUserName = FactoryUtil.getLoginUserName();
+				if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+					pd.put("factory_id",FactoryUtil.getFactoryId());
+				}
 				page.setPd(pd);
 				List<PageData>	userList = userService.listPdPageUser(page);			//列出用户列表
 				List<Role> roleList = roleService.listAllERRoles();						//列出所有二级角色
+				for (PageData p : userList) {
+					String factoryId = p.getString("factory_id");
+					PageData find = new PageData();
+					find.put("id",factoryId);
+					String factoryName = factoryService.findById(find).getString("factory");
+					p.put("factory",factoryName);
+				}
 
 				mv.setViewName("system/user/user_list");
 				mv.addObject("userList", userList);

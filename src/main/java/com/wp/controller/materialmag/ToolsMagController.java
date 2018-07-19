@@ -6,6 +6,7 @@ import com.wp.service.materialmag.PartsMagService;
 import com.wp.service.materialmag.ToolsMagService;
 import com.wp.service.system.role.RoleService;
 import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -55,7 +56,10 @@ public class ToolsMagController extends BaseController {
             }
             String  description = pd.getString("description");
             pd.put("description", description);
-
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
             page.setPd(pd);
             List<PageData> varList = toolsMagService.list(page);	//列出${objectName}列表
             mv.setViewName("materialmag/tools_mag");
@@ -164,6 +168,7 @@ public class ToolsMagController extends BaseController {
                 pd.put("name",name);
                 pd.put("stock",num);
                 pd.put("material_id", ID);
+                pd.put("factory_id",FactoryUtil.getFactoryId());
                 toolsMagService.firstsave(pd);
                 pd.put("type",2 );	//添加工具种类配件
                 pd.put("material_name",name);

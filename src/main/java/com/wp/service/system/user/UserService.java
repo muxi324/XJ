@@ -24,7 +24,7 @@ public class UserService {
 	* 通过id获取数据
 	*/
 	public PageData findByUiId(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("UserXMapper.findByUiId", pd);
+		return (PageData)dao.findForObject("SysUserMapper.findByUiId", pd);
 	}
 	/*
 	* 通过loginname获取数据

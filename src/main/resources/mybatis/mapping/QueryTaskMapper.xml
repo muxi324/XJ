@@ -35,6 +35,9 @@
         <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
             and mission_condition = #{pd.mission_condition}
         </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
         order by id desc
     </select>
     <!-- 列表(全部) -->

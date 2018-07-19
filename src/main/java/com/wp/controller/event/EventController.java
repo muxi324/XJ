@@ -60,7 +60,7 @@ public class EventController extends BaseController{
                 String qrcode = p.getString("qrcode");
                 //二维码不存在补充二维码
                 if (StringUtils.isEmpty(qrcode)) {
-                    String qrContent = "事件名: " + p.getString("event_name") + "  具体位置: " + p.getString("instrument_place");
+                    String qrContent = "事件ID: " + p.getString("event_id") +" 事件名: " + p.getString("event_name") + "  所属车间: " + p.getString("workshop");
                     String encoderImgId = p.getString("event_name") + ".png";
                     try {
                         String filePath = "C:/apache-tomcat-8.5.23/webapps/qrupload/qrImg/" + encoderImgId;  //存放路径
@@ -136,7 +136,7 @@ public class EventController extends BaseController{
         pd.put("factory_id",FactoryUtil.getFactoryId());
         String eventName = eventService.getEventByName(pd.getString("event_name"));
         if (eventName == null || "".equals(eventName)) {
-            String qrContent = "事件名: " + pd.getString("event_name") + "具体位置: " + pd.getString("instrument_place");
+/*            String qrContent = "事件名: " + pd.getString("event_name") + "具体位置: " + pd.getString("instrument_place");
             String encoderImgId = pd.getString("event_name") + Tools.date2Str(new Date())  + ".png";
             try {
                 String filePath = "C:/apache-tomcat-8.5.23/webapps/qrupload/qrImg/" + encoderImgId;  //存放路径
@@ -144,7 +144,7 @@ public class EventController extends BaseController{
                 pd.put("qrcode",filePath);
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
             eventService.save(pd);
         } else {
             eventService.update(pd);

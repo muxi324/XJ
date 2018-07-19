@@ -159,7 +159,6 @@ public class WorkerController extends BaseController {
         mv.addObject("msg","success");
         mv.setViewName("save_result");
         return mv;
-
     }
     /**
      * 列表

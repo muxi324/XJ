@@ -14,7 +14,6 @@
         u.NUMBER,
         u.PHONE,
         u.workshop,
-        u.factory,
         u.factory_id,
         r.ROLE_ID,
         r.ROLE_NAME
@@ -44,6 +43,9 @@
         </if>
         <if test="pd.lastLoginEnd!=null and pd.lastLoginEnd!=''"><!-- 登录时间检索 -->
             and u.LAST_LOGIN &lt;= #{pd.lastLoginEnd}
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
         </if>
         order by u.LAST_LOGIN desc
     </select>
@@ -97,13 +99,39 @@
         EMAIL					= #{EMAIL},
         NUMBER					= #{NUMBER},
         PHONE					= #{PHONE},
-        workshop                = #{workshop}
+        workshop                = #{workshop},
+        factory_id              = #{factory_id}
         <if test="PASSWORD != null and PASSWORD != ''">
             ,PASSWORD				= #{PASSWORD}
         </if>
         where
         USER_ID = #{USER_ID}
     </update>
+
+    <!-- 通过user_id获取数据 -->
+    <select id="findByUiId" parameterType="pd" resultType="pd" useCache="false">
+        select
+        USER_ID,
+        USERNAME,
+        PASSWORD,
+        NAME,
+        RIGHTS,
+        ROLE_ID,
+        LAST_LOGIN,
+        IP,
+        STATUS,
+        BZ,
+        SKIN,
+        EMAIL,
+        NUMBER,
+        PHONE,
+        workshop,
+        factory_id
+        from
+        SYS_USER
+        where
+        USER_ID = #{USER_ID}
+    </select>
 
 
 

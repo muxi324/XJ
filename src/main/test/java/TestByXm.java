@@ -1,3 +1,5 @@
+import com.wp.service.system.user.UserService;
+import com.wp.util.PageData;
 import com.wp.util.PathUtil;
 import com.wp.util.PrintUtil;
 import com.wp.util.quartz.QuartzJobExample;
@@ -7,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.annotation.Resource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,6 +19,9 @@ import java.util.Date;
 public class TestByXm {
     private static String JOB_GROUP_NAME = "EXTJWEB_JOBGROUP_NAME";
     private static String TRIGGER_GROUP_NAME = "EXTJWEB_TRIGGERGROUP_NAME";
+
+    @Resource(name="userService")
+    private UserService userService;
 
     @Test
     public void testQurtz() throws ParseException {
@@ -40,5 +46,18 @@ public class TestByXm {
         String path = "C:/Users/mac/apache-tomcat-8.5.27/webapps/xunjian/uploadFiles/qrImg/挤出线监测4.png";
         int x = path.indexOf("/qrImg");
         System.out.println(path.substring(x,path.length()));
+    }
+
+    @Test
+    public void testUser() {
+        PageData pd = new PageData();
+        pd.put("USER_ID","a3f98b8a4a52491fba04e708a1514057");
+        try {
+            pd = userService.findByUiId(pd);
+            PrintUtil.print(pd.getString("USER_ID"));
+            PrintUtil.print(pd.getString("NAME"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -6,6 +6,7 @@ import com.wp.service.materialmag.PartsMagService;
 import com.wp.service.materialmag.ToolsMagService;
 import com.wp.service.system.role.RoleService;
 import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -58,7 +59,10 @@ public class PartsMagController extends BaseController {
             }
             String  description = pd.getString("description");
             pd.put("description", description);
-
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
             page.setPd(pd);
             List<PageData> varList = partsMagService.list(page);	//列出${objectName}列表
             mv.setViewName("materialmag/parts_mag");
@@ -166,6 +170,7 @@ public class PartsMagController extends BaseController {
                 pd.put("name",name);
                 pd.put("stock",num);
                 pd.put("material_id", ID);
+                pd.put("factory_id",FactoryUtil.getFactoryId());
                 toolsMagService.firstsave(pd);
                 pd.put("type",1);	//添加物资种类配件
                 pd.put("material_name",name);
@@ -203,6 +208,7 @@ public class PartsMagController extends BaseController {
         int num = Integer.parseInt(pd.getString("material_num"));
         int stock = stock1-num;
         pd.put("stock",stock);
+        pd.put("factory_id",FactoryUtil.getFactoryId());
         partsMagService.editStock(pd);
         pd.put("type",1 );	//添加物资种类配件
         String  name = pd.getString("material_name");

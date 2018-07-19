@@ -6,10 +6,8 @@ import com.wp.service.event.EventService;
 import com.wp.service.querytask.QueryTaskService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskSetService;
-import com.wp.util.Const;
-import com.wp.util.Jurisdiction;
-import com.wp.util.ObjectExcelView;
-import com.wp.util.PageData;
+import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -106,7 +104,10 @@ public class QueryTaskController extends BaseController {
                 }
                 String  mission_condition = pd.getString("status");
                 pd.put("mission_condition", mission_condition);
-
+                String loginUserName = FactoryUtil.getLoginUserName();
+                if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                    pd.put("factory_id",FactoryUtil.getFactoryId());
+                }
                 page.setPd(pd);
                 List<PageData> varList = queryTaskService.list(page);	//列出${objectName}列表
                 mv.setViewName("querytask/querytask");

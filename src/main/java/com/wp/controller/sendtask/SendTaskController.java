@@ -130,7 +130,8 @@ public class SendTaskController extends BaseController {
         if (StringUtils.isEmpty(pd.getString("time_dev"))) {
             pd.put("time_dev","0");
         }
-        sendTaskService.save(pd);
+        pd.put("factory_id",FactoryUtil.getFactoryId());
+        //sendTaskService.save(pd);
         if(pd.getString("id") != null){   //异常处理任务
             String missionType=pd.getString("mission_type");
             if(missionType.equals("维修任务") || missionType.equals("临时巡检任务") ){
@@ -179,6 +180,10 @@ public class SendTaskController extends BaseController {
         pd = this.getPageData();
         String myGroup = pd.getString("groupdata");
         pd.put("team", myGroup);
+        String loginUserName = FactoryUtil.getLoginUserName();
+        if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+            pd.put("factory_id",FactoryUtil.getFactoryId());
+        }
         List<PageData> list = workerService.listWorker(pd);
         System.out.println("======"+ JSONArray.fromObject(list)+"====");
         try {

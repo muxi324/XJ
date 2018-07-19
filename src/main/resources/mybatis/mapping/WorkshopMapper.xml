@@ -14,8 +14,8 @@
 
     <!-- 新增-->
     <insert id="save" parameterType="pd">
-        insert into workshop_principal_info(  name,phone,post,workshop,area,point,create_time)
-        values (  #{name}, #{phone}, #{post}, #{workshop} ,#{area},#{point},#{create_time} )
+        insert into workshop_principal_info(  name,phone,post,workshop,area,point,create_time,factory_id)
+        values (  #{name}, #{phone}, #{post}, #{workshop} ,#{area},#{point},#{create_time},#{factory_id} )
     </insert>
     <!-- 删除-->
     <delete id="delete" parameterType="pd">
@@ -67,6 +67,9 @@
             or
             post   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             )
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
         </if>
         order by id asc
     </select>

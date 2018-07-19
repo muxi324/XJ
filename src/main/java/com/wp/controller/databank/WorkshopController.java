@@ -6,6 +6,7 @@ import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.role.RoleService;
 
 import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -47,6 +48,7 @@ import java.util.*;
             pd = this.getPageData();
             // pd.put("id", "");	//ID
             pd.put("create_time",  Tools.date2Str(new Date()));	//添加时间
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             workshopService.save(pd);
             mv.addObject("msg","success");
             mv.setViewName("save_result");
@@ -94,6 +96,7 @@ import java.util.*;
             ModelAndView mv = this.getModelAndView();
             PageData pd = new PageData();
             pd = this.getPageData();
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             workshopService.edit(pd);
             mv.addObject("msg","success");
             mv.setViewName("save_result");
@@ -116,6 +119,10 @@ import java.util.*;
                     pd.put("enquiry", enquiry.trim());
                 }else {
                     pd.put("enquiry", "");
+                }
+                String loginUserName = FactoryUtil.getLoginUserName();
+                if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                    pd.put("factory_id",FactoryUtil.getFactoryId());
                 }
                 page.setPd(pd);
                 List<PageData> varList = workshopService.list(page);	//列出${objectName}列表

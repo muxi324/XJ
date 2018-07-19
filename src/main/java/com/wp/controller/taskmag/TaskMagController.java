@@ -12,6 +12,7 @@ import com.wp.service.taskmag.TaskMagService;
 import com.wp.service.taskmag.TaskSetService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -78,6 +79,10 @@ public class TaskMagController extends BaseController {
             }
             String  mission_condition = pd.getString("status");
             pd.put("mission_condition", mission_condition);
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
             page.setPd(pd);
             List<PageData> varList = taskMagService.list(page);	//列出${objectName}列表
             mv.setViewName("taskmag/task_list");
