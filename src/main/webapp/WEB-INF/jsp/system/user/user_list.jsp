@@ -68,6 +68,7 @@
 						<th>用户名</th>
 						<th>姓名</th>
 						<th>职位</th>
+						<th>班组</th>
 						<th>所属车间</th>
 						<th>所属厂</th>
 						<th><i class="icon-time hidden-phone"></i>最近登录</th>
@@ -95,6 +96,7 @@
 								<td>${user.NAME }</td>
 								<td>${user.ROLE_NAME }</td>
 								<td>${user.workshop}</td>
+								<td>${user.team}</td>
 								<td>${user.factory}</td>
 								<td>${user.LAST_LOGIN}</td>
 								<%--<td>${user.IP}</td>--%>

@@ -82,10 +82,16 @@ public class UserController extends BaseController {
 		//添加worker表字段
 		pd.put("name",pd.getString("NAME"));
 		pd.put("phone",pd.getString("PHONE"));
-		// TODO: 2018/6/25 转换role_id与role名称
-		//pd.put("post",pd.getString("ROLE_ID"));
+		pd.put("password","123");
+		String roleId = pd.getString("ROLE_ID");
+		String role = userService.findRoleById(roleId);
+		pd.put("post",role);
 		pd.put("add_time",Tools.date2Str(new Date()));
 		pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
+		String loginUserName = FactoryUtil.getLoginUserName();
+		if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+			pd.put("factory_id",FactoryUtil.getFactoryId());
+		}
 		userService.saveU(pd);
 		workerService.save(pd);
 		mv.addObject("msg","success");
@@ -170,7 +176,10 @@ public class UserController extends BaseController {
 			pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
 		}
 		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")) {
-			String factory_id =pd.getString("factory_id");
+			String loginUserName = FactoryUtil.getLoginUserName();
+			if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+				pd.put("factory_id",FactoryUtil.getFactoryId());
+			}
 			userService.editU(pd);
 		}
 		mv.addObject("msg","success");
@@ -207,6 +216,7 @@ public class UserController extends BaseController {
 		pd = userService.findByUiId(pd);							//根据ID读取
 		mv.setViewName("system/user/user_edit");
 		mv.addObject("msg", "editU");
+		pd.put("userName",FactoryUtil.getLoginUserName());
 		mv.addObject("pd", pd);
 		mv.addObject("roleList", roleList);
 		
@@ -231,6 +241,7 @@ public class UserController extends BaseController {
 				mv.addObject("factoryList",factoryList);
 				mv.setViewName("system/user/user_edit");
 				mv.addObject("msg", "saveU");
+				pd.put("userName",FactoryUtil.getLoginUserName());
 				mv.addObject("pd", pd);
 				mv.addObject("roleList", roleList);
 				return mv;

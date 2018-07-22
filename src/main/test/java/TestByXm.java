@@ -1,3 +1,4 @@
+import com.wp.controller.sendtask.SendPeriodTaskJob;
 import com.wp.service.system.user.UserService;
 import com.wp.util.PageData;
 import com.wp.util.PathUtil;
@@ -25,15 +26,16 @@ public class TestByXm {
 
     @Test
     public void testQurtz() throws ParseException {
-        String string = "2018-06-13 16:50:06";
-        String string1 = "2018-06-13 16:55:06";
+        String string = "2018-07-22 18:40:06";
+        String string1 = "2018-07-22 18:40:06";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date start = sdf.parse(string);
         Date end = sdf.parse(string1);
         String job_name = "动态任务调度";
-        System.out.println("【系统启动】开始(每1秒输出一次)...");
-        QuartzManager.addStartAndEndJob("wxmtest",JOB_GROUP_NAME,"WXMTEST",TRIGGER_GROUP_NAME,QuartzJobExample.class,start,end
-        ,null);
+        PageData pd = new PageData();
+        pd.put("mission_name","wcnmbd");
+        QuartzManager.addStartAndEndJob("wxmtest",JOB_GROUP_NAME,"WXMTEST",TRIGGER_GROUP_NAME, SendPeriodTaskJob.class,start,end
+        ,pd);
         try {
             Thread.sleep(10*60*1000);
         } catch (InterruptedException e) {

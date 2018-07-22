@@ -30,7 +30,7 @@ public class SendPeriodTaskJob implements Job {
                     "(mission_name,set_id,mission_type,mission_level,mission_source,period_start_time,period_end_time,time_dev,mission_condition,team,worker_name,worker_phone,set_name,mission_addition,send_time,cron,event,factory_id)"
                     +"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             st= conn.prepareStatement(sql);
-            st.setString(1, pd.getString("mission"));
+            st.setString(1, pd.getString("mission_name"));
             st.setString(2, pd.getString("set_id"));
             st.setString(3, pd.getString("mission_type"));
             st.setString(4, pd.getString("mission_level"));

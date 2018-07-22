@@ -15,6 +15,7 @@
         u.PHONE,
         u.workshop,
         u.factory_id,
+        u.team,
         r.ROLE_ID,
         r.ROLE_NAME
         from SYS_USER u, SYS_ROLE r
@@ -68,7 +69,8 @@
         NUMBER,
         PHONE,
         workshop,
-        factory_id
+        factory_id,
+        team
         ) values (
         #{USER_ID},
         #{USERNAME},
@@ -85,7 +87,8 @@
         #{NUMBER},
         #{PHONE},
         #{workshop},
-        #{factory_id}
+        #{factory_id},
+        #{team}
         )
     </insert>
 
@@ -100,7 +103,8 @@
         NUMBER					= #{NUMBER},
         PHONE					= #{PHONE},
         workshop                = #{workshop},
-        factory_id              = #{factory_id}
+        factory_id              = #{factory_id},
+        team                    = #{team}
         <if test="PASSWORD != null and PASSWORD != ''">
             ,PASSWORD				= #{PASSWORD}
         </if>
@@ -131,6 +135,10 @@
         SYS_USER
         where
         USER_ID = #{USER_ID}
+    </select>
+
+    <select id="findRoleById" resultType="java.lang.String">
+        select ROLE_NAME from sys_role where ROLE_ID = #{roleId}
     </select>
 
 

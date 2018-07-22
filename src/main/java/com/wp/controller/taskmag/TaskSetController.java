@@ -154,7 +154,12 @@ public class TaskSetController extends BaseController {
             for (int i = 0; i<arr.length; i++) {
                 list.add(arr[i]);
             }
-            List<PageData> varList = eventService.list(page);
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
+            page.setPd(pd);
+            List<PageData> varList = eventService.list1(page);
             mv.addObject("varList", varList);
             mv.addObject("eventIdList", list);
             mv.setViewName("taskmag/task_edit");

@@ -269,8 +269,11 @@
 				<input name="ROLE_ID" id="role_id" value="${pd.ROLE_ID }" type="hidden" />
 			</c:if>
 			<tr>
+				<td><input  type="text" name="team" id="team" value="${pd.team}" maxlength="150" placeholder="这里输入班组" title=""/></td>
+			</tr>
+			<c:if test="${pd.userName == 'admin'}">
+			<tr>
 				<td>
-
 					<select   name="factory_id" id="factory_id" value="${pd.factory_id}"  class="chzn-select" data-placeholder="请选择工厂" >
 						<option value=""></option>
 						<c:forEach items="${factoryList}" var="f">
@@ -279,6 +282,7 @@
 					</select>
 				</td>
 			</tr>
+			</c:if>
 			<tr>
 				<td>
 					<select   name="workshop" id="workshop" value="${pd.workshop}"  class="chzn-select" data-placeholder="请选择车间" >

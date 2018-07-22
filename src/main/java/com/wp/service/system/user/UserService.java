@@ -124,5 +124,8 @@ public class UserService {
 		return (User) dao.findForObject("UserMapper.getUserAndRoleById", USER_ID);
 	}
 
-	
+
+    public String findRoleById(String roleId) throws Exception {
+		return (String) dao.findForObject("SysUserMapper.findRoleById",roleId);
+    }
 }
