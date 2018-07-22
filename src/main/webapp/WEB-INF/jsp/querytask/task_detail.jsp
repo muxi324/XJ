@@ -145,7 +145,7 @@
                         <td style="width: 60px;" class="center">${var.check_point}</td>
                         <td style="width: 100px;" class="center">${var.event_name}</td>
                         <td style="width: 60px;" class="center">${var.instrument_place}</td>
-                        <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${missionId}">查看详情</a></td>
+                        <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${id}">查看详情</a></td>
                     </tr>
                 </c:forEach>
             </c:if>

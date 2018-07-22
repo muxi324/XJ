@@ -90,6 +90,7 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">请选择任务执行的周期:</td>
                 <td>
                 <select name="cron" id="cron" class="form-control">
+                    <option value="">请选择</option>
                     <option value="0 0 8 * * ?">每一天(每天八点下发任务)</option>
                     <!--<option value="*/10 * * * * ?">每一天(每天八点下发任务)</option>-->
                     <option value="0 0 8,14 * * ?">每半天（早八点，下午两点下发任务）</option>

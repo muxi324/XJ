@@ -26,6 +26,8 @@
 <form action="taskset/${msg}.do" id="Form"   method="post">
     <input type="hidden" name="set_id" id="set_id" value="${pd.set_id }"/>
     <input type="hidden" name="select_eventId" id="select_eventId"/>
+    <input type="hidden" name="material" id="material" value="0"/>   <%--配件--%>
+    <input type="hidden" name="detail_info" id="detail_info"value="0"/>  <%--工具--%>
     <div id="zhongxin">
         <table  class="table table-striped table-bordered table-hover">
             <tr>

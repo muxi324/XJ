@@ -16,8 +16,8 @@
     <insert id="save" parameterType="pd">
        insert into set_mission(
         mission,mission_type,mission_level,mission_source,cover_fields,mission_description,cycle_time,authen_method,auditor_level,auditor,
-       task_addition,set_name,set_time,detail_info,event,factory_id) values ( #{mission},#{mission_type}, #{mission_level}, #{mission_source},#{cover_fields},
-        #{mission_description}, #{cycle_time},#{authen_method},#{auditor_level},#{auditor},#{task_addition},#{set_name}, #{set_time},#{detail_info},#{select_eventId},
+       task_addition,set_name,set_time,detail_info,material,event,factory_id) values ( #{mission},#{mission_type}, #{mission_level}, #{mission_source},#{cover_fields},
+        #{mission_description}, #{cycle_time},#{authen_method},#{auditor_level},#{auditor},#{task_addition},#{set_name}, #{set_time},#{detail_info},#{material},#{select_eventId},
         #{factory_id})
     </insert>
 
