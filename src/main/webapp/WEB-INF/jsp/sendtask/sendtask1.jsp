@@ -75,15 +75,15 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="mission_set_start_time" id="mission_set_start_time" value="${pd.mission_set_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="${pd.mission_set_start_time}" maxlength="200" title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务结束时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="mission_set_finish_time" id="mission_set_finish_time" value="${pd.mission_set_finish_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_finish_time" id="mission_set_finish_time" value="${pd.mission_set_finish_time}" maxlength="200"  title=""/></td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
-                <td><input style="width:90%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
+                <td><input style="width:30%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
@@ -92,7 +92,7 @@
                     <option value="指纹">指纹</option>
                     <option value="签名">签名</option>
                 </select></td>
-            </tr>
+            </tr>--%>
           <%--  <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核级别</td>
                 <td><select name="auditor_level" id="auditor_level" class="form-control" value="${pd.auditor_level}" >
@@ -170,7 +170,7 @@
 <script src="static/js/ace-elements.min.js"></script>
 <script src="static/js/ace.min.js"></script>
 <script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
-<script type="text/javascript" src="static/js/bootstrap-datetimepicker.min.js"></script><!-- 日期框 -->
+<script type="text/javascript" src="static/laydate/laydate.js"></script>
 
 <script type="text/javascript">
     $(top.hangge());
@@ -182,7 +182,31 @@
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
         //日期框
-        $('.datetimepicker').datetimepicker({autoclose:true});
+        var start = {
+            elem: '#mission_set_start_time',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: laydate.now(0,"YYYY-MM-DD hh:mm:ss"), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+            }
+        };
+        var end = {
+            elem: '#mission_set_finish_time',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            //  min: laydate.now(),
+            max: '2099-06-16 23:59:59',
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+        laydate.skin('danlan');
 
     });
 

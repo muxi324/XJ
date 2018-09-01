@@ -75,15 +75,15 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="mission_set_start_time" id="mission_set_start_time" value="${pd.mission_set_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="${pd.mission_set_start_time}" maxlength="200"  title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务结束时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="mission_set_finish_time" id="mission_set_finish_time" value="${pd.mission_set_finish_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_finish_time" id="mission_set_finish_time" value="${pd.mission_set_finish_time}" maxlength="200"  title=""/></td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
-                <td><input style="width:90%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
+                <td><input  type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
@@ -92,7 +92,7 @@
                     <option value="指纹">指纹</option>
                     <option value="签名">签名</option>
                 </select></td>
-            </tr>
+            </tr>--%>
  <%--           <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核级别</td>
                 <td><select name="auditor_level" id="auditor_level" class="form-control" value="${pd.auditor_level}" >
@@ -157,7 +157,7 @@
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常工作内容:</td>
                         <td><input style="width:90%;" type="text" name="content" id="content" value="${pd.content}" maxlength="200"  title=""/></td>
                     </tr>
-                    <tr>
+                   <%-- <tr>
                         <td style="width:140px;text-align: right;padding-top: 13px;">下次巡检是否关注:</td>
                         <td>
                             <select name="attention" id="attention" class="form-control" value="${pd.attention}" >
@@ -165,10 +165,24 @@
                                 <option value="0">否</option>
                             </select>
                         </td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常照片:</td>
-                        <td><img style="height:250px" src="/imgFile/${pd.pic}" width="210"></td>
+                        <%--<td><img style="height:250px" src="/imgFile/${pd.pic}" width="210"></td>--%>
+                        <td><div id="uploader-demo">
+                                <!--用来存放item-->
+                                <div id="fileList" class="uploader-list">
+                                    <c:if test="${pd != null && pd.pic != '' && pd.pic != null }">
+                                        <a href="/imgFile/${pd.pic}" target="_blank"><img src="/imgFile/${pd.pic}" width="210"/></a>
+                                        <div class="file-panel">
+                                            <a class="btn btn-mini btn-cancel" onclick="removeFile();">删除</a>
+                                        </div>
+                                    </c:if>
+                                </div>
+                                <input type="hidden" name="exp_pic" id="exp_pic" value="${pd.pic}" />
+                                <div id="filePicker" >选择图片</div>
+                            </div>
+                        </td>
                     </tr>
                 </table>
          <%--  <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
@@ -205,6 +219,7 @@
 <script src="static/js/ace-elements.min.js"></script>
 <script src="static/js/ace.min.js"></script>
 <script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
+<script type="text/javascript" src="static/js/moment-with-locales.min.js"></script>
 <script type="text/javascript" src="static/js/bootstrap-datetimepicker.min.js"></script><!-- 日期框 -->
 <script type="text/javascript" src="plugins/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="plugins/webuploader/upload.js"></script>
@@ -213,17 +228,38 @@
     $(top.hangge());
 
     $(function() {
-
         //单选框
         $(".chzn-select").chosen();
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
         //日期框
-        $('.datetimepicker').datetimepicker({autoclose:true});
+        var start = {
+            elem: '#mission_set_start_time',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: laydate.now(0,"YYYY-MM-DD hh:mm:ss"), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+            }
+        };
+        var end = {
+            elem: '#mission_set_finish_time',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            //  min: laydate.now(),
+            max: '2099-06-16 23:59:59',
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+        laydate.skin('danlan');
 
     });
-
-
     //保存
     function save(){
         if($("#worker_name").val()==""){
@@ -347,6 +383,97 @@
             diag.close();
         };
         diag.show();
+    }
+
+    // 初始化Web Uploader
+    var uploader = WebUploader.create({
+        // 选完文件后，是否自动上传。
+        auto: true,
+        // swf文件路径
+        swf: 'plugins/webuploader/Uploader.swf',
+        // 文件接收服务端。
+        server: 'house/uploade.do',
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: {
+            id:'#filePicker',
+            multiple:false
+        },
+        //只允许上传一个图片
+        fileNumLimit:1,
+        // 只允许选择图片文件。
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+
+    // 文件上传成功
+    uploader.on( 'uploadSuccess', function( file,reponse ) {
+        $("#exp_pic").val(reponse._raw);
+    });
+
+    // 文件上传失败，显示上传出错。
+    uploader.on( 'uploadError', function( file ) {
+        alert("失败");
+    });
+
+    // 当有文件添加进来的时候
+    uploader.on( 'fileQueued', function( file ) {
+        $("#fileList").empty();
+        var $li = $(
+                '<div id="' + file.id + '" class="file-item thumbnail">' +
+                '<img>' +
+                '<div class="info">' + file.name + '</div>' +
+                '</div>'
+            ),
+            $btns = $('<div class="file-panel">' +
+                '<a class="btn btn-mini btn-cancel">删除</a>' +
+                '</div>').appendTo( $li ),
+            $img = $li.find('img');
+
+
+        // $list为容器jQuery实例
+        $("#fileList").append( $li );
+        $btns.on( 'click', 'a', function(){
+            removeFile(file);
+        });
+
+        // 创建缩略图
+        // 如果为非图片文件，可以不用调用此方法。
+        uploader.makeThumb( file, function( error, src ) {
+            if ( error ) {
+                $img.replaceWith('<span>不能预览</span>');
+                return;
+            }
+            $img.attr( 'src', src );
+        }, 100, 100 );
+    });
+
+    // 负责view的销毁
+    function removeFile(file) {
+        //view的显示删除
+        if(typeof(file)!="undefined"){
+            uploader.removeFile( file );
+        }
+
+        $("#fileList").empty();
+        var exp_pic = $("#exp_pic").val();
+        var exp_id = $("#exceptionId").val();
+        $("#exp_pic").val("");
+        //后台删除文件
+        $.ajax({
+            url:'sendtask/deltp.do?exp_pic='+ exp_pic+'&id='+exp_id,
+            type:'POST',
+            async:false,
+            success:function(result){
+                if(result=="success"){
+                    alert("删除成功!");
+                    //document.location.reload();
+                }
+            }
+        });
     }
 
 

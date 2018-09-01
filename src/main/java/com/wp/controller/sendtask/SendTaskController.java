@@ -38,7 +38,7 @@ import java.util.*;
 @Controller
 @RequestMapping(value="/sendtask")
 public class SendTaskController extends BaseController {
-   // String menuUrl = "sendtask/goSendTask.do"; //菜单地址(权限用)
+    String menuUrl = "sendtask/sendTask.do"; //菜单地址(权限用)
     @Resource(name = "sendTaskService")
     private SendTaskService sendTaskService;
     @Resource(name = "workerService")
@@ -115,11 +115,11 @@ public class SendTaskController extends BaseController {
     }
 
     /**
-     * 发送任务
+     * 发送周期任务
      */
-    @RequestMapping(value="/sendTask")
+    @RequestMapping(value="/sendPeriodTask")
     @ResponseBody
-    public String save() throws Exception{
+    public String sendPeriodTask() throws Exception{
        // if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;}
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
@@ -131,22 +131,10 @@ public class SendTaskController extends BaseController {
             pd.put("time_dev","0");
         }
         pd.put("factory_id",FactoryUtil.getFactoryId());
-        //sendTaskService.save(pd);
-        if(pd.getString("id") != null){   //异常处理任务
-            String missionType=pd.getString("mission_type");
-            if(missionType.equals("维修任务") || missionType.equals("临时巡检任务") ){
-                String exceptionId =pd.getString("id");
-                pd.put("id",exceptionId);
-                pd.put("state",2);
-                exceptionService.editState(pd);  //修改异常状态
-            }
-            String result = "下发任务成功！";
-            return result;
-        }
+
         /*if(pd.getString("mission_condition").equals(2)){   //处理拒单重发任务修改拒单状态
                 taskMagService.refuse(pd);
             }*/
-
 
         //周期任务
         if (StringUtils.isNotEmpty(pd.getString("cron"))) {
@@ -160,18 +148,53 @@ public class SendTaskController extends BaseController {
             Date endTime = sdf.parse(pd.getString("period_end_time"));
             QuartzManager.addStartAndEndJob("xujian_start"+pd.getString("send_time"),"xujian_start","xujian_start"+pd.getString("send_time"),"xujian_start",
                     SendPeriodTaskJob.class,startTime,endTime,pd);
-        } else {//非周期任务或定时任务
-            sendTaskService.save(pd);
-            String phonenumber = pd.getString("worker_phone");   //发送短信提醒
-            String Content = "您有一条新任务，请注意查收。";
-            SendMessage.sendMessage(phonenumber, Content);
         }
+        sendTaskService.save(pd);
+        String result = "下发任务成功！";
+        return result;
+    }
+
+    /**
+     * 发送临时任务
+     */
+    @RequestMapping(value="/sendTask")
+    @ResponseBody
+    public String save() throws Exception{
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;}
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
+        pd.put("mission_condition", 1);
+        pd.put("set_name",getUserName());
+        if (StringUtils.isEmpty(pd.getString("time_dev"))) {
+            pd.put("time_dev","0");
+        }
+        pd.put("factory_id",FactoryUtil.getFactoryId());
+        if(StringUtils.isNotEmpty(pd.getString("id"))){   //异常处理任务
+            String missionType=pd.getString("mission_type");
+            if(missionType.equals("维修任务") || missionType.equals("临时巡检任务") ){
+                String exceptionId =pd.getString("id");
+                pd.put("id",exceptionId);
+                pd.put("state",2);
+                exceptionService.editState(pd);  //修改异常状态
+            }
+        }
+        /*if(pd.getString("mission_condition").equals(2)){   //处理拒单重发任务修改拒单状态
+                taskMagService.refuse(pd);
+            }*/
+
+        sendTaskService.save(pd);
+        String phonenumber = pd.getString("worker_phone");   //发送短信提醒
+        String Content = "您有一条新任务，请注意查收。";
+        SendMessage.sendMessage(phonenumber, Content);
         String result = "下发任务成功！";
         return result;
     }
 
 
-//选择员工
+
+    //选择员工
     @RequestMapping(value="/groupchoose")
     public void goGroup(HttpServletRequest request, HttpServletResponse response) throws Exception{
         System.out.println("跳转进来了");
@@ -231,11 +254,11 @@ public class SendTaskController extends BaseController {
         try{
             PageData pd = new PageData();
             pd = this.getPageData();
-            String mission_id = pd.getString("mission_id");
-            String lock_pic = pd.getString("lock_pic");													 		//图片路径
-            DelAllFile.delFolder(PathUtil.getClasspath()+ Const.FILEPATHIMG + lock_pic); 	//删除图片
+            String id = pd.getString("id");
+            String exp_pic = pd.getString("exp_pic");													 		//图片路径
+            DelAllFile.delFolder(PathUtil.getClasspath()+ Const.FILEPATHIMG + exp_pic); 	//删除图片
             pd.put("lock_pic", "");
-            if(mission_id != null){
+            if(id != null){
                 sendTaskService.editPic(pd);														//删除数据中图片数据
             }
             out.write("success");

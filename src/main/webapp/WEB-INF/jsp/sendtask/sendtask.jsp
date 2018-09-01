@@ -18,10 +18,10 @@
 <head>
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
     <%@ include file="../system/admin/top.jsp"%>
-    <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css" /><!-- 日期框 -->
+    <%--<link rel="stylesheet" href="static/laydate/need/laydate.css" /><!-- 日期框 -->--%>
 </head>
 <body>
-<form action="sendtask/sendTask.do" id="Form"   method="post">
+<form action="sendtask/sendPeriodTask.do" id="Form"   method="post">
     <input type="hidden" name="set_id" id="set_id" value="${pd.set_id }"/>
     <input type="hidden" name="event" id="event" value="${pd.event }"/>
     <input type="hidden" name="mission_condition" id="mission_condition" value="${pd.mission_condition }"/>
@@ -99,16 +99,16 @@
             </tr>
             <tr id="s1" hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">开始时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="period_start_time" id="period_start_time" value="${pd.period_start_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="period_start_time" id="period_start_time" value="${pd.period_start_time}"  title=""/></td>
             </tr>
             <tr id="s2" hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">结束时间:</td>
-                <td><input style="width:90%;" type="text" class="datetimepicker" name="period_end_time" id="period_end_time" value="${pd.period_end_time}" maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="period_end_time" id="period_end_time" value="${pd.period_end_time}"   title=""/></td>
             </tr>
-            <tr id="s3" hidden="hidden">
+            <%--<tr id="s3" hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
-                <td><input style="width:90%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
-            </tr>
+                <td><input style="width:30%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
+            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
                 <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
@@ -130,7 +130,7 @@
 <script src="static/js/ace-elements.min.js"></script>
 <script src="static/js/ace.min.js"></script>
 <script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
-<script type="text/javascript" src="static/js/bootstrap-datetimepicker.min.js"></script><!-- 日期框 -->
+<script type="text/javascript" src="static/laydate/laydate.js"></script>
 
 
 <script type="text/javascript">
@@ -144,7 +144,31 @@
         $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
         //日期框
-        $('.datetimepicker').datetimepicker({autoclose:true});//当在日期表中选择完时间后日期表就会自动关闭
+        var start = {
+            elem: '#period_start_time',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: laydate.now(0,"YYYY-MM-DD hh:mm:ss"), //设定最小日期为当前日期
+            max: '2099-06-16 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+            }
+        };
+        var end = {
+            elem: '#period_end_time',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            //  min: laydate.now(),
+            max: '2099-06-16 23:59:59',
+            istime: true,
+            istoday: false,
+            choose: function(datas){
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+        laydate.skin('danlan');
     });
 
 
@@ -191,7 +215,7 @@
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
-            url: "<%=basePath%>sendtask/sendTask.do" ,//url
+            url: "<%=basePath%>sendtask/sendPeriodTask.do" ,//url
             data: $('#Form').serialize(),
             success: function (result) {
                 //打印服务端返回的数据(调试用)

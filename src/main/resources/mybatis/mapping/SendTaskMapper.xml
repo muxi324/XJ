@@ -17,12 +17,11 @@
 
     <!-- 修改图片 -->
     <update id="editpic" parameterType="pd">
-        update  mission_pic
+        update  expection
         set
-        
-        pic    = #{lock_pic}
+        pic    = #{exp_pic}
         where
-        mission_id = #{mission_id}
+        id = #{id}
     </update>
 
 

@@ -11,6 +11,12 @@ public class FactoryUtil {
         return (String) session.getAttribute(Const.FACTORY_ID);
     }
 
+    public static String getWorkshopId() {
+        Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
+        Session session = currentUser.getSession();
+        return (String) session.getAttribute(Const.WORKSHOP_ID);
+    }
+
     public static String getLoginUserName() {
         Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
         Session session = currentUser.getSession();

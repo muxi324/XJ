@@ -31,10 +31,10 @@ import java.util.Map;
 @RequestMapping(value = "/exception")
 public class ExceptionController extends BaseController{
 
-    String menuUrl = "exception/exceptionInfo.do"; //菜单地址(权限用)
+    String menuUrl = "exception/exceptionList.do"; //菜单地址(权限用)
     @Resource(name="exceptionService")
     private ExceptionService exceptionService;
-
+    //   未处理异常
     @RequestMapping("/exceptionInfo")
     public ModelAndView getExceptionInfo(Page page) {
         logBefore(logger, "异常列表");
@@ -68,6 +68,49 @@ public class ExceptionController extends BaseController{
             }
             page.setPd(pd);
             List<PageData> exceptionList = exceptionService.listException(page);
+            mv.setViewName("exception/exceptionInfo");
+            mv.addObject("exceptionList", exceptionList);
+            mv.addObject("pd", pd);
+            mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
+        } catch (Exception e) {
+            logger.error(e.toString(), e);
+        }
+        return mv;
+    }
+//    所有异常
+    @RequestMapping("/exceptionList")
+    public ModelAndView getExceptionList(Page page) {
+        logBefore(logger, "异常列表");
+        if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
+        ModelAndView mv = this.getModelAndView();
+        PageData pd = new PageData();
+        try {
+            pd = this.getPageData();
+            String  enquiry = pd.getString("enquiry");
+            if(null != enquiry && !"".equals(enquiry)){
+                pd.put("enquiry", enquiry.trim());
+            }else {
+                pd.put("enquiry", "");
+            }
+            String sendTimeStart = pd.getString("reportTimeStart");
+            String sendTimeEnd = pd.getString("reportTimeEnd");
+
+            if(sendTimeStart != null && !"".equals(sendTimeStart)){
+                sendTimeStart = sendTimeStart+" 00:00:00";
+                pd.put("reportTimeStart", sendTimeStart);
+            }
+            if(sendTimeEnd != null && !"".equals(sendTimeEnd)){
+                sendTimeEnd = sendTimeEnd+" 00:00:00";
+                pd.put("reportTimeEnd", sendTimeEnd);
+            }
+            String  level = pd.getString("level");
+            pd.put("level", level);
+            String loginUserName = FactoryUtil.getLoginUserName();
+            if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                pd.put("factory_id",FactoryUtil.getFactoryId());
+            }
+            page.setPd(pd);
+            List<PageData> exceptionList = exceptionService.listAllException(page);
             mv.setViewName("exception/exceptionInfo");
             mv.addObject("exceptionList", exceptionList);
             mv.addObject("pd", pd);

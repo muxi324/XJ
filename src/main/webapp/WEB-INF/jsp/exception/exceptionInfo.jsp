@@ -24,13 +24,13 @@
     <div id="page-content" class="clearfix">
         <div class="row-fluid">
             <!-- 检索  -->
-            <form action="exception/exceptionInfo.do" method="post" name="Form" id="Form">
+            <form action="exception/exceptionList.do" method="post" name="Form" id="Form">
                 <table>
                     <tr>
                         <td>
 						<span class="input-icon">
 							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="${pd.enquiry }" placeholder="这里输入内容" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<i id="nav-input-icon" class="icon-search"></i>
 						</span>
                         </td>
                         <td><input class="span10 date-picker" name="reportTimeStart" id="reportTimeStart" value="${pd.reportTimeStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>

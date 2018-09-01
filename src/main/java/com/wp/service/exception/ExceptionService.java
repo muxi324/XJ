@@ -17,6 +17,10 @@ public class ExceptionService {
         return (List<PageData>)dao.findForList("ExceptionMapper.listException", page);
     }
 
+    public List<PageData> listAllException(Page page)throws Exception{
+        return (List<PageData>)dao.findForList("ExceptionMapper.listAllException", page);
+    }
+
     public PageData findById(PageData pd)throws Exception{
         return (PageData)dao.findForObject("ExceptionMapper.findExceptionById", pd);
     }
