@@ -2,12 +2,10 @@ package com.wp.controller.databank;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
-import com.wp.entity.databank.Factory;
 import com.wp.service.databank.FactoryService;
 import com.wp.service.databank.TeamService;
 import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.role.RoleService;
-
 import com.wp.util.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -17,11 +15,9 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -29,18 +25,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
- * Created by wp on 2018/3/14.
+ * Created by wp on 2018/9/3.
  */
     @Controller
-    @RequestMapping(value="/workshop")
-    public class WorkshopController extends BaseController {
-        String menuUrl = "workshop/list.do"; //菜单地址(权限用)
+    @RequestMapping(value="/team")
+    public class TeamController extends BaseController {
+        String menuUrl = "team/listTeam.do"; //菜单地址(权限用)
+        @Resource(name="teamService")
+        private TeamService teamService;
         @Resource(name="factoryService")
         private FactoryService factoryService;
         @Resource(name="workshopService")
         private WorkshopService workshopService;
-        @Resource(name="teamService")
-        private TeamService teamService;
         @Resource(name="roleService")
         private RoleService roleService;
 
@@ -55,37 +51,27 @@ import java.util.*;
             pd = this.getPageData();
             // pd.put("id", "");	//ID
             pd.put("create_time",  Tools.date2Str(new Date()));	//添加时间
+            pd.put("workshop_id",FactoryUtil.getWorkshopId());
             pd.put("factory_id",FactoryUtil.getFactoryId());
-            workshopService.save(pd);
+            teamService.save(pd);
             mv.addObject("msg","success");
             mv.setViewName("save_result");
             return mv;
         }
-        //    上传图片
-        @RequestMapping(value="/uploade")
-        @ResponseBody
-        public String uploade(HttpServletRequest request,
-                              @RequestParam(value = "file", required = false) MultipartFile file) {
-            String  ffile = DateUtil.getDays(), fileName = "";
-            if (null != file && !file.isEmpty()) {
-                String filePath = PathUtil.getClasspath() + Const.FILEPATHIMG + ffile;		//文件上传路径
-                fileName = FileUpload.fileUp(file, filePath, this.get32UUID());				//执行上传
-            }
-            return ffile + "/" + fileName;
-        }
+
 
 
         /**
          * 删除
          */
-        @RequestMapping(value="/delete")
+        @RequestMapping(value="/deleteTeam")
         public void delete(PrintWriter out){
-            logBefore(logger, "删除车间");
+            logBefore(logger, "删除班组");
             if(!Jurisdiction.buttonJurisdiction(menuUrl, "del")){return;} //校验权限
             PageData pd = new PageData();
             try{
                 pd = this.getPageData();
-                workshopService.delete(pd);
+                teamService.delete(pd);
                 out.write("success");
                 out.close();
             } catch(Exception e){
@@ -96,15 +82,16 @@ import java.util.*;
         /**
          * 修改
          */
-        @RequestMapping(value="/edit")
+        @RequestMapping(value="/editTeam")
         public ModelAndView edit() throws Exception{
-            logBefore(logger, "修改车间信息");
+            logBefore(logger, "修改班组信息");
             if(!Jurisdiction.buttonJurisdiction(menuUrl, "edit")){return null;} //校验权限
             ModelAndView mv = this.getModelAndView();
             PageData pd = new PageData();
             pd = this.getPageData();
             pd.put("factory_id",FactoryUtil.getFactoryId());
-            workshopService.edit(pd);
+            pd.put("workshop_id",FactoryUtil.getWorkshopId());
+            teamService.edit(pd);
             mv.addObject("msg","success");
             mv.setViewName("save_result");
             return mv;
@@ -113,10 +100,10 @@ import java.util.*;
         /**
          * 列表
          */
-        @RequestMapping(value="/list")
-        public ModelAndView list(Page page){
-            logBefore(logger, "车间列表");
-            //if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
+        @RequestMapping(value="/listTeam")
+        public ModelAndView listTeam(Page page){
+            logBefore(logger, "班组列表");
+            if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
             ModelAndView mv = this.getModelAndView();
             PageData pd = new PageData();
             try{
@@ -131,9 +118,12 @@ import java.util.*;
                 if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                     pd.put("factory_id",FactoryUtil.getFactoryId());
                 }
+                if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                    pd.put("workshop_id",FactoryUtil.getWorkshopId());
+                }
                 page.setPd(pd);
-                List<PageData> varList = workshopService.list(page);	//列出${objectName}列表
-                mv.setViewName("databank/workshop");
+                List<PageData> varList = teamService.list(page);	//列出${objectName}列表
+                mv.setViewName("databank/team");
                 mv.addObject("varList", varList);
                 mv.addObject("pd", pd);
                 mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
@@ -145,9 +135,9 @@ import java.util.*;
         /**
          * 去新增页面
          */
-        @RequestMapping(value="/goAdd")
+        @RequestMapping(value="/goAddTeam")
         public ModelAndView goAdd(){
-            logBefore(logger, "去新增车间页面");
+            logBefore(logger, "去新增班组页面");
             ModelAndView mv = this.getModelAndView();
             PageData pd = new PageData();
             pd = this.getPageData();
@@ -157,7 +147,14 @@ import java.util.*;
                 factory.put("id",factory_id);
                 String factoryName = factoryService.findById(factory).getString("factory");
                 pd.put("factory",factoryName);
-                mv.setViewName("databank/workshop_edit");
+                String workshop_id = FactoryUtil.getWorkshopId();
+                if(StringUtils.isNotEmpty(workshop_id)) {
+                    PageData workshop = new PageData();
+                    workshop.put("id", workshop_id);
+                    String workshopName = workshopService.findById(workshop).getString("workshop");
+                    pd.put("workshop", workshopName);
+                }
+                mv.setViewName("databank/team_edit");
                 mv.addObject("msg", "save");
                 mv.addObject("pd", pd);
             } catch (Exception e) {
@@ -169,20 +166,27 @@ import java.util.*;
         /**
          * 去修改页面
          */
-        @RequestMapping(value="/goEdit")
+        @RequestMapping(value="/goEditTeam")
         public ModelAndView goEdit(){
-            logBefore(logger, "去修改车间页面");
+            logBefore(logger, "去修改班组页面");
             ModelAndView mv = this.getModelAndView();
             PageData pd = new PageData();
             pd = this.getPageData();
             try {
-                pd = workshopService.findById(pd);	//根据ID读取
+                pd = teamService.findById(pd);	//根据ID读取
                 String factory_id = FactoryUtil.getFactoryId();
+                String workshop_id = FactoryUtil.getWorkshopId();
                 PageData factory = new PageData();
                 factory.put("id",factory_id);
                 String factoryName = factoryService.findById(factory).getString("factory");
+                if(StringUtils.isNotEmpty(workshop_id)){
+                    PageData workshop = new PageData();
+                    workshop.put("id",workshop_id);
+                    String workshopName = workshopService.findById(workshop).getString("workshop");
+                    pd.put("workshop",workshopName);
+                }
                 pd.put("factory",factoryName);
-                mv.setViewName("databank/workshop_edit");
+                mv.setViewName("databank/team_edit");
                 mv.addObject("msg", "edit");
                 mv.addObject("pd", pd);
             } catch (Exception e) {
@@ -191,35 +195,27 @@ import java.util.*;
             return mv;
         }
 
-    @RequestMapping(value="/goAddTeam")
-    public ModelAndView goAddTeam(){
-        logBefore(logger, "去包含班组页面");
-        ModelAndView mv = this.getModelAndView();
-        PageData pd = new PageData();
-        pd = this.getPageData();
-        try {
-           /* pd = workshopService.findById(pd);	//根据ID读取
-            String workshop = pd.getString("workshop");
-            pd.put("workshop",workshop);
-            String factory_id = FactoryUtil.getFactoryId();
-            PageData factory = new PageData();
-            factory.put("id",factory_id);
-            String factoryName = factoryService.findById(factory).getString("factory");
-            pd.put("factory",factoryName);*/
-            List<PageData> varList = teamService.findTeamByW(pd);
-            mv.setViewName("databank/team");
-            mv.addObject("varList", varList);
-            mv.addObject("pd", pd);
-        } catch (Exception e) {
-            logger.error(e.toString(), e);
+        @RequestMapping(value="/teamListByWId")
+        @ResponseBody
+        public ModelAndView teamListByWId(String workshop_id){
+            ModelAndView mv = this.getModelAndView();
+            PageData pd = new PageData();
+            List<PageData> teams = new ArrayList<PageData>();
+            pd.put("workshop_id", workshop_id);
+            try{
+                teams = teamService.findTeamByW(pd);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            mv.addObject("teamList",teams);
+            mv.setViewName("system/user/user_add");
+            return mv;
         }
-        return mv;
-    }
 
-
-        /**
-         * 批量删除
-         */
+    /**
+     * 批量删除
+     */
         @RequestMapping(value="/deleteAll")
         @ResponseBody
         public Object deleteAll() {
@@ -233,7 +229,7 @@ import java.util.*;
                 String DATA_IDS = pd.getString("DATA_IDS");
                 if(null != DATA_IDS && !"".equals(DATA_IDS)){
                     String ArrayDATA_IDS[] = DATA_IDS.split(",");
-                    workshopService.deleteAll(ArrayDATA_IDS);
+                    teamService.deleteAll(ArrayDATA_IDS);
                     pd.put("msg", "ok");
                 }else{
                     pd.put("msg", "no");
@@ -252,7 +248,7 @@ import java.util.*;
          * 导出到excel
          * @return
          */
-        @RequestMapping(value="/excel")
+       /* @RequestMapping(value="/excel")
         public ModelAndView exportExcel(){
             logBefore(logger, "导出车间到excel");
             if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")) {return null;}
@@ -286,7 +282,7 @@ import java.util.*;
                 logger.error(e.toString(), e);
             }
             return mv;
-        }
+        }*/
 
         /**
          * 打开上传EXCEL页面
@@ -311,7 +307,7 @@ import java.util.*;
         /**
          * 从EXCEL导入到数据库
          */
-        @SuppressWarnings("unused")
+       /* @SuppressWarnings("unused")
         @RequestMapping(value="/readExcel",method = RequestMethod.POST)
         public ModelAndView readExcel(
                 @RequestParam(value="excel",required=false) MultipartFile file
@@ -329,15 +325,15 @@ import java.util.*;
                     pd.put("workshop", pds.getString("var0"));
                     pd.put("name", pds.getString("var1"));
                     pd.put("phone", pds.getString("var2"));
-                  /*  pd.put("post", pds.getString("var3"));
-                    pd.put("create_time", pds.getString("var4"));*/
+                  *//*  pd.put("post", pds.getString("var3"));
+                    pd.put("create_time", pds.getString("var4"));*//*
                     workshopService.save(pd);
                 }
                 mv.addObject("msg","success");
             }
             mv.setViewName("save_result");
             return mv;
-        }
+        }*/
 
 
 

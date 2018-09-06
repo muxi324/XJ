@@ -212,5 +212,4 @@
 
 </script>
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>

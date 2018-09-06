@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="TeamMapper">
+
+
+
+    <!-- 新增-->
+    <insert id="save" parameterType="pd">
+        insert into team_info (  team,team_leader,workshop,workshop_id,create_time,factory_id)
+        values (  #{team}, #{team_leader},#{workshop} ,#{workshop_id},#{create_time},#{factory_id} )
+    </insert>
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from team_info
+        where
+        id = #{id}
+    </delete>
+    <!-- 修改 -->
+    <update id="edit" parameterType="pd">
+        update  team_info
+        set
+        team = #{team},
+        workshop = #{workshop},
+        workshop_id  = #{workshop_id},
+        where
+        id = #{id}
+    </update>
+
+
+    <select id="findById" parameterType="pd" resultType="pd">
+        select *  from team_info
+        where
+        id = #{id}
+    </select>
+    <!--找到某一车间中的班组-->
+    <select id="findTeamByW" parameterType="pd" resultType="pd">
+        select * from team_info
+        where
+        factory_id = #{factory_id}
+        <if test="workshop_id != null and workshop_id != ''">
+        AND
+        workshop_id = #{workshop_id}
+        </if>
+    </select>
+
+    <!--通过enquiry获取数据-->
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from  team_info
+        where 1 = 1
+       /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            team LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
+        order by id asc
+    </select>
+    <!-- 列表(全部) -->
+    <select id="listAll"  resultType="pd" >
+        select
+        w.team,
+        w.workshop,
+        w.create_time
+        from team_info w
+    </select>
+
+    <!-- 批量删除 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from team_info
+        where
+        id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+
+
+</mapper>

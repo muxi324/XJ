@@ -117,6 +117,9 @@ public class LoginController extends BaseController {
 					session.setAttribute(Const.SESSION_USER, user);
 					session.removeAttribute(Const.SESSION_SECURITY_CODE);
 					session.setAttribute(Const.FACTORY_ID,pd.getString("factory_id"));
+					session.setAttribute(Const.WORKSHOP_ID,pd.getString("workshop_id"));
+					session.setAttribute(Const.TEAM_ID,pd.getString("team_id"));
+					session.setAttribute(Const.SESSION_NAME,pd.getString("NAME"));
 					//shiro加入身份验证
 					Subject subject = SecurityUtils.getSubject();
 					UsernamePasswordToken token = new UsernamePasswordToken(USERNAME, PASSWORD);

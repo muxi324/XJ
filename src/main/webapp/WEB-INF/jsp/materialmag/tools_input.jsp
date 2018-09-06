@@ -63,7 +63,21 @@
                 $("#team").focus();
                 return false;
             }
-            $("#Form").submit();
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                url: "<%=basePath%>partsmag/save.do" ,//url
+                data: $('#Form').serialize(),
+                success: function (result) {
+                    //打印服务端返回的数据(调试用)
+                    alert("入库成功！");
+                    window.location.href='<%=basePath%>toolsmag/goInput.do';
+                },
+                error : function() {
+                    alert("出现异常！");
+                }
+            });
+          //  $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
             // hasW();
@@ -86,6 +100,10 @@
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">负责人:</td>
                 <td><input style="width:95%;" type="text" name="worker_name" id="worker_name" value="${pd.worker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">操作人:</td>
+                <td><input style="width:95%;" type="text" name="operater" id="operater" value="${NAME}" maxlength="150"  readonly/></td>
             </tr>
 
             <div style=" clear:both; padding-top: 40px;"></div>

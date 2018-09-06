@@ -104,7 +104,7 @@
 
     <update id="auditTask" parameterType="pd" >
         update mission set mission_condition = #{mission_condition},
-        auditor_opinion=#{opinion}, auditor = #{USERNAME}, auditor_time = #{auditor_time}
+        auditor_opinion=#{opinion}, auditor = #{auditor}, auditor_time = #{auditor_time}
          where id = #{missionId}
     </update>
 

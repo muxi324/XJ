@@ -16,9 +16,10 @@
     <insert id="save" parameterType="pd">
        insert into set_mission(
         mission,mission_type,mission_level,mission_source,cover_fields,mission_description,cycle_time,authen_method,auditor_level,auditor,
-       task_addition,set_name,set_time,detail_info,material,event,factory_id) values ( #{mission},#{mission_type}, #{mission_level}, #{mission_source},#{cover_fields},
+       task_addition,set_name,set_time,detail_info,material,event,factory_id,workshop_id)
+       values ( #{mission},#{mission_type}, #{mission_level}, #{mission_source},#{cover_fields},
         #{mission_description}, #{cycle_time},#{authen_method},#{auditor_level},#{auditor},#{task_addition},#{set_name}, #{set_time},#{detail_info},#{material},#{select_eventId},
-        #{factory_id})
+        #{factory_id},#{workshop_id})
     </insert>
 
     <!-- 删除-->
@@ -80,6 +81,9 @@
         <if test="pd.factory_id != null and pd.factory_id != ''">
             and factory_id = #{pd.factory_id}
         </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
         order by set_id desc
     </select>
     <!-- 列表(全部) -->
@@ -111,6 +115,12 @@
         </if>
         <if test="pd.mission_type != null and pd.mission_type != ''"><!-- 任务类型 -->
             and mission_type = #{pd.mission_type}
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
         </if>
         order by set_id desc
     </select>

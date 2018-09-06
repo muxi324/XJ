@@ -78,7 +78,6 @@
 			<div id="workshopTaskInYear" style="float:left; height:410px;min-height:100px;width:40%;margin:5% "></div>
 		</div>
 	</div>
-	<%@ include file="bottom.jsp"%>
 </div>
 <!--/.fluid-container#main-container-->
 <!--

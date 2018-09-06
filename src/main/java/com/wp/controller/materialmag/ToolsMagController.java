@@ -134,6 +134,10 @@ public class ToolsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            Integer ID = Integer.parseInt(pd.getString("material_id"));
+            pd.put("material_id", ID);	//物资ID string改为int
+            Integer stock = toolsMagService.selectStock(pd);
+            pd.put("stock",stock);
             mv.setViewName("materialmag/tools_decrease");
             mv.addObject("msg", "save1");
             mv.addObject("pd", pd);
@@ -153,6 +157,8 @@ public class ToolsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            pd.put("factory_id",FactoryUtil.getFactoryId());
+            pd.put("workshop_id",FactoryUtil.getWorkshopId());
             pd.put("is_consume",1 );	//添加入库状态
             pd.put("time",  Tools.date2Str(new Date()));	//添加时间
             int ID = Integer.parseInt(pd.getString("material_id"));
@@ -168,7 +174,6 @@ public class ToolsMagController extends BaseController {
                 pd.put("name",name);
                 pd.put("stock",num);
                 pd.put("material_id", ID);
-                pd.put("factory_id",FactoryUtil.getFactoryId());
                 toolsMagService.firstsave(pd);
                 pd.put("type",2 );	//添加工具种类配件
                 pd.put("material_name",name);
@@ -211,6 +216,8 @@ public class ToolsMagController extends BaseController {
         pd.put("type",2 );	//添加工具种类配件
         String  name = pd.getString("name");
         pd.put("material_name",name);
+        pd.put("factory_id",FactoryUtil.getFactoryId());
+        pd.put("workshop_id",FactoryUtil.getWorkshopId());
         toolsMagService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");

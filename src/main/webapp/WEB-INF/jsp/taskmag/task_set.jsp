@@ -176,7 +176,7 @@
 <script type="text/javascript">
     //去下达任务界面页面
     function sendtask(set_id){
-        location.href =  '<%=basePath%>taskset/goSend.do?set_id='+ set_id;
+        location.href =  '<%=basePath%>sendtask/goSendTask.do?set_id='+ set_id;
     }
 
 
@@ -358,6 +358,5 @@
 </script>
 
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>
 

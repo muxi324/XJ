@@ -49,9 +49,9 @@
     <!--保存-->
     <insert id="save" parameterType="pd">
        insert into material_history(
-        material_id,material_num,material_name,worker_name,aim,mission_id,type,is_consume,time)
+        material_id,material_num,material_name,worker_name,aim,mission_id,type,is_consume,time,factory_id,workshop_id)
         values (   #{material_id},#{material_num}, #{material_name}, #{worker_name},#{aim},
-        #{mission_id}, #{type},#{is_consume},#{time}
+        #{mission_id}, #{type},#{is_consume},#{time},#{factory_id},#{workshop_id}
         )
     </insert>
 
@@ -64,8 +64,8 @@
     <!--保存-->
     <insert id="firstsave" parameterType="pd">
         insert into material(
-        material_id,type,description,name,stock,factory_id)
-        values (  #{material_id},#{type},#{description}, #{name}, #{stock},#{factory_id})
+        material_id,type,description,name,stock,factory_id,workshop_id)
+        values (  #{material_id},#{type},#{description}, #{name}, #{stock},#{factory_id},#{workshop_id})
     </insert>
 
 
@@ -86,6 +86,9 @@
         </if>
         <if test="pd.factory_id != null and pd.factory_id != ''">
             and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
         </if>
         order by material_id ASC
     </select>

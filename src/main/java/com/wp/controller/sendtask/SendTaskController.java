@@ -2,9 +2,12 @@ package com.wp.controller.sendtask;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.worker.Worker;
+import com.wp.service.databank.TeamService;
 import com.wp.service.exception.ExceptionService;
 import com.wp.service.sendtask.SendTaskService;
+import com.wp.service.system.user.UserService;
 import com.wp.service.taskmag.TaskMagService;
+import com.wp.service.taskmag.TaskSetService;
 import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import com.wp.util.mail.SimpleMailSender;
@@ -41,12 +44,14 @@ public class SendTaskController extends BaseController {
     String menuUrl = "sendtask/sendTask.do"; //菜单地址(权限用)
     @Resource(name = "sendTaskService")
     private SendTaskService sendTaskService;
-    @Resource(name = "workerService")
-    private WorkerService workerService;
+    @Resource(name = "userService")
+    private UserService userService;
     @Resource(name = "exceptionService")
     private ExceptionService exceptionService;
-    @Resource(name="taskMagService")
-    private TaskMagService taskMagService;
+    @Resource(name="taskSetService")
+    private TaskSetService taskSetService;
+    @Resource(name="teamService")
+    private TeamService teamService;
 
     /**
      * 去发送日常巡检任务
@@ -56,10 +61,27 @@ public class SendTaskController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
-        List<Worker> teamList = workerService.listTeam();//列出所有班组
-        mv.addObject("teamList",teamList);
+        try {
+            pd = taskSetService.findById(pd);//根据ID读取
+            String  mission_name = pd.getString("mission");
+            pd.put("mission_name", mission_name);
+            mv.addObject("pd", pd);
+            String factory_id = FactoryUtil.getFactoryId();
+            String workshop_id = FactoryUtil.getWorkshopId();
+            if(StringUtils.isNotEmpty(factory_id)) {
+                PageData data = new PageData();
+                data.put("factory_id",factory_id);
+                List<PageData> teamList = new ArrayList<PageData>();
+                if(StringUtils.isNotEmpty(workshop_id)){
+                    data.put("workshop_id", workshop_id);
+                }
+                teamList = teamService.findTeamByW(data);
+                mv.addObject("teamList",teamList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mv.setViewName("sendtask/sendtask");
-        mv.addObject("pd", pd);
         return mv;
     }
     /**
@@ -71,10 +93,19 @@ public class SendTaskController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         PageData result = exceptionService.findById(pd);
-        List<Worker> teamList = workerService.listTeam();//列出所有班组
-        mv.addObject("teamList",teamList);
+        String factory_id = FactoryUtil.getFactoryId();
+        String workshop_id = FactoryUtil.getWorkshopId();
+        if(StringUtils.isNotEmpty(factory_id)) {
+            PageData data = new PageData();
+            data.put("factory_id",factory_id);
+            List<PageData> teamList = new ArrayList<PageData>();
+            if(StringUtils.isNotEmpty(workshop_id)){
+                data.put("workshop_id", workshop_id);
+            }
+            teamList = teamService.findTeamByW(data);
+            mv.addObject("teamList",teamList);
+        }
         mv.setViewName("sendtask/sendtask1");
-        mv.addObject("pd", pd);
         mv.addObject("pd", result);
         return mv;
     }
@@ -87,10 +118,20 @@ public class SendTaskController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         PageData result = exceptionService.findById(pd);
-        List<Worker> teamList = workerService.listTeam();//列出所有班组
-        mv.addObject("teamList",teamList);
+
+        String factory_id = FactoryUtil.getFactoryId();
+        String workshop_id = FactoryUtil.getWorkshopId();
+        if(StringUtils.isNotEmpty(factory_id)) {
+            PageData data = new PageData();
+            data.put("factory_id",factory_id);
+            List<PageData> teamList = new ArrayList<PageData>();
+            if(StringUtils.isNotEmpty(workshop_id)){
+                data.put("workshop_id", workshop_id);
+            }
+            teamList = teamService.findTeamByW(data);
+            mv.addObject("teamList",teamList);
+        }
         mv.setViewName("sendtask/sendtask2");
-        mv.addObject("pd", pd);
         mv.addObject("pd", result);
         return mv;
     }
@@ -130,7 +171,21 @@ public class SendTaskController extends BaseController {
         if (StringUtils.isEmpty(pd.getString("time_dev"))) {
             pd.put("time_dev","0");
         }
+        String workerId = pd.getString("worker_id");   //通过worker_id获取NMAE
+        PageData worker = new PageData();
+        worker.put("USER_ID", workerId);
+        PageData user = userService.findByUiId(worker);
+        String userName = user.getString("NAME");
+        pd.put("worker_name",userName);
+        String teamId = pd.getString("team_id");   //通过team_id获取team
+        PageData team = new PageData();
+        team.put("id", teamId);
+        PageData data = teamService.findById(team);
+        String teamName = data.getString("team");
+        pd.put("team",teamName);
         pd.put("factory_id",FactoryUtil.getFactoryId());
+        pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        pd.put("set_name",FactoryUtil.getLoginName());
 
         /*if(pd.getString("mission_condition").equals(2)){   //处理拒单重发任务修改拒单状态
                 taskMagService.refuse(pd);
@@ -170,7 +225,21 @@ public class SendTaskController extends BaseController {
         if (StringUtils.isEmpty(pd.getString("time_dev"))) {
             pd.put("time_dev","0");
         }
+        String workerId = pd.getString("worker_id");   //通过worker_id获取NMAE
+        PageData worker = new PageData();
+        worker.put("USER_ID", workerId);
+        PageData user = userService.findByUiId(worker);
+        String userName = user.getString("NAME");
+        pd.put("worker_name",userName);
+        String teamId = pd.getString("team_id");   //通过team_id获取team
+        PageData team = new PageData();
+        team.put("id", teamId);
+        PageData data = teamService.findById(team);
+        String teamName = data.getString("team");
+        pd.put("team",teamName);
         pd.put("factory_id",FactoryUtil.getFactoryId());
+        pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        pd.put("set_name",FactoryUtil.getLoginName());
         if(StringUtils.isNotEmpty(pd.getString("id"))){   //异常处理任务
             String missionType=pd.getString("mission_type");
             if(missionType.equals("维修任务") || missionType.equals("临时巡检任务") ){
@@ -201,13 +270,14 @@ public class SendTaskController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
-        String myGroup = pd.getString("groupdata");
-        pd.put("team", myGroup);
+        String team_id = pd.getString("team_id");
+        pd.put("team_id", team_id);
         String loginUserName = FactoryUtil.getLoginUserName();
         if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
             pd.put("factory_id",FactoryUtil.getFactoryId());
+            pd.put("workshop_id",FactoryUtil.getWorkshopId());
         }
-        List<PageData> list = workerService.listWorker(pd);
+        List<PageData> list = userService.listWorkerByTeam(pd);
         System.out.println("======"+ JSONArray.fromObject(list)+"====");
         try {
             HttpHandler.send(response, list);
@@ -223,12 +293,12 @@ public class SendTaskController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
-        String worker = pd.getString("workerdata");
-        pd.put("name", worker);
-        List<PageData> list = workerService.findPhoneByName(pd);
-        System.out.println("======"+ JSONArray.fromObject(list)+"====");
+        String workerId = pd.getString("workerdata");
+        pd.put("USER_ID", workerId);
+        PageData user = userService.findByUiId(pd);
+        System.out.println("======"+ JSONArray.fromObject(user)+"====");
         try {
-            HttpHandler.send(response, list);
+            HttpHandler.send(response,user);
         }
         catch (Exception e) {
             e.printStackTrace();

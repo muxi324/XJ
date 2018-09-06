@@ -31,7 +31,6 @@
     <input type="button" onclick="showSome()" value="点击选择员工展示位置">
     <input type="button" onclick="showError()" value="展示异常位置" />
 </div>
-<%@ include file="../system/admin/bottom.jsp"%>
 </body>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

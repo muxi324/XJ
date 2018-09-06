@@ -31,7 +31,7 @@
                         <td>
 						<span class="input-icon">
 							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="${pd.enquiry }" placeholder="这里输入内容" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<i id="nav-input-icon" class="icon-search"></i>
 						</span>
                         </td>
 
@@ -59,9 +59,9 @@
 
                     <thead>
                     <tr>
-                        <th class="center">
+                       <%-- <th class="center">
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                        </th>
+                        </th>--%>
                         <th class="center">序号</th>
                         <th class="center">配件类别</th>
                         <th class="center">配件编号</th>
@@ -79,9 +79,9 @@
                             <c:if test="${QX.cha == 1 }">
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td class='center' style="width: 30px;">
+                                       <%-- <td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.material_id}" /><span class="lbl"></span></label>
-                                        </td>
+                                        </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.description}</td>
                                         <td style="width: 60px;" class="center">${var.material_id}</td>
@@ -135,9 +135,9 @@
                                <%-- <c:if test="${QX.add == 1 }">
                                     <a class="btn btn-small btn-success" onclick="decrease();">出库</a>
                                 </c:if>--%>
-                                <c:if test="${QX.del == 1 }">
+                               <%-- <c:if test="${QX.del == 1 }">
                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
-                                </c:if>
+                                </c:if>--%>
                             </td>
                             <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                         </tr>
@@ -330,6 +330,5 @@
 
 </script>
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>
 

@@ -290,7 +290,7 @@ public class TaskMagController extends BaseController {
         return mv;
     }
 
-    @RequestMapping("/goAuditTask")
+    @RequestMapping("/goAuditTask")     //去审核页面
     public ModelAndView auditTask() {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
@@ -329,7 +329,7 @@ public class TaskMagController extends BaseController {
         mv.addObject("missionId",missionId);
       //  mv.setViewName("taskmag/auditTask");
         mv.addObject(Const.SESSION_QX,this.getHC());
-        mv.addObject("USERNAME",getUserName());
+        mv.addObject("NAME",getName());
         return mv;
     }
 
@@ -352,7 +352,7 @@ public class TaskMagController extends BaseController {
         return mv;
     }
 
-    @RequestMapping("/auditMisson.do")
+    @RequestMapping("/auditMisson.do")    //通过审核,修改状态等
     public ModelAndView auditMisson(PrintWriter out) throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
@@ -372,6 +372,12 @@ public class TaskMagController extends BaseController {
         Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
         Session session = currentUser.getSession();
         return (Map<String, String>)session.getAttribute(Const.SESSION_QX);
+    }
+
+    public String getName() {
+        Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
+        Session session = currentUser.getSession();
+        return (String) session.getAttribute(Const.SESSION_NAME);
     }
 
     public String getUserName() {

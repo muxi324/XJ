@@ -31,14 +31,13 @@
 					<td>
 						<span class="input-icon">
 							<input autocomplete="off" id="nav-search-input" type="text" name="USERNAME" value="${pd.USERNAME }" placeholder="这里输入关键词" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<i id="nav-input-icon" class="icon-search"></i>
 						</span>
 					</td>
 					<td><input class="span10 date-picker" name="lastLoginStart" id="lastLoginStart"  value="${pd.lastLoginStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="最近登录开始"/></td>
 					<td><input class="span10 date-picker" name="lastLoginEnd" name="lastLoginEnd"  value="${pd.lastLoginEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="最近登录结束"/></td>
 					<td style="vertical-align:top;"> 
 					 	<select class="chzn-select" name="ROLE_ID" id="role_id" data-placeholder="请选择职位" style="vertical-align:top;width: 120px;">
-						<option value=""></option>
 						<option value="">全部</option>
 						<c:forEach items="${roleList}" var="role">
 							<option value="${role.ROLE_ID }" <c:if test="${pd.ROLE_ID==role.ROLE_ID}">selected</c:if>>${role.ROLE_NAME }</option>
@@ -49,7 +48,7 @@
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();" title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="window.location.href='<%=basePath%>/user/listtabUsers.do';" title="切换模式"><i id="nav-search-icon" class="icon-exchange"></i></a></td>
 					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
-					<c:if test="${QX.edit == 1 }"><td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td></c:if>
+					<%--<c:if test="${QX.edit == 1 }"><td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td></c:if>--%>
 					</c:if>
 				</tr>
 			</table>
@@ -67,6 +66,7 @@
 						<th>编号</th>
 						<th>用户名</th>
 						<th>姓名</th>
+						<th>电话</th>
 						<th>职位</th>
 						<th>班组</th>
 						<th>所属车间</th>
@@ -94,9 +94,10 @@
 								<td>${user.NUMBER }</td>
 								<td><a>${user.USERNAME }</a></td>
 								<td>${user.NAME }</td>
+								<td>${user.PHONE}</td>
 								<td>${user.ROLE_NAME }</td>
-								<td>${user.workshop}</td>
 								<td>${user.team}</td>
+								<td>${user.workshop}</td>
 								<td>${user.factory}</td>
 								<td>${user.LAST_LOGIN}</td>
 								<%--<td>${user.IP}</td>--%>

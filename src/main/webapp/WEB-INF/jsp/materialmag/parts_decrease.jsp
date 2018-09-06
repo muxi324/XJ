@@ -44,30 +44,36 @@
                 $("#phone").focus();
                 return false;
             }
-            if($("#workshop").val()==""){
-                $("#workshop").tips({
+            if(parseInt($("#material_num").val()) > parseInt($("#stock").val())){
+                $("#material_num").tips({
                     side:3,
-                    msg:'请输入身份证号',
+                    msg:'当前库存不足',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#workshop").focus();
+                $("#material_num").focus();
                 return false;
             }
-            if($("#team").val()==""){
-                $("#team").tips({
-                    side:3,
-                    msg:'请输入班组',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#team").focus();
-                return false;
-            }
-            $("#Form").submit();
+
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                url: "<%=basePath%>partsmag/save1.do" ,//url
+                data: $('#Form').serialize(),
+                success: function (result) {
+                    //打印服务端返回的数据(调试用)
+                    alert("出库成功！");
+                    window.location.href='<%=basePath%>partsmag/goOutput.do';
+                },
+                error : function() {
+                    alert("出现异常！");
+                }
+            });
+
+           // $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
-            // hasW();
+
         }
 
     </script>
@@ -76,6 +82,7 @@
 <form action="partsmag/${msg}.do" id="Form"   method="post">
     <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
     <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
+    <input type="hidden" name="stock" id="stock" value="${pd.stock}"/>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
            <%-- <tr>
@@ -109,6 +116,10 @@
                 <td style="width:100px;text-align: right;padding-top: 13px;">用途:</td>
                 <td><input style="width:95%;" type="text" name="aim" id="aim" value="${pd.aim}" maxlength="150" placeholder="这里输入用途" title=""/></td>
             </tr>
+           <tr>
+               <td style="width:100px;text-align: right;padding-top: 13px;">操作人:</td>
+               <td><input style="width:95%;" type="text" name="operater" id="operater" value="${NAME}" maxlength="150"  readonly/></td>
+           </tr>
            <%-- <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">所用于任务:</td>
                 <td><input style="width:95%;" type="text" name="mission_id" id="mission_id" value="${pd.mission_id}" maxlength="150" placeholder="这里输入所用于任务编号" title=""/></td>

@@ -282,6 +282,24 @@
 			</tr>
 			</c:if>
 			<c:if test="${pd.userName != 'admin'}">
+				<c:if test="${pd.workshop_id != null and pd.workshop_id != ''}">
+					<tr>
+						<td>
+							<input name="workshop" id="workshop" value="${pd.workshop}"  readonly/>
+							<input name="workshop_id" id="workshop_id" value="${pd.workshop_id}"  type="hidden"/>
+						</td>
+					</tr>
+					<tr>
+						<td><select  name="team_id" id="team" value="${pd.team_id}" class="chzn-select" data-placeholder="请选择班组" >
+							<option value=""></option>
+							<c:forEach items="${teamList}" var="W">
+								<option value="${W.id }" <c:if test="${W.id == pd.team_id}">selected</c:if>>${W.team}</option>
+							</c:forEach>
+						</select>
+						</td>
+					</tr>
+				</c:if>
+				<c:if test="${empty pd.workshop_id}">
 					<tr>
 						<td>
 							<select   name="workshop_id" id="workshop" value="${pd.workshop}" class="chzn-select"  data-placeholder="请选择车间" onchange="teamByWId()">
@@ -301,8 +319,8 @@
 						</select>
 						</td>
 					</tr>
+				</c:if>
 			</c:if>
-
 
 
 			<tr>

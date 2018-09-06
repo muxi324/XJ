@@ -2,22 +2,162 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="SysUserMapper">
+
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 换皮肤-->
+    <update id="setSKIN" parameterType="pd" flushCache="false">
+        update SYS_USER set
+        SKIN = #{SKIN}
+        where USERNAME = #{USERNAME}
+    </update>
+
+    <!-- 更新登录时间 -->
+    <update id="updateLastLogin" parameterType="pd" flushCache="false">
+        update SYS_USER set
+        LAST_LOGIN = #{LAST_LOGIN}
+        where USER_ID = #{USER_ID}
+    </update>
+
+    <!-- 判断用户名和密码 -->
+    <select id="getUserInfo" parameterType="pd" resultType="pd" useCache="false"><!-- insert update delete (flushCache="true/false") -->
+        select * from SYS_USER
+        where 1=1
+        <if test="USERNAME != null and PASSWORD != null">
+            and	(
+            (USERNAME = #{USERNAME} and PASSWORD = #{PASSWORD})
+            or
+            (EMAIL = #{USERNAME} and PASSWORD = #{PASSWORD})
+            or
+            (NUMBER = #{USERNAME} and PASSWORD = #{PASSWORD})
+            )
+        </if>
+        <if test="USER_ID != null and USER_ID != ''">
+            and USER_ID = #{USER_ID}
+        </if>
+    </select>
+
+
+
+    <!-- 存入IP -->
+    <update id="saveIP" parameterType="pd" flushCache="false">
+        update SYS_USER
+        set
+        IP = #{IP}
+        where
+        USERNAME = #{USERNAME}
+    </update>
+
+    <!-- 修改 -->
+    <update id="editU" parameterType="pd" flushCache="false">
+        update  SYS_USER
+        set USERNAME				= #{USERNAME},
+        NAME 					= #{NAME},
+        ROLE_ID 				= #{ROLE_ID},
+        BZ						= #{BZ},
+        EMAIL					= #{EMAIL},
+        NUMBER					= #{NUMBER},
+        PHONE					= #{PHONE},
+        post                    = #{post},
+        team                    = #{team},
+        workshop                = #{workshop}
+        team_id                 = #{team_id}
+        workshop_id                = #{workshop_id}
+        <if test="PASSWORD != null and PASSWORD != ''">
+            ,PASSWORD				= #{PASSWORD}
+        </if>
+        where
+        USER_ID = #{USER_ID}
+    </update>
+
+    <!-- 通过user_id获取数据 -->
+    <select id="findByUiId" parameterType="pd" resultType="pd" useCache="false">
+        select USER_ID,USERNAME,PASSWORD,NAME,RIGHTS,ROLE_ID,LAST_LOGIN,IP,STATUS,BZ,SKIN,EMAIL,NUMBER,
+        PHONE,factory_id,workshop_id,team_id
+        from
+        SYS_USER
+        where
+        USER_ID = #{USER_ID}
+    </select>
+
+    <!-- 通过邮箱获取数据 -->
+    <select id="findByUE" parameterType="pd" resultType="pd" useCache="false">
+        select
+        USER_ID,
+        USERNAME,
+        PASSWORD,
+        NAME,
+        RIGHTS,
+        ROLE_ID,
+        LAST_LOGIN,
+        IP,
+        STATUS,
+        BZ,
+        SKIN,
+        EMAIL,
+        NUMBER,
+        PHONE,factory_id,workshop_id,team_id
+        from
+        SYS_USER
+        where
+        EMAIL = #{EMAIL}
+        <if test="USERNAME != null and USERNAME != ''">
+            and USERNAME != #{USERNAME}
+        </if>
+    </select>
+
+    <!-- 通过编号获取数据 -->
+    <select id="findByUN" parameterType="pd" resultType="pd" useCache="false">
+        select
+        USER_ID,
+        USERNAME,
+        PASSWORD,
+        NAME,
+        RIGHTS,
+        ROLE_ID,
+        LAST_LOGIN,
+        IP,
+        STATUS,
+        BZ,
+        SKIN,
+        EMAIL,
+        NUMBER,
+        PHONE,factory_id,workshop_id,team_id
+        from
+        SYS_USER
+        where
+        NUMBER = #{NUMBER}
+        <if test="USERNAME != null and USERNAME != ''">
+            and USERNAME != #{USERNAME}
+        </if>
+    </select>
+
+    <!-- 通过USERNAME获取数据 -->
+    <select id="findByUId" parameterType="pd" resultType="pd" useCache="false">
+        select
+        USER_ID,USERNAME,PASSWORD,NAME, RIGHTS,ROLE_ID,LAST_LOGIN,IP,STATUS,BZ,SKIN,EMAIL,NUMBER,PHONE,factory_id,workshop_id,team_id
+        from
+        SYS_USER
+        where
+        USERNAME = #{USERNAME}
+    </select>
+
+    <!-- 新增用户 -->
+    <insert id="saveU" parameterType="pd" flushCache="false">
+        insert into SYS_USER (
+        USER_ID,USERNAME,PASSWORD,NAME,RIGHTS,ROLE_ID,LAST_LOGIN,IP,STATUS,BZ,SKIN,EMAIL,NUMBER,
+        PHONE,post,work_type,random,team,factory,workshop,add_time,factory_id,workshop_id,team_id
+        ) values (
+        #{USER_ID},#{USERNAME},#{PASSWORD},#{NAME},#{RIGHTS},#{ROLE_ID},#{LAST_LOGIN},#{IP},#{STATUS},
+        #{BZ},#{SKIN},#{EMAIL},#{NUMBER},#{PHONE},#{post},#{work_type},#{random},#{team},#{factory},
+        #{workshop},#{add_time},#{factory_id},#{workshop_id},#{team_id}
+        )
+    </insert>
     <!-- 用户列表(用户组) -->
     <select id="userlistPage" parameterType="page" resultType="pd" useCache="false">
-        select  u.USER_ID,
-        u.USERNAME,
-        u.PASSWORD,
-        u.LAST_LOGIN,
-        u.NAME,
-        u.IP,
-        u.EMAIL,
-        u.NUMBER,
-        u.PHONE,
-        u.workshop,
-        u.factory_id,
-        u.team,
-        r.ROLE_ID,
-        r.ROLE_NAME
+        select  u.USER_ID,u.USERNAME,u.PASSWORD,u.LAST_LOGIN,u.NAME,u.IP,u.EMAIL,u.NUMBER,u.PHONE,u.post,u.work_type,
+        u.team,u.workshop,u.workshop_id,u.factory,u.factory_id,u.team_id,
+        r.ROLE_ID,r.ROLE_NAME
         from SYS_USER u, SYS_ROLE r
         where u.ROLE_ID = r.ROLE_ID
         and u.USERNAME != 'admin'
@@ -46,101 +186,91 @@
             and u.LAST_LOGIN &lt;= #{pd.lastLoginEnd}
         </if>
         <if test="pd.factory_id != null and pd.factory_id != ''">
-            and factory_id = #{pd.factory_id}
+            and u.factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and u.workshop_id = #{pd.workshop_id}
+        </if>
+        <if test="pd.team_id != null and pd.team_id != ''">
+            and u.team_id = #{pd.team_id}
+        </if>
+        order by u.LAST_LOGIN desc
+    </select>
+    <!--通过车间id获取班组-->
+    <select id="listTeamByFac" parameterType="pd" resultType="pd">
+        select id,team  from team_info
+        where factory_id = #{factory_id}
+        AND  workshop = #{workshop_id}
+    </select>
+    <!--通过班组获取班组成员-->
+    <select id="listWorkerByTeam" parameterType="pd" resultType="pd">
+        select USER_ID,NAME,PHONE  from sys_user
+        where factory_id = #{factory_id}
+        <if test="workshop_id != null and workshop_id != ''">
+            AND workshop_id = #{workshop_id}
+        </if>
+        <if test="team_id != null and team_id != ''">
+            AND team_id = #{team_id}
+        </if>
+    </select>
+
+
+    <!-- 用户列表(全部) -->
+    <select id="listAllUser" parameterType="pd" resultType="pd" useCache="false">
+        select  u.USER_ID,u.USERNAME,u.PASSWORD,u.LAST_LOGIN,u.NAME,u.IP,u.EMAIL,u.NUMBER,u.PHONE,u.post,u.work_type,
+        u.team,u.workshop,u.workshop_id,u.factory,u.factory_id,u.team_id,
+        r.ROLE_ID,r.ROLE_NAME
+        from SYS_USER u, SYS_ROLE r
+        where u.ROLE_ID = r.ROLE_ID
+        and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')
+        <if test="USERNAME != null and USERNAME != ''"><!-- 关键词检索 -->
+            and
+            (
+            u.USERNAME LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
+            or
+            u.EMAIL LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
+            or
+            u.NUMBER LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
+            or
+            u.NAME LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
+            or
+            u.PHONE LIKE CONCAT(CONCAT('%', #{USERNAME}),'%')
+            )
+        </if>
+        <if test="ROLE_ID != null and ROLE_ID != ''"><!-- 角色检索 -->
+            and u.ROLE_ID=#{ROLE_ID}
+        </if>
+        <if test="lastLoginStart!=null and lastLoginStart!=''"><!-- 登录时间检索 -->
+            and u.LAST_LOGIN &gt;= #{lastLoginStart}
+        </if>
+        <if test="lastLoginEnd!=null and lastLoginEnd!=''"><!-- 登录时间检索 -->
+            and u.LAST_LOGIN &lt;= #{lastLoginEnd}
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{workshop_id}
         </if>
         order by u.LAST_LOGIN desc
     </select>
 
-    <!-- 新增用户 -->
-    <insert id="saveU" parameterType="com.wp.util.PageData" flushCache="false">
-        insert into SYS_USER (
-        USER_ID,
-        USERNAME,
-        PASSWORD,
-        NAME,
-        RIGHTS,
-        ROLE_ID,
-        LAST_LOGIN,
-        IP,
-        STATUS,
-        BZ,
-        SKIN,
-        EMAIL,
-        NUMBER,
-        PHONE,
-        workshop,
-        factory_id,
-        team
-        ) values (
-        #{USER_ID},
-        #{USERNAME},
-        #{PASSWORD},
-        #{NAME},
-        #{RIGHTS},
-        #{ROLE_ID},
-        #{LAST_LOGIN},
-        #{IP},
-        #{STATUS},
-        #{BZ},
-        #{SKIN},
-        #{EMAIL},
-        #{NUMBER},
-        #{PHONE},
-        #{workshop},
-        #{factory_id},
-        #{team}
-        )
-    </insert>
-
-
-    <update id="editU" parameterType="pd" flushCache="false">
-        update  SYS_USER
-        set USERNAME				= #{USERNAME},
-        NAME 					= #{NAME},
-        ROLE_ID 				= #{ROLE_ID},
-        BZ						= #{BZ},
-        EMAIL					= #{EMAIL},
-        NUMBER					= #{NUMBER},
-        PHONE					= #{PHONE},
-        workshop                = #{workshop},
-        factory_id              = #{factory_id},
-        team                    = #{team}
-        <if test="PASSWORD != null and PASSWORD != ''">
-            ,PASSWORD				= #{PASSWORD}
-        </if>
+    <!-- 删除用户 -->
+    <delete id="deleteU" parameterType="pd" flushCache="false">
+        delete from SYS_USER
         where
         USER_ID = #{USER_ID}
-    </update>
+    </delete>
 
-    <!-- 通过user_id获取数据 -->
-    <select id="findByUiId" parameterType="pd" resultType="pd" useCache="false">
-        select
-        USER_ID,
-        USERNAME,
-        PASSWORD,
-        NAME,
-        RIGHTS,
-        ROLE_ID,
-        LAST_LOGIN,
-        IP,
-        STATUS,
-        BZ,
-        SKIN,
-        EMAIL,
-        NUMBER,
-        PHONE,
-        workshop,
-        factory_id
-        from
-        SYS_USER
+    <!-- 批量删除用户 -->
+    <delete id="deleteAllU" parameterType="String" flushCache="false">
+        delete from SYS_USER
         where
-        USER_ID = #{USER_ID}
-    </select>
-
-    <select id="findRoleById" resultType="java.lang.String">
-        select ROLE_NAME from sys_role where ROLE_ID = #{roleId}
-    </select>
-
-
+        USER_ID in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
 
 </mapper>

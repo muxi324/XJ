@@ -43,27 +43,32 @@
                 $("#name").focus();
                 return false;
             }
-            if($("#material_num").val()==""){
+            if(parseInt($("#material_num").val()) > parseInt($("#stock").val())){
                 $("#material_num").tips({
                     side:3,
-                    msg:'请输入数量',
+                    msg:'当前库存不足',
                     bg:'#AE81FF',
                     time:2
                 });
                 $("#material_num").focus();
                 return false;
             }
-            if($("#worker_name").val()==""){
-                $("#worker_name").tips({
-                    side:3,
-                    msg:'请输入负责人',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#worker_name").focus();
-                return false;
-            }
-            $("#Form").submit();
+
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                url: "<%=basePath%>toolsmag/save1.do" ,//url
+                data: $('#Form').serialize(),
+                success: function (result) {
+                    //打印服务端返回的数据(调试用)
+                    alert("出库成功！");
+                    window.location.href='<%=basePath%>toolsmag/goOutput.do';
+                },
+                error : function() {
+                    alert("出现异常！");
+                }
+            });
+
             $("#zhongxin").hide();
             $("#zhongxin2").show();
 
@@ -75,6 +80,7 @@
 <form action="toolsmag/${msg}.do" id="Form"   method="post">
     <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
     <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
+    <input type="hidden" name="stock" id="stock" value="${pd.stock}"/>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
            <%-- <tr>

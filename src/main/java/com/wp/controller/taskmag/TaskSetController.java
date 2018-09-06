@@ -80,6 +80,7 @@ public class TaskSetController extends BaseController {
             String loginUserName = FactoryUtil.getLoginUserName();
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
+                pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
             List<PageData> varList = taskSetService.list(page);	//列出${objectName}列表
@@ -182,6 +183,7 @@ public class TaskSetController extends BaseController {
         pd = this.getPageData();
         pd.put("set_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("factory_id",FactoryUtil.getFactoryId());
+        pd.put("workshop_id",FactoryUtil.getWorkshopId());
         taskSetService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");

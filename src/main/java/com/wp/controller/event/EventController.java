@@ -53,6 +53,7 @@ public class EventController extends BaseController{
             String loginUserName = FactoryUtil.getLoginUserName();
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
+                pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
             List<PageData> varList = eventService.list(page);	//列出${objectName}
@@ -117,8 +118,20 @@ public class EventController extends BaseController{
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-            List<Workshop> workshopList = workshopService.listWorkshop();
-            mv.addObject("workshopList",workshopList);
+            String factory_id = FactoryUtil.getFactoryId();
+            String workshop_id = FactoryUtil.getWorkshopId();
+            List<PageData> workshopList = new ArrayList<PageData>();
+            if(StringUtils.isNotEmpty(factory_id)) {
+                PageData factory = new PageData();
+                factory.put("factory_id",factory_id);
+                if(StringUtils.isNotEmpty(workshop_id)){
+                    PageData workshop = new PageData();
+                    workshop.put("id", workshop_id);
+                    PageData data = workshopService.findById(workshop);
+                    String workshopName = data.getString("workshop");
+                    pd.put("workshop",workshopName);
+                }
+            }
             mv.setViewName("taskManage/addEvent");
             mv.addObject("pd", pd);
         } catch (Exception e) {
@@ -134,6 +147,7 @@ public class EventController extends BaseController{
         pd = this.getPageData();
         pd.put("create_time",  Tools.date2Str(new Date()));
         pd.put("factory_id",FactoryUtil.getFactoryId());
+        pd.put("workshop_id",FactoryUtil.getWorkshopId());
         String eventName = eventService.getEventByName(pd.getString("event_name"));
         if (eventName == null || "".equals(eventName)) {
 /*            String qrContent = "事件名: " + pd.getString("event_name") + "具体位置: " + pd.getString("instrument_place");

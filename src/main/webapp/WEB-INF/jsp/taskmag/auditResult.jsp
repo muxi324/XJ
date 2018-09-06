@@ -15,5 +15,4 @@
 <body>
 success!
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>

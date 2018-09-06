@@ -17,6 +17,7 @@ public class Const {
 	public static final String SESSION_USERROL = "USERROL";				//用户对象
 	public static final String SESSION_USERNAME = "USERNAME";			//用户名
 	public static final String SESSION_NAME = "NAME";			//用户姓名
+	public static final String PHONE = "PHONE";			//用户手机号
 	public static final String TRUE = "T";
 	public static final String FALSE = "F";
 	public static final String LOGIN = "/login_toLogin.do";				//登录地址
@@ -36,6 +37,7 @@ public class Const {
 	public static final String NO_INTERCEPTOR_PATH = ".*/((login)|(logout)|(code)|(app)|(weixin)|(static)|(main)|(websocket)).*";	//不对匹配该值的访问路径拦截（正则）
 	public static final String FACTORY_ID = "factoryId"; //用户所属工厂ID
 	public static final String WORKSHOP_ID = "workshopId"; //用户所属车间ID
+	public static final String TEAM_ID = "teamId"; //用户所属班组ID
 	public static ApplicationContext WEB_APP_CONTEXT = null; //该值会在web容器启动时由WebAppContextListener初始化
 	
 	/**

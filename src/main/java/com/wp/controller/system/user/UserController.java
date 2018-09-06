@@ -2,9 +2,9 @@ package com.wp.controller.system.user;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
-import com.wp.entity.databank.Workshop;
 import com.wp.entity.system.Role;
 import com.wp.service.databank.FactoryService;
+import com.wp.service.databank.TeamService;
 import com.wp.service.databank.WorkshopService;
 import com.wp.service.system.menu.MenuService;
 import com.wp.service.system.role.RoleService;
@@ -52,6 +52,8 @@ public class UserController extends BaseController {
 	private MenuService menuService;
 	@Resource(name = "workerService")
 	private WorkerService workerService;
+	@Resource(name="teamService")
+	private TeamService teamService;
 	@Resource(name="workshopService")
 	private WorkshopService workshopService;
 	@Resource(name="factoryService")
@@ -67,11 +69,6 @@ public class UserController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		/*String factory_id =pd.getString("factory_id");
-		pd.put("id", factory_id);
-		pd = factoryService.findById(pd);
-		String factory = pd.getString("factory");
-		pd.put("factory", factory);*/
 		pd.put("USER_ID", this.get32UUID());	//ID
 		pd.put("RIGHTS", "");					//权限
 		pd.put("LAST_LOGIN", "");				//最后登录时间
@@ -79,10 +76,7 @@ public class UserController extends BaseController {
 		pd.put("STATUS", "0");					//状态
 		pd.put("SKIN", "default");				//默认皮肤
 
-		//添加worker表字段
-		pd.put("name",pd.getString("NAME"));
-		pd.put("phone",pd.getString("PHONE"));
-		pd.put("password","123");
+		pd.put("passw","123");
 		String roleId = pd.getString("ROLE_ID");
 		String role = userService.findRoleById(roleId);
 		pd.put("post",role);
@@ -91,9 +85,18 @@ public class UserController extends BaseController {
 		String loginUserName = FactoryUtil.getLoginUserName();
 		if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
 			pd.put("factory_id",FactoryUtil.getFactoryId());
+			String workshopId = FactoryUtil.getWorkshopId();
+			if(StringUtils.isNotEmpty(workshopId)){    //操作人为车间以下职位
+				pd.put("workshop_id",workshopId);
+				String teamId = FactoryUtil.getTeamId();
+				if(StringUtils.isNotEmpty(teamId)) {    //操作人为班组长
+					pd.put("team_id", teamId);
+				}
+			}
+
 		}
+
 		userService.saveU(pd);
-		workerService.save(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -179,7 +182,16 @@ public class UserController extends BaseController {
 			String loginUserName = FactoryUtil.getLoginUserName();
 			if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
 				pd.put("factory_id",FactoryUtil.getFactoryId());
+				String workshopId = FactoryUtil.getWorkshopId();
+				if(StringUtils.isNotEmpty(workshopId)){    //操作人为车间以下职位
+					pd.put("workshop_id",workshopId);
+					String teamId = FactoryUtil.getTeamId();
+					if(StringUtils.isNotEmpty(teamId)) {    //操作人为班组长
+						pd.put("team_id", teamId);
+					}
+				}
 			}
+
 			userService.editU(pd);
 		}
 		mv.addObject("msg","success");
@@ -209,11 +221,33 @@ public class UserController extends BaseController {
 		}
 		
 		List<Role> roleList = roleService.listAllERRoles();			//列出所有二级角色
-		List<Workshop> workshopList = workshopService.listWorkshop();
-		List<PageData> factoryList =  factoryService.listAllFac();
-		mv.addObject("workshopList",workshopList);
-		mv.addObject("factoryList",factoryList);
 		pd = userService.findByUiId(pd);							//根据ID读取
+
+		String factory_id = FactoryUtil.getFactoryId();
+		String workshop_id = FactoryUtil.getWorkshopId();
+		List<PageData> workshopList = new ArrayList<PageData>();
+		if(StringUtils.isNotEmpty(factory_id)) {
+			PageData factory = new PageData();
+			factory.put("factory_id",factory_id);
+			List<PageData> teamList = new ArrayList<PageData>();
+			if(StringUtils.isNotEmpty(workshop_id)){
+				PageData workshop = new PageData();
+				workshop.put("id",workshop_id);
+				String workshopName = workshopService.findById(workshop).getString("workshop");
+				pd.put("workshop",workshopName);
+				pd.put("workshop_id",workshop_id);
+				workshop.put("workshop_id", workshop_id);
+				workshop.put("factory_id", factory_id);
+				teamList = teamService.findTeamByW(workshop);   //找到班组
+			}else{
+				workshopList = workshopService.listWorkshopByFac(factory);
+				mv.addObject("workshopList",workshopList);
+			}
+			mv.addObject("teamList",teamList);
+		}else{
+			List<PageData> factoryList =  factoryService.listAllFac();
+			mv.addObject("factoryList",factoryList);
+		}
 		mv.setViewName("system/user/user_edit");
 		mv.addObject("msg", "editU");
 		pd.put("userName",FactoryUtil.getLoginUserName());
@@ -233,13 +267,33 @@ public class UserController extends BaseController {
 				PageData pd = new PageData();
 				pd = this.getPageData();
 				List<Role> roleList;
-
 				roleList = roleService.listAllERRoles();			//列出所有二级角色
-				List<Workshop> workshopList = workshopService.listWorkshop();
-				List<PageData> factoryList =  factoryService.listAllFac();
-				mv.addObject("workshopList",workshopList);
-				mv.addObject("factoryList",factoryList);
-				mv.setViewName("system/user/user_edit");
+				String factory_id = FactoryUtil.getFactoryId();
+		        String workshop_id = FactoryUtil.getWorkshopId();
+		        List<PageData> workshopList = new ArrayList<PageData>();
+		        if(StringUtils.isNotEmpty(factory_id)) {
+		        	PageData factory = new PageData();
+					factory.put("factory_id",factory_id);
+					List<PageData> teamList = new ArrayList<PageData>();
+					if(StringUtils.isNotEmpty(workshop_id)){
+						PageData workshop = new PageData();
+						workshop.put("id",workshop_id);
+						String workshopName = workshopService.findById(workshop).getString("workshop");
+						pd.put("workshop",workshopName);
+						pd.put("workshop_id",workshop_id);
+						workshop.put("workshop_id", workshop_id);
+						workshop.put("factory_id", factory_id);
+						teamList = teamService.findTeamByW(workshop);   //找到班组
+					}else{
+						workshopList = workshopService.listWorkshopByFac(factory);
+						mv.addObject("workshopList",workshopList);
+					}
+					mv.addObject("teamList",teamList);
+				}else{
+					List<PageData> factoryList =  factoryService.listAllFac();
+					mv.addObject("factoryList",factoryList);
+				}
+				mv.setViewName("system/user/user_add");
 				mv.addObject("msg", "saveU");
 				pd.put("userName",FactoryUtil.getLoginUserName());
 				mv.addObject("pd", pd);
@@ -277,16 +331,34 @@ public class UserController extends BaseController {
 				String loginUserName = FactoryUtil.getLoginUserName();
 				if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
 					pd.put("factory_id",FactoryUtil.getFactoryId());
+					pd.put("workshop_id",FactoryUtil.getWorkshopId());
+					pd.put("team_id",FactoryUtil.getTeamId());
 				}
 				page.setPd(pd);
 				List<PageData>	userList = userService.listPdPageUser(page);			//列出用户列表
 				List<Role> roleList = roleService.listAllERRoles();						//列出所有二级角色
 				for (PageData p : userList) {
 					String factoryId = p.getString("factory_id");
-					PageData find = new PageData();
-					find.put("id",factoryId);
-					String factoryName = factoryService.findById(find).getString("factory");
-					p.put("factory",factoryName);
+					if(StringUtils.isNotEmpty(factoryId)){
+						PageData find = new PageData();
+						find.put("id",factoryId);
+						String factoryName = factoryService.findById(find).getString("factory");
+						p.put("factory",factoryName);
+					}
+					String workshopId = p.getString("workshop_id");
+					if(StringUtils.isNotEmpty(workshopId)){
+						PageData workshop = new PageData();
+						workshop.put("id",workshopId);
+						String workshopName = workshopService.findById(workshop).getString("workshop");
+						p.put("workshop",workshopName);
+					}
+					String teamId = p.getString("team_id");
+					if(StringUtils.isNotEmpty(teamId)){
+						PageData team = new PageData();
+						team.put("id",workshopId);
+						String teamName = teamService.findById(team).getString("team");
+						p.put("team",teamName);
+					}
 				}
 
 				mv.setViewName("system/user/user_list");
@@ -296,7 +368,6 @@ public class UserController extends BaseController {
 				mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
 				return mv;
 			}
-
 
 			/**
 			 * 显示用户列表(tab方式)

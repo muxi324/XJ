@@ -25,6 +25,9 @@
         <if test="pd.factory_id != null and pd.factory_id != ''">
             and factory_id = #{pd.factory_id}
         </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
         order by event_id asc
     </select>
 
@@ -50,15 +53,18 @@
         <if test="pd.factory_id != null and pd.factory_id != ''">
             and factory_id = #{pd.factory_id}
         </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
         order by event_id asc
     </select>
 
     <!-- 新增-->
     <insert id="save" parameterType="pd">
         insert into event_info(
-        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id)
+        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id,workshop_id)
         values (#{event_name},#{instrument_place},#{workshop},#{check_scope},#{check_point},#{check_period},#{check_interval},#{event_level},
-        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id}
+        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id},#{workshop_id}
         )
     </insert>
 

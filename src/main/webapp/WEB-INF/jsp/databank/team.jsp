@@ -1,7 +1,7 @@
 <%--
   Created by IntelliJ IDEA.
   User: wp
-  Date: 2018/3/14
+  Date: 2018/9/3
   Time: 15:19
   To change this template use File | Settings | File Templates.
 --%>
@@ -26,12 +26,11 @@
 
     <div id="page-content" class="clearfix">
 
-        <div class="row-fluid">
+        <div id="zhongxin">
 
             <div class="row-fluid">
-
                 <!-- 检索  -->
-                <form action="factory/list.do" method="post" name="Form" id="Form">
+                <form action="team/listTeam.do" method="post" name="Form" id="Form">
                     <table>
                         <tr>
                             <td>
@@ -60,10 +59,8 @@
                                 <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
                             </th>--%>
                             <th class="center">序号</th>
-                            <th class="center">工厂名称</th>
-                            <!--<th class="center">负责人</th>
-                            <th class="center">手机号</th>-->
-                            <%--<th class="center">职位</th>--%>
+                            <th class="center">班组名称</th>
+                            <th class="center">所属车间</th>
                             <th class="center">创建时间</th>
                             <th class="center">操作</th>
                         </tr>
@@ -81,10 +78,8 @@
                                                 <label><input type='checkbox' name='ids' value="${var.id}" /><span class="lbl"></span></label>
                                             </td>--%>
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                            <td style="width: 60px;" class="center">${var.factory}</td>
-                                         <%--   <td style="width: 60px;" class="center">${var.name}</td>
-                                            <td style="width: 60px;" class="center">${var.phone}</td>--%>
-                                            <%--<td style="width: 60px;" class="center">${var.post}</td>--%>
+                                            <td style="width: 60px;" class="center">${var.team}</td>
+                                            <td style="width: 60px;" class="center">${var.workshop}</td>
                                             <td style="width: 60px;" class="center">${var.create_time}</td>
                                             <td style="width: 60px;" class="center">
                                                 <div class='hidden-phone visible-desktop btn-group'>
@@ -169,6 +164,7 @@
     //检索
     function search(){
         top.jzts();
+
         $("#Form").submit();
     }
 
@@ -178,7 +174,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="新增";
-        diag.URL = '<%=basePath%>factory/goAdd.do';
+        diag.URL = '<%=basePath%>team/goAddTeam.do';
         diag.Width = 300;
         diag.Height = 400;
         diag.CancelEvent = function(){ //关闭事件
@@ -200,7 +196,7 @@
         bootbox.confirm("确定要删除吗?", function(result) {
             if(result) {
                 top.jzts();
-                var url = "<%=basePath%>factory/delete.do?id="+Id+"&tm="+new Date().getTime();
+                var url = "<%=basePath%>team/deleteTeam.do?id="+Id+"&tm="+new Date().getTime();
                 $.get(url,function(data){
                     nextPage(${page.currentPage});
                 });
@@ -214,7 +210,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="编辑";
-        diag.URL = '<%=basePath%>factory/goEdit.do?id='+Id;
+        diag.URL = '<%=basePath%>team/goEditTeam.do?id='+Id;
         diag.Width = 300;
         diag.Height = 400;
         diag.CancelEvent = function(){ //关闭事件
@@ -290,7 +286,7 @@
                         top.jzts();
                         $.ajax({
                             type: "POST",
-                            url: '<%=basePath%>factory/deleteAll.do?tm='+new Date().getTime(),
+                            url: '<%=basePath%>workshop/deleteAll.do?tm='+new Date().getTime(),
                             data: {DATA_IDS:str},
                             dataType:'json',
                             //beforeSend: validateData,
@@ -309,7 +305,7 @@
 
     //导出excel
     function toExcel(){
-        window.location.href='<%=basePath%>factory/excel.do';
+        window.location.href='<%=basePath%>workshop/excel.do';
     }
     //打开上传excel页面
     function fromExcel(){
@@ -317,7 +313,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="EXCEL 导入到数据库";
-        diag.URL = '<%=basePath%>factory/goUploadExcel.do';
+        diag.URL = '<%=basePath%>workshop/goUploadExcel.do';
         diag.Width = 300;
         diag.Height = 150;
         diag.CancelEvent = function(){ //关闭事件

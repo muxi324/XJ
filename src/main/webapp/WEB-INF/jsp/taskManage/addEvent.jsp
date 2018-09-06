@@ -22,37 +22,38 @@
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">事件名称:</td>
-                <td><input style="width:90%;" type="text" name="event_name" id="event_name" value="${pd.event_name}" maxlength="200"  title=""/></td>
+                <td><input style="width:90%;" type="text" name="event_name" id="event_name" value="${pd.event_name}" maxlength="200"  title="" data-placeholder="请填写事件名称（必填）"/></td>
                 <input type="hidden" name="font_color" id="font_color" value="#000000"/>
                 <input type="hidden" name="font_size" id="font_size" value="20"/>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
                 <td>
-                    <select name="workshop" id="workshop" class="form-control" value="${pd.workshop}">
+                    <input style="width:90%;" type="text" name="workshop" id="workshop"  maxlength="200" value="${pd.workshop}" readonly>
+                   <%-- <select name="workshop" id="workshop" class="form-control" value="${pd.workshop}">
                         <option value="0">选择</option>
                         <c:forEach items="${workshopList}" var="W">
                             <option value="${W.workshop }">${W.workshop }</option>
                         </c:forEach>
-                    </select>
+                    </select>--%>
                 </td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
                 <td>
-                    <input style="width:90%;" type="text" name="check_point" id="check_point"  maxlength="200" value="${pd.check_point}" >
+                    <input style="width:90%;" type="text" name="check_point" id="check_point"  maxlength="200" value="${pd.check_point}" data-placeholder="事件所在的设备名称（可以不填）" >
                 </td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检范围:</td>
                 <td>
-                    <input style="width:90%;" type="text" name="check_scope" id="check_scope"  maxlength="200" value="${pd.check_scope}" >
+                    <input style="width:90%;" type="text" name="check_scope" id="check_scope"  maxlength="200" value="${pd.check_scope}" data-placeholder="事件所在的生产区域（可以不填）">
                 </td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                 <td>
-                <input style="width:90%;" type="text" name="instrument_place" id="instrument_place"  maxlength="200" value="${pd.instrument_place}" title=""/>
+                <input style="width:90%;" type="text" name="instrument_place" id="instrument_place"  maxlength="200" value="${pd.instrument_place}"  data-placeholder="事件所在的车间的具体位置（可以不填）"/>
                 </td>
             </tr>
             <tr>
@@ -182,7 +183,6 @@
         location.href = "<%=basePath%>eventManage/addWorkContent.do?eventName="+eventName;
     }
 </script>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>
 
 

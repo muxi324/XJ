@@ -107,6 +107,8 @@ public class QueryTaskController extends BaseController {
                 String loginUserName = FactoryUtil.getLoginUserName();
                 if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                     pd.put("factory_id",FactoryUtil.getFactoryId());
+                    pd.put("workshop_id",FactoryUtil.getWorkshopId());
+                    pd.put("team_id",FactoryUtil.getTeamId());
                 }
                 page.setPd(pd);
                 List<PageData> varList = queryTaskService.list(page);	//列出${objectName}列表

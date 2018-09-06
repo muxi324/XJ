@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: wp
-  Date: 2017/12/18
-  Time: 9:17
+  Date: 2018/9/3
+  Time: 16:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,74 +17,65 @@
 <html lang="en">
 <head>
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
-    <script type="text/javascript" src="static/js/jquery-editable-select.min.js"></script>
-    <link type="text/css" href="static/css/jquery-editable-select.min.css" rel="stylesheet" />
     <%@ include file="../system/admin/top.jsp"%>
+
     <script type="text/javascript">
+
+
         //保存
         function save(){
-            if($("#name").val()==""){
-                $("#name").tips({
+            if($("#team").val()==""){
+                $("#team").tips({
                     side:3,
-                    msg:'请输入姓名',
+                    msg:'请输入班组名称',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#name").focus();
+                $("#team").focus();
                 return false;
             }
-            if($("#phone").val()==""){
-                $("#phone").tips({
-                    side:3,
-                    msg:'请输入手机号',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#phone").focus();
-                return false;
-            }
-            $.ajax({
-                //几个参数需要注意一下
-                type: "POST",//方法类型
-                url: "<%=basePath%>partsmag/save.do" ,//url
-                data: $('#Form').serialize(),
-                success: function (result) {
-                    //打印服务端返回的数据(调试用)
-                    alert("入库成功！");
-                    window.location.href='<%=basePath%>partsmag/goInput.do';
-                },
-                error : function() {
-                    alert("出现异常！");
-                }
-            });
 
-           // $("#Form").submit();
+            $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
         }
 
+
+
+
     </script>
 </head>
 <body>
-<form action="partsmag/${msg}.do" id="Form"   method="post">
-     <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
-     <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
-
+<form action="team/${msg }.do" id="Form"   method="post">
+    <input type="hidden" name="id" id="id" value="${pd.id }"/>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">所属工厂:</td>
+                <td><input style="width:95%;" type="text" name="factory" id="factory" value="${pd.factory}" maxlength="150"  title="" readonly/></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">车间名称:</td>
+                <td><input style="width:95%;" type="text" name="workshop" id="workshop" value="${pd.workshop}" maxlength="100"  title="" /></td>
+            </tr>
+            <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">班组名称:</td>
+                <td><input style="width:95%;" type="text" name="team" id="team" value="${pd.team}" maxlength="100" placeholder="这里输入班组名称" title=""/></td>
+            </tr>
 
-            <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
-                <td><input style="width:95%;" type="text" name="material_num" id="material_num" value="${pd.material_num}" maxlength="150" placeholder="这里输入数量" title=""/></td>
+            <%--<tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">姓名:</td>
+                <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="100" placeholder="这里输入姓名" title=""/></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">负责人:</td>
-                <td><input style="width:95%;" type="text" name="worker_name" id="worker_name" value="${worker_name}" maxlength="150" placeholder="这里输入负责人" title=""/></td>
+                <td style="width:100px;text-align: right;padding-top: 13px;">联系电话:</td>
+                <td><input style="width:95%;" type="text" name="phone" id="phone" value="${pd.phone}" maxlength="150" placeholder="这里输入电话" title=""/></td>
             </tr>
             <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">操作人:</td>
-                <td><input style="width:95%;" type="text" name="operater" id="operater" value="${NAME}" maxlength="150"  readonly/></td>
-            </tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">职位:</td>
+                <td><input style="width:95%;" type="text" name="post" id="post" value="${pd.post}" maxlength="150" placeholder="这里输入职位" title=""/></td>
+            </tr>--%>
+
 
             <div style=" clear:both; padding-top: 40px;"></div>
             <tr>
@@ -107,8 +98,6 @@
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/ace-elements.min.js"></script>
 <script src="static/js/ace.min.js"></script>
-<script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
-
 
 <script type="text/javascript">
     $(top.hangge());

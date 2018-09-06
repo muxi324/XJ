@@ -54,7 +54,7 @@
         <table id="t" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人:</td>
-                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${USERNAME}" size="18" maxlength="200"  title=""></td>
+                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${NAME}" size="18" maxlength="200"  title=""></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">审核意见:</td>
@@ -71,12 +71,15 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+            <tr id="p1">
                 <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-small btn-primary" onclick="resend();">重新下发任务</a>
+                    <a class="btn btn-small btn-primary" onclick="save();">保存</a>
                 </td>
-
+            </tr>
+            <tr id="p2" hidden="hidden">
+                <td style="text-align: center;" colspan="10">
+                    <a class="btn btn-small btn-primary" onclick="resend();">保存并重新下发任务</a>
+                </td>
             </tr>
         </table>
     </form>
@@ -139,24 +142,33 @@
 
 </table>
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>
 <script type="text/javascript">
     $(top.hangge());
 
-    $(document).ready(function(){
-        var options = $("#mission_condition").find("option:selected").val(); //获取选中的项的值
-        if(options == 7) {
-            var trHtml = "<tr>" +
-                "<td id = 'addContent'>" +
-                "<a class='btn btn-small btn-primary' onclick='resend();'>重新下发任务</a>" +
-                "</td>" +
-                "</tr>";
-            $("#t").append(trHtml);
+    $("#mission_condition").change(function(){
+        var options = $(this).children("option:selected").val(); //获取选中的项的值
+        if(options == "6") {
+            $("#p1").removeAttr("hidden");
+            $("#p2").attr("hidden","hidden");
+        }else if(options == "7"){
+            $("#p2").removeAttr("hidden");
+            $("#p1").attr("hidden","hidden");
         }
     });
     //重新下发任务
     function resend(){
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            url: "<%=basePath%>taskmag/auditMisson.do" ,//url
+            data: $('#Form').serialize(),
+            success: function (result) {
+            },
+            error : function() {
+                alert("出现异常！");
+            }
+        });
         var missionId= $("#missionId").val();
         top.jzts();
         var diag = new top.Dialog();

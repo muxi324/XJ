@@ -38,6 +38,12 @@
         <if test="pd.factory_id != null and pd.factory_id != ''">
             and factory_id = #{pd.factory_id}
         </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
+        <if test="pd.team_id != null and pd.team_id != ''">
+            and team_id = #{pd.team_id}
+        </if>
         order by id desc
     </select>
     <!-- 列表(全部) -->
@@ -62,6 +68,15 @@
         </if>
         <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
             and mission_condition = #{pd.mission_condition}
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
+        <if test="pd.team_id != null and pd.team_id != ''">
+            and team_id = #{pd.team_id}
         </if>
         order by id desc
     </select>

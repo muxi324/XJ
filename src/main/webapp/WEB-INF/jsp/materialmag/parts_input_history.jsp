@@ -40,9 +40,9 @@
 
                     <thead>
                     <tr>
-                        <th class="center">
+                        <%--<th class="center">
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                        </th>
+                        </th>--%>
                         <th class="center">序号</th>
                         <th class="center">入库数量</th>
                         <th class="center">入库时间</th>

@@ -100,4 +100,5 @@
 		<!--引入属于此页面的js -->
 		<script type="text/javascript" src="static/js/myjs/index.js"></script>
 </body>
+<%@ include file="bottom.jsp"%>
 </html>

@@ -7,8 +7,14 @@
     </resultMap>
 
     <!--列出所有车间-->
-    <select id="listWorkshop" resultMap="workshopMap">
-        select distinct workshop from workshop_principal_info where workshop  is not null
+    <select id="listWorkshop"  resultMap="workshopMap">
+        select distinct workshop from workshop_principal_info
+        where workshop is not null
+    </select>
+
+    <select id="listWorkshopByFac" parameterType="pd" resultType="pd">
+        select id,workshop  from workshop_principal_info
+        where factory_id = #{factory_id}
     </select>
 
 

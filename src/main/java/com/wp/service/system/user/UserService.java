@@ -30,7 +30,7 @@ public class UserService {
 	* 通过loginname获取数据
 	*/
 	public PageData findByUId(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("UserXMapper.findByUId", pd);
+		return (PageData)dao.findForObject("SysUserMapper.findByUId", pd);
 	}
 	
 	/*
@@ -44,7 +44,7 @@ public class UserService {
 	* 通过编号获取数据
 	*/
 	public PageData findByUN(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("UserXMapper.findByUN", pd);
+		return (PageData)dao.findForObject("SysUserMapper.findByUN", pd);
 	}
 	
 	/*
@@ -63,19 +63,19 @@ public class UserService {
 	* 换皮肤
 	*/
 	public void setSKIN(PageData pd)throws Exception{
-		dao.update("UserXMapper.setSKIN", pd);
+		dao.update("SysUserMapper.setSKIN", pd);
 	}
 	/*
 	* 删除用户
 	*/
 	public void deleteU(PageData pd)throws Exception{
-		dao.delete("UserXMapper.deleteU", pd);
+		dao.delete("SysUserMapper.deleteU", pd);
 	}
 	/*
 	* 批量删除用户
 	*/
 	public void deleteAllU(String[] USER_IDS)throws Exception{
-		dao.delete("UserXMapper.deleteAllU", USER_IDS);
+		dao.delete("SysUserMapper.deleteAllU", USER_IDS);
 	}
 	/*
 	*用户列表(用户组)
@@ -88,7 +88,7 @@ public class UserService {
 	*用户列表(全部)
 	*/
 	public List<PageData> listAllUser(PageData pd)throws Exception{
-		return (List<PageData>) dao.findForList("UserXMapper.listAllUser", pd);
+		return (List<PageData>) dao.findForList("SysUserMapper.listAllUser", pd);
 	}
 	
 	/*
@@ -97,24 +97,28 @@ public class UserService {
 	public List<PageData> listGPdPageUser(Page page)throws Exception{
 		return (List<PageData>) dao.findForList("UserXMapper.userGlistPage", page);
 	}
+
+	public List<PageData> listWorkerByTeam(PageData pd)throws Exception{
+		return (List<PageData>)dao.findForList("SysUserMapper.listWorkerByTeam", pd);
+	}
 	/*
 	* 保存用户IP
 	*/
 	public void saveIP(PageData pd)throws Exception{
-		dao.update("UserXMapper.saveIP", pd);
+		dao.update("SysUserMapper.saveIP", pd);
 	}
 	
 	/*
 	* 登录判断
 	*/
 	public PageData getUserByNameAndPwd(PageData pd)throws Exception{
-		return (PageData)dao.findForObject("UserXMapper.getUserInfo", pd);
+		return (PageData)dao.findForObject("SysUserMapper.getUserInfo", pd);
 	}
 	/*
 	* 跟新登录时间
 	*/
 	public void updateLastLogin(PageData pd)throws Exception{
-		dao.update("UserXMapper.updateLastLogin", pd);
+		dao.update("SysUserMapper.updateLastLogin", pd);
 	}
 	
 	/*

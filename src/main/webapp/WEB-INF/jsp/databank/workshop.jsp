@@ -29,7 +29,6 @@
         <div class="row-fluid">
 
             <div class="row-fluid">
-
                 <!-- 检索  -->
                 <form action="workshop/list.do" method="post" name="Form" id="Form">
                     <table>
@@ -37,15 +36,15 @@
                             <td>
 						<span class="input-icon">
 							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="" placeholder="这里输入关键词" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<i id="nav-input-icon" class="icon-search"></i>
 						</span>
                             </td>
                             <c:if test="${QX.cha == 1 }">
                                 <td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();"  title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
-                                <c:if test="${QX.edit == 1 }">
+                                <%--<c:if test="${QX.edit == 1 }">
                                     <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td>
                                     <td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
-                                </c:if>
+                                </c:if>--%>
                             </c:if>
                         </tr>
                     </table>
@@ -56,15 +55,15 @@
 
                         <thead>
                         <tr>
-                            <th class="center">
+                          <%--  <th class="center">
                                 <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                            </th>
+                            </th>--%>
                             <th class="center">序号</th>
                             <th class="center">车间名称</th>
-                            <th class="center">负责人</th>
-                            <th class="center">手机号</th>
+                           <%-- <th class="center">负责人</th>
+                            <th class="center">手机号</th>--%>
                             <%--<th class="center">职位</th>--%>
-                            <%--<th class="center">创建时间</th>--%>
+                            <th class="center">创建时间</th>
                             <th class="center">操作</th>
                         </tr>
                         </thead>
@@ -77,21 +76,26 @@
                                 <c:if test="${QX.cha == 1 }">
                                     <c:forEach items="${varList}" var="var" varStatus="vs">
                                         <tr>
-                                            <td class='center' style="width: 30px;">
+                                            <%--<td class='center' style="width: 30px;">
                                                 <label><input type='checkbox' name='ids' value="${var.id}" /><span class="lbl"></span></label>
-                                            </td>
+                                            </td>--%>
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                                             <td style="width: 60px;" class="center">${var.workshop}</td>
-                                            <td style="width: 60px;" class="center">${var.name}</td>
-                                            <td style="width: 60px;" class="center">${var.phone}</td>
+                                            <%--<td style="width: 60px;" class="center">${var.name}</td>
+                                            <td style="width: 60px;" class="center">${var.phone}</td>--%>
                                             <%--<td style="width: 60px;" class="center">${var.post}</td>--%>
-                                            <%--<td style="width: 60px;" class="center">${var.create_time}</td>--%>
+                                            <td style="width: 60px;" class="center">${var.create_time}</td>
                                             <td style="width: 60px;" class="center">
                                                 <div class='hidden-phone visible-desktop btn-group'>
 
                                                     <c:if test="${QX.edit == 1 }">
                                                         <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="edit('${var.id }');"><i class='icon-edit'></i></a></c:if>
                                                         <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
+                                                    </c:if>
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <c:if test="${QX.edit == 1 }">
+                                                        <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="添加班组" onclick="addTeam('${var.id }');"><i class='icon-pause'></i></a></c:if>
+                                                        <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能添加"><i class='icon-pause'></i></a></c:if>
                                                     </c:if>
                                                     &nbsp;&nbsp;&nbsp;
                                                     <c:if test="${QX.del == 1 }">
@@ -129,9 +133,9 @@
                                     <c:if test="${QX.add == 1 }">
                                         <a class="btn btn-small btn-success" onclick="add();">新增</a>
                                     </c:if>
-                                    <c:if test="${QX.del == 1 }">
+                                  <%--  <c:if test="${QX.del == 1 }">
                                         <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
-                                    </c:if>
+                                    </c:if>--%>
                                 </td>
                                 <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                             </tr>
@@ -220,6 +224,28 @@
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
                 nextPage(${page.currentPage});
+            }
+            diag.close();
+        };
+        diag.show();
+    }
+    //添加班组
+    function addTeam(Id){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="添加班组";
+        diag.URL = '<%=basePath%>workshop/goAddTeam.do?workshop_id='+Id;
+        diag.Width = 700;
+        diag.Height = 400;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location = self.location",100);
+                }else{
+                  nextPage(${page.currentPage});
+                }
             }
             diag.close();
         };
@@ -336,5 +362,4 @@
 </script>
 
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>
