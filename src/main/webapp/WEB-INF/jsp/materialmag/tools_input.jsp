@@ -23,44 +23,24 @@
     <script type="text/javascript">
         //保存
         function save(){
-            if($("#name").val()==""){
-                $("#name").tips({
+            if($("#material_num").val()==""){
+                $("#material_num").tips({
                     side:3,
-                    msg:'请输入姓名',
+                    msg:'请输入数量',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#name").focus();
+                $("#material_num").focus();
                 return false;
             }
-            if($("#phone").val()==""){
-                $("#phone").tips({
+            if($("#worker_name").val()==""){
+                $("#worker_name").tips({
                     side:3,
-                    msg:'请输入手机号',
+                    msg:'请输入负责人姓名',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#phone").focus();
-                return false;
-            }
-            if($("#workshop").val()==""){
-                $("#workshop").tips({
-                    side:3,
-                    msg:'请输入身份证号',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#workshop").focus();
-                return false;
-            }
-            if($("#team").val()==""){
-                $("#team").tips({
-                    side:3,
-                    msg:'请输入班组',
-                    bg:'#AE81FF',
-                    time:2
-                });
-                $("#team").focus();
+                $("#worker_name").focus();
                 return false;
             }
             $.ajax({

@@ -47,6 +47,7 @@
                         <th class="center">出库数量</th>
                         <th class="center">出库时间</th>
                         <th class="center">领取人</th>
+                        <th class="center">操作人</th>
                         <th class="center">用途</th>
                        <%-- <th class="center">所用任务</th>--%>
                     </tr>
@@ -60,13 +61,14 @@
                             <c:if test="${QX.cha == 1 }">
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td class='center' style="width: 30px;">
+                                       <%-- <td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.material_id}" /><span class="lbl"></span></label>
-                                        </td>
+                                        </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
                                         <td style="width: 100px;" class="center">${var.time}</td>
                                         <td style="width: 60px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 100px;" class="center">${var.operater}</td>
                                         <td style="width: 100px;" class="center">${var.aim}</td>
                                       <%--  <td style="width: 60px;" class="center">${var.mission_id}</td>--%>
                                     </tr>

@@ -82,6 +82,7 @@ public class TaskMagController extends BaseController {
             String loginUserName = FactoryUtil.getLoginUserName();
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
+                pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
             List<PageData> varList = taskMagService.list(page);	//列出${objectName}列表

@@ -31,6 +31,9 @@
         <if test="pd.factory_id != null and pd.factory_id != ''">
             and factory_id = #{pd.factory_id}
         </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
         order by id desc
     </select>
 
@@ -62,6 +65,9 @@
         </if>
         <if test="pd.factory_id != null and pd.factory_id != ''">
             and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
         </if>
         order by id desc
     </select>

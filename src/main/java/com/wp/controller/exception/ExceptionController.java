@@ -65,6 +65,7 @@ public class ExceptionController extends BaseController{
             String loginUserName = FactoryUtil.getLoginUserName();
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
+                pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
             List<PageData> exceptionList = exceptionService.listException(page);
@@ -108,6 +109,7 @@ public class ExceptionController extends BaseController{
             String loginUserName = FactoryUtil.getLoginUserName();
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
+                pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
             List<PageData> exceptionList = exceptionService.listAllException(page);

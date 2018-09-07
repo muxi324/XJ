@@ -24,26 +24,27 @@
 
         //保存
         function save1(){
-            if($("#name").val()==""){
-                $("#name").tips({
+            if($("#material_num").val()==""){
+                $("#material_num").tips({
                     side:3,
-                    msg:'请输入姓名',
+                    msg:'请输入数量',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#name").focus();
+                $("#material_num").focus();
                 return false;
             }
-            if($("#phone").val()==""){
-                $("#phone").tips({
+            if($("#worker_name").val()==""){
+                $("#worker_name").tips({
                     side:3,
-                    msg:'请输入手机号',
+                    msg:'请输入领取人姓名',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#phone").focus();
+                $("#worker_name").focus();
                 return false;
             }
+
             if(parseInt($("#material_num").val()) > parseInt($("#stock").val())){
                 $("#material_num").tips({
                     side:3,
@@ -85,25 +86,6 @@
     <input type="hidden" name="stock" id="stock" value="${pd.stock}"/>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
-           <%-- <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件类型:</td>
-                <td> <select  name="description" id="description" data-placeholder="请选择配件类型" style="width:95%;" maxlength="150">
-                    <option value="">全部</option>
-                    <option value="螺栓" >螺栓</option>
-                    <option value="润滑油">润滑油</option>
-                    <option value="发电机">发电机</option>
-                    <option value="传送带">传送带</option>
-                    <option value="水管">水管</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件编号:</td>
-                <td><input style="width:95%;" type="text" name="material_id" id="material_id" value="${pd.material_id}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
-            </tr>
-            <tr>
-                <td style="width:100px;text-align: right;padding-top: 13px;">配件名称:</td>
-                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
-            </tr>--%>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>
                 <td><input style="width:95%;" type="text" name="material_num" id="material_num" value="${pd.material_num}" maxlength="150" placeholder="这里输入数量" title=""/></td>

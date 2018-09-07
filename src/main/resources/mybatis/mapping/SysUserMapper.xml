@@ -61,10 +61,14 @@
         post                    = #{post},
         team                    = #{team},
         workshop                = #{workshop}
-        team_id                 = #{team_id}
-        workshop_id                = #{workshop_id}
+        <if test="team_id != null and team_id != ''">
+        ,team_id                 = #{team_id}
+        </if>
+        <if test="workshop_id != null and workshop_id != ''">
+        ,workshop_id                = #{workshop_id}
+        </if>
         <if test="PASSWORD != null and PASSWORD != ''">
-            ,PASSWORD				= #{PASSWORD}
+        ,PASSWORD				= #{PASSWORD}
         </if>
         where
         USER_ID = #{USER_ID}
@@ -145,11 +149,11 @@
     <!-- 新增用户 -->
     <insert id="saveU" parameterType="pd" flushCache="false">
         insert into SYS_USER (
-        USER_ID,USERNAME,PASSWORD,NAME,RIGHTS,ROLE_ID,LAST_LOGIN,IP,STATUS,BZ,SKIN,EMAIL,NUMBER,
+        USER_ID,USERNAME,PASSWORD,NAME,RIGHTS,ROLE_ID,LAST_LOGIN,IP,STATUS,BZ,SKIN,EMAIL,NUMBER,passw,
         PHONE,post,work_type,random,team,factory,workshop,add_time,factory_id,workshop_id,team_id
         ) values (
         #{USER_ID},#{USERNAME},#{PASSWORD},#{NAME},#{RIGHTS},#{ROLE_ID},#{LAST_LOGIN},#{IP},#{STATUS},
-        #{BZ},#{SKIN},#{EMAIL},#{NUMBER},#{PHONE},#{post},#{work_type},#{random},#{team},#{factory},
+        #{BZ},#{SKIN},#{EMAIL},#{NUMBER},#{passw},#{PHONE},#{post},#{work_type},#{random},#{team},#{factory},
         #{workshop},#{add_time},#{factory_id},#{workshop_id},#{team_id}
         )
     </insert>
@@ -214,6 +218,11 @@
         </if>
     </select>
 
+    <select id="findRoleById" parameterType="java.lang.String" resultType="java.lang.String">
+        select ROLE_NAME  from sys_role
+        where ROLE_ID = #{roleId}
+    </select>
+
 
     <!-- 用户列表(全部) -->
     <select id="listAllUser" parameterType="pd" resultType="pd" useCache="false">
@@ -256,12 +265,14 @@
         order by u.LAST_LOGIN desc
     </select>
 
+
     <!-- 删除用户 -->
     <delete id="deleteU" parameterType="pd" flushCache="false">
         delete from SYS_USER
         where
         USER_ID = #{USER_ID}
     </delete>
+
 
     <!-- 批量删除用户 -->
     <delete id="deleteAllU" parameterType="String" flushCache="false">

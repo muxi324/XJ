@@ -180,6 +180,9 @@ public class UserController extends BaseController {
 		}
 		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")) {
 			String loginUserName = FactoryUtil.getLoginUserName();
+			String roleId = pd.getString("ROLE_ID");
+			String role = userService.findRoleById(roleId);
+			pd.put("post",role);
 			if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
 				pd.put("factory_id",FactoryUtil.getFactoryId());
 				String workshopId = FactoryUtil.getWorkshopId();

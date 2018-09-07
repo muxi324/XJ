@@ -23,24 +23,24 @@
     <script type="text/javascript">
         //保存
         function save(){
-            if($("#name").val()==""){
-                $("#name").tips({
+            if($("#material_num").val()==""){
+                $("#material_num").tips({
                     side:3,
-                    msg:'请输入姓名',
+                    msg:'请输入数量',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#name").focus();
+                $("#material_num").focus();
                 return false;
             }
-            if($("#phone").val()==""){
-                $("#phone").tips({
+            if($("#worker_name").val()==""){
+                $("#worker_name").tips({
                     side:3,
-                    msg:'请输入手机号',
+                    msg:'请输入负责人姓名',
                     bg:'#AE81FF',
                     time:2
                 });
-                $("#phone").focus();
+                $("#worker_name").focus();
                 return false;
             }
             $.ajax({
@@ -51,16 +51,15 @@
                 success: function (result) {
                     //打印服务端返回的数据(调试用)
                     alert("入库成功！");
-                    window.location.href='<%=basePath%>partsmag/goInput.do';
                 },
                 error : function() {
                     alert("出现异常！");
                 }
             });
-
            // $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
+
         }
 
     </script>

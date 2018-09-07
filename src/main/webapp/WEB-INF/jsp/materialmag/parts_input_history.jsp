@@ -47,6 +47,7 @@
                         <th class="center">入库数量</th>
                         <th class="center">入库时间</th>
                         <th class="center">负责人</th>
+                        <th class="center">操作人</th>
                     </tr>
                     </thead>
 
@@ -58,13 +59,14 @@
                             <c:if test="${QX.cha == 1 }">
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td class='center' style="width: 30px;">
+                                       <%-- <td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.material_id}" /><span class="lbl"></span></label>
-                                        </td>
+                                        </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
                                         <td style="width: 100px;" class="center">${var.time}</td>
                                         <td style="width: 60px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 100px;" class="center">${var.operater}</td>
                                     </tr>
 
                                 </c:forEach>

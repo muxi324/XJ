@@ -192,7 +192,7 @@
         diag.Drag=true;
         diag.Title ="出库记录";
         diag.URL = '<%=basePath%>partsmag/goOutput.do?material_id='+Id;
-        diag.Width = 600;
+        diag.Width = 700;
         diag.Height = 500;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
@@ -214,7 +214,7 @@
         diag.Drag=true;
         diag.Title ="入库记录";
         diag.URL = '<%=basePath%>partsmag/goInput.do?material_id='+Id;
-        diag.Width = 600;
+        diag.Width = 700;
         diag.Height = 500;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){

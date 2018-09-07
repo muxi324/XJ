@@ -47,6 +47,7 @@
                         <th class="center">入库数量</th>
                         <th class="center">入库时间</th>
                         <th class="center">负责人</th>
+                        <th class="center">操作人</th>
                     </tr>
                     </thead>
 
@@ -65,6 +66,7 @@
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
                                         <td style="width: 100px;" class="center">${var.time}</td>
                                         <td style="width: 60px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 100px;" class="center">${var.operater}</td>
                                     </tr>
 
                                 </c:forEach>
