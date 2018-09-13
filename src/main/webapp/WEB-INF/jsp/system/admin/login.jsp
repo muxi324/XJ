@@ -37,7 +37,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_lg">
 							<i><img height="37" src="static/login/user.png" /></i>
-							</span><input type="text" name="loginname" id="loginname" value="" placeholder="请输入用户名" />
+							</span><input type="text" name="loginname" id="loginname" value="" placeholder="请输入电话号码" />
 						</div>
 					</div>
 				</div>
@@ -121,7 +121,7 @@
 						}else if("usererror" == data.result){
 							$("#loginname").tips({
 								side : 1,
-								msg : "用户名或密码有误",
+								msg : "号码或密码有误",
 								bg : '#FF5080',
 								time : 15
 							});
@@ -175,7 +175,7 @@
 
 				$("#loginname").tips({
 					side : 2,
-					msg : '用户名不得为空',
+					msg : '号码不得为空',
 					bg : '#AE81FF',
 					time : 3
 				});

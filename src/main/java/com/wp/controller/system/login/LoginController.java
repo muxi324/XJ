@@ -98,8 +98,8 @@ public class LoginController extends BaseController {
 		}else{
 			pd.put("USERNAME", USERNAME);
 			if(Tools.notEmpty(sessionCode) && sessionCode.equalsIgnoreCase(code)){
-				String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString();	//密码加密
-				pd.put("PASSWORD", passwd);
+			//	String passwd = new SimpleHash("SHA-1", USERNAME, PASSWORD).toString();	//密码加密
+			//	pd.put("PASSWORD", passwd);
 				pd = userService.getUserByNameAndPwd(pd);
 				if(pd != null){
 					pd.put("LAST_LOGIN", DateUtil.getTime().toString());

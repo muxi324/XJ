@@ -25,9 +25,9 @@
         where 1=1
         <if test="USERNAME != null and PASSWORD != null">
             and	(
-            (USERNAME = #{USERNAME} and PASSWORD = #{PASSWORD})
+            (PHONE= #{USERNAME} and PASSWORD = #{PASSWORD})
             or
-            (EMAIL = #{USERNAME} and PASSWORD = #{PASSWORD})
+            (USERNAME  = #{USERNAME} and PASSWORD = #{PASSWORD})
             or
             (NUMBER = #{USERNAME} and PASSWORD = #{PASSWORD})
             )

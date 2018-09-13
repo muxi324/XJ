@@ -73,7 +73,8 @@
     </select>
 
     <select id="findExceptionById" parameterType="pd" resultType="pd">
-        select *  from exception
+        select e.* ,m.instrument_place from exception e LEFT JOIN event_info m
+        ON e.event = m.event_id
         where
         id = #{exceptionId}
     </select>

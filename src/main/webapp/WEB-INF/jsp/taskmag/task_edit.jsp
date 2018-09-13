@@ -52,23 +52,26 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
                 <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200"  title=""/></td>
             </tr>
-            <tr>
+          <%--  <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所覆盖范围:</td>
                 <td><input style="width:90%;" type="text" name="cover_fields" id="cover_fields" value="${pd.cover_fields}" maxlength="200"  title=""/></td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务描述:</td>
                 <td><input style="width:90%;" type="text" name="mission_description" id="mission_description" value="${pd.mission_description}" maxlength="200"  title=""/>
                 </td>
-            </tr>
+            </tr>--%>
 
             <tr>
               <%--  <td style="width:110px;text-align: right;padding-top: 13px;">巡检周期:</td>
                 <td><input style="width:80%;" type="text" name="cycle_time" id="cycle_time" value="${pd.cycle_time}" maxlength="150"  title=""/>小时/次</td>--%>
-                <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
+               <%-- <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
                 <td><select name="authen_method" id="authen_method" class="form-control" value="${pd.authen_method}" >
                     <option value="自拍">自拍</option>
                     <option value="指纹">指纹</option>
                     <option value="签名">签名</option>
-                </select></td>
+                </select></td>--%>
+                  <td style="width:110px;text-align: right;padding-top: 13px;">任务描述:</td>
+                  <td><input style="width:90%;" type="text" name="mission_description" id="mission_description" value="${pd.mission_description}" maxlength="200"  title=""/>
+                  </td>
                   <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
                   <td><textarea cols="40" rows="6" name="task_addition" id="task_addition" value="${pd.task_addition}" ></textarea></td>
             </tr>
@@ -99,8 +102,8 @@
                             </th>
                             <th class="center">序号</th>
                             <th class="center">所属车间</th>
-                            <th class="center">所属巡检区域</th>
-                            <th class="center">所属巡检点</th>
+                            <%--<th class="center">所属巡检区域</th>
+                            <th class="center">所属巡检点</th>--%>
                             <th class="center">事件名称</th>
                             <th class="center">具体位置</th>
                         </tr>
@@ -117,10 +120,10 @@
                                             </td>
                                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                                             <td style="width: 60px;" class="center"> ${var.workshop}</td>
-                                            <td style="width: 139px;" class="center">${var.check_scope}</td>
-                                            <td style="width: 60px;" class="center">${var.check_point}</td>
+                                            <%--<td style="width: 139px;" class="center">${var.check_scope}</td>
+                                            <td style="width: 60px;" class="center">${var.check_point}</td>--%>
                                             <td style="width: 100px;" class="center">${var.event_name}</td>
-                                            <td style="width: 60px;" class="center">${var.instrument_place}</td>
+                                            <td style="width: 150px;" class="center">${var.instrument_place}</td>
                                         </tr>
                                     </c:forEach>
                                 </c:if>

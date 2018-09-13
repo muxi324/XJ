@@ -81,7 +81,7 @@ public class UserController extends BaseController {
 		String role = userService.findRoleById(roleId);
 		pd.put("post",role);
 		pd.put("add_time",Tools.date2Str(new Date()));
-		pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
+		//pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
 		String loginUserName = FactoryUtil.getLoginUserName();
 		if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
 			pd.put("factory_id",FactoryUtil.getFactoryId());
@@ -175,9 +175,9 @@ public class UserController extends BaseController {
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		PrintUtil.print(pd.getString("USER_ID"));
-		if(pd.getString("PASSWORD") != null && !"".equals(pd.getString("PASSWORD"))){
+		/*if(pd.getString("PASSWORD") != null && !"".equals(pd.getString("PASSWORD"))){
 			pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
-		}
+		}*/
 		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")) {
 			String loginUserName = FactoryUtil.getLoginUserName();
 			String roleId = pd.getString("ROLE_ID");
@@ -358,7 +358,7 @@ public class UserController extends BaseController {
 					String teamId = p.getString("team_id");
 					if(StringUtils.isNotEmpty(teamId)){
 						PageData team = new PageData();
-						team.put("id",workshopId);
+						team.put("id",teamId);
 						String teamName = teamService.findById(team).getString("team");
 						p.put("team",teamName);
 					}
@@ -582,7 +582,7 @@ public class UserController extends BaseController {
 				pd.put("NUMBER", listPd.get(i).getString("var0"));							//编号已存在就跳过
 				pd.put("PHONE", listPd.get(i).getString("var2"));							//手机号
 				
-				pd.put("PASSWORD", new SimpleHash("SHA-1", USERNAME, "123").toString());	//默认密码123
+				//pd.put("PASSWORD", new SimpleHash("SHA-1", USERNAME, "123").toString());	//默认密码123
 				if(userService.findByUN(pd) != null){
 					continue;
 				}

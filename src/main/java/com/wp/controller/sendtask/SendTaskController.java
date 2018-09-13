@@ -167,7 +167,6 @@ public class SendTaskController extends BaseController {
         pd = this.getPageData();
         pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("mission_condition", 1);
-        pd.put("set_name",getUserName());
         if (StringUtils.isEmpty(pd.getString("time_dev"))) {
             pd.put("time_dev","0");
         }
@@ -221,7 +220,6 @@ public class SendTaskController extends BaseController {
         pd = this.getPageData();
         pd.put("send_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("mission_condition", 1);
-        pd.put("set_name",getUserName());
         if (StringUtils.isEmpty(pd.getString("time_dev"))) {
             pd.put("time_dev","0");
         }

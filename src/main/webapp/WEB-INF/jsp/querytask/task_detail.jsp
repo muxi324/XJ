@@ -48,15 +48,15 @@
             </tr>
             <tr>
                 <td style="width:90px;text-align: right;padding-top: 13px;">任务状态:</td>
-                <td><input style="width:95%;" type="text" name="mission_condition" id="mission_condition" value="${pd.mission_condition}" maxlength="200" readonly="true" title=""
-                    <c:if test="${var.mission_condition == '1' }"><span class="label label-info   arrowed-in">任务已下发</span></c:if>
-                    <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收</span></c:if>
-                    <c:if test="${var.mission_condition == '3' }"><span class="label label-info   arrowed-in">接收未执行</span></c:if>
-                    <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务执行中</span></c:if>
-                    <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">任务完成待审核</span></c:if>
-                    <c:if test="${var.mission_condition == '6' }"><span class="label label-success   arrowed-in">审核通过</span></c:if>
-                    <c:if test="${var.mission_condition == '7' }"><span class="label label-success      arrowed-in">审核未通过</span></c:if>
-                    <c:if test="${var.mission_condition == '8' }"><span class="label label-primary     arrowed-in">拒收已处理</span></c:if>
+                <td>
+                   <c:if test="${pd.mission_condition == '1' }">任务已下发</c:if>
+                    <c:if test="${pd.mission_condition == '2' }">拒收</c:if>
+                    <c:if test="${pd.mission_condition == '3' }">接收未执行</c:if>
+                    <c:if test="${pd.mission_condition == '4' }">任务执行中</c:if>
+                    <c:if test="${pd.mission_condition == '5' }">任务完成待审核</c:if>
+                    <c:if test="${pd.mission_condition == '6' }">审核通过</c:if>
+                    <c:if test="${pd.mission_condition == '7' }">审核未通过</c:if>
+                    <c:if test="${pd.mission_condition == '8' }">拒收已处理</c:if>
                 </td>
                 <td style="width:90px;text-align: right;padding-top: 13px;">任务类型:</td>
                 <td><input style="width:95%;" type="text" name="mission_type" id="mission_type" value="${pd.mission_type}" maxlength="200" readonly="true" title=""/></td>
@@ -94,8 +94,10 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">审核意见:</td>
                 <td>
-                    <textarea cols="50" rows="10" name="auditor_opinion" id="auditor_opinion" value="${pd.auditor_opinion}"></textarea>
+                    <input style="width:95%;" type="text" name="auditor_opinion" id="auditor_opinion" value="${pd.auditor_opinion}" maxlength="200" readonly="true" title=""/></td>
                 </td>
+                <td style="width:90px;text-align: right;padding-top: 13px;"></td>
+                <td><input style="width:95%;" type="text" name=""  value="" maxlength="200" readonly="true" title=""/></td>
             </tr>
             <tr>
                 <td style="width:90px;text-align: right;padding-top: 13px;">拒单理由</td>
@@ -124,8 +126,8 @@
         </th>--%>
         <th class="center">序号</th>
         <th class="center">所属车间</th>
-        <th class="center">所属巡检区域</th>
-        <th class="center">所属巡检点</th>
+        <th class="center">经度</th>
+        <th class="center">纬度</th>
         <th class="center">事件名称</th>
         <th class="center">具体位置</th>
         <th class="center">查看详情</th>
@@ -141,10 +143,10 @@
                         </td>--%>
                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                         <td style="width: 60px;" class="center"> ${var.workshop}</td>
-                        <td style="width: 139px;" class="center">${var.check_scope}</td>
-                        <td style="width: 60px;" class="center">${var.check_point}</td>
+                        <td style="width: 60px;" class="center">${var.jingdu}</td>
+                        <td style="width: 60px;" class="center">${var.weidu}</td>
                         <td style="width: 100px;" class="center">${var.event_name}</td>
-                        <td style="width: 60px;" class="center">${var.instrument_place}</td>
+                        <td style="width: 150px;" class="center">${var.instrument_place}</td>
                         <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${id}">查看详情</a></td>
                     </tr>
                 </c:forEach>
@@ -178,14 +180,10 @@
 
 <script type="text/javascript">
     $(top.hangge());  //清除加载进度,关闭遮罩层
+
     $(function() {
+       // document.getElementById("auditor_opinion").value="${pd.auditor_opinion}";
 
-        //单选框
-        $(".chzn-select").chosen();
-        $(".chzn-select-deselect").chosen({allow_single_deselect:true});
-
-        //日期框
-        $('.date-picker').datepicker();
 
     });
 </script>

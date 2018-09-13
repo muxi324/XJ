@@ -65,7 +65,6 @@ public class QueryTaskController extends BaseController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            mv.addObject("pd",pd);
             mv.addObject("varList",eventList);
             mv.addObject("id",missionId);
             mv.setViewName("querytask/task_detail");

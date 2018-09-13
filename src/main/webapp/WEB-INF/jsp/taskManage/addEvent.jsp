@@ -38,7 +38,7 @@
                     </select>--%>
                 </td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
                 <td>
                     <input style="width:90%;" type="text" name="check_point" id="check_point"  maxlength="200" value="${pd.check_point}" data-placeholder="事件所在的设备名称（可以不填）" >
@@ -49,7 +49,7 @@
                 <td>
                     <input style="width:90%;" type="text" name="check_scope" id="check_scope"  maxlength="200" value="${pd.check_scope}" data-placeholder="事件所在的生产区域（可以不填）">
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                 <td>

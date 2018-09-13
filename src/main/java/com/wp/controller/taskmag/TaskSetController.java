@@ -124,6 +124,7 @@ public class TaskSetController extends BaseController {
             String loginUserName = FactoryUtil.getLoginUserName();
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
+                pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
             List<PageData> varList = eventService.list1(page);

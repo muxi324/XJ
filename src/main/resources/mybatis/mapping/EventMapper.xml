@@ -97,7 +97,7 @@
     </update>
 
     <select id="listByIds" resultType="pd" useCache="false">
-          select * from event_info where event_id in
+        select e.*,m.jingdu,m.weidu from event_info e LEFT JOIN mission_json m ON e.event_id=m.event_id WHERE e.event_id in
           <foreach item="item" index="index" collection="list"
                  open="(" separator="," close=")">
                  #{item}

@@ -20,7 +20,10 @@
 </head>
 <body>
 <table id="table_report" class="table table-striped table-bordered table-hover">
-    <input type="hidden" id="id" name="id" value="${result.id}">
+    <tr>
+        <td style="width:110px;text-align: right;padding-top: 13px;">异常id:</td>
+        <td>${result.id}</td>
+    </tr>
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常上报人:</td>
         <td>${result.report_worker}</td>
@@ -34,8 +37,8 @@
         <td>${result.workshop}</td>
     </tr>
     <tr>
-        <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
-        <td>${result.checkpoint}</td>
+        <td style="width:110px;text-align: right;padding-top: 13px;">建议措施:</td>
+        <td>${result.suggestion}</td>
     </tr>
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>

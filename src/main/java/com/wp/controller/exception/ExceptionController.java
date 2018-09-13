@@ -140,6 +140,8 @@ public class ExceptionController extends BaseController{
         return mv;
     }
 
+
+
     /* ===============================权限================================== */
     public Map<String, String> getHC(){
         Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session

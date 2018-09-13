@@ -61,7 +61,7 @@
                 </select></td>
             </tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
-                <td><select name="worker_id" id="worker_name" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">
+                <td><select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">
                     <option value="">请先选择班组</option>
                 </select></td>
             </tr>
@@ -71,11 +71,11 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
-                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="${pd.mission_set_start_time}" maxlength="200"  title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="" maxlength="200"  title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务结束时间:</td>
-                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_finish_time" id="mission_set_finish_time" value="${pd.mission_set_finish_time}" maxlength="200"  title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_finish_time" id="mission_set_finish_time" value="" maxlength="200"  title=""/></td>
             </tr>
             <%--<tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
@@ -107,25 +107,25 @@
             </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
-                <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
+                <td><textarea cols="100" rows="3" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
             </tr>
         </table>
             <h3 style="padding-left:20px;padding-top: 13px;">任务内容</h3>
 
                 <table style="width:100%;"class="table table-striped table-bordered table-hover">
-                    <tr>
+                   <%-- <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检区域:</td>
                         <td><input style="width:90%;" type="text" name="region" id="region" value="${pd.region}" maxlength="200"  title=""/></td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检点:</td>
                         <td><input style="width:90%;" type="text" name="check_point" id="check_point" value="${pd.check_point}" maxlength="200"  title=""/></td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常巡检事件:</td>
                         <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""/></td>
                     </tr>
-                    <tr>
+                   <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                         <td><input style="width:90%;" type="text" name="instrument_place" id="instrument_place" value="${pd.instrument_place}" maxlength="200"  title=""/></td>
                    </tr>
@@ -149,10 +149,10 @@
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
                         <td><input style="width:90%;" type="text" name="description" id="description" value="${pd.description}" maxlength="200"  title=""/></td>
                     </tr>
-                    <tr>
+                   <%-- <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常工作内容:</td>
                         <td><input style="width:90%;" type="text" name="content" id="content" value="${pd.content}" maxlength="200"  title=""/></td>
-                    </tr>
+                    </tr>--%>
                    <%-- <tr>
                         <td style="width:140px;text-align: right;padding-top: 13px;">下次巡检是否关注:</td>
                         <td>
@@ -215,8 +215,7 @@
 <script src="static/js/ace-elements.min.js"></script>
 <script src="static/js/ace.min.js"></script>
 <script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
-<script type="text/javascript" src="static/js/moment-with-locales.min.js"></script>
-<script type="text/javascript" src="static/js/bootstrap-datetimepicker.min.js"></script><!-- 日期框 -->
+<script type="text/javascript" src="static/laydate/laydate.js"></script>
 <script type="text/javascript" src="plugins/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="plugins/webuploader/upload.js"></script>
 

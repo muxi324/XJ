@@ -18,7 +18,6 @@
 <head>
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
     <%@ include file="../system/admin/top.jsp"%>
-    <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css" /><!-- 日期框 -->
 </head>
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
@@ -60,7 +59,7 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
-                <td><select name="worker_id" id="worker_name" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">
+                <td><select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">
                     <option value="">请先选择班组</option>
                 </select>
                 </td>
@@ -71,11 +70,11 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
-                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="${pd.mission_set_start_time}" maxlength="200" title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="" maxlength="200" title=""/></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务结束时间:</td>
-                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_finish_time" id="mission_set_finish_time" value="${pd.mission_set_finish_time}" maxlength="200"  title=""/></td>
+                <td><input  type="text" class="laydate-icon-danlan" name="mission_set_finish_time" id="mission_set_finish_time" value="" maxlength="200"  title=""/></td>
             </tr>
            <%-- <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
@@ -107,20 +106,20 @@
             </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
-                <td><textarea cols="40" rows="6" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
+                <td><textarea cols="100" rows="3" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
             </tr>
         </table>
             <h3 style="padding-left:20px;padding-top: 13px;">任务内容</h3>
             <div  class="form-group" >
                 <table style="width:100%;"class="table table-striped table-bordered table-hover">
-                    <tr>
+                    <%--<tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检区域:</td>
                         <td><input style="width:90%;" type="text" name="region" id="region" value="${pd.region}" maxlength="200"  title=""/></td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检点:</td>
                         <td><input style="width:90%;" type="text" name="check_point" id="check_point" value="${pd.check_point}" maxlength="200"  title=""/></td>
-                    </tr>
+                    </tr>--%>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检事件:</td>
                         <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""/></td>

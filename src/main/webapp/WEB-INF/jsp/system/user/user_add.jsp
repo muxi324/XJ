@@ -137,27 +137,6 @@
 			return false;
 		}
 		
-	/*	if($("#EMAIL").val()==""){
-			
-			$("#EMAIL").tips({
-				side:3,
-	            msg:'输入邮箱',
-	            bg:'#AE81FF',
-	            time:3
-	        });
-			$("#EMAIL").focus();
-			return false;
-		}else if(!ismail($("#EMAIL").val())){
-			$("#EMAIL").tips({
-				side:3,
-	            msg:'邮箱格式不正确',
-	            bg:'#AE81FF',
-	            time:3
-	        });
-			$("#EMAIL").focus();
-			return false;
-		}*/
-		
 		if($("#user_id").val()==""){
 			hasU();
 		}else{
@@ -327,7 +306,7 @@
 				<td><input type="text" name="NAME" id="name"  value="${pd.NAME }"  maxlength="32" placeholder="这里输入姓名" title="姓名"/></td>
 			</tr>
 			<tr>
-				<td><input type="number" name="PHONE" id="PHONE"  value="${pd.PHONE }"  maxlength="32" placeholder="这里输入手机号" title="手机号"/></td>
+				<td><input type="number" name="PHONE" id="PHONE"  value="${pd.PHONE }"  maxlength="32" placeholder="这里输入手机号（必填）" title="手机号"/></td>
 			</tr>
 			<tr>
 				<td><input type="text" name="NUMBER" id="NUMBER" value="${pd.NUMBER }" maxlength="32" placeholder="这里输入编号" title="编号" onblur="hasN('${pd.USERNAME }')"/></td>

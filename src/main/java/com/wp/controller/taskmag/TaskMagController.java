@@ -4,6 +4,7 @@ import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.map.MapPoint;
 import com.wp.entity.worker.Worker;
+import com.wp.service.databank.TeamService;
 import com.wp.service.event.EventService;
 import com.wp.service.house.HouseService;
 import com.wp.service.querytask.QueryTaskService;
@@ -46,8 +47,8 @@ public class TaskMagController extends BaseController {
     private TaskSetService taskSetService;
     @Resource(name = "eventService")
     private EventService eventService;
-    @Resource(name = "workerService")
-    private WorkerService workerService;
+    @Resource(name="teamService")
+    private TeamService teamService;
 
     /**
      * 列表
@@ -155,14 +156,25 @@ public class TaskMagController extends BaseController {
         taskMagService.refuse(pd);
         pd  = taskMagService.findById(pd);
         String missionType= pd.getString("mission_type");
-        List<Worker> teamList = workerService.listTeam();//列出所有班组
+        String factory_id = FactoryUtil.getFactoryId();
+        String workshop_id = FactoryUtil.getWorkshopId();
+        if(StringUtils.isNotEmpty(factory_id)) {
+            PageData data = new PageData();
+            data.put("factory_id",factory_id);
+            List<PageData> teamList = new ArrayList<PageData>();
+            if(StringUtils.isNotEmpty(workshop_id)){
+                data.put("workshop_id", workshop_id);
+            }
+            teamList = teamService.findTeamByW(data);
+            mv.addObject("teamList",teamList);
+        }
+
         String set_id= pd.getString("set_id");
         String mission_name= pd.getString("mission_name");
         String event = pd.getString("event");
         pd.put("set_id",set_id);
         pd.put("mission_name",mission_name);
         pd.put("event",event);
-        mv.addObject("teamList",teamList);
         mv.addObject("pd",pd);  //把pd灌输到前端pd
         if(missionType.equals("日常巡检任务")){
            mv.setViewName("sendtask/sendtask");
@@ -189,9 +201,20 @@ public class TaskMagController extends BaseController {
         pd = taskMagService.findById(pd);
         String event = pd.getString("event");
         pd.put("event",event);
+      //  pd.put("startTime",Tools.date2Str(new Date()));
         String missionType= pd.getString("mission_type");
-        List<Worker> teamList = workerService.listTeam();//列出所有班组
-        mv.addObject("teamList",teamList);
+        String factory_id = FactoryUtil.getFactoryId();
+        String workshop_id = FactoryUtil.getWorkshopId();
+        if(StringUtils.isNotEmpty(factory_id)) {
+            PageData data = new PageData();
+            data.put("factory_id",factory_id);
+            List<PageData> teamList = new ArrayList<PageData>();
+            if(StringUtils.isNotEmpty(workshop_id)){
+                data.put("workshop_id", workshop_id);
+            }
+            teamList = teamService.findTeamByW(data);
+            mv.addObject("teamList",teamList);
+        }
         if(missionType.equals("日常巡检任务")){
             mv.setViewName("sendtask/sendtask");
         }else if(missionType.equals("维修任务")){
