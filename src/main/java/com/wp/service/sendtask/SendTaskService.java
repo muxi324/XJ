@@ -23,6 +23,13 @@ public class SendTaskService
         dao.save("SendTaskMapper.save", pd);
     }
 
+    /*
+   * 新增临时任务
+   */
+    public void save1(PageData pd)throws Exception{
+        dao.save("SendTaskMapper.save1", pd);
+    }
+
     //    修改图片
     public void editPic(PageData pd)throws Exception{
         dao.update("SendTaskMapper.editpic", pd);

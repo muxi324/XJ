@@ -238,10 +238,10 @@ public class SendTaskController extends BaseController {
         pd.put("factory_id",FactoryUtil.getFactoryId());
         pd.put("workshop_id",FactoryUtil.getWorkshopId());
         pd.put("set_name",FactoryUtil.getLoginName());
-        if(StringUtils.isNotEmpty(pd.getString("id"))){   //异常处理任务
+        if(StringUtils.isNotEmpty(pd.getString("exceptionId"))){   //异常处理任务
             String missionType=pd.getString("mission_type");
             if(missionType.equals("维修任务") || missionType.equals("临时巡检任务") ){
-                String exceptionId =pd.getString("id");
+                String exceptionId =pd.getString("exceptionId");
                 pd.put("id",exceptionId);
                 pd.put("state",2);
                 exceptionService.editState(pd);  //修改异常状态
@@ -251,7 +251,7 @@ public class SendTaskController extends BaseController {
                 taskMagService.refuse(pd);
             }*/
 
-        sendTaskService.save(pd);
+        sendTaskService.save1(pd);
         String phonenumber = pd.getString("worker_phone");   //发送短信提醒
         String Content = "您有一条新任务，请注意查收。";
         SendMessage.sendMessage(phonenumber, Content);

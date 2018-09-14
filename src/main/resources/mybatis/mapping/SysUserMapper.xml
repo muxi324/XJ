@@ -256,10 +256,10 @@
         <if test="lastLoginEnd!=null and lastLoginEnd!=''"><!-- 登录时间检索 -->
             and u.LAST_LOGIN &lt;= #{lastLoginEnd}
         </if>
-        <if test="pd.factory_id != null and pd.factory_id != ''">
+        <if test="factory_id != null and factory_id != ''">
             and factory_id = #{factory_id}
         </if>
-        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+        <if test="workshop_id != null and workshop_id != ''">
             and workshop_id = #{workshop_id}
         </if>
         order by u.LAST_LOGIN desc

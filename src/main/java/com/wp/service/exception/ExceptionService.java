@@ -28,4 +28,8 @@ public class ExceptionService {
     public void editState(PageData pd)throws Exception{
         dao.update("ExceptionMapper.editState", pd);
     }
+
+    public List<PageData> listAll(PageData pd)throws Exception{
+        return (List<PageData>)dao.findForList("ExceptionMapper.listAll", pd);
+    }
 }

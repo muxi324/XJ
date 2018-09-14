@@ -52,31 +52,31 @@
         where 1 = 1
         /* and u.USERNAME != 'admin'
         and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
-        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+        <if test="enquiry != null and enquiry != ''"><!-- 关键词检索 -->
             and
             (
-            mission_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            mission_name LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
             or
-            worker_name  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            worker_name  LIKE CONCAT(CONCAT('%',#{enquiry}),'%')
             )
         </if>
-        <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''"><!-- 到期时间检索 -->
-            and send_time &gt;= #{pd.sendTimeStart}
+        <if test="sendTimeStart!=null and sendTimeStart!=''"><!-- 到期时间检索 -->
+            and send_time &gt;= #{sendTimeStart}
         </if>
-        <if test="pd.sendTimeEnd!=null and pd.sendTimeEnd!=''"><!-- 到期时间检索 -->
-            and send_time &lt;= #{pd.sendTimeEnd}
+        <if test="sendTimeEnd!=null and sendTimeEnd!=''"><!-- 到期时间检索 -->
+            and send_time &lt;= #{sendTimeEnd}
         </if>
-        <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
-            and mission_condition = #{pd.mission_condition}
+        <if test="mission_condition != null and mission_condition != ''"><!-- 状态检索 -->
+            and mission_condition = #{mission_condition}
         </if>
-        <if test="pd.factory_id != null and pd.factory_id != ''">
-            and factory_id = #{pd.factory_id}
+        <if test="factory_id != null and factory_id != ''">
+            and factory_id = #{factory_id}
         </if>
-        <if test="pd.workshop_id != null and pd.workshop_id != ''">
-            and workshop_id = #{pd.workshop_id}
+        <if test="workshop_id != null and workshop_id != ''">
+            and workshop_id = #{workshop_id}
         </if>
-        <if test="pd.team_id != null and pd.team_id != ''">
-            and team_id = #{pd.team_id}
+        <if test="team_id != null and team_id != ''">
+            and team_id = #{team_id}
         </if>
         order by id desc
     </select>

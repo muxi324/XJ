@@ -135,47 +135,78 @@ public class QueryTaskController extends BaseController {
             try{
 
                     //检索条件===
-                    String enquiry = pd.getString("enquiry");
-                    if (null != enquiry && !"".equals(enquiry)) {
-                        pd.put("enquiry", enquiry.trim());
-                    }
-                    String sendTimeStart = pd.getString("sendTimeStart");
-                    String sendTimeEnd = pd.getString("sendTimeEnd");
-                    if (sendTimeStart != null && !"".equals(sendTimeStart)) {
-                        sendTimeStart = sendTimeStart + " 00:00:00";
-                        pd.put("sendTimeStart", sendTimeStart);
-                    }
-                    if (sendTimeEnd != null && !"".equals(sendTimeEnd)) {
-                        sendTimeEnd = sendTimeEnd + " 00:00:00";
-                        pd.put("sendTimeEnd", sendTimeEnd);
-                    }
-                    String mission_condition = pd.getString("status");
-                    pd.put("mission_condition", mission_condition);
+                String  enquiry = pd.getString("enquiry");
+                if(null != enquiry && !"".equals(enquiry)){
+                    pd.put("enquiry", enquiry.trim());
+                }else {
+                    pd.put("enquiry", "");
+                }
+                String sendTimeStart = pd.getString("sendTimeStart");
+                String sendTimeEnd = pd.getString("sendTimeEnd");
+
+                if(sendTimeStart != null && !"".equals(sendTimeStart)){
+                    sendTimeStart = sendTimeStart+" 00:00:00";
+                    pd.put("sendTimeStart", sendTimeStart);
+                }
+                if(sendTimeEnd != null && !"".equals(sendTimeEnd)){
+                    sendTimeEnd = sendTimeEnd+" 00:00:00";
+                    pd.put("sendTimeEnd", sendTimeEnd);
+                }
+                String  mission_condition = pd.getString("status");
+                pd.put("mission_condition", mission_condition);
+                String loginUserName = FactoryUtil.getLoginUserName();
+                if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
+                    pd.put("factory_id",FactoryUtil.getFactoryId());
+                    pd.put("workshop_id",FactoryUtil.getWorkshopId());
+                    pd.put("team_id",FactoryUtil.getTeamId());
+                }
 
                     //检索条件===
 
                     Map<String, Object> dataMap = new HashMap<String, Object>();
                     List<String> titles = new ArrayList<String>();
 
-                    titles.add("任务联单号");
-                    titles.add("安装员工");
+                    titles.add("任务名称");
+                    titles.add("任务单号");
+                    titles.add("任务状态");
                     titles.add("任务下达时间");
-                    titles.add("房源地址");
-                    titles.add("房源联系人");
-                    titles.add("联系人电话");
-                   // titles.add("任务状态");
+                    titles.add("任务执行人");
+                    titles.add("任务执行人电话");
+                    titles.add("任务下达人");
+                    titles.add("任务级别");
+                    titles.add("任务类型");
                     dataMap.put("titles", titles);
                     List<PageData> varOList = queryTaskService.listAll(pd);
                     List<PageData> varList = new ArrayList<PageData>();
                     for (int i = 0; i < varOList.size(); i++) {
                         PageData vpd = new PageData();
-                        vpd.put("var1", varOList.get(i).getString("flow_number"));
-                        vpd.put("var2", varOList.get(i).getString("worker_name"));
-                        vpd.put("var3", varOList.get(i).getString("send_time"));
-                        vpd.put("var4", varOList.get(i).getString("house_address"));
-                        vpd.put("var5", varOList.get(i).getString("house_owner_name"));
-                        vpd.put("var6", varOList.get(i).getString("house_owner_phone"));
-                       // vpd.put("var7", varOList.get(i).getString("mission_condition"));
+                        vpd.put("var1", varOList.get(i).getString("mission_name"));
+                        vpd.put("var2", varOList.get(i).getString("id"));
+                        String status =varOList.get(i).getString("mission_condition");
+                        if(status.equals(1)){
+                            vpd.put("var3", "任务待接收");
+                        }else if(status.equals(2)){
+                            vpd.put("var3", "拒收待处理");
+                        }else if(status.equals(3)){
+                            vpd.put("var3", "接收未执行");
+                        }else if(status.equals(4)){
+                            vpd.put("var3", "任务执行中");
+                        }else if(status.equals(5)){
+                            vpd.put("var3", "完成待审核");
+                        }else if(status.equals(6)){
+                            vpd.put("var3", "审核已通过");
+                        }else if(status.equals(7)){
+                            vpd.put("var3", "审核未通过");
+                        }else if(status.equals(8)){
+                            vpd.put("var3", "拒收已处理");
+                        }
+
+                        vpd.put("var4", varOList.get(i).getString("send_time"));
+                        vpd.put("var5", varOList.get(i).getString("worker_name"));
+                        vpd.put("var6", varOList.get(i).getString("worker_phone"));
+                        vpd.put("var7", varOList.get(i).getString("set_name"));
+                        vpd.put("var8", varOList.get(i).getString("mission_level"));
+                        vpd.put("var9", varOList.get(i).getString("mission_type"));
                         varList.add(vpd);
                     }
                     dataMap.put("varList", varList);

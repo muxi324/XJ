@@ -25,7 +25,6 @@
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id}"/>
-    <input type="hidden" name="id" id="exceptionId" value="${pd.id}"/> <!--异常id-->
     <input type="hidden" name="mission_condition" id="mission_condition" value="${pd.mission_condition }"/>
     <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发维修任务</label>
     <div id="zhongxin">
@@ -121,8 +120,12 @@
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检点:</td>
                         <td><input style="width:90%;" type="text" name="check_point" id="check_point" value="${pd.check_point}" maxlength="200"  title=""/></td>
                     </tr>--%>
+                       <tr>
+                           <td style="width:110px;text-align: right;padding-top: 13px;">异常id:</td>
+                           <td><input type="text" name="exceptionId" id="exceptionId" value="${pd.id}"/> <!--异常id--></td>
+                       </tr>
                     <tr>
-                        <td style="width:110px;text-align: right;padding-top: 13px;">异常巡检事件:</td>
+                        <td style="width:110px;text-align: right;padding-top: 13px;">异常所属巡检事件id:</td>
                         <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""/></td>
                     </tr>
                    <tr>
