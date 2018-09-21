@@ -27,15 +27,19 @@
                 <input type="hidden" name="font_size" id="font_size" value="20"/>
             </tr>
             <tr>
+                <input type="hidden" name="" id="workshop" value="${workshopId }"/>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
-                <td>
-                    <input style="width:90%;" type="text" name="workshop" id="workshop"  maxlength="200" value="${pd.workshop}" readonly>
-                   <%-- <select name="workshop" id="workshop" class="form-control" value="${pd.workshop}">
-                        <option value="0">选择</option>
+                <td id="p1">
+                    <input style="width:90%;" type="text" name="workshop"   maxlength="200" value="${pd.workshop}" readonly>
+                </td>
+                <td id="p2" hidden="hidden">
+                   <select name="workshop_id" id="workshop1" class="chzn-select" >
+                        <option value=""></option>
                         <c:forEach items="${workshopList}" var="W">
-                            <option value="${W.workshop }">${W.workshop }</option>
+                            <option value="${W.id}" <c:if test="${w.id == pd.workshop_id}">selected</c:if>> ${W.workshop }</option>
                         </c:forEach>
-                    </select>--%>
+                    </select>
+                    <input type="hidden" name="workshop"  value="${pd.workshop}"/>
                 </td>
             </tr>
            <%-- <tr>
@@ -109,6 +113,18 @@
 </form>
 </body>
 <script type="text/javascript">
+
+    $(function() {
+        var w = $("#workshop").val();
+       if(w == ""|| w == null){
+           $('#p1').attr("hidden","hidden");
+           $('#p2').removeAttr("hidden");
+        }else{
+           $('#p2').attr("hidden","hidden");
+           $('#p1').removeAttr("hidden");
+       }
+
+    });
 
     $(document).ready(function(){
         if($("#event_name").val() != "") {

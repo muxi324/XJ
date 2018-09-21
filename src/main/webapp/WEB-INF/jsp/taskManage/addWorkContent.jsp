@@ -128,7 +128,7 @@
                     </select>
                 </td>
             </tr>
-          <%--  <tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">异常级别:</td>
                 <td>
                     <select name="exceptionLevel" id="nexceptionLevel" class="form-control">
@@ -141,10 +141,6 @@
                 <td><input style="width:90%;" type="text" name="exception" id="exception"  maxlength="200"  title=""/></td>
                 <td style="width:110px;text-align: right;padding-top: 13px;">异常标准大小、颜色:</td>
                 <td>
-                    &lt;%&ndash;<select name="exceptionFontClass" id="exceptionFontClass" class="form-control">
-                        <option value="宋体">宋体</option>
-                        <option value="楷体">楷体</option>
-                    </select>&ndash;%&gt;
                     <select name="exceptionFontColor" id="exceptionFontColor" class="form-control">
                         <option value="#000000">黑色</option>
                         <option value="#FF0000">红色</option>
@@ -155,7 +151,7 @@
                         <option value="20">20</option>
                     </select>
                 </td>
-            </tr>--%>
+            </tr>
           <%--  <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">建议措施:</td>
                 <td><input style="width:90%;" type="text" name="advice" id="advice"  maxlength="200"  title=""/></td>

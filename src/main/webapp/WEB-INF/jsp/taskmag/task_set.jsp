@@ -64,9 +64,9 @@
 
                     <thead>
                     <tr>
-                        <th class="center">
+                       <%-- <th class="center">
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                        </th>
+                        </th>--%>
                         <th class="center">序号</th>
                         <th class="center">任务名称</th>
                         <th class="center">任务级别</th>
@@ -85,9 +85,9 @@
                             <c:if test="${QX.cha == 1 }">
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td class='center' style="width: 30px;">
+                                        <%--<td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.set_id}" /><span class="lbl"></span></label>
-                                        </td>
+                                        </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 100px;" class="center"> ${var.mission}</td>
                                         <td style="width: 50px;" class="center">${var.mission_level}</td>
@@ -140,9 +140,9 @@
                                 <c:if test="${QX.add == 1 }">
                                     <a class="btn btn-small btn-success" onclick="add();">新增</a>
                                 </c:if>
-                                <c:if test="${QX.del == 1 }">
+                               <%-- <c:if test="${QX.del == 1 }">
                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
-                                </c:if>
+                                </c:if>--%>
                             </td>
                             <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                         </tr>

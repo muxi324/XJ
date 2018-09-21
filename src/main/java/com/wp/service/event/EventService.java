@@ -62,6 +62,10 @@ public class EventService {
         return (String) dao.findForObject("EventMapper.getEventByName",event_name);
     }
 
+    public String getAdditionById(String eventId) throws Exception {
+        return (String) dao.findForObject("EventMapper.getAdditionById",eventId);
+    }
+
     public void update(PageData pd) throws Exception {
         dao.update("EventMapper.update",pd);
     }

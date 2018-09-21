@@ -59,15 +59,15 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
-                <td><select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">
+                <td><select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}">
                     <option value="">请先选择班组</option>
                 </select>
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
                 <td> <input  type="text"  name="worker_phone" id="worker_phone"  value="${pd.worker_phone}" /></td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
                 <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="" maxlength="200" title=""/></td>
@@ -76,18 +76,18 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务结束时间:</td>
                 <td><input  type="text" class="laydate-icon-danlan" name="mission_set_finish_time" id="mission_set_finish_time" value="" maxlength="200"  title=""/></td>
             </tr>
-           <%-- <tr>
+            <tr hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
                 <td><input style="width:30%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
             </tr>
-            <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
-                <td><select name="authen_method" id="authen_method" class="form-control" value="${pd.authen_method}" >
-                    <option value="自拍">自拍</option>
-                    <option value="指纹">指纹</option>
-                    <option value="签名">签名</option>
-                </select></td>
-            </tr>--%>
+            <%-- <tr>
+                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
+                 <td><select name="authen_method" id="authen_method" class="form-control" value="${pd.authen_method}" >
+                     <option value="自拍">自拍</option>
+                     <option value="指纹">指纹</option>
+                     <option value="签名">签名</option>
+                 </select></td>
+             </tr>--%>
           <%--  <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核级别</td>
                 <td><select name="auditor_level" id="auditor_level" class="form-control" value="${pd.auditor_level}" >
@@ -122,7 +122,7 @@
                     </tr>--%>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检事件:</td>
-                        <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""/></td>
+                        <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""data-placeholder="请填写巡检事件"/></td>
                     </tr>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>

@@ -27,8 +27,8 @@ public class SendPeriodTaskJob implements Job {
             // 调用JDBCUtils 插入数据
             conn = JDBCUtils.getConnection();
             String sql = "insert into mission" +
-                    "(mission_name,set_id,mission_type,mission_level,mission_source,period_start_time,period_end_time,time_dev,mission_condition,team,worker_name,worker_phone,set_name,mission_addition,send_time,cron,event,factory_id)"
-                    +"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    "(mission_name,set_id,mission_type,mission_level,mission_source,period_start_time,period_end_time,time_dev,mission_condition,team,worker_name,worker_phone,set_name,mission_addition,send_time,cron,event,factory_id,workshop_id,team_id)"
+                    +"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             st= conn.prepareStatement(sql);
             st.setString(1, pd.getString("mission_name"));
             st.setString(2, pd.getString("set_id"));
@@ -52,6 +52,8 @@ public class SendPeriodTaskJob implements Job {
             st.setString(16, pd.getString("cron"));
             st.setString(17, pd.getString("event"));
             st.setString(18,pd.getString("factory_id"));
+            st.setString(19,pd.getString("workshop_id"));
+            st.setString(20,pd.getString("team_id"));
             int i = st.executeUpdate();
             if(i==1) {
                 System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) +"数据添加成功！");

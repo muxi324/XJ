@@ -130,10 +130,14 @@ public class EventController extends BaseController{
                     PageData data = workshopService.findById(workshop);
                     String workshopName = data.getString("workshop");
                     pd.put("workshop",workshopName);
+                }else{
+                    workshopList = workshopService.listWorkshopByFac(factory);
+                    mv.addObject("workshopList",workshopList);
                 }
             }
             mv.setViewName("taskManage/addEvent");
             mv.addObject("pd", pd);
+            mv.addObject("workshopId", workshop_id);
         } catch (Exception e) {
             logger.error(e.toString(), e);
         }
@@ -147,7 +151,14 @@ public class EventController extends BaseController{
         pd = this.getPageData();
         pd.put("create_time",  Tools.date2Str(new Date()));
         pd.put("factory_id",FactoryUtil.getFactoryId());
-        pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        if(StringUtils.isEmpty(pd.getString("workshop"))){
+            String workshopId = pd.getString("workshop_id");
+            PageData workshop = new PageData();
+            workshop.put("id", workshopId);
+            PageData data = workshopService.findById(workshop);
+            String workshopName = data.getString("workshop");
+            pd.put("workshop",workshopName);
+        }
         String eventName = eventService.getEventByName(pd.getString("event_name"));
         if (eventName == null || "".equals(eventName)) {
 /*            String qrContent = "事件名: " + pd.getString("event_name") + "具体位置: " + pd.getString("instrument_place");
@@ -173,11 +184,24 @@ public class EventController extends BaseController{
         PageData pd = new PageData();
         pd = this.getPageData();
         PageData result = eventService.getEventById(pd);
+        String factory_id = FactoryUtil.getFactoryId();
+        String workshop_id = FactoryUtil.getWorkshopId();
+        List<PageData> workshopList = new ArrayList<PageData>();
+        if(StringUtils.isNotEmpty(factory_id)) {
+            PageData factory = new PageData();
+            factory.put("factory_id",factory_id);
+            if(StringUtils.isEmpty(workshop_id)){
+                workshopList = workshopService.listWorkshopByFac(factory);
+                mv.addObject("workshopList",workshopList);
+            }
+        }
+
         mv.setViewName("taskManage/addEvent");
         mv.addObject("pd", result);
+        mv.addObject("workshopId", workshop_id);
         List<String> workcontentList = new ArrayList<String>();
-        String eventName = result.getString("event_name");
-        String additions = eventService.getAdditionByName(eventName);
+        String eventId = result.getString("event_id");
+        String additions = eventService.getAdditionById(eventId);
         JSONArray workArray;
         if (additions == null || additions.equals("")) {
             workArray = new JSONArray();
@@ -234,13 +258,13 @@ public class EventController extends BaseController{
         note2.put("note_name","异常标准");
         note2.put("note_content", pd.getString("exception"));
         note2.put("font_color",pd.getString("exceptionFontColor"));
-        note2.put("font_size",pd.getString("exceptionFontSize"));
+        note2.put("font_size",Integer.parseInt(pd.getString("exceptionFontSize")));
         noteArray.add(note2);
         JSONObject note3= new JSONObject();
         note3.put("note_name","特殊提示");
         note3.put("note_content", pd.getString("notice"));
         note3.put("font_color",pd.getString("noticeFontColor"));
-        note3.put("font_size",pd.getString("noticeFontSize"));
+        note3.put("font_size",Integer.parseInt(pd.getString("noticeFontSize")));
         noteArray.add(note3);
         work.put("work_note",noteArray);
         //构造view子json数组字符串

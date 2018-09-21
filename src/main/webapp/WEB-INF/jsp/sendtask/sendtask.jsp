@@ -64,17 +64,18 @@
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
                 <td>
-                    <select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">
+                    <%--<select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">--%>
+                    <select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}">
                         <option value="">请先选择班组</option>
                     </select>
                 </td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
                 <td>
                     <input  type="text"  name="worker_phone" id="worker_phone"  value="${pd.worker_phone}" />
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务启动方式:</td>
                 <td>
@@ -104,10 +105,10 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">结束时间:</td>
                 <td><input  type="text" class="laydate-icon-danlan" name="period_end_time" id="period_end_time" value=""   title=""/></td>
             </tr>
-            <%--<tr id="s3" hidden="hidden">
+            <tr  hidden="hidden">
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
                 <td><input style="width:30%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
-            </tr>--%>
+            </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
                 <td><textarea cols="100" rows="3" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
@@ -176,13 +177,11 @@
         if (startType == "period") {
             $('#s1').attr("hidden","hidden");
             $('#s2').attr("hidden","hidden");
-            $('#s3').attr("hidden","hidden");
             $('#p1').removeAttr("hidden");
         } else if (startType == "startEnd") {
             $('#p1').attr("hidden","hidden");
             $('#s1').removeAttr("hidden");
             $('#s2').removeAttr("hidden");
-            $('#s3').removeAttr("hidden");
         }
     });
 
