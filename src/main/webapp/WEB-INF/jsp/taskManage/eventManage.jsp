@@ -43,6 +43,7 @@
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
                         </th>--%>
                         <th class="center">序号</th>
+                        <th class="center">事件id</th>
                         <th class="center">所属车间</th>
                        <%-- <th class="center">所属巡检区域</th>
                         <th class="center">所属巡检点</th>--%>
@@ -65,6 +66,7 @@
                                             <label><input type='checkbox' name='ids' value="${var.event_id}" /><span class="lbl"></span></label>
                                         </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
+                                        <td style="width: 60px;" class="center">${var.event_id}</td>
                                         <td style="width: 60px;" class="center">${var.workshop}</td>
                                        <%-- <td style="width: 100px;" class="center">${var.check_scope}</td>
                                         <td style="width: 100px;" class="center">${var.check_point}</td>--%>

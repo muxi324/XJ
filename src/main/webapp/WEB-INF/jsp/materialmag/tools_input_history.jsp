@@ -59,9 +59,9 @@
                             <c:if test="${QX.cha == 1 }">
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td class='center' style="width: 30px;">
+                                       <%-- <td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.material_id}" /><span class="lbl"></span></label>
-                                        </td>
+                                        </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                                         <td style="width: 60px;" class="center">${var.material_num}</td>
                                         <td style="width: 100px;" class="center">${var.time}</td>

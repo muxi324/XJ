@@ -205,7 +205,7 @@ public class SendTaskController extends BaseController {
             QuartzManager.addStartAndEndJob("xujian_start"+pd.getString("send_time"),"xujian_start","xujian_start"+pd.getString("send_time"),"xujian_start",
                     SendPeriodTaskJob.class,startTime,endTime,pd);
         }
-       // sendTaskService.save(pd);
+      //  sendTaskService.save(pd);  //多余
         String result = "下发任务成功！";
         return result;
     }
@@ -231,8 +231,8 @@ public class SendTaskController extends BaseController {
         PageData user = userService.findByUiId(worker);
         String userName = user.getString("NAME");
         pd.put("worker_name",userName);
-        String worker_phone =user.getString("PHONE");
-        pd.put("worker_phone",worker_phone);
+       // String worker_phone =user.getString("PHONE");
+       // pd.put("worker_phone",worker_phone);
         String teamId = pd.getString("team_id");   //通过team_id获取team
         PageData team = new PageData();
         team.put("id", teamId);

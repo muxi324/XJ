@@ -23,6 +23,10 @@ public class EventService {
     public void save(PageData pd)throws Exception{
         dao.save("EventMapper.save", pd);
     }
+//   插入记录后返回该记录的id
+    public Integer saveId(PageData pd)throws Exception{
+       return (Integer) dao.save("EventMapper.saveId", pd);
+    }
 
     /*
    *列表(全部)dd

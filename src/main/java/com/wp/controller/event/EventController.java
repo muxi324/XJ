@@ -151,6 +151,7 @@ public class EventController extends BaseController{
         pd = this.getPageData();
         pd.put("create_time",  Tools.date2Str(new Date()));
         pd.put("factory_id",FactoryUtil.getFactoryId());
+        pd.put("workshop_id",FactoryUtil.getWorkshopId());
         if(StringUtils.isEmpty(pd.getString("workshop"))){
             String workshopId = pd.getString("workshop_id");
             PageData workshop = new PageData();
@@ -178,12 +179,18 @@ public class EventController extends BaseController{
         return result;
     }
 
-    @RequestMapping(value = "editEvent")
+    @RequestMapping(value = "editEvent")          //编辑处理逻辑：先取出数据后保存，然后将新增的id取出给addEvent页面
     public ModelAndView editEvent() throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         PageData result = eventService.getEventById(pd);
+
+        int event_id = eventService.saveId(result);
+        PageData event = new PageData();
+        event.put("eventId",event_id);
+        PageData result1 = eventService.getEventById(event);
+
         String factory_id = FactoryUtil.getFactoryId();
         String workshop_id = FactoryUtil.getWorkshopId();
         List<PageData> workshopList = new ArrayList<PageData>();
@@ -197,10 +204,10 @@ public class EventController extends BaseController{
         }
 
         mv.setViewName("taskManage/addEvent");
-        mv.addObject("pd", result);
+        mv.addObject("pd", result1);
         mv.addObject("workshopId", workshop_id);
         List<String> workcontentList = new ArrayList<String>();
-        String eventId = result.getString("event_id");
+        String eventId = result1.getString("event_id");
         String additions = eventService.getAdditionById(eventId);
         JSONArray workArray;
         if (additions == null || additions.equals("")) {

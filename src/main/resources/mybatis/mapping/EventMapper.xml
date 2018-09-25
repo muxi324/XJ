@@ -62,9 +62,20 @@
     <!-- 新增-->
     <insert id="save" parameterType="pd">
         insert into event_info(
-        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id,workshop_id)
+        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id,workshop_id,additions)
         values (#{event_name},#{instrument_place},#{workshop},#{check_scope},#{check_point},#{check_period},#{check_interval},#{event_level},
-        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id},#{workshop_id}
+        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id},#{workshop_id},#{additions}
+        )
+    </insert>
+    <!--插入记录后返回该记录的id-->
+    <insert id="saveId" parameterType="pd" >
+        <selectKey resultType="Integer" keyProperty="event_id" order="AFTER">
+            select @@IDENTITY as event_id
+        </selectKey>
+        insert into event_info(
+        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id,workshop_id,additions)
+        values (#{event_name},#{instrument_place},#{workshop},#{check_scope},#{check_point},#{check_period},#{check_interval},#{event_level},
+        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id},#{workshop_id},#{additions}
         )
     </insert>
 

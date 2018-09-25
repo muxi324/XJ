@@ -20,21 +20,22 @@
     <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">添加巡检事件</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
+            <input type="hidden" name="event_id" id="event_id" value="${pd.event_id}"/>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">事件名称:</td>
-                <td><input style="width:90%;" type="text" name="event_name" id="event_name" value="${pd.event_name}" maxlength="200"  title="" data-placeholder="请填写事件名称（必填）"/></td>
+                <td><input style="width:90%;" type="text" name="event_name" id="event_name" value="${pd.event_name}" maxlength="200"  title="" data-placeholder="请填写事件名称（不能重复）"/></td>
                 <input type="hidden" name="font_color" id="font_color" value="#000000"/>
                 <input type="hidden" name="font_size" id="font_size" value="20"/>
             </tr>
             <tr>
-                <input type="hidden" name="" id="workshop" value="${workshopId }"/>
+                <input type="hidden" name="workshop_id" id="workshop" value="${workshopId }"/>
                 <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
                 <td id="p1">
                     <input style="width:90%;" type="text" name="workshop"   maxlength="200" value="${pd.workshop}" readonly>
                 </td>
                 <td id="p2" hidden="hidden">
-                   <select name="workshop_id" id="workshop1" class="chzn-select" >
-                        <option value=""></option>
+                   <select name="workshop_id" id="workshop1" class="form-control" >
+                        <option value="">请选择</option>
                         <c:forEach items="${workshopList}" var="W">
                             <option value="${W.id}" <c:if test="${w.id == pd.workshop_id}">selected</c:if>> ${W.workshop }</option>
                         </c:forEach>
@@ -86,7 +87,7 @@
             <tr>
                 <td style="text-align: center;" colspan="10">
                     <a class="btn btn-small btn-primary" onclick="save();">保存并添加工作内容</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-small btn-danger" onclick="document.getElementById('Form').reset();">取消</a>
+                    <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
                 </td>
             </tr>
             <tr>
