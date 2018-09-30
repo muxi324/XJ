@@ -11,9 +11,6 @@
 <head>
     <base href="<%=basePath%>">
     <%@ include file="../system/admin/top.jsp"%>
-    <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css" /><!-- 日期框 -->
-    <link rel="stylesheet" type="text/css" href="plugins/webuploader/webuploader.css" />
-    <link rel="stylesheet" type="text/css" href="plugins/webuploader/style.css" />
 </head>
 <body>
 <form  id="Form">
@@ -168,6 +165,11 @@
             success: function (result) {
                 //打印服务端返回的数据(调试用)
                 alert("保存事件成功，请为事件添加工作内容！");
+                $(this).val(""); //清空上次input框里的数据
+                $('#event_id').val(result);
+                console.log("result="+result);
+                var eventid = document.getElementById("event_id").value;
+                console.log("eventId="+eventid);
             },
             error : function() {
                 alert("出现异常！");
@@ -196,8 +198,9 @@
             $("#event_name").focus();
             return false;
         }
-        var eventName = $("#event_name").val();
-        location.href = "<%=basePath%>eventManage/addWorkContent.do?eventName="+eventName;
+        var eventId = $("#event_id").val();
+        console.log("event_id="+eventId);
+        location.href = "<%=basePath%>eventManage/goAddWorkContent.do?event_id="+eventId;
     }
 </script>
 </html>

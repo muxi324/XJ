@@ -9,7 +9,7 @@
     <insert id="save" parameterType="pd">
         insert into mission(
         mission_name,set_id,mission_type,mission_level,mission_source,period_start_time,period_end_time,mission_condition,team,worker_name,worker_phone,set_name,mission_addition,send_time,cron,event,time_dev,factory_id,workshop_id,team_id,USER_ID)
-        values (  #{mission_name},#{set_id},#{mission_type},#{mission_level},#{mission_source},#{period_start_time},#{period_end_time},#{mission_condition}, #{team}, #{worker_name}, #{worker_phone},#{set_name}, #{mission_addtion},
+        values (  #{mission_name},#{set_id},#{mission_type},#{mission_level},#{mission_source},#{period_start_time},#{period_end_time},#{mission_condition}, #{team}, #{worker_name}, #{worker_phone},#{set_name}, #{mission_addition},
          #{send_time},#{cron}, #{event},#{time_dev},#{factory_id},#{workshop_id},#{team_id},#{USER_ID}
         )
     </insert>
@@ -17,7 +17,7 @@
     <insert id="save1" parameterType="pd">
         insert into mission(
         mission_name,set_id,mission_type,mission_level,mission_source,mission_set_start_time,mission_set_finish_time,mission_condition,team,worker_name,worker_phone,set_name,mission_addition,send_time,event,instrument_place,time_dev,exception_id,factory_id,workshop_id,team_id,USER_ID)
-        values (  #{mission_name},#{set_id},#{mission_type},#{mission_level},#{mission_source},#{mission_set_start_time},#{mission_set_finish_time},#{mission_condition}, #{team}, #{worker_name}, #{worker_phone},#{set_name}, #{mission_addtion},
+        values (  #{mission_name},#{set_id},#{mission_type},#{mission_level},#{mission_source},#{mission_set_start_time},#{mission_set_finish_time},#{mission_condition}, #{team}, #{worker_name}, #{worker_phone},#{set_name}, #{mission_addition},
         #{send_time},#{event},#{instrument_place},#{time_dev},#{exceptionId},#{factory_id},#{workshop_id},#{team_id},#{USER_ID}
         )
     </insert>

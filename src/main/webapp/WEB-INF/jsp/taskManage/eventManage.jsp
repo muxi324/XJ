@@ -79,10 +79,14 @@
                                             <div class='hidden-phone visible-desktop btn-group'>
 
                                                 <c:if test="${QX.edit == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="location.href='<%=basePath%>eventManage/editEvent.do?eventId=${var.event_id}'"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="location.href='<%=basePath%>eventManage/goEditEvent.do?eventId=${var.event_id}'"><i class='icon-edit'></i></a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
+                                                <c:if test="${QX.cha == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="详情" onclick="location.href='<%=basePath%>eventManage/eventDetail.do?eventId=${var.event_id}'"><i class='icon-cha'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能查看"><i class='icon-edit'></i></a></c:if>
+                                                </c:if>
                                                 <%--<c:if test="${QX.del == 1 }">
                                                     <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.event_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>

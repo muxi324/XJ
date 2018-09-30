@@ -2,6 +2,7 @@ package com.wp.service.event;
 
 import com.wp.dao.DaoSupport;
 import com.wp.entity.Page;
+import com.wp.entity.eventInfo.Event;
 import com.wp.util.PageData;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +25,8 @@ public class EventService {
         dao.save("EventMapper.save", pd);
     }
 //   插入记录后返回该记录的id
-    public Integer saveId(PageData pd)throws Exception{
-       return (Integer) dao.save("EventMapper.saveId", pd);
+    public void insertAndGetId(Event event)throws Exception{
+        dao.save("EventMapper.insertAndGetId", event);
     }
 
     /*
@@ -51,10 +52,10 @@ public class EventService {
         return (PageData) dao.findForObject("EventMapper.getEventById",pd);
     }
 
-    public void saveWorkContent(String content, String eventName) throws Exception {
+    public void saveWorkContent(String content, String eventId) throws Exception {
         Map<String,String> paraMap = new HashMap();
         paraMap.put("content",content);
-        paraMap.put("eventName",eventName);
+        paraMap.put("eventId",eventId);
         dao.update("EventMapper.updateWorkContent",paraMap);
     }
 
@@ -80,6 +81,10 @@ public class EventService {
 
     public PageData getEventByNameForPageData(String eventName) throws Exception {
         return (PageData) dao.findForObject("EventMapper.getEventByNameForPageData",eventName);
+    }
+
+    public PageData getEventByIdForPageData(String eventId) throws Exception {
+        return (PageData) dao.findForObject("EventMapper.getEventByIdForPageData",eventId);
     }
 
     public List<PageData> list1(Page page) throws Exception {

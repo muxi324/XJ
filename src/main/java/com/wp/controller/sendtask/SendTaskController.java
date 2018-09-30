@@ -225,14 +225,15 @@ public class SendTaskController extends BaseController {
         if (StringUtils.isEmpty(pd.getString("time_dev"))) {
             pd.put("time_dev","0");
         }
-        String workerId = pd.getString("worker_id");   //通过worker_id获取NMAE
+
+        String workerId = pd.getString("worker_id");   //通过worker_id获取NMAE和phone
         PageData worker = new PageData();
         worker.put("USER_ID", workerId);
         PageData user = userService.findByUiId(worker);
         String userName = user.getString("NAME");
         pd.put("worker_name",userName);
-       // String worker_phone =user.getString("PHONE");
-       // pd.put("worker_phone",worker_phone);
+        String worker_phone =user.getString("PHONE");
+        pd.put("worker_phone",worker_phone);
         String teamId = pd.getString("team_id");   //通过team_id获取team
         PageData team = new PageData();
         team.put("id", teamId);

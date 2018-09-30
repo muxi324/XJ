@@ -49,7 +49,7 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
                 <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200"  title=""/></td>
             </tr>
-            <%--三级联动--%>
+
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">班组:</td>
                 <td><select name="team_id" id="team" class="form-control" value="${pd.team_id}" onchange="groupchoose()">
@@ -313,7 +313,7 @@
                 workers.options.length=0;
                 var datalength = data.length;
                 for(var i=0;i<datalength;i++){
-                    workers.options.add(new Option(data[i].NAME,data[i].USER_ID));
+                    workers.options.add(new Option(data[i].NAME+":"+data[i].PHONE,data[i].USER_ID));
                 }
 
             },

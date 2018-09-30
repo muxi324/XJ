@@ -240,7 +240,7 @@
                 workers.options.length=0;
                 var datalength = data.length;
                 for(var i=0;i<datalength;i++){
-                    workers.options.add(new Option(data[i].NAME,data[i].USER_ID));
+                    workers.options.add(new Option(data[i].NAME+":"+data[i].PHONE,data[i].USER_ID));
                 }
 
             },

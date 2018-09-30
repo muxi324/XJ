@@ -11,7 +11,7 @@
 	<mvc:default-servlet-handler/>
 	
 	<context:component-scan base-package="com.wp.controller" />
-	<context:component-scan base-package="com.json" />
+	<!--<context:component-scan base-package="com.json" />-->
 
 	<!-- 对静态资源文件的访问  restful-->     
 	<mvc:resources mapping="/admin/**" location="/,/admin/" />

@@ -59,17 +59,17 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
-                <td><select name="worker_id" id="worker" class="form-control" value="${pd.worker_id}" onchange="phonechoose()">
+                <td><select name="worker_id" id="worker" class="form-control" value="" >
                     <option value="">请先选择班组</option>
                 </select>
                 </td>
             </tr>
-            <tr>
+           <%-- <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
                 <td>
                     <input  type="text"  name="worker_phone" id="worker_phone"  value="${pd.worker_phone}" />
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
                 <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="" maxlength="200" title=""/></td>
@@ -265,7 +265,7 @@
                 workers.options.length=0;
                 var datalength = data.length;
                 for(var i=0;i<datalength;i++){
-                    workers.options.add(new Option(data[i].NAME,data[i].USER_ID));
+                    workers.options.add(new Option(data[i].NAME+":"+data[i].PHONE,data[i].USER_ID));
                 }
 
             },

@@ -3,6 +3,7 @@ package com.wp.controller.event;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.databank.Workshop;
+import com.wp.entity.eventInfo.Event;
 import com.wp.service.databank.WorkshopService;
 import com.wp.service.event.EventService;
 import com.wp.util.*;
@@ -147,6 +148,7 @@ public class EventController extends BaseController{
     @RequestMapping(value = "addEvent1")
     @ResponseBody
     public String addEvent1() throws Exception {
+        String result = "";
         PageData pd = new PageData();
         pd = this.getPageData();
         pd.put("create_time",  Tools.date2Str(new Date()));
@@ -160,8 +162,29 @@ public class EventController extends BaseController{
             String workshopName = data.getString("workshop");
             pd.put("workshop",workshopName);
         }
-        String eventName = eventService.getEventByName(pd.getString("event_name"));
-        if (eventName == null || "".equals(eventName)) {
+        String eventId = pd.getString("event_id");
+        if(StringUtils.isNotEmpty(eventId)){  //修改
+            String additions = eventService.getAdditionById(eventId);
+            pd.put("additions",additions);
+            eventService.update(pd);
+        }else{            //新增
+            Event e = new Event();
+            e.setEvent_name(pd.getString("event_name"));
+            e.setInstrument_place(pd.getString("instrument_place"));
+            e.setWorkshop(pd.getString("workshop"));
+            e.setEvent_level(pd.getString("event_level"));
+            e.setFont_color(pd.getString("font_color"));
+            e.setFont_size(pd.getString("font_size"));
+            e.setCreate_time(pd.getString("create_time"));
+            e.setFactory_id(pd.getString("factory_id"));
+            e.setWorkshop_id(pd.getString("workshop_id"));
+            eventService.insertAndGetId(e);
+            String event_id = e.getEvent_id();
+            return event_id;
+        }
+
+      //  String eventName = eventService.getEventByName(pd.getString("event_name"));
+      //  if (eventName == null || "".equals(eventName)) {
 /*            String qrContent = "事件名: " + pd.getString("event_name") + "具体位置: " + pd.getString("instrument_place");
             String encoderImgId = pd.getString("event_name") + Tools.date2Str(new Date())  + ".png";
             try {
@@ -171,22 +194,36 @@ public class EventController extends BaseController{
             } catch (Exception e) {
                 e.printStackTrace();
             }*/
-            eventService.save(pd);
-        } else {
-            eventService.update(pd);
-        }
-        String result = "保存事件成功，请为事件添加工作内容！";
-        return result;
+       //     eventService.save(pd);
+      //  } else {
+      //      eventService.update(pd);
+      //  }
+          return result;
     }
 
-    @RequestMapping(value = "editEvent")          //编辑处理逻辑：先取出数据后保存，然后将新增的id取出给addEvent页面
-    public ModelAndView editEvent() throws Exception {
+    @RequestMapping(value = "goEditEvent")          //编辑处理逻辑：先取出数据后保存，然后将新增的id取出给addEvent页面
+    public ModelAndView goEditEvent() throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         PageData result = eventService.getEventById(pd);
+//        插入记录返回该记录的id
+        Event e = new Event();
+        e.setEvent_name(result.getString("event_name"));
+        e.setInstrument_place(result.getString("instrument_place"));
+        e.setWorkshop(result.getString("workshop"));
+        e.setAdditions(result.getString("additions"));
+        e.setFont_color(result.getString("font_color"));
+        e.setFont_size(result.getString("font_size"));
+        e.setQrcode(result.getString("qrcode"));
+        e.setCreate_time(result.getString("create_time"));
+        e.setEvent_level(result.getString("event_level"));
+        e.setFactory_id(result.getString("factory_id"));
+        e.setWorkshop_id(result.getString("workshop_id"));
+        e.setTeam_id(result.getString("team_id"));
+        eventService.insertAndGetId(e);
+        String event_id = e.getEvent_id();
 
-        int event_id = eventService.saveId(result);
         PageData event = new PageData();
         event.put("eventId",event_id);
         PageData result1 = eventService.getEventById(event);
@@ -224,12 +261,13 @@ public class EventController extends BaseController{
         return mv;
     }
 
-    @RequestMapping(value = "addWorkContent", method = {RequestMethod.GET})
+    @RequestMapping(value = "goAddWorkContent", method = {RequestMethod.GET})
     public ModelAndView addWorkContent() {
         ModelAndView mv = new ModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
         mv.setViewName("taskManage/addWorkContent");
+        mv.addObject("event_id",pd.getString("event_id"));
         mv.addObject("eventName",pd.getString("eventName"));
         return mv;
     }
@@ -238,8 +276,10 @@ public class EventController extends BaseController{
     public ModelAndView addWorkContent1() throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
-        String eventName = pd.getString("eventName");
-        String additions = eventService.getAdditionByName(eventName);
+       /* String eventName = pd.getString("eventName");
+        String additions = eventService.getAdditionByName(eventName);*/
+        String eventId = pd.getString("event_id");   //通过event_id取additions
+        String additions = eventService.getAdditionById(eventId);
         JSONArray workArray;
         if (additions == null || additions.equals("")) {
             workArray = new JSONArray();
@@ -303,9 +343,9 @@ public class EventController extends BaseController{
         }
         work.put("view",viewArray);
         workArray.add(work);
-        eventService.saveWorkContent(workArray.toString(),pd.getString("eventName"));
+        eventService.saveWorkContent(workArray.toString(),pd.getString("event_id"));
         mv.setViewName("taskManage/addEvent");
-        mv.addObject("pd",getEventByName(eventName));
+        mv.addObject("pd",getEventById(eventId));
         List<String> workcontentList = new ArrayList<String>();
         for (int i = 0; i<workArray.size(); i++) {
             JSONObject jsonObject = workArray.getJSONObject(i);
@@ -341,11 +381,48 @@ public class EventController extends BaseController{
         return mv;
     }
 
+    @RequestMapping(value = "eventDetail")
+    public ModelAndView eventDetail() throws Exception {
+        ModelAndView mv = new ModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        PageData result = eventService.getEventById(pd);
+
+        mv.setViewName("taskManage/eventDetail");
+        mv.addObject("pd", result);
+        List<String> workcontentList = new ArrayList<String>();
+        String additions = result.getString("additions");
+        JSONArray workArray;
+        if (additions == null || additions.equals("")) {
+            workArray = new JSONArray();
+        } else {
+            workArray = JSONArray.fromObject(additions);
+        }
+        for (int i = 0; i<workArray.size(); i++) {
+            JSONObject jsonObject = workArray.getJSONObject(i);
+            String contentName = jsonObject.getString("work_name");
+            workcontentList.add(contentName);
+        }
+        mv.addObject("contentList",workcontentList);
+        return mv;
+    }
+
 
     public PageData getEventByName(String eventName) {
         PageData result = new PageData();
         try {
            result = eventService.getEventByNameForPageData(eventName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public PageData getEventById(String eventId) {
+        PageData result = new PageData();
+        try {
+            result = eventService.getEventByIdForPageData(eventId);
         } catch (Exception e) {
             e.printStackTrace();
         }

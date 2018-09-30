@@ -9,9 +9,6 @@
 <head>
     <base href="<%=basePath%>">
     <%@ include file="../system/admin/top.jsp"%>
-    <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css" /><!-- 日期框 -->
-    <link rel="stylesheet" type="text/css" href="plugins/webuploader/webuploader.css" />
-    <link rel="stylesheet" type="text/css" href="plugins/webuploader/style.css" />
 </head>
 <body>
 <form action="eventManage/addWorkContent.do" id="Form"   method="post">
@@ -197,6 +194,7 @@
             </tr>
         </table>
     </div>
+    <input type="hidden" name="event_id" id="eventId" value="${event_id}">
     <input type="hidden" name="eventName" id="eventName" value="${eventName}">
     <div id="zhongxin2" class="center" style="display:none"><br/><br/><br/><br/><br/><img src="static/images/jiazai.gif" /><br/><h4 class="lighter block green">提交中...</h4></div>
 </form>
@@ -206,9 +204,7 @@
 <script src="static/js/ace-elements.min.js"></script>
 <script src="static/js/ace.min.js"></script>
 <script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
-<script type="text/javascript" src="static/js/bootstrap-datetimepicker.min.js"></script><!-- 日期框 -->
-<script type="text/javascript" src="plugins/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="plugins/webuploader/upload.js"></script>
+
 <script type="text/javascript">
     $(top.hangge());
 
