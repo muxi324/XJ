@@ -90,10 +90,12 @@
                 <td>
                 <select name="cron" id="cron" class="form-control">
                     <option value="">请选择</option>
-                    <option value="0 0 9 ? 1-12 1/5 * ">工作日一天一次(每天九点下发任务)</option>
-                    <option value="0 0 9,15 ? 1-12 1/5 * ">工作日半天一次（早九点，下午三点下发任务）</option>
-                    <option value="0 0 9 ? 1-12 6,7 * ">周末一天一次(每天九点下发任务)</option>
-                    <option value="0 0 9,15 ? 1-12 6,7 * ">周末半天一次（早九点，下午三点下发任务）</option>
+                    <option value="0 0 9 * * ? * ">每天一次(每天九点下发任务)</option>
+                    <option value="0 0 9,15 * * ? *">每天两次（早九点，下午三点下发任务）</option>
+                    <option value="0 0 9 ? * MON-FRI ">工作日一天一次(每天九点下发任务)</option>
+                    <option value="0 0 9,15 ? * MON-FRI ">工作日半天一次（早九点，下午三点下发任务）</option>
+                    <option value="0 0 9 ? * SAT,SUN">周末一天一次(每天九点下发任务)</option>
+                    <option value="0 0 9,15 ? * SAT,SUN">周末半天一次（早九点，下午三点下发任务）</option>
                 </select>
                 </td>
             </tr>

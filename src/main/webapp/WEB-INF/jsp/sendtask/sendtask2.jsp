@@ -152,6 +152,10 @@
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常描述:</td>
                         <td><input style="width:90%;" type="text" name="description" id="description" value="${pd.description}" maxlength="200"  title=""/></td>
                     </tr>
+                   <tr>
+                       <td style="width:110px;text-align: right;padding-top: 13px;">建议措施:</td>
+                       <td><input style="width:90%;" type="text" name="suggestion" id="suggestion" value="${pd.suggestion}" maxlength="200"  title=""/></td>
+                   </tr>
                    <%-- <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">异常工作内容:</td>
                         <td><input style="width:90%;" type="text" name="content" id="content" value="${pd.content}" maxlength="200"  title=""/></td>
