@@ -39,7 +39,10 @@
                         <td style="vertical-align:top;">
                             <select class="chzn-select" name="status" id="status" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
+                                <option value="1" <c:if test="${pd.mission_condition==1}">selected</c:if>>任务已下发</option>
+                                <option value="3" <c:if test="${pd.mission_condition==3}">selected</c:if>>接收未执行</option>
                                 <option value="2" <c:if test="${pd.mission_condition==2}">selected</c:if>>拒收待处理</option>
+                                <option value="4" <c:if test="${pd.mission_condition==4}">selected</c:if>>任务执行中</option>
                                 <option value="5" <c:if test="${pd.mission_condition==5}">selected</c:if>>完成待审核</option>
                             </select>
                         </td>
@@ -90,7 +93,7 @@
                                         <td style="width: 50px;" class="center">${var.id}</td>
                                         <td style="width: 50px;" class="center">
                                             <c:if test="${var.mission_condition == '1' }"><span class="label label-info   arrowed-in">任务已下发</span></c:if>
-                                            <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收</span></c:if>
+                                            <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收待处理</span></c:if>
                                             <c:if test="${var.mission_condition == '3' }"><span class="label label-info   arrowed-in">接收未执行</span></c:if>
                                             <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务执行中</span></c:if>
                                             <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">任务完成待审核</span></c:if>
@@ -105,7 +108,12 @@
                                         <td style="width: 40px;" class="center">${var.mission_level}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 60px;" class="center">
-                                            <a href="<%=basePath%>taskmag/goAuditTask.do?mission_id=${var.id}">任务审核</a>
+                                            <div class='hidden-phone visible-desktop btn-group'>
+                                                <c:if test="${QX.edit == 1 }">
+                                                <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="审核"  onclick="check('${var.id}');"><i class='icon-edit'></i></a></c:if>
+                                                <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能审核"><i class='icon-edit'></i></a></c:if>
+                                                </c:if>
+                                            </div>
                                         </td>
                                         <!--
                                         <td style="width: 30px;" class="center">
@@ -172,8 +180,8 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="审核";
-        diag.URL = '<%=basePath%>taskmag/goCheck.do?mission_id='+Id;
-        diag.Width = 700;
+        diag.URL = '<%=basePath%>taskmag/goAuditTask.do?mission_id='+Id;
+        diag.Width = 800;
         diag.Height = 800;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){

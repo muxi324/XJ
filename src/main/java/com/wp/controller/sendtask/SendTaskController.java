@@ -215,7 +215,7 @@ public class SendTaskController extends BaseController {
      */
     @RequestMapping(value="/sendTask")
     @ResponseBody
-    public String save() throws Exception{
+    public ModelAndView save() throws Exception{
         if(!Jurisdiction.buttonJurisdiction(menuUrl, "add")){return null;}
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
@@ -260,8 +260,8 @@ public class SendTaskController extends BaseController {
         String phonenumber = pd.getString("worker_phone");   //发送短信提醒
         String Content = "您有一条新任务，请注意查收。";
         SendMessage.sendMessage(phonenumber, Content);
-        String result = "下发任务成功！";
-        return result;
+        mv.setViewName("save_result");
+        return mv;
     }
 
 

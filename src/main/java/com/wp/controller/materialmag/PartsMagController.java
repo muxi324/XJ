@@ -194,7 +194,7 @@ public class PartsMagController extends BaseController {
             e.printStackTrace();
         }
        // mv.addObject("msg","success");
-          mv.setViewName("save_result");
+        mv.setViewName("save_result");
         return mv;
     }
     /**

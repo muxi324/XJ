@@ -21,7 +21,7 @@
 <!--    报警信息-->
 <div>
 	<marquee id="affiche"  align="center" behavior="scroll" bgcolor="red" direction="right" height="50" width="100%" hspace="50" vspace="20" loop="-1" scrollamount="10" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
-		<a href="<%=basePath%>exception/exceptionInfo.do" ><font size="6">异常信息</font></a>
+		<a target="mainFrame" href="<%=basePath%>exception/exceptionInfo.do" ><font size="6">异常信息</font></a>
 	</marquee>
 </div>
 

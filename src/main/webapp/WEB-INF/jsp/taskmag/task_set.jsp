@@ -171,15 +171,7 @@
 <script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
 <!-- 引入 -->
 <script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
-<%--引入house_msg--%>
-<%--<script type="text/javascript" src="static/js/myjs/house_msg.js"></script>--%>
 <script type="text/javascript">
-    //去下达任务界面页面
-    function sendtask(set_id){
-        location.href =  '<%=basePath%>sendtask/goSendTask.do?set_id='+ set_id;
-    }
-
-
     $(top.hangge());
 
     //检索
@@ -187,6 +179,32 @@
         top.jzts();
         $("#Form").submit();
     }
+
+
+    //去下达任务界面页面
+    function sendtask(set_id){
+       // location.href =  '<%=basePath%>sendtask/goSendTask.do?set_id='+ set_id;
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="下发任务";
+        diag.URL = '<%=basePath%>sendtask/goSendTask.do?set_id='+ set_id;
+        diag.Width = 700;
+        diag.Height = 800;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location=self.location",100);
+                }else{
+                    nextPage(${page.currentPage});
+                }
+            }
+            diag.close();
+        };
+        diag.show();
+    }
+
 
     //新增
     function add(){

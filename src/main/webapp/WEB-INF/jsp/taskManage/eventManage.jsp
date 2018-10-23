@@ -79,18 +79,24 @@
                                             <div class='hidden-phone visible-desktop btn-group'>
 
                                                 <c:if test="${QX.edit == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="location.href='<%=basePath%>eventManage/goEditEvent.do?eventId=${var.event_id}'"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑"  onclick="edit('${var.event_id}');"><i class='icon-edit'></i></a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
-                                                <c:if test="${QX.cha == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="详情" onclick="location.href='<%=basePath%>eventManage/eventDetail.do?eventId=${var.event_id}'"><i class='icon-cha'></i></a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能查看"><i class='icon-edit'></i></a></c:if>
+                                                <c:if test="${QX.edit == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-success' title="复制"  onclick="copy('${var.event_id}');"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-success' title="您不能复制"><i class='icon-edit'></i></a></c:if>
                                                 </c:if>
-                                                <%--<c:if test="${QX.del == 1 }">
+                                                &nbsp;&nbsp;&nbsp;
+                                               <%-- <c:if test="${QX.cha == 1 }">
+                                                    &lt;%&ndash;<c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="详情"  onclick="location.href='<%=basePath%>eventManage/eventDetail.do?eventId=${var.event_id}'"><i class='icon-info'></i></a></c:if>&ndash;%&gt;
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="详情"    onclick="detail('${var.event_id}');"><i class='icon-info'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-warning' title="您不能查看"><i class='icon-info'></i></a></c:if>
+                                                </c:if>--%>
+                                                <c:if test="${QX.del == 1 }">
                                                     <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.event_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
-                                                </c:if>--%>
+                                                </c:if>
 
                                             </div>
                                         </td>
@@ -120,7 +126,7 @@
                         <tr>
                             <td style="vertical-align:top;">
                                 <c:if test="${QX.add == 1 }">
-                                    <a class="btn btn-small btn-success" onclick="location.href='<%=basePath%>eventManage/addEvent.do'">新增</a>
+                                    <a class="btn btn-small btn-success" onclick="add()">新增</a>
                                 </c:if>
                                <%-- <c:if test="${QX.del == 1 }">
                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
@@ -163,6 +169,62 @@
         $("#Form").submit();
     }
 
+    function edit(eventId){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="编辑";
+        diag.URL = '<%=basePath%>eventManage/goEditEvent.do?eventId='+eventId;
+        diag.Width = 800;
+        diag.Height = 500;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                nextPage(${page.currentPage});
+            }
+            diag.close();
+        };
+        diag.show();
+    }
+
+
+    function copy(eventId){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="复制";
+        diag.URL = '<%=basePath%>eventManage/goCopyEvent.do?eventId='+eventId;
+        diag.Width = 800;
+        diag.Height = 500;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                nextPage(${page.currentPage});
+            }
+            diag.close();
+        };
+        diag.show();
+    }
+
+    function detail(Id) {
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag = true;
+        diag.Title = "编辑";
+        diag.URL = '<%=basePath%>eventManage/eventDetail.do?eventId='+Id;
+        diag.Width = 800;
+        diag.Height = 500;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location=self.location",100);
+                }else{
+                    nextPage(${page.currentPage});
+                }
+            }
+            diag.close();
+        };
+        diag.show();
+    }
     function showQrCode(url) {
         top.jzts();
         var diag = new top.Dialog();
@@ -192,8 +254,8 @@
         diag.Drag=true;
         diag.Title ="新增";
         diag.URL = '<%=basePath%>eventManage/addEvent.do';
-        diag.Width = 400;
-        diag.Height = 600;
+        diag.Width = 800;
+        diag.Height = 500;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
                 if('${page.currentPage}' == '0'){
@@ -213,7 +275,7 @@
         bootbox.confirm("确定要删除吗?", function(result) {
             if(result) {
                 top.jzts();
-                var url = "<%=basePath%>eventManage/delete.do?event_id="+Id;
+                var url = "<%=basePath%>eventManage/delete.do?eventId="+Id;
                 $.get(url,function(data){
                    nextPage(${page.currentPage});
                 });

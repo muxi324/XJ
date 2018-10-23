@@ -169,29 +169,7 @@
                     </select>
                 </td>
             </tr>--%>
-          <%--  <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">是否及时上报:</td>
-                <td>
-                    <select name="isTimelyReport" id="isTimelyReport" class="form-control">
-                        <option value="1">是</option>
-                        <option value="0">否</option>
-                    </select>
-                </td>
-                <td style="width:110px;text-align: right;padding-top: 13px;">上报对象:</td>
-                <td>
-                    <select name="reportObject" id="reportObject" class="form-control">
-                        <option value="班组长">班组长</option>
-                        <option value="车间负责人">车间负责人</option>
-                        <option value="工厂负责人">工厂负责人</option>
-                    </select>
-                </td>
-            </tr>--%>
-            <tr>
-                <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
-                </td>
-            </tr>
+
         </table>
     </div>
     <input type="hidden" name="event_id" id="eventId" value="${event_id}">

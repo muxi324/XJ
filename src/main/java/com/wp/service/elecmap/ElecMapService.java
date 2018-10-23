@@ -23,12 +23,7 @@ public class ElecMapService {
     public PageData findByW(PageData pd)throws Exception{
         return (PageData)dao.findForObject("ElecMapMapper.findByW", pd);
     }
-    /*
-   * 通过已安装获取数据
-   */
-    public PageData findByH(PageData pd)throws Exception{
-        return (PageData)dao.findForObject("ElecMapMapper.findByH", pd);
-    }
+
     /*
   *员工列表
   */
@@ -36,15 +31,10 @@ public class ElecMapService {
         return (List<PageData>)dao.findForList("ElecMapMapper.datalistWorker", page);
     }
 
-    public List<PageData> listException(Page page)throws Exception{
-        return (List<PageData>)dao.findForList("ElecMapMapper.findException", page);
+    public List<PageData> listException(PageData pd)throws Exception{
+        return (List<PageData>)dao.findForList("ElecMapMapper.findException",pd);
     }
-    /*
-   *   未安装房源列表
-   */
-    public List<PageData> listH(Page page)throws Exception{
-        return (List<PageData>)dao.findForList("ElecMapMapper.datalistH", page);
-    }
+
 
     public List<MapPoint> getPointById(String workerId) throws Exception {
         return (List<MapPoint>) dao.findForList("ElecMapMapper.getPointById",workerId);

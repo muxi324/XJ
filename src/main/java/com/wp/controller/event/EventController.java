@@ -2,7 +2,6 @@ package com.wp.controller.event;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
-import com.wp.entity.databank.Workshop;
 import com.wp.entity.eventInfo.Event;
 import com.wp.service.databank.WorkshopService;
 import com.wp.service.event.EventService;
@@ -96,7 +95,7 @@ public class EventController extends BaseController{
         return mv;
     }
     /**
-     * 删除
+     * 删除:修改事件的状态：0为删除，用户不可见，1用户可见
      */
     @RequestMapping(value="/delete")
     public void delete(PrintWriter out){
@@ -105,7 +104,9 @@ public class EventController extends BaseController{
         PageData pd = new PageData();
         try{
             pd = this.getPageData();
-            eventService.delete(pd);
+            PageData result = eventService.getEventById(pd);
+            result.put("status",0);
+            eventService.update(result);
             out.write("success");
             out.close();
         } catch(Exception e){
@@ -151,9 +152,9 @@ public class EventController extends BaseController{
         String result = "";
         PageData pd = new PageData();
         pd = this.getPageData();
-        pd.put("create_time",  Tools.date2Str(new Date()));
         pd.put("factory_id",FactoryUtil.getFactoryId());
         pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        pd.put("status", 1);
         if(StringUtils.isEmpty(pd.getString("workshop"))){
             String workshopId = pd.getString("workshop_id");
             PageData workshop = new PageData();
@@ -169,14 +170,15 @@ public class EventController extends BaseController{
             eventService.update(pd);
         }else{            //新增
             Event e = new Event();
+            e.setCreate_time(Tools.date2Str(new Date()));
             e.setEvent_name(pd.getString("event_name"));
             e.setInstrument_place(pd.getString("instrument_place"));
             e.setWorkshop(pd.getString("workshop"));
             e.setEvent_level(pd.getString("event_level"));
             e.setFont_color(pd.getString("font_color"));
             e.setFont_size(pd.getString("font_size"));
-            e.setCreate_time(pd.getString("create_time"));
             e.setFactory_id(pd.getString("factory_id"));
+            e.setStatus(pd.getString("status"));
             e.setWorkshop_id(pd.getString("workshop_id"));
             eventService.insertAndGetId(e);
             String event_id = e.getEvent_id();
@@ -203,6 +205,69 @@ public class EventController extends BaseController{
 
     @RequestMapping(value = "goEditEvent")          //编辑处理逻辑：先取出数据后保存，然后将新增的id取出给addEvent页面
     public ModelAndView goEditEvent() throws Exception {
+        ModelAndView mv = new ModelAndView();
+        PageData pd = new PageData();
+        pd = this.getPageData();
+        PageData result = eventService.getEventById(pd);
+        result.put("status",0);
+        eventService.update(result);   //将要编辑的事件状态改为 0使用户不可见
+//        插入记录返回该记录的id
+        Event e = new Event();
+        e.setEvent_name(result.getString("event_name"));
+        e.setInstrument_place(result.getString("instrument_place"));
+        e.setWorkshop(result.getString("workshop"));
+        e.setAdditions(result.getString("additions"));
+        e.setFont_color(result.getString("font_color"));
+        e.setFont_size(result.getString("font_size"));
+        e.setStatus("1");
+        e.setQrcode(result.getString("qrcode"));
+        e.setCreate_time(result.getString("create_time"));
+        e.setEvent_level(result.getString("event_level"));
+        e.setFactory_id(result.getString("factory_id"));
+        e.setWorkshop_id(result.getString("workshop_id"));
+        e.setTeam_id(result.getString("team_id"));
+        eventService.insertAndGetId(e);
+        String event_id = e.getEvent_id();    //得到返回的新事件id
+
+        PageData event = new PageData();
+        event.put("eventId",event_id);
+        PageData result1 = eventService.getEventById(event);
+
+        String factory_id = FactoryUtil.getFactoryId();
+        String workshop_id = FactoryUtil.getWorkshopId();
+        List<PageData> workshopList = new ArrayList<PageData>();
+        if(StringUtils.isNotEmpty(factory_id)) {
+            PageData factory = new PageData();
+            factory.put("factory_id",factory_id);
+            if(StringUtils.isEmpty(workshop_id)){
+                workshopList = workshopService.listWorkshopByFac(factory);
+                mv.addObject("workshopList",workshopList);
+            }
+        }
+
+        mv.setViewName("taskManage/addEvent");
+        mv.addObject("pd", result1);
+        mv.addObject("workshopId", workshop_id);
+        List<String> workcontentList = new ArrayList<String>();
+        String eventId = result1.getString("event_id");
+        String additions = eventService.getAdditionById(eventId);
+        JSONArray workArray;
+        if (additions == null || additions.equals("")) {
+            workArray = new JSONArray();
+        } else {
+            workArray = JSONArray.fromObject(additions);
+        }
+        for (int i = 0; i<workArray.size(); i++) {
+            JSONObject jsonObject = workArray.getJSONObject(i);
+            String contentName = jsonObject.getString("work_name");
+            workcontentList.add(contentName);
+        }
+        mv.addObject("contentList",workcontentList);
+        return mv;
+    }
+   // 复制
+    @RequestMapping(value = "goCopyEvent")          //编辑处理逻辑：先取出数据后保存，然后将新增的id取出给addEvent页面
+    public ModelAndView goCopyEvent() throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
@@ -361,9 +426,9 @@ public class EventController extends BaseController{
         ModelAndView mv = new ModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
-        String eventName = pd.getString("eventName");
-        String contentName = pd.getString("contentName");
-        String additions = eventService.getAdditionByName(eventName);
+        String eventId = pd.getString("eventId");
+        String contentName = pd.getString("workName");
+        String additions = eventService.getAdditionById(eventId);
         JSONArray workArray;
         if (additions == null || additions.equals("")) {
             workArray = new JSONArray();
@@ -374,10 +439,54 @@ public class EventController extends BaseController{
         for (int i = 0; i<workArray.size(); i++) {
             JSONObject jsonObject = workArray.getJSONObject(i);
             if(contentName.equals(jsonObject.getString("work_name"))) {
-                result.put("work_name",contentName);
+                result.put("content_name",contentName);
                 result.put("font_color",jsonObject.getString("font_color"));
+                result.put("font_size",jsonObject.getString("font_size"));
+                String str = jsonObject.getString("work_note");
+                JSONArray json = JSONArray.fromObject(str ); // 首先把字符串转成 JSONArray  对象
+                if(json.size()>0){
+                        JSONObject job = json.getJSONObject(0);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+                        result.put("numFontColor",job.getString("font_color"));
+                        result.put("numFontSize",job.getString("font_size"));
+                        String strNote = job.getString("note_content");
+                        String[] parts = strNote.split("-");
+                        if(parts.length>0){
+                            String min = parts[0];
+                            String max = parts[1];
+                            result.put("backNum_downLimit",min);
+                            result.put("backNum_upLimit",max);
+                        }
+
+                        //异常标准
+                        JSONObject job1 = json.getJSONObject(1);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+                        result.put("exceptionFontColor",job1.getString("font_color"));
+                        result.put("exceptionFontSize",job1.getString("font_size"));
+                        result.put("exception",job1.getString("note_content"));
+                        // 特殊提示
+                        JSONObject job2 = json.getJSONObject(1);  // 遍历 jsonarray 数组，把每一个对象转成 json 对象
+                        result.put("noticeFontColor",job2.getString("font_color"));
+                        result.put("noticeFontSize",job2.getString("font_size"));
+                        result.put("notice",job2.getString("note_content"));
+
+                }
+                String str1 = jsonObject.getString("view");
+                JSONArray json1 = JSONArray.fromObject(str1 );
+                if(json1.size()>0){
+                    for(int k=0;k<json1.size();k++){
+                        JSONObject view = json1.getJSONObject(k);
+                        String type = view.getString("view_class");
+                        if(type.equals("拍照")){
+                            result.put("is_takePhoto",1);
+                        }else if (type.equals("输入框")){
+                            result.put("is_backText",1);
+                        }
+                    }
+                }
+
             }
         }
+        mv.addObject("pd",result);
+        mv.setViewName("taskManage/WorkContentDetail");
         return mv;
     }
 

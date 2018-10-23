@@ -13,12 +13,14 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <base href="<%=basePath%>">
     <%@ include file="../system/admin/top.jsp"%>
 </head>
 <body>
+<div id="zhongxin">
 <table id="table_report" class="table table-striped table-bordered table-hover">
     <tr>
         <td style="width:110px;text-align: right;padding-top: 13px;">异常id:</td>
@@ -61,6 +63,17 @@
 <a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask1.do?exceptionId=${result.id}">下发临时巡检任务</a>
 <div style="padding-bottom: 30px;">
 </div>
+</div>
+<div id="zhongxin2" class="center" style="display:none"><br/><br/><br/><br/><br/><img src="static/images/jiazai.gif" /><br/><h4 class="lighter block green">提交中...</h4></div>
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
+<!-- 引入 -->
+<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/ace-elements.min.js"></script>
+<script src="static/js/ace.min.js"></script>
+<script type="text/javascript">
+    $(top.hangge());
+
+</script>
 </html>
+

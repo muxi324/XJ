@@ -66,7 +66,6 @@
             $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
-            // hasW();
         }
 
     </script>

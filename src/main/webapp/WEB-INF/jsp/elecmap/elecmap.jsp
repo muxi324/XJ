@@ -72,11 +72,11 @@
                 console.info(result);
                 $.each(result, function(index, content) {
                     var str = "<tr>" +
-                        "<td><input type='checkbox'name='workers' value='"+content.name+"'/></td>" +
-                        "<td>"+content.name+"</td>" +
+                        "<td><input type='checkbox'name='workers' value='"+content.NAME+"'/></td>" +
+                        "<td>"+content.NAME+"</td>" +
                         "</tr>";
                     $("#worker").append(str);
-                    var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId="+content.id ,"id":content.id,"name":content.name,"phoneNum":content.phone};
+                    var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId="+content.USER_ID ,"id":content.id,"name":content.NAME,"phoneNum":content.PHONE};
                     points.push(point);
                 })
             }
@@ -210,8 +210,6 @@
         var sContent =
             '<ul style="margin:0 0 5px 0;padding:0.2em 0">'
             +'<li style="line-height: 26px;font-size: 15px;">'
-            +'<span style="width: 50px;display: inline-block;">工号：</span>' + point.id + '</li>'
-            +'<li style="line-height: 26px;font-size: 15px;">'
             +'<span style="width: 50px;display: inline-block;">姓名：</span>' + point.name + '</li>'
             +'<li style="line-height: 26px;font-size: 15px;">'
             +'<span style="width: 50px;display: inline-block;">电话：</span>' + point.phoneNum + '</li>'
@@ -225,11 +223,11 @@
         var sContent =
             '<ul style="margin:0 0 5px 0;padding:0.2em 0">'
             +'<li style="line-height: 26px;font-size: 15px;">'
-            +'<span style="width: 100px;display: inline-block;">异常所属车间：</span>' + point.workshop + '</li>'
+            +'<span style="width: 100px;display: inline-block;">所属车间：</span>' + point.workshop + '</li>'
             +'<li style="line-height: 26px;font-size: 15px;">'
             +'<span style="width: 100px;display: inline-block;">异常描述：</span>' + point.description + '</li>'
             +'<li style="line-height: 26px;font-size: 15px;">'
-            +'<span style="width: 100px;display: inline-block;">异常上报人：</span>' + point.report_worker + '</li>'
+            +'<span style="width: 100px;display: inline-block;">上报人：</span>' + point.report_worker + '</li>'
             +'<span style="width: 100px;display: inline-block;">上报时间：</span>' + point.report_time + '</li>'
             +'<li style="line-height: 26px;font-size: 15px;"><span style="width: 50px;display: inline-block;">查看：</span><a href="'+point.url+'">异常详情</a></li>'
             +'</ul>';

@@ -75,6 +75,10 @@ public class TaskMagService {
     public List<PageData> getWorkContent(PageData pd) throws Exception {
         return (List<PageData>) dao.findForList("TaskMagMapper.getWorkContent",pd);
     }
+    // 维修任务返回的照片及数值
+    public PageData getWorkContentById(PageData pd) throws Exception {
+        return (PageData) dao.findForObject("TaskMagMapper.getWorkContentById",pd);
+    }
 
     public void auditTask(PageData pd) throws Exception {
         dao.update("TaskMagMapper.auditTask",pd);

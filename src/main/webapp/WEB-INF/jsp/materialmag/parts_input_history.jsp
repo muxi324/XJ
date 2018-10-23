@@ -21,9 +21,9 @@
 
 </head>
 </body>
-      <div id="zhongxin">
             <!-- 检索  -->
             <form action="partsmag/goInput.do" method="post" name="Form" id="Form">
+                <div id="zhongxin">
                 <input type="hidden" name="material_id" id="material_id" value="${pd.material_id }"/>
                 <input type="hidden" name="material_name" id="material_name" value="${pd.material_name }"/>
                 <table>
@@ -97,10 +97,10 @@
                         </tr>
                     </table>
                 </div>
-
+                </div>
             </form>
 
-        </div>
+
 
 <!-- 返回顶部  -->
 <a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">

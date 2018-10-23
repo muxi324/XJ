@@ -318,7 +318,9 @@
 			DEL_QX,
 			EDIT_QX,
 			CHA_QX,
-			QX_ID
+			QX_ID,
+			factory_id,
+            level
 		) values (
 			#{ROLE_ID},
 			#{ROLE_NAME},
@@ -328,7 +330,9 @@
 			#{DEL_QX},
 			#{EDIT_QX},
 			#{CHA_QX},
-			#{QX_ID}
+			#{QX_ID},
+			#{factory_id},
+			#{level}
 		)
 	</insert>
 	
@@ -350,7 +354,7 @@
 		<!-- 编辑角色 -->
 	<update id="edit" parameterType="pd">
 		update SYS_ROLE 
-		set ROLE_NAME = #{ROLE_NAME}
+		set ROLE_NAME = #{ROLE_NAME},level = #{level}
 		where ROLE_ID = #{ROLE_ID}
 	</update>
 </mapper>

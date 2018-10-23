@@ -22,7 +22,7 @@
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
     <input type="hidden" name="mission_id" id="mission_id" value="${pd.mission_id }"/>
-    <input type="hidden" name="id" id="exceptionId" value="${pd.id}"/> <!--异常id-->
+    <input type="hidden" name="exceptionId" id="exceptionId" value="${pd.id}"/> <!--异常id-->
     <input type="hidden" name="mission_condition" id="mission_condition" value="${pd.mission_condition }"/>
     <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">下发临时巡检任务</label>
     <div id="zhongxin">
@@ -231,10 +231,10 @@
             return false;
         }
 
-/*        $("#Form").submit();
+        $("#Form").submit();
         $("#zhongxin").hide();
-        $("#zhongxin2").show();*/
-        $.ajax({
+        $("#zhongxin2").show();
+       /* $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
             url: "<%=basePath%>sendtask/sendTask.do" ,//url
@@ -246,7 +246,7 @@
             error : function() {
                 alert("出现异常！");
             }
-        });
+        });*/
 
     }
 

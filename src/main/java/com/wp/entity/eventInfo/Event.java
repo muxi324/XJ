@@ -17,6 +17,7 @@ public class Event {
     private String font_color;
     private String font_size;
     private String qrcode;
+    private String status;
     private String factory_id;
     private String workshop_id;
     private String team_id;
@@ -156,5 +157,13 @@ public class Event {
 
     public void setTeam_id(String team_id) {
         this.team_id = team_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

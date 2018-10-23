@@ -147,15 +147,14 @@
                         <td style="width: 60px;" class="center">${var.weidu}</td>
                         <td style="width: 100px;" class="center">${var.event_name}</td>
                         <td style="width: 150px;" class="center">${var.instrument_place}</td>
-                        <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${id}">查看详情</a></td>
+                        <td style="width: 60px;" class="center">
+                            <a class='btn btn-mini btn-info' title="详情"  onclick="check('${var.event_id}','${id}');"><i class='icon-edit'></i></a>
+                            <%--<a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${id}">查看详情</a>--%>
+                        </td>
                     </tr>
                 </c:forEach>
             </c:if>
-            <c:if test="${QX.cha == 0 }">
-                <tr>
-                    <td colspan="100" class="center">您无权查看</td>
-                </tr>
-            </c:if>
+
         </c:when>
         <c:otherwise>
             <tr class="main_info">
@@ -180,6 +179,28 @@
 
 <script type="text/javascript">
     $(top.hangge());  //清除加载进度,关闭遮罩层
+
+    function check(eventId,id){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="工作详情";
+        diag.URL = '<%=basePath%>taskmag/getWorkContentDetail.do?event_id='+eventId+'&mission_id='+id;
+        diag.Width = 800;
+        diag.Height = 750;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location=self.location",100);
+                }else{
+                  //  nextPage(${page.currentPage});
+                }
+            }
+            diag.close();
+        };
+        diag.show();
+    }
 
     $(function() {
        // document.getElementById("auditor_opinion").value="${pd.auditor_opinion}";

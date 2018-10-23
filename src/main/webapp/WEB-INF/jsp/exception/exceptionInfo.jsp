@@ -96,7 +96,8 @@
                                         <c:if test="${var.is_read == 1}">是</c:if>
                                     </td>--%>
                                     <td style="width: 60px;" class="center">
-                                        <a target="mainFrame" href="<%=basePath%>exception/getExceptionDetail.do?exceptionId=${var.id}">查看详情</a>
+                                       <a class='btn btn-mini btn-info' title="详情"  onclick="check('${var.id}');"><i class='icon-edit'></i></a>
+                                        <%--<a  href="<%=basePath%>exception/getExceptionDetail.do?exceptionId=${var.id}">查看详情</a>--%>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -137,8 +138,9 @@
 <!-- 引入 -->
 <script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
 <script type="text/javascript">
+
     $(top.hangge());
-<%--console.log(${exceptionList});--%>
+
     //检索
     function search(){
         top.jzts();
@@ -165,6 +167,28 @@
                 });
         });
     });
+
+    function check(Id){
+        top.jzts();
+        var diag = new top.Dialog();
+        diag.Drag=true;
+        diag.Title ="详情";
+        diag.URL = '<%=basePath%>exception/getExceptionDetail.do?exceptionId='+Id;
+        diag.Width = 700;
+        diag.Height = 800;
+        diag.CancelEvent = function(){ //关闭事件
+            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+                if('${page.currentPage}' == '0'){
+                    top.jzts();
+                    setTimeout("self.location=self.location",100);
+                }else{
+                    nextPage(${page.currentPage});
+                }
+            }
+            diag.close();
+        };
+        diag.show();
+    }
 
     //导出excel
     function toExcel(){

@@ -6,12 +6,14 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <base href="<%=basePath%>"><!-- jsp文件头和头部 -->
     <%@ include file="../system/admin/top.jsp"%>
 </head>
 <body>
+<div id="zhongxin">
 <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">工作内容</label>
 <table id="table_report" class="table table-striped table-bordered table-hover">
     <input type="hidden" id="mission_id" name="mission_id" value="${mission_id}">
@@ -56,7 +58,8 @@
         </tr>
     </table>
 </div>
-
+</div>
+<div id="zhongxin2" class="center" style="display:none"><br/><br/><br/><br/><br/><img src="static/images/jiazai.gif" /><br/><h4 class="lighter block green">提交中...</h4></div>
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/ace-elements.min.js"></script>

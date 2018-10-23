@@ -14,7 +14,7 @@
 </head>
 <body>
 <form  id="Form">
-    <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">添加巡检事件</label>
+    <label class="control-label" style="margin-left:45%;margin-top: 10px;margin-bottom: 20px">编辑巡检事件</label>
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <input type="hidden" name="event_id" id="event_id" value="${pd.event_id}"/>
@@ -40,18 +40,6 @@
                     <input type="hidden" name="workshop"  value="${pd.workshop}"/>
                 </td>
             </tr>
-           <%-- <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
-                <td>
-                    <input style="width:90%;" type="text" name="check_point" id="check_point"  maxlength="200" value="${pd.check_point}" data-placeholder="事件所在的设备名称（可以不填）" >
-                </td>
-            </tr>
-            <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检范围:</td>
-                <td>
-                    <input style="width:90%;" type="text" name="check_scope" id="check_scope"  maxlength="200" value="${pd.check_scope}" data-placeholder="事件所在的生产区域（可以不填）">
-                </td>
-            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                 <td>
@@ -68,32 +56,13 @@
                     </select>
                 </td>
             </tr>
-        <%--    <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">建议巡检周期:</td>
-                <td>
-                    <input style="width:90%;" type="text" name="check_period" id="check_period"  maxlength="200" value="${pd.check_period}" title=""/>小时/次
-                </td>
-            </tr>
-            <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">巡检间隔:</td>
-                <td>
-                    大于<input style="width:90%;" type="text" name="check_interval" id="check_interval"  maxlength="200" value="${pd.check_interval}" title=""/>小时
-                </td>
-                </td>
-            </tr>--%>
-            <tr>
-                <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-small btn-primary" onclick="save();">保存并添加工作内容</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
-                </td>
-            </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">与该事件绑定的工作内容:</td>
                 <td>
                 <c:choose>
                     <c:when test="${not empty contentList}">
                         <c:forEach items="${contentList}" var="var" varStatus="vs">
-                            <a onclick="detail('${var}','${pd.event_id}');"> ${var}</a> &nbsp&nbsp&nbsp
+                          ${var}&nbsp&nbsp&nbsp
                         </c:forEach>
                     </c:when>
                     <c:otherwise>
@@ -104,6 +73,12 @@
             </tr>
 
         </table>
+        <tr>
+            <td style="text-align: center;" colspan="10">
+                <a class="btn btn-small btn-primary" onclick="save();">保存</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
+            </td>
+        </tr>
         <div style="padding-bottom: 15px;">
         </div>
     </div>
@@ -169,13 +144,12 @@
             data: $('#Form').serialize(),
             success: function (result) {
                 //打印服务端返回的数据(调试用)
-                alert("保存事件成功，请为事件添加工作内容！");
+                alert("保存事件成功！");
                 $(this).val(""); //清空上次input框里的数据
                 $('#event_id').val(result);
                 console.log("result="+result);
                 var eventid = document.getElementById("event_id").value;
                 console.log("eventId="+eventid);
-                location.href = "<%=basePath%>eventManage/goAddWorkContent.do?event_id="+eventid;
             },
             error : function() {
                 alert("出现异常！");
@@ -214,7 +188,7 @@
             diag.Drag=true;
             diag.Title ="编辑工作内容";
             diag.URL = "<%=basePath%>eventManage/goAddWorkContent.do?event_id="+eventId;
-            diag.Width = 900;
+            diag.Width = 1000;
             diag.Height = 600;
             diag.CancelEvent = function(){ //关闭事件
                 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
@@ -224,23 +198,6 @@
             };
             diag.show();
 
-    }
-
-    function detail(contentName,eventId){
-        top.jzts();
-        var diag = new top.Dialog();
-        diag.Drag=true;
-        diag.Title ="查看工作内容";
-        diag.URL = '<%=basePath%>eventManage/goEditWorkContent.do?workName='+contentName+"&eventId="+eventId;
-        diag.Width = 950;
-        diag.Height = 500;
-        diag.CancelEvent = function(){ //关闭事件
-            if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-                nextPage(${page.currentPage});
-            }
-            diag.close();
-        };
-        diag.show();
     }
 </script>
 </html>

@@ -3,6 +3,7 @@ package com.wp.controller.sendtask;
 import com.wp.util.JDBCUtils;
 import com.wp.util.PageData;
 import com.wp.util.SendMessage;
+import com.wp.util.Tools;
 import org.apache.commons.lang.StringUtils;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -48,7 +49,8 @@ public class SendPeriodTaskJob implements Job {
             st.setString(12, pd.getString("worker_phone"));
             st.setString(13, pd.getString("set_name"));
             st.setString(14, pd.getString("mission_addtion"));
-            st.setString(15, pd.getString("send_time"));
+          //  st.setString(15, pd.getString("send_time"));
+            st.setString(15,  Tools.date2Str(new Date()));
             st.setString(16, pd.getString("cron"));
             st.setString(17, pd.getString("event"));
             st.setString(18,pd.getString("factory_id"));

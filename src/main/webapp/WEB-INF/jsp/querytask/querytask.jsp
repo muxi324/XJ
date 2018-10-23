@@ -95,13 +95,13 @@
                                         <td style="width: 100px;" class="center">${var.mission_name}</td>
                                         <td style="width: 50px;" class="center">${var.id}</td>
                                         <td style="width: 50px;" class="center">
-                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-info   arrowed-in">任务已下发</span></c:if>
+                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-default   arrowed-in">任务已下发</span></c:if>
                                             <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收</span></c:if>
                                             <c:if test="${var.mission_condition == '3' }"><span class="label label-info   arrowed-in">接收未执行</span></c:if>
                                             <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务执行中</span></c:if>
                                             <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">任务完成待审核</span></c:if>
                                             <c:if test="${var.mission_condition == '6' }"><span class="label label-success   arrowed-in">审核通过</span></c:if>
-                                            <c:if test="${var.mission_condition == '7' }"><span class="label label-success      arrowed-in">审核未通过</span></c:if>
+                                            <c:if test="${var.mission_condition == '7' }"><span class="label label-important      arrowed-in">审核未通过</span></c:if>
                                             <c:if test="${var.mission_condition == '8' }"><span class="label label-primary     arrowed-in">拒收已处理</span></c:if>
                                         </td>
                                         <td style="width: 100px;" class="center">${var.send_time}</td>
@@ -111,7 +111,12 @@
                                         <td style="width: 40px;" class="center">${var.mission_level}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 60px;" class="center">
-                                            <a href="<%=basePath%>querytask/goDetail.do?mission_id=${var.id}">任务详情</a>
+                                            <div class='hidden-phone visible-desktop btn-group'>
+                                                <c:if test="${QX.cha == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="详情"  onclick="check('${var.id}');"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能查看"><i class='icon-edit'></i></a></c:if>
+                                                </c:if>
+                                            </div>
                                         </td>
                                         <!--
                                         <td style="width: 30px;" class="center">
@@ -177,9 +182,9 @@
         top.jzts();
         var diag = new top.Dialog();
         diag.Drag=true;
-        diag.Title ="审核";
-        diag.URL = '<%=basePath%>taskmag/goCheck.do?mission_id='+Id;
-        diag.Width = 700;
+        diag.Title ="详情";
+        diag.URL = '<%=basePath%>querytask/goDetail.do?mission_id='+Id;
+        diag.Width = 800;
         diag.Height = 800;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){

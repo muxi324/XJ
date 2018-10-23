@@ -83,34 +83,7 @@ public class ElecMapController extends BaseController {
         return mv;
     }
 
-    /**
-     * 所有已安装房源位置
-     */
-    @RequestMapping(value="/listH")
-    public ModelAndView listH(Page page){
-        logBefore(logger, "房源列表");
-        //if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
-        ModelAndView mv = this.getModelAndView();
-        PageData pd = new PageData();
-        try{
-            pd = this.getPageData();
-           /* String  enquiry = pd.getString("enquiry");
-            if(null != enquiry && !"".equals(enquiry)){
-                pd.put("enquiry", enquiry.trim());
-            }else {
-                pd.put("enquiry", "");
-            }*/
-            page.setPd(pd);
-            List<PageData> varList = elecMapService.listH(page);	//列出${objectName}列表
-            mv.setViewName("elecmap/elecmap");
-            mv.addObject("varList", varList);
-            mv.addObject("pd", pd);
-            mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
-        } catch(Exception e){
-            logger.error(e.toString(), e);
-        }
-        return mv;
-    }
+
 
 
     @RequestMapping(value = "/detailPath")
@@ -175,6 +148,8 @@ public class ElecMapController extends BaseController {
             String loginUserName = FactoryUtil.getLoginUserName();
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
+                pd.put("workshop_id",FactoryUtil.getWorkshopId());
+                pd.put("team_id",FactoryUtil.getTeamId());
             }
             page.setPd(pd);
             wokerList = elecMapService.listW(page);
@@ -187,10 +162,14 @@ public class ElecMapController extends BaseController {
     //异常位置
     @RequestMapping(value = "/exceptionPosition")
     @ResponseBody
-    public Object getExceptionPosition(Page page){
+    public Object getExceptionPosition(){
         List<PageData> exceptionList = null;
+        PageData pd = new PageData();
         try {
-            exceptionList = elecMapService.listException(page);
+            pd.put("factory_id",FactoryUtil.getFactoryId());
+            pd.put("workshop_id",FactoryUtil.getWorkshopId());
+            pd.put("team_id",FactoryUtil.getTeamId());
+            exceptionList = elecMapService.listException(pd);
         } catch (Exception e) {
             e.printStackTrace();
         }
