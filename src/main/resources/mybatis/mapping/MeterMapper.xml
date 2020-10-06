@@ -17,7 +17,7 @@
         <if test="pd.factory_id != null">
             and factory_id = #{pd.factory_id}
         </if>
-        order by id desc
+        order by id asc
     </select>
     <!--找到水表工厂-->
     <select id="findMeterCom" parameterType="pd" resultType="pd">
