@@ -166,6 +166,7 @@
 
                 }
             }
+            window.location.href='<%=basePath%>partsmag/goOutput.do?material_id='+material_id;
             diag.close();
         };
         diag.show();

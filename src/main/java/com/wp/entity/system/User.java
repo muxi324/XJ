@@ -23,9 +23,18 @@ public class User {
 	private String IP;			//用户登录ip地址
 	private String STATUS;		//状态
 	private Role role;			//角色对象
+	private Roles roles;
 	private Page page;			//分页对象
 	private String SKIN;		//皮肤
-	
+
+
+	public Roles getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Roles roles) {
+		this.roles = roles;
+	}
 	public String getSKIN() {
 		return SKIN;
 	}
@@ -102,5 +111,23 @@ public class User {
 	public void setPage(Page page) {
 		this.page = page;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "User{" +
+				"USER_ID='" + USER_ID + '\'' +
+				", USERNAME='" + USERNAME + '\'' +
+				", PASSWORD='" + PASSWORD + '\'' +
+				", NAME='" + NAME + '\'' +
+				", RIGHTS='" + RIGHTS + '\'' +
+				", ROLE_ID='" + ROLE_ID + '\'' +
+				", LAST_LOGIN='" + LAST_LOGIN + '\'' +
+				", IP='" + IP + '\'' +
+				", STATUS='" + STATUS + '\'' +
+				", role=" + role +
+				", roles=" + roles +
+				", page=" + page +
+				", SKIN='" + SKIN + '\'' +
+				'}';
+	}
 }

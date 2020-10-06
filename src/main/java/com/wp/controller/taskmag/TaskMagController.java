@@ -3,16 +3,13 @@ package com.wp.controller.taskmag;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.map.MapPoint;
-import com.wp.entity.worker.Worker;
 import com.wp.service.databank.TeamService;
 import com.wp.service.event.EventService;
 import com.wp.service.exception.ExceptionService;
 import com.wp.service.house.HouseService;
-import com.wp.service.querytask.QueryTaskService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskMagService;
 import com.wp.service.taskmag.TaskSetService;
-import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -317,22 +314,30 @@ public class TaskMagController extends BaseController {
         return mv;
     }
 
+    /**
+     *  去审核页面
+     * @return
+     */
     @RequestMapping("/goAuditTask")     //去审核页面
     public ModelAndView auditTask() {
         ModelAndView mv = new ModelAndView();
         PageData pd = this.getPageData();
+
         String missionId = pd.getString("mission_id");
         List<PageData> eventList = null;
         try {
             pd = taskMagService.findById(pd);
             String  missionType = pd.getString("mission_type");
+
             if(missionType.equals("日常巡检任务") || missionType.equals("临时巡检任务") ){
-                PageData setMissionData = taskSetService.findById(pd);
+                PageData setMissionData = taskSetService.findById(pd);    //任务数据
+
                 if (setMissionData == null) {
                     mv.addObject("errorMsg","此任务数据不存在");
                     mv.setViewName("taskmag/auditTask");
                     return mv;
                 }
+
                 String eventIds = setMissionData.getString("event");
                 String[] idArr = new String[0];
                 if (eventIds != null && !eventIds.equals("")) {
@@ -343,6 +348,7 @@ public class TaskMagController extends BaseController {
                     idList.add(idArr[i]);
                 }
                 eventList = eventService.listByIds(idList);
+               // System.out. println("eventList---------------"+eventList);
                 String status = pd.getString("mission_condition");
                 //System.out.println(status+"=====");
                 if(status.indexOf("2") != -1) {
@@ -357,6 +363,10 @@ public class TaskMagController extends BaseController {
                 data.put("exceptionId",exceptionId);
                 PageData exceptionDetail = exceptionService.findById(data);
                 PageData content = taskMagService.getWorkContentById(pd);   //得到维修后的照片
+
+               // System.out.println("--------------------"+pd);
+                //println("--------------------"+content);
+
                 mv.setViewName("taskmag/auditRepairTask");
                 mv.addObject("exp",exceptionDetail);
                 mv.addObject("con",content);
@@ -375,6 +385,8 @@ public class TaskMagController extends BaseController {
         return mv;
     }
 
+
+    //查看任务详情
     @RequestMapping("/getWorkContentDetail")
     public ModelAndView getWorkContentDetail() {
         ModelAndView mv = new ModelAndView();
@@ -383,17 +395,33 @@ public class TaskMagController extends BaseController {
         String mission_id = pd.getString("mission_id");
         String event_id = pd.getString("event_id");
         try {
-            list = taskMagService.getWorkContent(pd);
+            list = taskMagService.getWorkContent(pd);     // 事件反馈的详情
+
+          //  System.out.println( "---------"+list);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        mv.addObject("varList",list);
+        mv.addObject("varList",list);          // 事件反馈详情
         mv.addObject("mission_id",mission_id);
         mv.addObject("event_id",event_id);
         mv.setViewName("taskmag/workcontentdetail");
         return mv;
     }
 
+//    //下载文件
+//    @RequestMapping(value="/fileDownload",method=RequestMethod.GET)
+//    public void download(@RequestParam(value="filename")String filename,
+//                         HttpServletResponse response) throws Exception {
+//        String filepath = "F:\\img\\upload\\";
+//        FileDownload.fileDownload(response,filepath,filename);
+//    }
+
+    /**
+     *  通过审核
+     * @param out
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/auditMisson.do")    //通过审核,修改状态等
     public ModelAndView auditMisson(PrintWriter out) throws Exception {
         ModelAndView mv = new ModelAndView();

@@ -217,6 +217,28 @@
 			}
 		});
 	}
+    //判断电话是否存在
+    function hasP(USERNAME){
+        var PHONE = $.trim($("#PHONE").val());
+        $.ajax({
+            type: "POST",
+            url: '<%=basePath%>user/hasP.do',
+            data: {PHONE:PHONE,USERNAME:USERNAME,tm:new Date().getTime()},
+            dataType:'json',
+            cache: false,
+            success: function(data){
+                if("success" != data.result){
+                    $("#PHONE").tips({
+                        side:3,
+                        msg:'手机号已存在',
+                        bg:'#AE81FF',
+                        time:3
+                    });
+                    setTimeout("$('#PHONE').val('')",2000);
+                }
+            }
+        });
+    }
 	
 </script>
 	</head>

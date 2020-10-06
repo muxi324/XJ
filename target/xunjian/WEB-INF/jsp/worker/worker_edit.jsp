@@ -49,14 +49,14 @@
             if($("#workshop").val()==""){
                 $("#workshop").tips({
                     side:3,
-                    msg:'请输入身份证号',
+                    msg:'请选择车间',
                     bg:'#AE81FF',
                     time:2
                 });
                 $("#workshop").focus();
                 return false;
             }
-            if($("#team").val()==""){
+           /* if($("#team").val()==""){
                 $("#team").tips({
                     side:3,
                     msg:'请输入班组',
@@ -65,7 +65,7 @@
                 });
                 $("#team").focus();
                 return false;
-            }
+            }*/
             $("#Form").submit();
             $("#zhongxin").hide();
             $("#zhongxin2").show();
@@ -117,21 +117,34 @@
                      <td><input style="width:95%;" type="text" name="phone" id="phone" value="${pd.phone}" maxlength="150" placeholder="这里输入电话" title=""/></td>
                  </tr>
                  <tr>
+                     <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
+                     <td><select   name="workshop" id="workshop" value="${pd.workshop}" class="form-control"  data-placeholder="请选择车间" >
+                         <option value="">请选择</option>
+                         <c:forEach items="${workshopList}" var="W">
+                             <option value="${W.workshop }" <c:if test="${W.workshop  == pd.workshop}">selected</c:if>>${W.workshop }</option>
+                         </c:forEach>
+                     </select></td>
+                 </tr>
+                 <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">班组:</td>
                      <td><input style="width:95%;" type="text" name="team" id="team" value="${pd.team}" maxlength="150" placeholder="这里输入班组" title=""/></td>
                  </tr>
                  <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">职位:</td>
-                     <td><input style="width:95%;" type="text" name="post" id="post" value="${pd.post}" maxlength="150" placeholder="这里输入职位" title=""/></td>
+                     <td><select name="post" id="post" class="form-control" value="${pd.post}">
+                         <option value="">请选择</option>
+                         <option value="车间主任">车间主任</option>
+                         <option value="班组长">班组长</option>
+                         <option value="检修员工">检修员工</option>
+                         <option value="系统维护">系统维护</option>
+                         <option value="离职">离职</option>
+                     </select></td>
                  </tr>
                  <tr>
                      <td style="width:100px;text-align: right;padding-top: 13px;">工种:</td>
                      <td><input style="width:95%;" type="text" name="work_type" id="work_type" value="${pd.work_type}" maxlength="200" placeholder="这里输入工种" title=""/></td>
                  </tr>
-                 <tr>
-                     <td style="width:100px;text-align: right;padding-top: 13px;">所属车间:</td>
-                     <td><input style="width:95%;" type="text" name="workshop" id="workshop" value="${pd.workshop}" maxlength="200" placeholder="这里输入所属车间" title=""/></td>
-                 </tr>
+
                  <tr>
                      <td style="width:100px;hight:250px; text-align: right;padding-top: 13px;">照 片</td>
                      <td >
@@ -166,8 +179,6 @@
 
          <div id="zhongxin2" class="center" style="display:none"><br/><br/><br/><br/><br/><img src="static/images/jiazai.gif" /><br/><h4 class="lighter block green">提交中...</h4></div>
      </form>
-
-
 
         <!-- 引入 -->
         <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>

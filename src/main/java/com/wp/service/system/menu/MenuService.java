@@ -54,6 +54,7 @@ public class MenuService{
 		
 	public List<Menu> listAllMenu() throws Exception {
 		List<Menu> rl = this.listAllParentMenu();
+		System.out.println("rl:"+rl);
 		for(Menu menu : rl){
 			List<Menu> subList = this.listSubMenuByParentId(menu.getMENU_ID());
 			menu.setSubMenu(subList);

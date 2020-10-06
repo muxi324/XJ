@@ -5,6 +5,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String smallPath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +25,7 @@
         <th class="center">工作内容名称</th>
         <th class="center">工作内容数值或（描述）</th>
         <th class="center">工作内容照片</th>
+        <th class="center">工作内容文件</th>
     </tr>
     </thead>
     <c:choose>
@@ -34,7 +36,24 @@
                         <td class='center' style="width: 30px;">${vs.index+1}</td>
                         <td style="width: 60px;" class="center"> ${var.work_name}</td>
                         <td style="width: 100px;" class="center">${var.data}</td>
-                        <td style="width: 139px;" class="center"><a onclick="pic('${mission_id}','${event_id}','${var.work_name }')"> <img style="width:80px;height:80px" src="/imgFile/${var.pic}" width="100"></a></td>
+                        <td style="width: 139px;" class="center">
+                            <c:if test="${(var.pic != null) && (var.pic !='') }">
+                                <a onclick="pic('${mission_id}','${event_id}','${var.work_name }')"><img style="width:80px;height:80px" src="/imgFile/${var.pic}" width="100"></a>
+                            </c:if>
+                            <c:if test="${(var.pic == '') || (var.pic ==null)}">
+                                无
+                            </c:if>
+
+                        </td>
+                        <td style="width: 139px;" class="center">
+                            <c:if test="${(var.file != null) && (var.file !='') }">
+                                <a src="javascript:void(0)" onclick="filedownload('${var.file}')">${var.file}</a>
+                            </c:if>
+                            <c:if test="${(var.file == '') || (var.file ==null)}">
+                                无
+                            </c:if>
+
+                        </td>
                     </tr>
                 </c:forEach>
             </c:if>
@@ -69,6 +88,22 @@
 <script type="text/javascript">
 
     $(top.hangge());
+
+    function filedownload(filename) {
+        try{
+            var elemIF = document.createElement("iframe");
+            var url = "<%=smallPath%>/fileFile/"+filename;
+            elemIF.src = url;
+            elemIF.style.display = "none";
+            document.body.appendChild(elemIF);
+        }catch(e){
+            alert("下载失败！");
+        }
+        <%--var url1="<%=basePath%>";--%>
+        <%--var url2="<%=smallPath%>";--%>
+        <%--alert(url1);--%>
+        <%--alert(url2);--%>
+    }
 
     function pic(mission_id,event_id,work_name){
         top.jzts();

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WorkContentMapper">
+
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from work_info
+        where 1 = 1  and status=1
+        /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            event_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            workshop  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            check_scope LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            check_point   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            instrument_place  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
+        order by work_id DESC
+    </select>
+
+    <select id="list1" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from event_info
+        where 1 = 1  and status=1
+        /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            event_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            workshop  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            check_scope LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            check_point   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            instrument_place  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
+        order by event_id DESC
+    </select>
+
+    <!-- 新增-->
+    <insert id="save" parameterType="pd">
+        insert into event_info(
+        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id,workshop_id,additions,status)
+        values (#{event_name},#{instrument_place},#{workshop},#{check_scope},#{check_point},#{check_period},#{check_interval},#{event_level},
+        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id},#{workshop_id},#{additions},#{status}
+        )
+    </insert>
+    <!--插入记录后返回该记录的id-->
+    <insert id="insertAndGetId" parameterType="com.wp.entity.eventInfo.Event" useGeneratedKeys="true" keyProperty="event_id" keyColumn="event_id">
+
+        insert into event_info(
+        event_name,instrument_place,workshop,check_scope,check_point,check_period,check_interval,event_level,create_time,font_color,font_size,qrcode,factory_id,workshop_id,team_id,additions,status)
+        values (#{event_name},#{instrument_place},#{workshop},#{check_scope},#{check_point},#{check_period},#{check_interval},#{event_level},
+        #{create_time},#{font_color},#{font_size},#{qrcode},#{factory_id},#{workshop_id},#{team_id},#{additions},#{status}
+        )
+    </insert>
+
+    <!-- 删除-->
+    <delete id="delete" parameterType="pd">
+        delete from event_info
+        where
+        event_id = #{event_id}
+    </delete>
+
+    <update id="update" parameterType="pd">
+        update event_info set event_name=#{event_name},instrument_place=#{instrument_place},workshop=#{workshop},check_scope=#{check_scope},check_point=#{check_point},qrcode=#{qrcode},check_period=#{check_period},check_interval=#{check_interval},
+        additions=#{additions},event_level=#{event_level},font_size=#{font_size},font_color=#{font_color},create_time=#{create_time},status=#{status},factory_id=#{factory_id},workshop_id=#{workshop_id} where event_id = #{event_id}
+    </update>
+
+    <select id="getEventById" parameterType="pd" resultType="pd" useCache="false">
+        select * from event_info where event_id = #{eventId}
+    </select>
+
+    <select id="getEventByName" parameterType="java.lang.String" resultType="java.lang.String" useCache="false">
+        select event_name from event_info where event_name = #{eventName}
+    </select>
+
+    <select id="getAdditionByName" parameterType="java.lang.String" resultType="java.lang.String" useCache="false">
+        select additions from event_info where event_name = #{eventName}
+    </select>
+
+    <select id="getAdditionById" parameterType="java.lang.String" resultType="java.lang.String" useCache="false">
+        select additions from event_info where event_id = #{eventId}
+    </select>
+
+    <update id="updateWorkContent" parameterType="java.util.Map">
+         update event_info set additions = #{content} where event_id = #{eventId}
+    </update>
+
+    <select id="listByIds" resultType="pd" useCache="false">
+        select DISTINCT e.*,m.jingdu,m.weidu from event_info e LEFT JOIN mission_json m ON e.event_id=m.event_id WHERE e.event_id in
+          <foreach item="item" index="index" collection="list"
+                 open="(" separator="," close=")">
+                 #{item}
+          </foreach> limit 1
+    </select>
+
+    <select id="getEventByNameForPageData" resultType="pd" parameterType="java.lang.String">
+        select * from event_info where event_name = #{eventName}
+    </select>
+
+    <select id="getEventByIdForPageData" resultType="pd" parameterType="java.lang.String">
+        select * from event_info where event_id = #{eventId}
+    </select>
+
+    <!-- 批量删除房源 -->
+    <delete id="deleteAll" parameterType="String" flushCache="false">
+        delete from event_info
+        where
+        event_id in
+        <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+            #{item}
+        </foreach> limit 1
+    </delete>
+
+    <select id="listAll" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from event_info
+        where 1 = 1
+        /* and u.USERNAME != 'admin'
+        and (r.ROLE_ID != '7' and r.PARENT_ID != '7')*/
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            event_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            workshop  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            or
+            check_scope LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            check_point   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            instrument_place  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            )
+        </if>
+        order by event_id asc
+    </select>
+</mapper>

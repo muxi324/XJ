@@ -75,6 +75,15 @@
                 </td>
             </tr>
             <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">是否需要反馈文件:</td>
+                <td>
+                    <select  name="is_backFile" id="is_backFile" class="form-control"  value="${pd.is_backFile}">
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">是否需要反馈文字:</td>
                 <td>
                     <select name="is_backText" id="is_backText" class="form-control"  value="${pd.is_backText}">
@@ -83,6 +92,7 @@
                     </select>
                 </td>
             </tr>
+
            <%-- <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">是否需要反馈选项类:</td>
                 <td>

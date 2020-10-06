@@ -51,6 +51,7 @@
                 success: function (result) {
                     //打印服务端返回的数据(调试用)
                     alert("入库成功！");
+                    top.Dialog.close();
                 },
                 error : function() {
                     alert("出现异常！");

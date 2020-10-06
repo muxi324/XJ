@@ -49,27 +49,35 @@
             </tr>
             <%--三级联动--%>
             <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">班组:</td>
-                <td><select name="team_id" id="team" class="form-control" value="${pd.team_id}" onchange="groupchoose()">
+                <td style="width:110px;text-align: right;padding-top: 13px;">车间:</td>
+                <td><select name="workshop_id" id="workshop_id" class="form-control"  onchange="chooseTeam()">
                     <option value="0">选择</option>
-                    <c:forEach items="${teamList}" var="t">
-                        <option value="${t.id }">${t.team }</option>
+                    <c:forEach items="${workshopList}" var="w">
+                        <option value="${w.id }">${w.workshop}</option>
                     </c:forEach>
+                </select></td>
+            </tr>
+            <%--<tr>--%>
+                <%--<td style="width:110px;text-align: right;padding-top: 13px;">班组:</td>--%>
+                <%--<td><select name="team_id" id="team" class="form-control" value="${pd.team_id}" onchange="groupchoose()">--%>
+                    <%--<option value="">请先选择车间</option>--%>
+                    <%----%>
+                <%--</select>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">班组:</td>
+                <td><select name="team_id" id="team_id" class="form-control"  onchange="groupchoose()">
+                    <option value="0">选择</option>
                 </select></td>
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员工:</td>
-                <td><select name="worker_id" id="worker" class="form-control" value="" >
+                <td><select name="worker_id" id="worker" class="form-control">
                     <option value="">请先选择班组</option>
                 </select>
                 </td>
             </tr>
-           <%-- <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">手机:</td>
-                <td>
-                    <input  type="text"  name="worker_phone" id="worker_phone"  value="${pd.worker_phone}" />
-                </td>
-            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">预期任务开始时间:</td>
                 <td><input  type="text" class="laydate-icon-danlan" name="mission_set_start_time" id="mission_set_start_time" value="" maxlength="200" title=""/></td>
@@ -82,30 +90,6 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">时间偏差:</td>
                 <td><input style="width:30%;" type="text" name="time_dev" id="time_dev" value="${pd.time_dev}" maxlength="150"  title=""/>小时</td>
             </tr>
-            <%-- <tr>
-                 <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
-                 <td><select name="authen_method" id="authen_method" class="form-control" value="${pd.authen_method}" >
-                     <option value="自拍">自拍</option>
-                     <option value="指纹">指纹</option>
-                     <option value="签名">签名</option>
-                 </select></td>
-             </tr>--%>
-          <%--  <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">任务审核级别</td>
-                <td><select name="auditor_level" id="auditor_level" class="form-control" value="${pd.auditor_level}" >
-                    <option value="1级">1级</option>
-                    <option value="2级">2级</option>
-                    <option value="3级">3级</option>
-                </select></td>
-            </tr>
-            <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人</td>
-                <td><select name="auditor" id="auditor" class="form-control" value="${pd.auditor}" >
-                    <option value="王一">王一</option>
-                    <option value="张三">张三</option>
-                    <option value="王旺">王旺</option>
-                </select></td>
-            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
                 <td><textarea cols="100" rows="3" name="mission_addition" id="mission_addition" value="${pd.mission_addition}" ></textarea></td>
@@ -114,14 +98,6 @@
             <h3 style="padding-left:20px;padding-top: 13px;">任务内容</h3>
             <div  class="form-group" >
                 <table style="width:100%;"class="table table-striped table-bordered table-hover">
-                    <%--<tr>
-                        <td style="width:110px;text-align: right;padding-top: 13px;">巡检区域:</td>
-                        <td><input style="width:90%;" type="text" name="region" id="region" value="${pd.region}" maxlength="200"  title=""/></td>
-                    </tr>
-                    <tr>
-                        <td style="width:110px;text-align: right;padding-top: 13px;">巡检点:</td>
-                        <td><input style="width:90%;" type="text" name="check_point" id="check_point" value="${pd.check_point}" maxlength="200"  title=""/></td>
-                    </tr>--%>
                     <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">巡检事件:</td>
                         <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""data-placeholder="请填写巡检事件"/></td>
@@ -132,24 +108,6 @@
                     </tr>
                 </table>
             </div>
-           <%-- <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
-            <div class="page-header position-relative">
-                <table style="width:100%;">
-                    <tr>
-                        <td style="vertical-align:top;">
-                                <a class="btn btn-small btn-success" onclick="selectMaterial();">选择物资</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <table  border="1" bordercolor="#a0c6e5" style="border-collapse:collapse;" width="40%">
-                <tr>
-                    <th class="center">序号</th>
-                    <th class="center">物资名称</th>
-                    <th class="center">所用数量</th>
-                </tr>
-
-            </table>--%>
         <table class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="text-align: center;" colspan="10">
@@ -210,24 +168,24 @@
 
     //保存
     function save(){
-        if($("#worker_name").val()==""){
-            $("#worker_name").tips({
+        if($("#team_id").val()==""){
+            $("#team_id").tips({
                 side:3,
                 msg:'请选择检修员工姓名',
                 bg:'#AE81FF',
                 time:2
             });
-            $("#worker_name").focus();
+            $("#team_id").focus();
             return false;
         }
-        if($("#mission").val()==""){
-            $("#mission").tips({
+        if($("#mission_name").val()==""){
+            $("#mission_name").tips({
                 side:3,
                 msg:'请输入任务名称',
                 bg:'#AE81FF',
                 time:2
             });
-            $("#mission").focus();
+            $("#mission_name").focus();
             return false;
         }
 
@@ -249,11 +207,36 @@
         });*/
 
     }
+    //根据车间选择班组
+    function chooseTeam(){
+        var  workshop_id = $("#workshop_id").children('option:selected').val();
+        var url ='<%=basePath%>sendtask/chooseTeam.do';
+        $.ajax({
+            type:'POST',
+            url: url,
+            dataType: 'json',
+            data:{ 'workshop_id':workshop_id
+            },
+            success: function (data) {
+                var teamList = document.getElementById('team_id');
+                //teamList.options.length=0;
+                var datalength = data.length;
+                for(var i=0;i<datalength;i++){
+                    teamList.options.add(new Option(data[i].team, data[i].id));
+                }
 
+            },
+            error :function(){
+                alert("未知错误！");
+            }
+
+        })
+    };
     //根据班组选择员工
     function groupchoose(){
-        var  teamId = $("#team").children('option:selected').val();
+        var  teamId = $("#team_id").children('option:selected').val();
         var url ='<%=basePath%>sendtask/groupchoose.do';
+        console.log("teamId"+teamId);
         $.ajax({
             type:'POST',
             url: url,
@@ -266,6 +249,7 @@
                 var datalength = data.length;
                 for(var i=0;i<datalength;i++){
                     workers.options.add(new Option(data[i].NAME+":"+data[i].PHONE,data[i].USER_ID));
+                    // $("#worker").append("<option value=data[i].id>data[i].team</option>")
                 }
 
             },

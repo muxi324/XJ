@@ -1,4 +1,5 @@
 ﻿<meta charset="utf-8" />
+<link rel="shortcut icon" href="static/images/xunjian.png" type="image/x-icon" />
 <title>${pd.SYSNAME}</title>
 <meta name="description" content="overview & stats" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />

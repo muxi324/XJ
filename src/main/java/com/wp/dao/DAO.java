@@ -39,7 +39,7 @@ public interface DAO {
 	public Object findForObject(String str, Object obj) throws Exception;
 
 	/**
-	 * 查找对象
+	 * 查找对象封装成list
 	 * @param str
 	 * @param obj
 	 * @return

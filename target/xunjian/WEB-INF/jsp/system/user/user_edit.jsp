@@ -40,7 +40,7 @@
 			
 			$("#role_id").tips({
 				side:3,
-	            msg:'选择角色',
+	            msg:'选择职位',
 	            bg:'#AE81FF',
 	            time:2
 	        });
@@ -137,7 +137,7 @@
 			return false;
 		}
 		
-		if($("#EMAIL").val()==""){
+	/*	if($("#EMAIL").val()==""){
 			
 			$("#EMAIL").tips({
 				side:3,
@@ -156,7 +156,7 @@
 	        });
 			$("#EMAIL").focus();
 			return false;
-		}
+		}*/
 		
 		if($("#user_id").val()==""){
 			hasU();
@@ -238,6 +238,29 @@
 			}
 		});
 	}
+
+    //判断电话是否存在
+    function hasP(USERNAME){
+        var PHONE = $.trim($("#PHONE").val());
+        $.ajax({
+            type: "POST",
+            url: '<%=basePath%>user/hasP.do',
+            data: {PHONE:PHONE,USERNAME:USERNAME,tm:new Date().getTime()},
+            dataType:'json',
+            cache: false,
+            success: function(data){
+                if("success" != data.result){
+                    $("#PHONE").tips({
+                        side:3,
+                        msg:'手机号已存在',
+                        bg:'#AE81FF',
+                        time:3
+                    });
+                    setTimeout("$('#PHONE').val('')",2000);
+                }
+            }
+        });
+    }
 	
 </script>
 	</head>
@@ -248,39 +271,64 @@
 		<table>
 			
 			<c:if test="${fx != 'head'}">
-			<c:if test="${pd.ROLE_ID != '1'}">	
-			<tr class="info">
-				<td>
-				<select class="chzn-select" name="ROLE_ID" id="role_id" data-placeholder="请选择职位" style="vertical-align:top;">
-				<option value=""></option>
-				<c:forEach items="${roleList}" var="role">
-					<option value="${role.ROLE_ID }" <c:if test="${role.ROLE_ID == pd.ROLE_ID }">selected</c:if>>${role.ROLE_NAME }</option>
-				</c:forEach>
-				</select>
-				</td>
-			</tr>
-			</c:if>
-			<c:if test="${pd.ROLE_ID == '1'}">
-			<input name="ROLE_ID" id="role_id" value="1" type="hidden" />
-			</c:if>
+				<c:if test="${pd.ROLE_ID != '1'}">
+				<tr class="info">
+					<td>
+					<select class="chzn-select" name="ROLE_ID" id="role_id" data-placeholder="请选择职位" style="vertical-align:top;">
+					<option value=""></option>
+					<c:forEach items="${roleList}" var="role">
+						<option value="${role.ROLE_ID }" <c:if test="${role.ROLE_ID == pd.ROLE_ID }">selected</c:if>>${role.ROLE_NAME }</option>
+					</c:forEach>
+					</select>
+					</td>
+				</tr>
+				</c:if>
+				<c:if test="${pd.ROLE_ID == '1'}">
+				<input name="ROLE_ID" id="role_id" value="1" type="hidden" />
+				</c:if>
 			</c:if>
 			
 			<c:if test="${fx == 'head'}">
 				<input name="ROLE_ID" id="role_id" value="${pd.ROLE_ID }" type="hidden" />
 			</c:if>
-			
+
+			<c:if test="${pd.userName == 'admin'}">
 			<tr>
-				<td><input type="text" name="USERNAME" id="loginname" value="${pd.USERNAME }" maxlength="32" placeholder="这里输入用户名" title="用户名"/></td>
+				<td>
+					<select   name="factory_id" id="factory_id" value="${pd.factory_id}"  class="chzn-select" data-placeholder="请选择工厂" >
+						<option value=""></option>
+						<c:forEach items="${factoryList}" var="f">
+							<option value="${f.id }" <c:if test="${f.id == pd.factory_id }">selected</c:if>>${f.factory }</option>
+						</c:forEach>
+					</select>
+				</td>
 			</tr>
-			<tr>
-				<td><input type="text" name="NUMBER" id="NUMBER" value="${pd.NUMBER }" maxlength="32" placeholder="这里输入编号" title="编号" onblur="hasN('${pd.USERNAME }')"/></td>
-			</tr>
-			<tr>
-				<td><input type="password" name="PASSWORD" id="password"  maxlength="32" placeholder="输入密码" title="密码"/></td>
-			</tr>
-			<tr>
-				<td><input type="password" name="chkpwd" id="chkpwd"  maxlength="32" placeholder="确认密码" title="确认密码" /></td>
-			</tr>
+			</c:if>
+			<c:if test="${pd.userName != 'admin'}">
+					<tr>
+						<td>
+							<select   name="workshop_id" id="workshop" value="${pd.workshop}" class="chzn-select"  data-placeholder="请选择车间" onchange="teamByWId()">
+								<option value=""></option>
+								<c:forEach items="${workshopList}" var="W">
+									<option value="${W.id }" <c:if test="${W.id == pd.workshop_id }">selected</c:if>>${W.workshop }</option>
+								</c:forEach>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td><select  name="team_id" id="team" value="${pd.team_id}" class="chzn-select" data-placeholder="请选择班组" >
+							<option value=""></option>
+							<c:forEach items="${teamList}" var="W">
+								<option value="${W.id }" <c:if test="${W.id == pd.team_id}">selected</c:if>>${W.team}</option>
+							</c:forEach>
+						</select>
+						</td>
+					</tr>
+			</c:if>
+
+
+
+			<%--超级管理员--%>
 			<tr>
 				<td><input type="text" name="NAME" id="name"  value="${pd.NAME }"  maxlength="32" placeholder="这里输入姓名" title="姓名"/></td>
 			</tr>
@@ -288,8 +336,22 @@
 				<td><input type="number" name="PHONE" id="PHONE"  value="${pd.PHONE }"  maxlength="32" placeholder="这里输入手机号" title="手机号"/></td>
 			</tr>
 			<tr>
-				<td><input type="email" name="EMAIL" id="EMAIL"  value="${pd.EMAIL }" maxlength="32" placeholder="这里输入邮箱" title="邮箱" onblur="hasE('${pd.USERNAME }')"/></td>
+				<td><input type="text" name="NUMBER" id="NUMBER" value="${pd.NUMBER }" maxlength="32" placeholder="这里输入编号" title="编号" onblur="hasN('${pd.USERNAME }')"/></td>
 			</tr>
+			<tr>
+				<td><input type="text" name="USERNAME" id="loginname" value="${pd.USERNAME }" maxlength="32" placeholder="这里输入用户名" title="用户名"/></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="PASSWORD" id="password"  maxlength="32" placeholder="输入密码" title="密码"/></td>
+			</tr>
+			<tr>
+				<td><input type="password" name="chkpwd" id="chkpwd"  maxlength="32" placeholder="确认密码" title="确认密码" /></td>
+			</tr>
+
+			<%--<tr>
+				<td><input type="email" name="EMAIL" id="EMAIL"  value="${pd.EMAIL }" maxlength="32" placeholder="这里输入邮箱" title="邮箱" onblur="hasE('${pd.USERNAME }')"/></td>
+			</tr>--%>
+
 			<tr>
 				<td><input type="text" name="BZ" id="BZ"value="${pd.BZ }" placeholder="这里输入备注" maxlength="64" title="备注"/></td>
 			</tr>
@@ -320,11 +382,28 @@
 			//单选框
 			$(".chzn-select").chosen(); 
 			$(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
-			
-			//日期框
-			$('.date-picker').datepicker();
-			
+
+
 		});
+		function teamByWId(){
+            var  workshopId = $("#workshop").children('option:selected').val();
+            $.ajax({
+				type:"GET",
+				url:"<%=basePath%>team/teamListByWId.do",
+				data:{
+				    'workshop_id':workshopId
+				},
+				success:function (data) {
+				    var teams = document.getElementById('team');
+				    for(var i=0;i<teams.length;i++){
+				        teams.options.add(new Option(data[i].id))
+					}
+
+
+                }
+
+			})
+		}
 		
 		</script>
 	

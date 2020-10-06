@@ -100,24 +100,42 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * 列表
+	 * 1. 列表 显示组织管理页面
+	 *  Page：分页
 	 */
 	@RequestMapping
 	public ModelAndView list(Page page)throws Exception{
 			ModelAndView mv = this.getModelAndView();
 			PageData pd = new PageData();
 			pd = this.getPageData();
-			
+
 			String roleId = pd.getString("ROLE_ID");
 			if(roleId == null || "".equals(roleId)){
 				pd.put("ROLE_ID", "1");
 			}
-			List<Role> roleList = roleService.listAllRoles();				//列出所有部门
-			List<Role> roleList_z = roleService.listAllRolesByPId(pd);		//列出此部门的所有下级
-			
+			// roleId=1 是超级管理员的角色
+
+		//System.out.println("pd1:"+pd);  //pd1:{ROLE_ID=1}
+			List<Role> roleList = roleService.listAllRoles();				//列出所有角色
+		//System.out.println("roleList:"+roleList);
+          //Role是角色表模型，
+          //roleList:[Role{ROLE_ID='1', ROLE_NAME='超级管理员', RIGHTS='1963563355864039526', PARENT_ID='0', ADD_QX='1', DEL_QX='1', EDIT_QX='1', CHA_QX='1', QX_ID='1'}]
+			List<Role> roleList_z = roleService.listAllRolesByPId(pd);		//列出此角色的所有下级
+		//System.out.println("roleList_z:"+roleList_z);
+		  //role表的role的list集合
+
 			List<PageData> kefuqxlist = roleService.listAllkefu(pd);		//管理权限列表
+		//System.out.println("kefuqxlist:"+kefuqxlist);
+		//{FW_QX=0, FX_QX=0, GL_ID=02f3cf524c874a6aa16121cdee79f781, ROLE_ID=1, QX2=0, QX1=0, QX4=0, QX3=0}。。。。
+
 			List<PageData> gysqxlist = roleService.listAllGysQX(pd);		//用户权限列表
-			pd = roleService.findObjectById(pd);							//取得点击部门
+		//System.out.println("gysqxlist:"+gysqxlist);
+		//{C3=0, Q1=0, C4=0, Q2=0, Q3=0, Q4=0, U_ID=02f3cf524c874a6aa16121cdee79f781, C1=0, C2=0}, 。。。
+
+			pd = roleService.findObjectById(pd);
+		//System.out.println("pd:"+pd);
+		//pd:{CHA_QX=1, DEL_QX=1, RIGHTS=1963563355864039526, ROLE_ID=1, ROLE_NAME=超级管理员, ADD_QX=1, PARENT_ID=0, EDIT_QX=1}
+
 			mv.addObject("pd", pd);
 			mv.addObject("kefuqxlist", kefuqxlist);
 			mv.addObject("gysqxlist", gysqxlist);
@@ -130,7 +148,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * 新增页面
+	 * 2. 新增页面, 超级管理员头部新增组页面接口
 	 */
 	@RequestMapping(value="/toAdd")
 	public ModelAndView toAdd(Page page){
@@ -157,11 +175,13 @@ public class RoleController extends BaseController {
 			pd = this.getPageData();
 			
 			String parent_id = pd.getString("PARENT_ID");		//父类角色id
+			//System.out.println(parent_id+"---------------");
 			pd.put("ROLE_ID", parent_id);			
 			if("0".equals(parent_id)){
 				pd.put("RIGHTS", "");
 			}else{
 				String rights = roleService.findObjectById(pd).getString("RIGHTS");
+				//System.out.println();
 				pd.put("RIGHTS", (null == rights)?"":rights);
 			}
 
@@ -179,7 +199,7 @@ public class RoleController extends BaseController {
 				if(Jurisdiction.buttonJurisdiction(menuUrl, "add")){roleService.saveKeFu(pd);}//保存到K权限表
 				
 				pd.put("U_ID", UUID);
-				pd.put("C1", 0);				//每日发信数量
+				pd.put("C1", 0);
 				pd.put("C2", 0);
 				pd.put("C3", 0);
 				pd.put("C4", 0);
@@ -206,7 +226,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * 请求编辑
+	 * 2.请求编辑本组名称的接口
 	 */
 	@RequestMapping(value="/toEdit")
 	public ModelAndView toEdit( String ROLE_ID )throws Exception{
@@ -244,27 +264,23 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * 请求角色菜单授权页面
+	 * 3. 请求编辑本组的角色菜单授权页面
 	 */
 	@RequestMapping(value="/auth")
 	public String auth(@RequestParam String ROLE_ID,Model model)throws Exception{
 		
 		try{
+			//列出所有的菜单
 			List<Menu> menuList = menuService.listAllMenu();
+			//得到role
 			Role role = roleService.getRoleById(ROLE_ID);
+
 			String roleRights = role.getRIGHTS();
-			if(Tools.notEmpty(roleRights)){
-				for(Menu menu : menuList){
-					menu.setHasMenu(RightsHelper.testRights(roleRights, menu.getMENU_ID()));
-					if(menu.isHasMenu()){
-						List<Menu> subMenuList = menu.getSubMenu();
-						for(Menu sub : subMenuList){
-							sub.setHasMenu(RightsHelper.testRights(roleRights, sub.getMENU_ID()));
-						}
-					}
-				}
-			}
+
+			helpers(roleRights, menuList);
+
 			JSONArray arr = JSONArray.fromObject(menuList);
+
 			String json = arr.toString();
 			json = json.replaceAll("MENU_ID", "id").replaceAll("MENU_NAME", "name").replaceAll("subMenu", "nodes").replaceAll("hasMenu", "checked");
 			model.addAttribute("zTreeNodes", json);
@@ -275,18 +291,25 @@ public class RoleController extends BaseController {
 		
 		return "authorization";
 	}
+
+
 	
 	/**
-	 * 请求角色按钮授权页面
+	 * 7.。请求角色按钮授权页面（增删改查），+msg =  roleButton('${var.ROLE_ID }','add_qx')
 	 */
 	@RequestMapping(value="/button")
 	public ModelAndView button(@RequestParam String ROLE_ID,@RequestParam String msg,Model model)throws Exception{
 		ModelAndView mv = this.getModelAndView();
 		try{
-			List<Menu> menuList = menuService.listAllMenu();
-			Role role = roleService.getRoleById(ROLE_ID);
-			
+			// System.out.println(msg);
+
+			List<Menu> menuList = menuService.listAllMenu();//列出所有层级的菜单
+			//System.out.println("menuList:"+menuList);
+			Role role = roleService.getRoleById(ROLE_ID);       //获取当前用户的角色
+			//System.out.println("role:"+role);
 			String roleRights = "";
+
+			//判断是否有增删改查的权限
 			if("add_qx".equals(msg)){
 				roleRights = role.getADD_QX();
 			}else if("del_qx".equals(msg)){
@@ -296,22 +319,14 @@ public class RoleController extends BaseController {
 			}else if("cha_qx".equals(msg)){
 				roleRights = role.getCHA_QX();
 			}
-			
-			if(Tools.notEmpty(roleRights)){
-				for(Menu menu : menuList){
-					menu.setHasMenu(RightsHelper.testRights(roleRights, menu.getMENU_ID()));
-					if(menu.isHasMenu()){
-						List<Menu> subMenuList = menu.getSubMenu();
-						for(Menu sub : subMenuList){
-							sub.setHasMenu(RightsHelper.testRights(roleRights, sub.getMENU_ID()));
-						}
-					}
-				}
-			}
+     // 数据库权限表的值的由来 ，
+			helpers(roleRights, menuList);
 			JSONArray arr = JSONArray.fromObject(menuList);
 			String json = arr.toString();
-			//System.out.println(json);
+			//System.out.println("json1:"+json);
 			json = json.replaceAll("MENU_ID", "id").replaceAll("MENU_NAME", "name").replaceAll("subMenu", "nodes").replaceAll("hasMenu", "checked");
+			//System.out.println("json2:"+json);
+
 			mv.addObject("zTreeNodes", json);
 			mv.addObject("roleId", ROLE_ID);
 			mv.addObject("msg", msg);
@@ -355,15 +370,15 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * 保存角色按钮权限
+	 * 保存角色按钮权限 （增删改查的按钮）
 	 */
 	@RequestMapping(value="/roleButton/save")
-	public void orleButton(@RequestParam String ROLE_ID,@RequestParam String menuIds,@RequestParam String msg,PrintWriter out)throws Exception{
+	public void roleButton(@RequestParam String ROLE_ID,@RequestParam String menuIds,@RequestParam String msg,PrintWriter out)throws Exception{
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		try{
 			if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){
-				if(null != menuIds && !"".equals(menuIds.trim())){
+				if(null != menuIds && !"".equals(menuIds.trim())){        //如果有选中的单选框
 					BigInteger rights = RightsHelper.sumRights(Tools.str2StrArray(menuIds));
 					pd.put("value",rights.toString());
 				}else{
@@ -380,7 +395,7 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
-	 * 删除
+	 * 6..删除  操作上的删除接口
 	 */
 	@RequestMapping(value="/delete")
 	@ResponseBody
@@ -415,7 +430,21 @@ public class RoleController extends BaseController {
 		map.put("result", errInfo);
 		return AppUtil.returnObject(new PageData(), map);
 	}
-	
+
+	//5.将roleRights 与 menuList 进行比较
+	private void helpers(String roleRights,List<Menu> menuList){
+		if(Tools.notEmpty(roleRights)){
+			for(Menu menu : menuList){
+				menu.setHasMenu(RightsHelper.testRights(roleRights, menu.getMENU_ID()));
+				if(menu.isHasMenu()){
+					List<Menu> subMenuList = menu.getSubMenu();
+					for(Menu sub : subMenuList){
+						sub.setHasMenu(RightsHelper.testRights(roleRights, sub.getMENU_ID()));
+					}
+				}
+			}
+		}
+	}
 	/* ===============================权限================================== */
 	public Map<String, String> getHC(){
 		Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session

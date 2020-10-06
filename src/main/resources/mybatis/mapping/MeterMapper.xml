@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MeterMapper">
+
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from meter
+        where 1 = 1
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            meter_id LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            meter_name  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.factory_id != null">
+            and factory_id = #{pd.factory_id}
+        </if>
+        order by id asc
+    </select>
+    <!--找到水表工厂-->
+    <select id="findMeterCom" parameterType="pd" resultType="pd">
+        select * from meter_company
+        where
+        factory_id = #{factory_id}
+    </select>
+
+    <select id="findById" parameterType="pd" resultType="pd">
+        select factory_name  from meter_company
+        where
+        id = #{com_id}
+    </select>
+
+    <!--保存新增水表-->
+    <insert id="save" parameterType="pd">
+        insert into meter (meter_id,location,meter_name,metercom_name,metercom_id,add_time,state,factory_id) values
+        (#{meter_id},#{location},#{meter_name},#{metercom_name},#{com_id},#{add_time},#{state},#{factory_id})
+    </insert>
+
+    <select id="findByMeterId" parameterType="pd" resultType="pd">
+        select * from meter where id = #{id}
+    </select>
+
+    <update id="edit" parameterType="pd">
+        update meter
+        set meter_name=#{meter_name},meter_id=#{meter_id},metercom_name = #{metercom_name},
+            metercom_id=#{com_id},location=#{location},state=#{state}
+        where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="pd">
+        delete from meter where meter_id = #{id}
+    </delete>
+
+    <select id="getWorkContent" parameterType="pd" resultType="pd">
+        select mission_id,event_id,work_name,data,pic,time
+        from mission_feedback
+        where work_name = #{meter_id};
+    </select>
+
+    <select id="listMeter" parameterType="String" resultType="pd">
+        select data,time from mission_feedback where work_name = #{biaoshu} and data is not NULL
+    </select>
+</mapper>

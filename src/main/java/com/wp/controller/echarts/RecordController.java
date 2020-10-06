@@ -90,7 +90,7 @@ public class RecordController extends BaseController {
         returnMap.put("danger", pdlist2);
         returnMap.put("alarm", pdlist3);
         JSONArray jsondata = JSONArray.fromObject(returnMap);
-        System.out.println("======"+jsondata+"======");
+     //   System.out.println("======"+jsondata+"======");
         return jsondata ;
 
     }

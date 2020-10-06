@@ -2,10 +2,14 @@ package com.wp.controller.materialmag;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
-import com.wp.service.materialmag.PartsMagService;
 import com.wp.service.materialmag.ToolsMagService;
 import com.wp.service.system.role.RoleService;
 import com.wp.util.*;
+
+import net.sf.json.JSON;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+import net.sf.json.test.JSONAssert;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -57,10 +61,12 @@ public class ToolsMagController extends BaseController {
             String  description = pd.getString("description");
             pd.put("description", description);
             String loginUserName = FactoryUtil.getLoginUserName();
+            pd.put("USERNAME",loginUserName);
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
             }
             page.setPd(pd);
+         //   System.out.println(pd);
             List<PageData> varList = toolsMagService.list(page);	//列出${objectName}列表
             mv.setViewName("materialmag/tools_mag");
             mv.addObject("varList", varList);
@@ -136,6 +142,7 @@ public class ToolsMagController extends BaseController {
         try {
             Integer ID = Integer.parseInt(pd.getString("material_id"));
             pd.put("material_id", ID);	//物资ID string改为int
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             Integer stock = toolsMagService.selectStock(pd);
             pd.put("stock",stock);
             mv.setViewName("materialmag/tools_decrease");
@@ -156,14 +163,17 @@ public class ToolsMagController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
+
         try {
             pd.put("factory_id",FactoryUtil.getFactoryId());
             pd.put("workshop_id",FactoryUtil.getWorkshopId());
             pd.put("is_consume",1 );	//添加入库状态
             pd.put("time",  Tools.date2Str(new Date()));	//添加时间
             int ID = Integer.parseInt(pd.getString("material_id"));
+          //  System.out.println("工具的ID是"+ID);
             pd.put("material_id", ID);	//物资ID string改为int
             Integer stock1 = toolsMagService.selectStock(pd);
+          //  System.out.println("第一次入库的数量是:"+stock1);
             if (stock1 == null) {
                 //插入materail；
                 String  descrp = pd.getString("description");
@@ -181,12 +191,16 @@ public class ToolsMagController extends BaseController {
             }
 
             int num = Integer.parseInt(pd.getString("material_num"));
+           // System.out.println("这一次入库的数量是:"+num);
             int stock = stock1+num;
+           // System.out.println("加在一起的的数量是:"+stock);
             pd.put("stock",stock);
             toolsMagService.editStock(pd);
             pd.put("type",2 );	//添加工具种类配件
             String  name = pd.getString("name");
             pd.put("material_name",name);
+          //  System.out.println("----------------------------");
+           // System.out.println(pd);
             toolsMagService.save(pd);
         } catch (Exception e ){
             e.printStackTrace();
@@ -208,6 +222,7 @@ public class ToolsMagController extends BaseController {
         pd.put("time",  Tools.date2Str(new Date()));	//添加时间
         Integer ID = Integer.parseInt(pd.getString("material_id"));
         pd.put("material_id", ID);	//物资ID string改为int
+        pd.put("factory_id",FactoryUtil.getFactoryId());
         Integer stock1 = toolsMagService.selectStock(pd);
         int num = Integer.parseInt(pd.getString("material_num"));
         int stock = stock1-num;
@@ -216,7 +231,7 @@ public class ToolsMagController extends BaseController {
         pd.put("type",2 );	//添加工具种类配件
         String  name = pd.getString("name");
         pd.put("material_name",name);
-        pd.put("factory_id",FactoryUtil.getFactoryId());
+
         pd.put("workshop_id",FactoryUtil.getWorkshopId());
         toolsMagService.save(pd);
         mv.addObject("msg","success");
@@ -233,6 +248,7 @@ public class ToolsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             String sendTimeStart = pd.getString("sendTimeStart");
             String sendTimeEnd = pd.getString("sendTimeEnd");
 
@@ -244,8 +260,10 @@ public class ToolsMagController extends BaseController {
                 sendTimeEnd = sendTimeEnd+" 00:00:00";
                 pd.put("sendTimeEnd", sendTimeEnd);
             }
-
+         //   System.out.println(pd);
             List<PageData> varList = toolsMagService.findById1(pd);								//根据ID读取
+          //  System.out.println("-------------------------------");
+          //  System.out.println(JSONArray.fromObject(varList));
             mv.setViewName("materialmag/tools_output_history");
             mv.addObject("msg", "out_history");
             mv.addObject("varList", varList);
@@ -264,6 +282,7 @@ public class ToolsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             String sendTimeStart = pd.getString("sendTimeStart");
             String sendTimeEnd = pd.getString("sendTimeEnd");
 
@@ -277,6 +296,8 @@ public class ToolsMagController extends BaseController {
             }
 
             List<PageData> varList = toolsMagService.findById(pd);								//根据ID读取
+          //  System.out.println("-------------------------------");
+           // System.out.println(JSONArray.fromObject(varList));
             mv.setViewName("materialmag/tools_input_history");
             mv.addObject("msg", "Input_history");
             mv.addObject("varList", varList);

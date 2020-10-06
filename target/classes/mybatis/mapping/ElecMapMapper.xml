@@ -8,48 +8,36 @@
         where
         worker_name = #{worker_name}
     </select>
-    <!--通过房源获取数据-->
-    <select id="findByH" parameterType="pd" resultType="pd">
-        SELECT m.mission_id,m.house_id,m.worker_name,m.worker_phone,m.house_owner_name,m.house_address,m.finish_time,h.longitude,h.latitude
-                     FROM mission AS m
-                     LEFT JOIN history_location AS h
-		             ON m.mission_id = h.mission_id WHERE m.mission_condition=5
+    <!--获取未处理异常位置-->
+    <select id="findException" parameterType="pd" resultType="pd">
+        SELECT *   FROM exception WHERE status=1
+        <if test="factory_id != null and factory_id != ''">
+            and factory_id = #{factory_id}
+        </if>
+        <if test="workshop_id != null and workshop_id != ''">
+            and workshop_id = #{workshop_id}
+        </if>
+
     </select>
     <!--所有员工最近位置-->
     <select id="datalistWorker" parameterType="Page" resultType="pd" useCache="false">
-        select  *   from worker_info
-    </select>
-    <!--所有已安装房源位置-->
-    <select id="datalistHouse" parameterType="Page" resultType="pd" useCache="false">
-        SELECT m.mission_id,m.house_id,m.worker_name,m.worker_phone,m.house_owner_name,m.house_address,m.finish_time,h.longitude,h.latitude
-        FROM mission AS m
-        LEFT JOIN history_location AS h
-        ON m.mission_id = h.mission_id WHERE m.mission_condition=5
-        <!-- where 1 = 1
-         <if test="pd.enquiry != null and pd.enquiry != ''">
-             and
-             (
-             house_address LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-             or
-             house_owner_name   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-             )
-         </if>-->
-    </select>
-    <!--所有未安装房源位置-->
-    <select id="datalistH" parameterType="Page" resultType="pd" useCache="false">
-        select  house_id,house_address,house_owner,owner_phone,longitude,latitude  from set_mission
-         where 1 = 1
-        <!-- <if test="pd.enquiry != null and pd.enquiry != ''">
-             and
-             (
-             name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-             or
-             team   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-             )
-         </if>-->
-        and set_condition=1
+        select  *   from sys_user
+        where 1 = 1
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
+        <if test="pd.team_id != null and pd.team_id != ''">
+            and team_id = #{pd.team_id}
+        </if>
     </select>
 
 
+
+    <select id="getPointById" parameterType="java.lang.String" resultType="com.wp.entity.map.MapPoint">
+        select longitude, latitude from worker_location  where worker_id = #{workerId}
+    </select>
 
 </mapper>

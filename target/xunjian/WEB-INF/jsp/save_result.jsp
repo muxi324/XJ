@@ -13,7 +13,7 @@
 	<base href="<%=basePath%>">
 	<meta name="description" content="overview & stats" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<%--	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />--%>
 	<script type="text/javascript" src="static/js/jquery-1.7.2.js"></script>
 
 </head>
@@ -23,6 +23,7 @@
     var msg = "${msg}";
     if(msg=="success" || msg==""){
         document.getElementById('zhongxin').style.display = 'none';
+        alert("success");
         top.Dialog.close();
     }else{
         top.Dialog.close();

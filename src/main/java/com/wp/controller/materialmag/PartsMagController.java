@@ -34,8 +34,6 @@ public class PartsMagController extends BaseController {
 
     @Resource(name="partsMagService")
     private PartsMagService partsMagService;
-    @Resource(name="toolsMagService")
-    private ToolsMagService toolsMagService;
 
     @Resource(name="roleService")
     private RoleService roleService;
@@ -60,11 +58,13 @@ public class PartsMagController extends BaseController {
             String  description = pd.getString("description");
             pd.put("description", description);
             String loginUserName = FactoryUtil.getLoginUserName();
+
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
             }
             page.setPd(pd);
             List<PageData> varList = partsMagService.list(page);	//列出${objectName}列表
+            pd.put("USERNAME",loginUserName);
             mv.setViewName("materialmag/parts_mag");
             mv.addObject("varList", varList);
             mv.addObject("pd", pd);
@@ -139,6 +139,7 @@ public class PartsMagController extends BaseController {
         try {
             Integer ID = Integer.parseInt(pd.getString("material_id"));
             pd.put("material_id", ID);	//物资ID string改为int
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             Integer stock = partsMagService.selectStock(pd);
             pd.put("stock",stock);
             mv.setViewName("materialmag/parts_decrease");
@@ -170,14 +171,15 @@ public class PartsMagController extends BaseController {
             if (stock1 == null) {
                 //插入materail；
                 String  descrp = pd.getString("description");
-                String  name = pd.getString("material_name");
+                String  name = pd.getString("name");
                 Integer  num = Integer.parseInt(pd.getString("material_num"));
                 pd.put("type",1 );	//添加物资种类配件
                 pd.put("description",descrp);
                 pd.put("name",name);
                 pd.put("stock",num);
                 pd.put("material_id", ID);
-                toolsMagService.firstsave(pd);
+                System.out.println("-------"+pd);
+                partsMagService.firstsave(pd);
                 pd.put("type",1);	//添加物资种类配件
                 pd.put("material_name",name);
                 partsMagService.save(pd);
@@ -210,16 +212,18 @@ public class PartsMagController extends BaseController {
         pd.put("time",  Tools.date2Str(new Date()));	//添加时间
         Integer ID = Integer.parseInt(pd.getString("material_id"));
         pd.put("material_id", ID);	//物资ID string改为int
+        pd.put("factory_id",FactoryUtil.getFactoryId());
         Integer stock1 = partsMagService.selectStock(pd);
         int num = Integer.parseInt(pd.getString("material_num"));
+        System.out.println(num +"------------"+ stock1);
         int stock = stock1-num;
+
         if(stock >=0){
             pd.put("stock",stock);
             partsMagService.editStock(pd);
             pd.put("type",1 );	//添加物资种类配件
             String  name = pd.getString("material_name");
             pd.put("material_name",name);
-            pd.put("factory_id",FactoryUtil.getFactoryId());
             pd.put("workshop_id",FactoryUtil.getWorkshopId());
             partsMagService.save(pd);
         }else{
@@ -240,6 +244,7 @@ public class PartsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             String sendTimeStart = pd.getString("sendTimeStart");
             String sendTimeEnd = pd.getString("sendTimeEnd");
 
@@ -276,6 +281,7 @@ public class PartsMagController extends BaseController {
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
+            pd.put("factory_id",FactoryUtil.getFactoryId());
             String sendTimeStart = pd.getString("sendTimeStart");
             String sendTimeEnd = pd.getString("sendTimeEnd");
 
@@ -292,7 +298,7 @@ public class PartsMagController extends BaseController {
             } else {
                 pd.put("sendTimeEnd", null);
             }
-
+            System.out.println(pd+"---------------");
             List<PageData> varList = partsMagService.findById(pd);								//根据ID读取
             mv.setViewName("materialmag/parts_input_history");
             mv.addObject("msg", "Input_history");

@@ -11,7 +11,6 @@
 <title>${pd.SYSNAME}</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 <link rel="stylesheet" href="static/login/bootstrap.min.css" />
 <link rel="stylesheet" href="static/login/css/camera.css" />
 <link rel="stylesheet" href="static/login/bootstrap-responsive.min.css" />
@@ -50,6 +49,7 @@
 						</div>
 					</div>
 				</div>
+
 				<%--<div style="float:right;padding-right:10%;">
 					<div style="float: left;margin-top:3px;margin-right:2px;">
 						<font color="white">记住密码</font>
@@ -59,6 +59,8 @@
 							onclick="savePaw();" style="padding-top:0px;" />
 					</div>
 				</div>--%>
+
+				<%--验证码--%>
 				<div class="form-actions">
 					<div style="width:86%;padding-left:8%;">
 
@@ -70,13 +72,14 @@
 								style="height:16px; padding-top:0px;" />
 						</div>
 						<div style="float: left;">
+							<%--验证码图片--%>
 							<i><img style="height:22px;" id="codeImg" alt="点击更换"
 								title="点击更换" src="" /></i>
 						</div>
 
 						<span class="pull-right" style="padding-right:3%;"><a
-							href="javascript:quxiao();" class="btn btn-success">取消</a></span> <span
-							class="pull-right"><a onclick="severCheck();"
+							href="javascript:quxiao();" class="btn btn-success">取消</a></span>
+						<span class="pull-right" ><a onclick="severCheck();"
 							class="flip-link btn btn-info" id="to-recover">登录</a></span>
 
 					</div>
@@ -116,7 +119,7 @@
 					cache: false,
 					success: function(data){
 						if("success" == data.result){
-							saveCookie();
+							// saveCookie();
 							window.location.href="main/index";
 						}else if("usererror" == data.result){
 							$("#loginname").tips({
@@ -130,7 +133,7 @@
 							$("#code").tips({
 								side : 1,
 								msg : "验证码输入有误",
-								bg : '#FF5080',
+								bg : '#ff5080',
 								time : 15
 							});
 							$("#code").focus();

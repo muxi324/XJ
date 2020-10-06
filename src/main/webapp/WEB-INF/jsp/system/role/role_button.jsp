@@ -42,7 +42,7 @@ footer{height:50px;position:fixed;bottom:0px;left:0px;width:100%;text-align: cen
 			    checkable: true,
 			    showIcon :false
 			};
-			var zn = '${zTreeNodes}';
+			var zn = '${zTreeNodes}';     // zTreeNodes后台传过来的json
 			var zTreeNodes = eval(zn);
 			zTree = $("#tree").zTree(setting, zTreeNodes);
 		});
@@ -51,7 +51,7 @@ footer{height:50px;position:fixed;bottom:0px;left:0px;width:100%;text-align: cen
 	
 		 function save(){
 			   
-				var nodes = zTree.getCheckedNodes();
+				var nodes = zTree.getCheckedNodes();       //返回全部符合要求的节点集合 Array
 				var tmpNode;
 				var ids = "";
 				for(var i=0; i<nodes.length; i++){

@@ -114,7 +114,7 @@
           <foreach item="item" index="index" collection="list"
                  open="(" separator="," close=")">
                  #{item}
-          </foreach>
+          </foreach> limit 1
     </select>
 
     <select id="getEventByNameForPageData" resultType="pd" parameterType="java.lang.String">
@@ -132,7 +132,7 @@
         event_id in
         <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
             #{item}
-        </foreach>
+        </foreach> limit 1
     </delete>
 
     <select id="listAll" parameterType="Page" resultType="pd" useCache="false">
@@ -155,5 +155,10 @@
             )
         </if>
         order by event_id asc
+    </select>
+
+    <!--查询二维码的名称-->
+    <select id="list_code" parameterType="java.lang.String" resultType="java.lang.String">
+        select qrcode from event_info where event_id = #{event_id}
     </select>
 </mapper>

@@ -11,7 +11,6 @@
 <title>${pd.SYSNAME}</title>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
 <link rel="stylesheet" href="static/login/bootstrap.min.css" />
 <link rel="stylesheet" href="static/login/css/camera.css" />
 <link rel="stylesheet" href="static/login/bootstrap-responsive.min.css" />
@@ -37,7 +36,7 @@
 						<div class="main_input_box">
 							<span class="add-on bg_lg">
 							<i><img height="37" src="static/login/user.png" /></i>
-							</span><input type="text" name="loginname" id="loginname" value="" placeholder="请输入用户名" />
+							</span><input type="text" name="loginname" id="loginname" value="" placeholder="请输入电话号码" />
 						</div>
 					</div>
 				</div>
@@ -50,7 +49,8 @@
 						</div>
 					</div>
 				</div>
-				<div style="float:right;padding-right:10%;">
+
+				<%--<div style="float:right;padding-right:10%;">
 					<div style="float: left;margin-top:3px;margin-right:2px;">
 						<font color="white">记住密码</font>
 					</div>
@@ -58,7 +58,9 @@
 						<input name="form-field-checkbox" id="saveid" type="checkbox"
 							onclick="savePaw();" style="padding-top:0px;" />
 					</div>
-				</div>
+				</div>--%>
+
+				<%--验证码--%>
 				<div class="form-actions">
 					<div style="width:86%;padding-left:8%;">
 
@@ -70,17 +72,29 @@
 								style="height:16px; padding-top:0px;" />
 						</div>
 						<div style="float: left;">
+							<%--验证码图片--%>
 							<i><img style="height:22px;" id="codeImg" alt="点击更换"
 								title="点击更换" src="" /></i>
 						</div>
 
 						<span class="pull-right" style="padding-right:3%;"><a
-							href="javascript:quxiao();" class="btn btn-success">取消</a></span> <span
-							class="pull-right"><a onclick="severCheck();"
+							href="javascript:quxiao();" class="btn btn-success">取消</a></span>
+						<span class="pull-right" ><a onclick="severCheck();"
 							class="flip-link btn btn-info" id="to-recover">登录</a></span>
 
 					</div>
+					<div style="clear: both"></div>
+					<div style="width:86%;padding-left:8%;">
+						<div style="float: left;margin-top:3px;margin-right:2px;">
+							<font color="white">记住密码</font>
+						</div>
+						<div style="float: left;">
+							<input name="form-field-checkbox" id="saveid" type="checkbox"
+								   onclick="savePaw();" style="padding-top:0px;" />
+						</div>
+					</div>
 				</div>
+
 			</form>
 		</div>
 	</div>
@@ -105,12 +119,12 @@
 					cache: false,
 					success: function(data){
 						if("success" == data.result){
-							saveCookie();
+							// saveCookie();
 							window.location.href="main/index";
 						}else if("usererror" == data.result){
 							$("#loginname").tips({
 								side : 1,
-								msg : "用户名或密码有误",
+								msg : "号码或密码有误",
 								bg : '#FF5080',
 								time : 15
 							});
@@ -119,7 +133,7 @@
 							$("#code").tips({
 								side : 1,
 								msg : "验证码输入有误",
-								bg : '#FF5080',
+								bg : '#ff5080',
 								time : 15
 							});
 							$("#code").focus();
@@ -164,7 +178,7 @@
 
 				$("#loginname").tips({
 					side : 2,
-					msg : '用户名不得为空',
+					msg : '号码不得为空',
 					bg : '#AE81FF',
 					time : 3
 				});

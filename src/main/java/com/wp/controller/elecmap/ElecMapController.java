@@ -36,6 +36,7 @@ import java.util.Map;
 @Controller
 @RequestMapping(value="/elecmap")
 public class ElecMapController extends BaseController {
+
     String menuUrl = "elecmap/map.do"; //菜单地址(权限用)
     @Resource(name="elecMapService")
     private ElecMapService elecMapService;
@@ -84,8 +85,10 @@ public class ElecMapController extends BaseController {
     }
 
 
-
-
+    /**
+     *  详细路径
+     * @return
+     */
     @RequestMapping(value = "/detailPath")
     public ModelAndView getDetailPath() {
         ModelAndView mv = this.getModelAndView();
@@ -94,6 +97,9 @@ public class ElecMapController extends BaseController {
         List<MapPoint> pointList = null;
         try {
             pointList = elecMapService.getPointById(workerId);
+
+          //  System.out.println(pointList+"000000000000000000000");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -139,6 +145,11 @@ public class ElecMapController extends BaseController {
     }
 
 
+    /**
+     * 获取所有员工最近位置
+     * @param page
+     * @return
+     */
     @RequestMapping(value = "/workerPosition")
     @ResponseBody
     public Object getWorkerPosition(Page page){

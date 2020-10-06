@@ -164,8 +164,15 @@ public class QueryTaskController extends BaseController {
                     //检索条件===
 
                     Map<String, Object> dataMap = new HashMap<String, Object>();
-                    List<String> titles = new ArrayList<String>();
+                    //文件名
+                    String filename = "任务表-"+new SimpleDateFormat("yyyyMMddhhmm").format(new Date())+".xls";
+                    dataMap.put("filename",filename);
+                    //标题
+                    String headerName = "任务表";
+                    dataMap.put("headerName",headerName);
 
+                    //文件列表头
+                    List<String> titles = new ArrayList<String>();
                     titles.add("任务名称");
                     titles.add("任务单号");
                     titles.add("任务状态");
@@ -183,21 +190,21 @@ public class QueryTaskController extends BaseController {
                         vpd.put("var1", varOList.get(i).getString("mission_name"));
                         vpd.put("var2", varOList.get(i).getString("id"));
                         String status =varOList.get(i).getString("mission_condition");
-                        if(status.equals(1)){
+                        if(status.equals("1")){
                             vpd.put("var3", "任务待接收");
-                        }else if(status.equals(2)){
+                        }else if(status.equals("2")){
                             vpd.put("var3", "拒收待处理");
-                        }else if(status.equals(3)){
+                        }else if(status.equals("3")){
                             vpd.put("var3", "接收未执行");
-                        }else if(status.equals(4)){
+                        }else if(status.equals("4")){
                             vpd.put("var3", "任务执行中");
-                        }else if(status.equals(5)){
+                        }else if(status.equals("5")){
                             vpd.put("var3", "完成待审核");
-                        }else if(status.equals(6)){
+                        }else if(status.equals("6")){
                             vpd.put("var3", "审核已通过");
-                        }else if(status.equals(7)){
+                        }else if(status.equals("7")){
                             vpd.put("var3", "审核未通过");
-                        }else if(status.equals(8)){
+                        }else if(status.equals("8")){
                             vpd.put("var3", "拒收已处理");
                         }
 

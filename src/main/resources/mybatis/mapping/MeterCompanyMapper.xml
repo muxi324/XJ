@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybaits.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MeterCompanyMapper">
+
+    <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
+        select  *   from meter_company
+        where 1 = 1
+        <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            factory_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            or
+            address  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
+            )
+        </if>
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        order by id asc
+    </select>
+
+    <delete id="delete" parameterType="pd">
+        delete from meter_company where id = #{id}
+    </delete>
+
+    <insert id="save" parameterType="pd">
+        insert into meter_company (factory_name, address,representative,number,checktime,factory_id) values (#{factory_name}, #{address}, #{representative},#{phone},#{checktime},#{factory_id})
+    </insert>
+
+    <update id="edit" parameterType="pd">
+        update meter_company set factory_name = #{factory_name},address=#{address},representative=#{representative},phone=#{phone}
+        where id = #{id}
+    </update>
+
+    <select id="findById" parameterType="pd" resultType="pd">
+        select * from meter_company where id = #{id}
+    </select>
+
+    <!--导出Excel-->
+    <select id="listAll" parameterType="pd" resultType="pd" useCache="false">
+        select  *   from meter_company
+        where 1 = 1
+        <if test="enquiry != null and enquiry != ''"><!-- 关键词检索 -->
+            and
+            (
+            factory_name LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            address  LIKE CONCAT(CONCAT('%',#{enquiry}),'%')
+            or
+            representative LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            phone   LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            or
+            checktime   LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            )
+        </if>
+         order by id desc
+    </select>
+
+</mapper>

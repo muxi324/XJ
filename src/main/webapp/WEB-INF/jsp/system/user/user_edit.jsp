@@ -238,6 +238,29 @@
 			}
 		});
 	}
+
+    //判断电话是否存在
+    function hasP(USERNAME){
+        var PHONE = $.trim($("#PHONE").val());
+        $.ajax({
+            type: "POST",
+            url: '<%=basePath%>user/hasP.do',
+            data: {PHONE:PHONE,USERNAME:USERNAME,tm:new Date().getTime()},
+            dataType:'json',
+            cache: false,
+            success: function(data){
+                if("success" != data.result){
+                    $("#PHONE").tips({
+                        side:3,
+                        msg:'手机号已存在',
+                        bg:'#AE81FF',
+                        time:3
+                    });
+                    setTimeout("$('#PHONE').val('')",2000);
+                }
+            }
+        });
+    }
 	
 </script>
 	</head>
@@ -248,21 +271,21 @@
 		<table>
 			
 			<c:if test="${fx != 'head'}">
-			<c:if test="${pd.ROLE_ID != '1'}">
-			<tr class="info">
-				<td>
-				<select class="chzn-select" name="ROLE_ID" id="role_id" data-placeholder="请选择职位" style="vertical-align:top;">
-				<option value=""></option>
-				<c:forEach items="${roleList}" var="role">
-					<option value="${role.ROLE_ID }" <c:if test="${role.ROLE_ID == pd.ROLE_ID }">selected</c:if>>${role.ROLE_NAME }</option>
-				</c:forEach>
-				</select>
-				</td>
-			</tr>
-			</c:if>
-			<c:if test="${pd.ROLE_ID == '1'}">
-			<input name="ROLE_ID" id="role_id" value="1" type="hidden" />
-			</c:if>
+				<c:if test="${pd.ROLE_ID != '1'}">
+				<tr class="info">
+					<td>
+					<select class="chzn-select" name="ROLE_ID" id="role_id" data-placeholder="请选择职位" style="vertical-align:top;">
+					<option value=""></option>
+					<c:forEach items="${roleList}" var="role">
+						<option value="${role.ROLE_ID }" <c:if test="${role.ROLE_ID == pd.ROLE_ID }">selected</c:if>>${role.ROLE_NAME }</option>
+					</c:forEach>
+					</select>
+					</td>
+				</tr>
+				</c:if>
+				<c:if test="${pd.ROLE_ID == '1'}">
+				<input name="ROLE_ID" id="role_id" value="1" type="hidden" />
+				</c:if>
 			</c:if>
 			
 			<c:if test="${fx == 'head'}">
@@ -305,6 +328,7 @@
 
 
 
+			<%--超级管理员--%>
 			<tr>
 				<td><input type="text" name="NAME" id="name"  value="${pd.NAME }"  maxlength="32" placeholder="这里输入姓名" title="姓名"/></td>
 			</tr>

@@ -7,6 +7,7 @@ public class Workshop {
     private String id;		//id
     private String workshop;		//车间名称
     private String create_time;
+    private String factory_id;
 
     public String getId() {
         return id;
@@ -30,5 +31,13 @@ public class Workshop {
 
     public void setCreate_time(String create_time) {
         this.create_time = create_time;
+    }
+
+    public String getFactory_id() {
+        return factory_id;
+    }
+
+    public void setFactory_id(String factory_id) {
+        this.factory_id = factory_id;
     }
 }

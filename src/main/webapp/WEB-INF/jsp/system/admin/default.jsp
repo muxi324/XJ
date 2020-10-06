@@ -58,11 +58,15 @@
 					</tr>
 				</table>
 			</div>
+			<%--异常信息类型分布饼状图--%>
 			<div id="exception" class="col-md-4"style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
 			</div>
+			<%--今日全厂任务数量分布饼状图--%>
 			<div id="task" class="col-md-4" style="float:left; height:200px;min-height:100px;width:25%;margin:2% ">
 			</div>
 		</div>
+
+		<%--两个曲线--%>
 		<div>
 			<div id="main" style="float:left; height:410px;min-height:100px;width:40%;margin:5% "></div>
 			<div id="main1" style="float:left; height:410px;min-height:100px;width:40%;margin:5% "></div>
@@ -221,7 +225,7 @@
             }
             else {
                 //返回的数据为空时显示提示信息
-                alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
+                //alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
                 myChart.hideLoading();
             }
         },
@@ -326,7 +330,7 @@
             }
             else {
                 //返回的数据为空时显示提示信息
-                alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
+               // alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
                 myChart1.hideLoading();
             }
         },
@@ -527,7 +531,7 @@
             }
             else {
                 //返回的数据为空时显示提示信息
-                alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
+              //  alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
                 myChart4.hideLoading();
             }
 
@@ -672,7 +676,7 @@
             }
             else {
                 //返回的数据为空时显示提示信息
-                alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
+               // alert("图表请求数据为空，可能服务器暂未录入近五天的观测数据，您可以稍后再试！");
                 myChart5.hideLoading();
             }
 

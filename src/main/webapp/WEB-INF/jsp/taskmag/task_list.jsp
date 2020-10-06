@@ -92,11 +92,11 @@
                                         <td style="width: 100px;" class="center">${var.mission_name}</td>
                                         <td style="width: 50px;" class="center">${var.id}</td>
                                         <td style="width: 50px;" class="center">
-                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-info   arrowed-in">任务已下发</span></c:if>
+                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-default   arrowed-in">任务待接收</span></c:if>
                                             <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收待处理</span></c:if>
                                             <c:if test="${var.mission_condition == '3' }"><span class="label label-info   arrowed-in">接收未执行</span></c:if>
                                             <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务执行中</span></c:if>
-                                            <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">任务完成待审核</span></c:if>
+                                            <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">完成待审核</span></c:if>
                                             <c:if test="${var.mission_condition == '6' }"><span class="label label-success   arrowed-in">审核通过</span></c:if>
                                             <c:if test="${var.mission_condition == '7' }"><span class="label label-success      arrowed-in">审核未通过</span></c:if>
                                             <c:if test="${var.mission_condition == '8' }"><span class="label label-primary     arrowed-in">拒收已处理</span></c:if>

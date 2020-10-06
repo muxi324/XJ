@@ -32,6 +32,7 @@
 	<!-- 页面顶部¨ -->
 	<%@ include file="head.jsp"%>
 	<div id="websocket_button"></div>
+
 	<div class="container-fluid" id="main-container">
 		<a href="#" id="menu-toggler"><span></span></a>
 		<!-- menu toggler -->
@@ -42,12 +43,13 @@
 		<div id="main-content" class="clearfix">
 
 			<div id="jzts" style="display:none; width:100%; position:fixed; z-index:99999999;">
-			<div class="commitopacity" id="bkbgjz"></div>
-			<div style="padding-left: 70%;padding-top: 1px;">
-				<div style="float: left;margin-top: 3px;"><img src="static/images/loadingi.gif" /> </div>
-				<div style="margin-top: 5px;"><h4 class="lighter block red">&nbsp;加载中 ...</h4></div>
+				<div class="commitopacity" id="bkbgjz"></div>
+				<div style="padding-left: 70%;padding-top: 1px;">
+					<div style="float: left;margin-top: 3px;"><img src="static/images/loadingi.gif" /> </div>
+					<div style="margin-top: 5px;"><h4 class="lighter block red">&nbsp;加载中 ...</h4></div>
+				</div>
 			</div>
-			</div>
+
 
 			<div>
 				<iframe name="mainFrame" id="mainFrame" frameborder="0" src="tab.do" style="margin:0 auto;width:100%;height:100%;"></iframe>
@@ -100,4 +102,5 @@
 		<!--引入属于此页面的js -->
 		<script type="text/javascript" src="static/js/myjs/index.js"></script>
 </body>
+<%@ include file="bottom.jsp"%>
 </html>

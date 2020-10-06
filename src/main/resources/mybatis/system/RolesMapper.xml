@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RolesMapper">
+
+	<resultMap type="Roles" id="rolesResultMap">
+		<id column="USER_ID" property="USER_ID"/>
+		<result column="NAME" property="NAME"/>
+		<result column="RIGHTS" property="RIGHTS"/>
+	</resultMap>
+	<resultMap type="Role" id="roleResultMap">
+		<id column="ROLE_ID" property="ROLE_ID"/>
+		<result column="ROLE_NAME" property="ROLE_NAME"/>
+		<result column="RIGHTS" property="RIGHTS"/>
+	</resultMap>
+
+
+	<select id="listAllRoles" parameterType="pd" resultMap="rolesResultMap">
+		select
+			USER_ID,
+			NAME,
+			post,
+			PHONE,
+			RIGHTS,
+			PARENT_ID,
+			ADD_QX,
+			DEL_QX,
+			EDIT_QX,
+			CHA_QX,
+			QX_ID
+		from SYS_USER
+		ORDER BY USER_ID
+	</select>
+
+
+<!--删除 -->
+	<select id="listAllRolesByPId"  resultMap="rolesResultMap">
+		select
+		    PHONE,
+		    USER_ID,
+		    NAME,
+			ROLE_ID,
+			post,
+			RIGHTS,
+			PARENT_ID,
+			ADD_QX,
+			DEL_QX,
+			EDIT_QX,
+			CHA_QX,
+			QX_ID
+		from SYS_USER
+		where USER_ID <![CDATA[ <> ]]>1
+		ORDER BY USER_ID
+	</select>
+
+
+	<select id="listAllkefu"  parameterType="pd" resultType="pd" >
+		select
+			GL_ID,
+			ROLE_ID,
+			FX_QX,
+			FW_QX,
+			QX1,
+			QX2,
+			QX3,
+			QX4
+		from SYS_GL_QX
+	</select>
+
+	<select id="userlistPage" parameterType="page" resultType="pd" useCache="false">
+     select
+		    USER_ID, NAME, PHONE,ROLE_ID,post,factory_id,RIGHTS,PARENT_ID,ADD_QX,DEL_QX,EDIT_QX,CHA_QX
+		from SYS_USER
+        where  ROLE_ID != 1
+		<if test="pd.NAME != null and pd.NAME != ''"><!-- 关键词检索 -->
+			and
+			(
+			NAME LIKE CONCAT(CONCAT('%', #{pd.NAME}),'%')
+
+			or
+			PHONE LIKE CONCAT(CONCAT('%', #{pd.NAME}),'%')
+			)
+		</if>
+		<if test="pd.ROLE_ID != null and pd.ROLE_ID != ''"><!-- 角色检索 -->
+			and ROLE_ID=#{pd.ROLE_ID}
+		</if>
+		<if test="pd.factory_id != null and pd.factory_id != ''">
+			and factory_id = #{pd.factory_id}
+		</if>
+             order by USER_ID asc
+    </select>
+
+
+
+<!-- -->
+	<select id="findObjectById" parameterType="pd" resultType="pd">
+		select
+		    USER_ID,
+		    NAME,
+		    PHONE,
+			ROLE_ID,
+			post,
+			RIGHTS,
+			PARENT_ID,
+			ADD_QX,
+			DEL_QX,
+			EDIT_QX,
+			CHA_QX
+		from SYS_USER
+		where USERNAME = #{USERNAME}
+	</select>
+
+<!-- -->
+	<select id="getRoleById" parameterType="String" resultMap="rolesResultMap">
+		select USER_ID,ROLE_ID,NAME,post,PHONE, RIGHTS,PARENT_ID,ADD_QX, DEL_QX,EDIT_QX,CHA_QX,QX_ID
+		from SYS_USER
+		where PHONE=#{PHONE}
+	</select>
+
+<!-- 删除-->
+	<select id="listAllUByRid"  parameterType="pd" resultType="pd" >
+		select USER_ID
+		from SYS_USER
+		where
+		PHONE = #{PHONE}
+	</select>
+
+	<!--           bububu                                       -->
+
+
+	<!-- 列出二级角色信息 -->
+	<select id="listAllERRoles" resultMap="roleResultMap">
+		select
+			ROLE_ID,
+			ROLE_NAME,
+			RIGHTS,
+			PARENT_ID,
+			ADD_QX,
+			DEL_QX,
+			EDIT_QX,
+			CHA_QX,
+			QX_ID
+		from SYS_ROLE
+		where
+			PARENT_ID != '0'
+		 and
+		 	PARENT_ID != '7'
+	</select>
+
+	<!-- 列出会员二级角色信息 -->
+	<select id="listAllappERRoles" resultMap="roleResultMap">
+		select
+			ROLE_ID,
+			ROLE_NAME,
+			RIGHTS,
+			PARENT_ID,
+			ADD_QX,
+			DEL_QX,
+			EDIT_QX,
+			CHA_QX,
+			QX_ID
+		from SYS_ROLE
+		where
+		 	PARENT_ID = '7'
+	</select>
+
+
+	<select id="findGLbyrid"  parameterType="pd" resultType="pd" >
+		SELECT
+			b.GL_ID,
+			b.ROLE_ID,
+			b.FX_QX,
+			b.FW_QX,
+			b.QX1,
+			b.QX2,
+			b.QX3,
+			b.QX4
+		from SYS_ROLE a, SYS_GL_QX b, SYS_USER c
+		where
+			a.QX_ID = b.GL_ID
+		and
+			a.ROLE_ID = c.ROLE_ID
+		and
+			c.ROLE_ID =  '${ROLE_ID}'
+
+		limit 0,1
+	</select>
+
+	<!-- 通过当前登录用的角色id获取用户权限数据 -->
+	<select id="findYHbyrid"  parameterType="pd" resultType="pd" >
+		SELECT
+			b.U_ID,
+			b.C1,
+			b.C2,
+			b.C3,
+			b.C4,
+			b.Q1,
+			b.Q2,
+			b.Q3,
+			b.Q4
+		from SYS_ROLE a, SYS_USER_QX b, SYS_USER c
+		where
+			a.QX_ID = b.U_ID
+		and
+			a.ROLE_ID = c.ROLE_ID
+		and
+			c.ROLE_ID =  '${ROLE_ID}'
+		limit 0,1
+	</select>
+
+
+	<!-- 列出G权限表里的数据 -->
+	<select id="listAllGysQX"  parameterType="pd" resultType="pd" >
+		select
+			U_ID,
+			C1,
+			C2,
+			C3,
+			C4,
+			Q1,
+			Q2,
+			Q3,
+			Q4
+		from SYS_USER_QX
+	</select>
+
+	<!-- 给全部子职位加菜单权限 -->
+	<update id="setAllRights" parameterType="pd">
+		update SYS_USER
+		set RIGHTS=#{rights}
+		where PHONE=#{PHONE}
+	</update>
+
+<!--       -->
+	<update id="add_qx" parameterType="pd">
+		update SYS_USER
+		set ADD_QX=#{value}
+		where PHONE=#{PHONE}
+	</update>
+
+	<update id="del_qx" parameterType="pd">
+		update SYS_USER
+		set DEL_QX=#{value}
+		where PHONE=#{PHONE}
+	</update>
+
+	<update id="edit_qx" parameterType="pd">
+		update SYS_USER
+		set EDIT_QX=#{value}
+		where PHONE=#{PHONE}
+	</update>
+
+	<update id="cha_qx" parameterType="pd">
+		update SYS_USER
+		set CHA_QX=#{value}
+		where PHONE=#{PHONE}
+	</update>
+
+
+
+	<update id="kfqx1" parameterType="pd">
+		update SYS_GL_QX
+		set QX1=#{value}
+		where GL_ID=#{kefu_id}
+	</update>
+
+	<update id="kfqx2" parameterType="pd">
+		update SYS_GL_QX
+		set QX2=#{value}
+		where GL_ID=#{kefu_id}
+	</update>
+
+	<update id="fxqx" parameterType="pd">
+		update SYS_GL_QX
+		set FX_QX=#{value}
+		where GL_ID=#{kefu_id}
+	</update>
+
+	<update id="fwqx" parameterType="pd">
+		update SYS_GL_QX
+		set FW_QX=#{value}
+		where GL_ID=#{kefu_id}
+	</update>
+
+
+	<update id="c1" parameterType="pd">
+		update SYS_USER_QX
+		set C1=#{value}
+		where U_ID=#{kefu_id}
+	</update>
+
+
+	<update id="updateRoleRights" parameterType="Roles">
+		update SYS_USER
+		set RIGHTS=#{RIGHTS}
+		where PHONE=#{PHONE}
+	</update>
+	<delete id="deleteRoleById" parameterType="String">
+		delete from SYS_USER
+		where PHONE=#{PHONE}
+	</delete>
+
+
+
+
+	<!-- 保存K权限 -->
+	<insert id="saveKeFu" parameterType="pd">
+		insert into SYS_GL_QX (
+			GL_ID,
+			ROLE_ID,
+			FX_QX,
+			FW_QX,
+			QX1,
+			QX2,
+			QX3,
+			QX4
+		) values (
+			#{GL_ID},
+			#{ROLE_ID},
+			#{FX_QX},
+			#{FW_QX},
+			#{QX1},
+			#{QX2},
+			#{QX3},
+			#{QX4}
+		)
+	</insert>
+
+	<!-- 保存G权限 -->
+	<insert id="saveGYSQX" parameterType="pd">
+		insert into SYS_USER_QX (
+			U_ID,
+			C1,
+			C2,
+			C3,
+			C4,
+			Q1,
+			Q2,
+			Q3,
+			Q4
+		) values (
+			#{U_ID},
+			#{C1},
+			#{C2},
+			#{C3},
+			#{C4},
+			#{Q1},
+			#{Q2},
+			#{Q3},
+			#{Q4}
+		)
+	</insert>
+
+	<!-- 添加 -->
+	<insert id="insert" parameterType="pd">
+		insert into SYS_ROLE (
+			ROLE_ID,
+			ROLE_NAME,
+			RIGHTS,
+			PARENT_ID,
+			ADD_QX,
+			DEL_QX,
+			EDIT_QX,
+			CHA_QX,
+			QX_ID,
+			factory_id,
+            level
+		) values (
+			#{ROLE_ID},
+			#{ROLE_NAME},
+			#{RIGHTS},
+			#{PARENT_ID},
+			#{ADD_QX},
+			#{DEL_QX},
+			#{EDIT_QX},
+			#{CHA_QX},
+			#{QX_ID},
+			#{factory_id},
+			#{level}
+		)
+	</insert>
+
+	<!-- 编辑角色 -->
+	<update id="edit" parameterType="pd">
+		update SYS_USER
+		set post = #{post}
+		where PHONE = #{PHONE}
+	</update>
+
+</mapper>
+

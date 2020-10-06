@@ -17,6 +17,8 @@
 	</properties>
 
 	<dependencies>
+		<!-- 解决maven打包时候, 在src/main/java目录下的xml文件没有打包进来的问题 -->
+
 
 
 		<!-- spring start -->
@@ -345,9 +347,9 @@
 		<dependency>
 			<groupId>jsonlib</groupId>
 			<artifactId>jsonlib</artifactId>
-			<version>1.0</version>
+			<version>2.3</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/json-lib-2.4-jdk15.jar</systemPath>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/json-lib-2.3-jdk15.jar</systemPath>
 		</dependency>
 		<!-- jackjson-all-1.7.6 -->
 		<dependency>
@@ -522,8 +524,32 @@
 			<artifactId>junit</artifactId>
 			<version>RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.1.41</version>
+		</dependency>
+
+
+
 	</dependencies>
+
+
 	<build>
 		<finalName>xunjian</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 </project>

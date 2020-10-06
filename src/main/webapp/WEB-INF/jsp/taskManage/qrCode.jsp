@@ -11,7 +11,8 @@
 <body>
 <%-- <img src="uploadFiles/uploadImgs/check.jpg">--%>
 <div id="zhongxin" class="center padding-top:20px" >
-    <img style="width:350px;height:400px;padding-top:15px;" src="../../qrupload/${picPath}" width="210">
+    <img style="width:350px;height:400px;padding-top:15px;" src="/qrupload/${picPath}" width="210">
+    <%--<img style="width:350px;height:400px;padding-top:15px;" src="${pd}" width="210">--%>
 </div>
 </body>
 <script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>

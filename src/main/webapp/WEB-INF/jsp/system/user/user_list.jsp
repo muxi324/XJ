@@ -170,8 +170,7 @@
 		</form>
 	</div>
 
- 
- 
+
 	<!-- PAGE CONTENT ENDS HERE -->
   </div><!--/row-->
 	

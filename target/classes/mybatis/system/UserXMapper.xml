@@ -57,7 +57,12 @@
 				BZ						= #{BZ},
 				EMAIL					= #{EMAIL},
 				NUMBER					= #{NUMBER},
-				PHONE					= #{PHONE}
+				PHONE					= #{PHONE},
+		        post                    = #{post},
+		        team                    = #{team},
+				workshop                = #{workshop}
+                team_id                 = #{team_id}
+		        workshop_id                = #{workshop_id}
 			<if test="PASSWORD != null and PASSWORD != ''">
 				,PASSWORD				= #{PASSWORD}
 			</if>
@@ -67,21 +72,8 @@
 	
 	<!-- 通过user_id获取数据 -->
 	<select id="findByUiId" parameterType="pd" resultType="pd" useCache="false">
-		select 
-			USER_ID,
-			USERNAME,
-			PASSWORD,
-			NAME,
-			RIGHTS,
-			ROLE_ID,
-			LAST_LOGIN,
-			IP,
-			STATUS,
-			BZ,
-			SKIN,
-			EMAIL,
-			NUMBER,
-			PHONE
+		select USER_ID,USERNAME,PASSWORD,NAME,RIGHTS,ROLE_ID,LAST_LOGIN,IP,STATUS,BZ,SKIN,EMAIL,NUMBER,
+			PHONE,factory_id,workshop_id,team_id
 		from 
 			SYS_USER
 		where 
@@ -166,50 +158,19 @@
 	<!-- 新增用户 -->
 	<insert id="saveU" parameterType="pd" flushCache="false">
 		insert into SYS_USER (
-			USER_ID,
-			USERNAME,
-			PASSWORD,
-			NAME,
-			RIGHTS,
-			ROLE_ID,
-			LAST_LOGIN,
-			IP,
-			STATUS,
-			BZ,
-			SKIN,
-			EMAIL,
-			NUMBER,
-			PHONE
+			USER_ID,USERNAME,PASSWORD,NAME,RIGHTS,ROLE_ID,LAST_LOGIN,IP,STATUS,BZ,SKIN,EMAIL,NUMBER,
+		    PHONE,post,work_type,random,team,factory,workshop,add_time,factory_id,workshop_id,team_id
 		) values (
-			#{USER_ID},
-			#{USERNAME},
-			#{PASSWORD},
-			#{NAME},
-			#{RIGHTS},
-			#{ROLE_ID},
-			#{LAST_LOGIN},
-			#{IP},
-			#{STATUS},
-			#{BZ},
-			#{SKIN},
-			#{EMAIL},
-			#{NUMBER},
-			#{PHONE}
+			#{USER_ID},#{USERNAME},#{PASSWORD},#{NAME},#{RIGHTS},#{ROLE_ID},#{LAST_LOGIN},#{IP},#{STATUS},
+			#{BZ},#{SKIN},#{EMAIL},#{NUMBER},#{PHONE},#{post},#{work_type},#{random},#{team},#{factory},
+			#{workshop},#{add_time},#{factory_id},#{workshop_id},#{team_id}
 		)
 	</insert>
 	<!-- 用户列表(用户组) -->
 	<select id="userlistPage" parameterType="page" resultType="pd" useCache="false">
-		select  u.USER_ID,
-				u.USERNAME,
-				u.PASSWORD,
-				u.LAST_LOGIN,
-				u.NAME,
-				u.IP,
-				u.EMAIL,
-				u.NUMBER,
-				u.PHONE,
-				r.ROLE_ID,
-				r.ROLE_NAME
+		select  u.USER_ID,u.USERNAME,u.PASSWORD,u.LAST_LOGIN,u.NAME,u.IP,u.EMAIL,u.NUMBER,u.PHONE,u.post,u.work_type,
+		u.team,u.workshop,u.workshop_id,u.factory,u.factory_id,u.team_id,
+		r.ROLE_ID,r.ROLE_NAME
 		from SYS_USER u, SYS_ROLE r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
@@ -237,22 +198,41 @@
 		<if test="pd.lastLoginEnd!=null and pd.lastLoginEnd!=''"><!-- 登录时间检索 -->
 			and u.LAST_LOGIN &lt;= #{pd.lastLoginEnd} 
 		</if>
+		<if test="pd.factory_id != null and pd.factory_id != ''">
+			and u.factory_id = #{pd.factory_id}
+		</if>
+		<if test="pd.workshop_id != null and pd.workshop_id != ''">
+			and u.workshop_id = #{pd.workshop_id}
+		</if>
+		<if test="pd.team_id != null and pd.team_id != ''">
+			and u.team_id = #{pd.team_id}
+		</if>
 		order by u.LAST_LOGIN desc
 	</select>
-	
+     <!--通过车间id获取班组-->
+	<select id="listTeamByFac" parameterType="pd" resultType="pd">
+		select id,team  from team_info
+		where factory_id = #{factory_id}
+		AND  workshop = #{workshop_id}
+	</select>
+    <!--通过班组获取班组成员-->
+	<select id="listWorkerByTeam" parameterType="pd" resultType="pd">
+		select USER_ID,NAME,PHONE  from sys_user
+		where factory_id = #{factory_id}
+		<if test="workshop_id != null and workshop_id != ''">
+		AND workshop_id = #{workshop_id}
+		</if>
+		<if test="team_id != null and team_id != ''">
+		AND team_id = #{team_id}
+		</if>
+	</select>
+
+
 	<!-- 用户列表(全部) -->
 	<select id="listAllUser" parameterType="pd" resultType="pd" useCache="false">
-		select  u.USER_ID,
-				u.USERNAME,
-				u.PASSWORD,
-				u.LAST_LOGIN,
-				u.NAME,
-				u.IP,
-				u.EMAIL,
-				u.NUMBER,
-				u.PHONE,
-				r.ROLE_ID,
-				r.ROLE_NAME
+		select  u.USER_ID,u.USERNAME,u.PASSWORD,u.LAST_LOGIN,u.NAME,u.IP,u.EMAIL,u.NUMBER,u.PHONE,u.post,u.work_type,
+		u.team,u.workshop,u.workshop_id,u.factory,u.factory_id,u.team_id,
+		r.ROLE_ID,r.ROLE_NAME
 		from SYS_USER u, SYS_ROLE r 
 		where u.ROLE_ID = r.ROLE_ID 
 		and u.USERNAME != 'admin'
@@ -279,6 +259,12 @@
 		</if>
 		<if test="lastLoginEnd!=null and lastLoginEnd!=''"><!-- 登录时间检索 -->
 			and u.LAST_LOGIN &lt;= #{lastLoginEnd} 
+		</if>
+		<if test="pd.factory_id != null and pd.factory_id != ''">
+			and factory_id = #{factory_id}
+		</if>
+		<if test="pd.workshop_id != null and pd.workshop_id != ''">
+			and workshop_id = #{workshop_id}
 		</if>
 		order by u.LAST_LOGIN desc
 	</select>

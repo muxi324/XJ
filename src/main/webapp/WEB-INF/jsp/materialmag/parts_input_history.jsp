@@ -163,6 +163,7 @@
                     (${page.currentPage});
                 }
             }*/
+            window.location.href='<%=basePath%>partsmag/goInput.do?material_id='+material_id;
             diag.close();
         };
         diag.show();

@@ -7,16 +7,29 @@
 <html>
     <head>
         <base href="<%=basePath%>">
-        <%@ include file="../system/admin/top.jsp"%>
         <style type="text/css">
             body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
         </style>
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=tkTgXO7ycraPnPgGGejoV8CZp58Nd559"></script>
     </head>
     <body>
-        <div id="allmap"></div>
+        <div id="allmap" style="height: 85%"></div>
+        <!--<div id="date">
+            <table>
+                <tr id="s1">
+                    <td style="width:110px;text-align: right;padding-top: 13px;">开始时间:</td>
+                    <td><input style="width:90%;" type="text" class="datetimepicker" name="start_time" id="start_time"  maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                    <td style="width:110px;text-align: right;padding-top: 13px;">结束时间:</td>
+                    <td><input style="width:90%;" type="text" class="datetimepicker" name="end_time" id="end_time"  maxlength="200" data-date-format="yyyy-mm-dd  hh:mm" title=""/></td>
+                    <td><input type="button" id="query" class="btn btn-small btn-primary">查询</td>
+                </tr>
+            </table>
+        </div>-->
     </body>
-    <%@ include file="../system/admin/bottom.jsp"%>
+
 </html>
 
 
@@ -26,8 +39,8 @@
 
 
     var map = new BMap.Map("allmap");    // 创建Map实例
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  // 初始化地图,设置中心点坐标和地图级别
-    map.setCurrentCity("北京");// 设置地图显示的城市 此项是必须设置的
+    map.centerAndZoom(new BMap.Point(116.056167,39.496554), 11);  // 初始化地图,设置中心点坐标和地图级别
+    map.setCurrentCity("阔丹凌云厂");// 设置地图显示的城市 此项是必须设置的
     map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
 
 
@@ -68,6 +81,31 @@
         strokeColor:"red" //折线颜色
     });
 
+    function addMarker(points) {
+        for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+            var marker = new BMap.Marker(points[i]);
+            map.addOverlay(marker);
+            if (i == 0) {
+                marker.addEventListener("mouseover",
+                    function() {
+                        showInfo(this,thePoint,"起点");
+                    });
+            } else if (i == points.length - 1) {
+                marker.addEventListener("mouseover",
+                    function() {
+                        showInfo(this,thePoint,"终点");
+                    });
+            }
+        }
+    }
+
+    function showInfo(thisMarker,point,sContent) {
+        //获取点的信息
+        var infoWindow = new BMap.InfoWindow(sContent); //创建信息窗口对象
+        thisMarker.openInfoWindow(infoWindow); //图片加载完后重绘infoWindow
+    }
+
+    addMarker(points);  //增加点
     map.addOverlay(polyline);          //增加折线
 
 </script>

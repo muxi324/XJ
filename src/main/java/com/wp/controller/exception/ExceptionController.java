@@ -2,7 +2,6 @@ package com.wp.controller.exception;
 
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
-import com.wp.entity.exception.ExceptionInfo;
 import com.wp.service.exception.ExceptionService;
 import com.wp.util.*;
 import org.apache.commons.lang.StringUtils;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,11 +26,13 @@ public class ExceptionController extends BaseController{
 
     String menuUrl = "exception/exceptionList.do"; //菜单地址(权限用)
     @Resource(name="exceptionService")
+
     private ExceptionService exceptionService;
     //   未处理异常
     @RequestMapping("/exceptionInfo")
     public ModelAndView getExceptionInfo(Page page) {
         logBefore(logger, "异常列表");
+        //System.out.println("Const.SESSION_QX:-------"+Const.SESSION_QX);
         if(!Jurisdiction.buttonJurisdiction(menuUrl, "cha")){return null;} //校验权限
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
@@ -73,7 +73,12 @@ public class ExceptionController extends BaseController{
         }
         return mv;
     }
-//    所有异常
+
+    /**
+     *  异常查询--展示异常信息
+     * @param page  exceptionList
+     * @return
+     */
     @RequestMapping("/exceptionList")
     public ModelAndView getExceptionList(Page page) {
         logBefore(logger, "异常列表");
@@ -111,20 +116,25 @@ public class ExceptionController extends BaseController{
             mv.setViewName("exception/exceptionInfo");
             mv.addObject("exceptionList", exceptionList);
             mv.addObject("pd", pd);
+
             mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
         } catch (Exception e) {
             logger.error(e.toString(), e);
         }
         return mv;
     }
-
+    /*
+     *异常详情
+     */
     @RequestMapping("/getExceptionDetail")
     public ModelAndView getExceptionDetail(Page page) {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         try {
             pd = this.getPageData();
-            PageData result = exceptionService.findById(pd);
+            String roleName = FactoryUtil.getRoleId();
+            pd.put("ROLENAME",roleName);
+            PageData result = exceptionService.findById(pd);//得到异常信息，${result.id}是exception表id
             mv.setViewName("exception/exceptionDetail");
             mv.addObject("pd", pd);
             mv.addObject("result",result);
@@ -135,10 +145,10 @@ public class ExceptionController extends BaseController{
         return mv;
     }
 
-    /*
-    * 导出到excel
-    * @return
-    */
+       /*
+     * 导出到excel
+     * @return
+     */
     @RequestMapping(value="/excel")
     public ModelAndView exportExcel(){
         logBefore(logger, "导出异常列表到excel");
@@ -175,8 +185,15 @@ public class ExceptionController extends BaseController{
 
             //检索条件===
             Map<String,Object> dataMap = new HashMap<String,Object>();
-            List<String> titles = new ArrayList<String>();
+            //文件名
+            String filename = "异常表-"+new SimpleDateFormat("yyyyMMddhhmm").format(new Date())+".xls";
+            dataMap.put("filename",filename);
+            //标题
+            String headerName = "异常表";
+            dataMap.put("headerName",headerName);
 
+            //文件列表头
+            List<String> titles = new ArrayList<String>();
             titles.add("所属车间");
             titles.add("异常级别");
             titles.add("描述");

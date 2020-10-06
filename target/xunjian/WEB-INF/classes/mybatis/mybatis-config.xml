@@ -12,7 +12,15 @@
 	<typeAliases>
 		<typeAlias type="com.wp.entity.system.User" alias="User"/>
 		<typeAlias type="com.wp.entity.system.Role" alias="Role"/>
+		<typeAlias type="com.wp.entity.system.Roles" alias="Roles"/>
 		<typeAlias type="com.wp.entity.system.Menu" alias="Menu"/>
+		<typeAlias type="com.wp.entity.house.House" alias="House"/>
+		<typeAlias type="com.wp.entity.mission.Mission" alias="Mission"/>
+		<typeAlias type="com.wp.entity.worker.Worker" alias="Worker"/>
+		<typeAlias type="com.wp.entity.databank.Workshop" alias="Workshop"/>
+		<typeAlias type="com.wp.entity.yunxing.YunxingInfo" alias="Yunxing"/>
+		<typeAlias type="com.wp.entity.yunxinginfo.Mission_feedback" alias="Mission_feedback"/>
+		<typeAlias type="com.wp.entity.meterinfo.MeterCompany" alias="MeterCompany"/>
 		<typeAlias type="com.wp.util.PageData" alias="pd"/>
 		<!-- 分页 -->
 		<typeAlias type="com.wp.entity.Page" alias="Page"/>

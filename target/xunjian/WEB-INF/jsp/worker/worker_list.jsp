@@ -56,9 +56,9 @@
 
                         <thead>
                         <tr>
-                            <th class="center">
+                           <%-- <th class="center">
                                 <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                            </th>
+                            </th>--%>
                             <th class="center">序号</th>
                             <th class="center">姓名</th>
                             <th class="center">手机号</th>
@@ -78,16 +78,16 @@
                         <c:if test="${QX.cha == 1 }">
                         <c:forEach items="${varList}" var="var" varStatus="vs">
                         <tr>
-                            <td class='center' style="width: 30px;">
+                           <%-- <td class='center' style="width: 30px;">
                                 <label><input type='checkbox' name='ids' value="${var.id}" /><span class="lbl"></span></label>
-                            </td>
+                            </td>--%>
                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                             <td style="width: 60px;" class="center">${var.name}</td>
                             <td style="width: 100px;" class="center">${var.phone}</td>
-                            <td style="width: 139px;" class="center">${var.team}</td>
+                            <td style="width: 60px;" class="center">${var.team}</td>
                             <td style="width: 60px;" class="center">${var.post}</td>
                             <td style="width: 60px;" class="center">${var.work_type}</td>
-                            <td style="width: 139px;" class="center">${var.workshop}</td>
+                            <td style="width: 100px;" class="center">${var.workshop}</td>
                             <td style="width: 60px;" class="center">
                                 <div class='hidden-phone visible-desktop btn-group'>
 
@@ -96,10 +96,10 @@
                                         <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
                                     </c:if>
                                     &nbsp;&nbsp;&nbsp;
-                                    <c:if test="${QX.del == 1 }">
+                                   <%-- <c:if test="${QX.del == 1 }">
                                         <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
                                         <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
-                                    </c:if>
+                                    </c:if>--%>
 
                                 </div>
                             </td>
@@ -131,9 +131,9 @@
                                     <c:if test="${QX.add == 1 }">
                                     <a class="btn btn-small btn-success" onclick="add();">新增</a>
                                     </c:if>
-                                    <c:if test="${QX.del == 1 }">
+                                   <%-- <c:if test="${QX.del == 1 }">
                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
-                                    </c:if>
+                                    </c:if>--%>
                                 </td>
                                 <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                             </tr>

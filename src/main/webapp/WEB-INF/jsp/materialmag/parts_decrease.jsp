@@ -65,6 +65,7 @@
                     //打印服务端返回的数据(调试用)
                     alert("出库成功！");
                   //  window.location.href='<%=basePath%>partsmag/goOutput.do';
+                    top.Dialog.close();
                 },
                 error : function() {
                     alert("出现异常！");

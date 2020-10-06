@@ -46,21 +46,30 @@
             $.ajax({
                 //几个参数需要注意一下
                 type: "POST",//方法类型
-                url: "<%=basePath%>partsmag/save.do" ,//url
+                url: "<%=basePath%>toolsmag/save.do" ,//url
                 data: $('#Form').serialize(),
                 success: function (result) {
                     //打印服务端返回的数据(调试用)
-                    alert("入库成功！");
-                    window.location.href='<%=basePath%>toolsmag/goInput.do';
+                   alert("入库成功！");
+                    top.Dialog.close();
+                    <%--window.location.href='<%=basePath%>toolsmag/goInput.do';--%>
+                   // document.getElementById('zhongxin2').style.display = 'none';
+                   //  if (window.opener && !window.opener.closed) {
+                   //      window.parent.opener.location.reload();
+                   //  }
+                   //  window.close(); return false;
+
                 },
                 error : function() {
                     alert("出现异常！");
                 }
             });
           //  $("#Form").submit();
-            $("#zhongxin").hide();
-            $("#zhongxin2").show();
+          //   $("#zhongxin").hide();
+          //   $("#zhongxin2").show();
             // hasW();
+           // document.getElementById('zhongxin2').style.display = 'none';
+            //top.Dialog.close();
         }
 
     </script>

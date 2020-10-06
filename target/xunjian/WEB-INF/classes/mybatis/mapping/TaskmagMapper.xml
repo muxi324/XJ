@@ -9,24 +9,39 @@
     <select id="findById" parameterType="pd" resultType="pd">
         select *  from mission
         where
-        mission_id = #{mission_id}
+        id = #{mission_id}
+    </select>
+
+    <select id="findPicById" parameterType="pd" resultType="pd">
+        select *  from mission_feedback
+        where
+        mission_id = #{mission_id} and event_id =#{event_id} and work_name=#{work_name}
     </select>
     <!--任务详情-->
     <select id="detail" parameterType="pd" resultType="pd">
         select *  from mission
         where
-        mission_id = #{mission_id}
+        id = #{mission_id}
     </select>
     <!--保存-->
     <update id="save" parameterType="pd">
         update  mission
         set
-        auditor = #{auditor},
-        auditor_opinion = #{auditor_opinion},
+        auditor = #{USERNAME},
         mission_condition = #{mission_condition},
         auditor_time = #{auditor_time}
         where
-        mission_id = #{mission_id}
+        id = #{mission_id}
+    </update>
+
+    <update id="refuseAudit" parameterType="pd">
+        update  mission
+        set
+        auditor = #{USERNAME},
+        mission_condition = #{mission_condition},
+        auditor_time = #{auditor_time}
+        where
+        id = #{mission_id}
     </update>
     <!--通过enquiry获取数据-->
     <select id="datalistPage" parameterType="Page" resultType="pd" useCache="false">
@@ -36,15 +51,9 @@
         <if test="pd.enquiry != null and pd.enquiry != ''"><!-- 关键词检索 -->
             and
             (
-            flow_number LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
+            mission_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
             worker_name  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
-            or
-            house_owner_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-            or
-            house_owner_phone  LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
-            or
-            team   LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             )
         </if>
         <if test="pd.sendTimeStart!=null and pd.sendTimeStart!=''"><!-- 下达时间检索 -->
@@ -56,8 +65,14 @@
         <if test="pd.mission_condition != null and pd.mission_condition != ''"><!-- 状态检索 -->
             and mission_condition = #{pd.mission_condition}
         </if>
-        and mission_condition in(1,4)
-        order by mission_id desc
+        <if test="pd.factory_id != null and pd.factory_id != ''">
+            and factory_id = #{pd.factory_id}
+        </if>
+        <if test="pd.workshop_id != null and pd.workshop_id != ''">
+            and workshop_id = #{pd.workshop_id}
+        </if>
+        and mission_condition in(1,2,3,4,5)
+        order by id desc
     </select>
     <!-- 列表(全部) -->
     <select id="listAll" parameterType="pd" resultType="pd" useCache="false">
@@ -67,32 +82,47 @@
         <if test="enquiry != null and enquiry != ''"><!-- 关键词检索 -->
             and
             (
-            flow_number LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            mission_name LIKE CONCAT(CONCAT('%', #{pd.enquiry}),'%')
             or
-            worker_name  LIKE CONCAT(CONCAT('%',#{enquiry}),'%')
-            or
-            house_owner_name LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
-            or
-            house_owner_phone  LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
-            or
-            team   LIKE CONCAT(CONCAT('%', #{enquiry}),'%')
+            worker_name  LIKE CONCAT(CONCAT('%',#{pd.enquiry}),'%')
             )
         </if>
 
         <if test="sendTimeStart!=null and sendTimeStart!=''"><!-- 下达时间检索 -->
-            and send_time &gt;= #{sendTimeStart}
+            and send_time &gt;= #{pd.sendTimeStart}
         </if>
         <if test="sendTimeEnd!=null and sendTimeEnd!=''"><!-- 下达时间检索 -->
-            and send_time &lt;= #{sendTimeEnd}
+            and send_time &lt;= #{pd.sendTimeEnd}
         </if>
         <if test="mission_condition != null and mission_condition != ''"><!-- 状态检索 -->
-            and mission_condition = #{mission_condition}
+            and mission_condition = #{pd.mission_condition}
         </if>
-        and mission_condition in(1,4)
-        order by mission_id desc
+        and mission_condition in(1,2,3,4,5)
+        order by id desc
     </select>
 
+    <!--巡检任务-->
+    <select id="getWorkContent" parameterType="pd" resultType="pd" useCache="false">
+        select * from mission_feedback where mission_id = #{mission_id} and event_id = #{event_id}
+    </select>
 
+    <!--维修任务-->
+    <select id="getWorkContentById" parameterType="pd" resultType="pd" useCache="false">
+        select * from mission_feedback where mission_id = #{id}
+        <if test="event != null and event != ''">
+        and event_id = #{event}
+        </if>
+    </select>
 
+    <update id="auditTask" parameterType="pd" >
+        update mission set mission_condition = #{mission_condition},
+        auditor_opinion=#{opinion}, auditor = #{auditor}, auditor_time = #{auditor_time}
+         where id = #{missionId}
+    </update>
+
+    <!--事件运行情况-->
+    <select id="eventyunxinglistPage" parameterType="Page" resultType="pd" useCache="false">
+        select * from mission_feedback where event_id = #{pd.eventId})
+    </select>
 
 </mapper>

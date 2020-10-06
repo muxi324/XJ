@@ -78,4 +78,8 @@ public class PartsMagService {
     public void deleteAll(String[] set_ids)throws Exception{
         dao.delete("PartsMagMapper.deleteAll", set_ids);
     }
+
+    public void firstsave(PageData pd) throws Exception {
+        dao.save("PartsMagMapper.firstsave", pd);
+    }
 }

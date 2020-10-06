@@ -50,6 +50,10 @@ public class WorkshopService {
         return (List<Workshop>) dao.findForList("WorkshopMapper.listWorkshop",null);
 
     }
+    public List<PageData> listWorkshopAll(Page page) throws Exception {
+        return (List<PageData>) dao.findForList("WorkshopMapper.listWorkshopAll",page);
+
+    }
 
     /*
     *列表

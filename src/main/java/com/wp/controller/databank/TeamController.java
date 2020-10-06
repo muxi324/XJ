@@ -115,6 +115,7 @@ import java.util.*;
                     pd.put("enquiry", "");
                 }
                 String loginUserName = FactoryUtil.getLoginUserName();
+                pd.put("USERNAME",loginUserName);
                 if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                     pd.put("factory_id",FactoryUtil.getFactoryId());
                 }

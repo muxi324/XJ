@@ -28,7 +28,7 @@ public class RoleService{
 		
 	}
 	
-	
+	// roleList 调用 1
 	public List<Role> listAllRoles() throws Exception {
 		return (List<Role>) dao.findForList("RoleMapper.listAllRoles", null);
 		
@@ -63,7 +63,7 @@ public class RoleService{
 		return (List<Role>) dao.findForList("RoleMapper.listAllRolesByPId", pd);
 		
 	}
-	
+
 	//列出K权限表里的数据 
 	public List<PageData> listAllkefu(PageData pd) throws Exception {
 		return (List<PageData>) dao.findForList("RoleMapper.listAllkefu", pd);
@@ -88,7 +88,7 @@ public class RoleService{
 		dao.delete("RoleMapper.deleteRoleById", ROLE_ID);
 		
 	}
-
+//4.
 	public Role getRoleById(String roleId) throws Exception {
 		return (Role) dao.findForObject("RoleMapper.getRoleById", roleId);
 		
@@ -149,11 +149,18 @@ public class RoleService{
 	}
 	
 	/**
-	 * 通过id查找
+	 * 4，通过id查找
 	 */
 	public PageData findObjectById(PageData pd) throws Exception {
 		return (PageData)dao.findForObject("RoleMapper.findObjectById", pd);
 	}
+
+	/**
+	 * 4，通过id查找
+	 */
+	/*public PageData findObjectById2(PageData pd) throws Exception {
+		return (PageData)dao.findForObject("RolesMapper.findObjectById", pd);
+	}*/
 	
 	/**
 	 * 编辑角色

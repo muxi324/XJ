@@ -73,6 +73,7 @@
                         <th class="center">任务描述</th>
                         <th class="center">任务类型</th>
                         <th class="center">创建时间</th>
+                        <th class="center">任务状态</th>
                         <th class="center">操作</th>
                     </tr>
                     </thead>
@@ -94,6 +95,11 @@
                                         <td style="width: 140px;" class="center">${var.mission_description}</td>
                                         <td style="width: 60px;" class="center">${var.mission_type}</td>
                                         <td style="width: 70px;" class="center">${var.set_time}</td>
+                                        <td style="width: 60px;" class="center">
+                                            <c:if test="${var.status == '1' }"><span class="label label-default   arrowed-in">未制定定时任务</span></c:if>
+                                            <c:if test="${var.status == '2' }"><span class="label label-success   arrowed-in">已制定定时任务</span></c:if>
+                                            <c:if test="${var.status == '3' }"><span class="label label-warning   arrowed-in">定时任务已暂停</span></c:if>
+                                        </td>
                                         <td style="width: 30px;" class="center">
                                             <div class='hidden-phone visible-desktop btn-group'>
 
@@ -108,8 +114,21 @@
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.edit == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="下发任务"  onclick="sendtask('${var.set_id }');"><i class='icon-edit'></i></a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-warning' title="您不能下发任务"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="下发任务"  onclick="sendtask('${var.set_id }');">
+                                                        <img src="static/images/xiafa.png" style="width:15px;height:15px" alt="">
+                                                    </a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-warning' title="您不能下发任务">
+                                                        <img src="static/images/xiafa.png" style="width:15px;height:15px" alt="">
+                                                    </a></c:if>
+                                                </c:if>
+                                                &nbsp;&nbsp;&nbsp;
+                                                <c:if test="${QX.edit == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-default' title="暂停任务"  onclick="stopTask('${var.set_id }');">
+                                                        <img src="static/images/zanting.png" style="width:15px;height:15px" alt="">
+                                                    </a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-default' title="您不能暂停任务">
+                                                        <img src="static/images/zanting.png" style="width:15px;height:15px" alt="">
+                                                    </a></c:if>
                                                 </c:if>
                                             </div>
                                         </td>
@@ -138,11 +157,12 @@
                         <tr>
                             <td style="vertical-align:top;">
                                 <c:if test="${QX.add == 1 }">
-                                    <a class="btn btn-small btn-success" onclick="add();">新增</a>
+                                    <c:if test="${pd.USERNAME != 'admin'}"><a class="btn btn-small btn-success" onclick="add();">新增</a></c:if>
+                                    <c:if test="${pd.USERNAME == 'admin'}"><a class="btn btn-small btn-success" title="您不能编辑"><i class='icon-edit'></i></a></c:if>
                                 </c:if>
-                               <%-- <c:if test="${QX.del == 1 }">
-                                    <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
-                                </c:if>--%>
+                                <%-- <c:if test="${QX.del == 1 }">
+                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
+                                 </c:if>--%>
                             </td>
                             <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
                         </tr>
@@ -197,12 +217,25 @@
                     top.jzts();
                     setTimeout("self.location=self.location",100);
                 }else{
-                    nextPage(${page.currentPage});
+                    window.location.href='<%=basePath%>taskset/list.do';
                 }
             }
             diag.close();
         };
         diag.show();
+    }
+
+    //暂停周期任务
+    function stopTask(Id){
+        bootbox.confirm("确定要暂停周期任务吗?", function(result) {
+            if(result) {
+                top.jzts();
+                var url = "<%=basePath%>sendtask/stopTask.do?set_id="+Id;
+                $.get(url,function(data){
+                    window.location.href='<%=basePath%>taskset/list.do';
+                });
+            }
+        });
     }
 
 
@@ -241,6 +274,7 @@
             }
         });
     }
+
 
     //修改
     function edit(Id){

@@ -93,4 +93,21 @@ public class Menu {
 	public void setMENU_TYPE(String mENU_TYPE) {
 		MENU_TYPE = mENU_TYPE;
 	}
+
+	@Override
+	public String toString() {
+		return "Menu{" +
+				"MENU_ID='" + MENU_ID + '\'' +
+				", MENU_NAME='" + MENU_NAME + '\'' +
+				", MENU_URL='" + MENU_URL + '\'' +
+				", PARENT_ID='" + PARENT_ID + '\'' +
+				", MENU_ORDER='" + MENU_ORDER + '\'' +
+				", MENU_ICON='" + MENU_ICON + '\'' +
+				", MENU_TYPE='" + MENU_TYPE + '\'' +
+				", target='" + target + '\'' +
+				", parentMenu=" + parentMenu +
+				", subMenu=" + subMenu +
+				", hasMenu=" + hasMenu +
+				'}';
+	}
 }

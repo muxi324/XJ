@@ -128,6 +128,7 @@ import java.util.*;
                     pd.put("enquiry", "");
                 }
                 String loginUserName = FactoryUtil.getLoginUserName();
+                pd.put("USERNAME",loginUserName);
                 if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                     pd.put("factory_id",FactoryUtil.getFactoryId());
                 }
@@ -198,14 +199,12 @@ import java.util.*;
         PageData pd = new PageData();
         pd = this.getPageData();
         try {
-           /* pd = workshopService.findById(pd);	//根据ID读取
-            String workshop = pd.getString("workshop");
-            pd.put("workshop",workshop);
             String factory_id = FactoryUtil.getFactoryId();
-            PageData factory = new PageData();
+           /* PageData factory = new PageData();
             factory.put("id",factory_id);
             String factoryName = factoryService.findById(factory).getString("factory");
             pd.put("factory",factoryName);*/
+            pd.put("factory_id",factory_id);
             List<PageData> varList = teamService.findTeamByW(pd);
             mv.setViewName("databank/team");
             mv.addObject("varList", varList);

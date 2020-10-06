@@ -1,10 +1,9 @@
 package com.wp.controller.taskmag;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
-
 import com.wp.entity.worker.Worker;
+import com.wp.service.databank.WorkshopService;
 import com.wp.service.event.EventService;
 import com.wp.service.system.role.RoleService;
 import com.wp.service.taskmag.TaskSetService;
@@ -44,6 +43,8 @@ public class TaskSetController extends BaseController {
     private EventService eventService;
     @Resource(name = "workerService")
     private WorkerService workerService;
+    @Resource(name="workshopService")
+    private WorkshopService workshopService;
 
     /**
      * 列表
@@ -78,6 +79,7 @@ public class TaskSetController extends BaseController {
             String  mission_type = pd.getString("mission_type");
             pd.put("mission_type", mission_type);
             String loginUserName = FactoryUtil.getLoginUserName();
+            pd.put("USERNAME",loginUserName);
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
                 pd.put("workshop_id",FactoryUtil.getWorkshopId());
@@ -127,8 +129,13 @@ public class TaskSetController extends BaseController {
                 pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
+            System.out.println(page);
             List<PageData> varList = eventService.list1(page);
+            System.out.println(varList);
+            List<PageData> workshopList = workshopService.listWorkshopAll(page);
+            System.out.println("workshopList:"+workshopList);
             mv.addObject("varList", varList);
+            mv.addObject("workshopList", workshopList);
             mv.setViewName("taskmag/task_edit");
             mv.addObject("msg", "save");
             mv.addObject("pd", pd);
@@ -182,9 +189,12 @@ public class TaskSetController extends BaseController {
         ModelAndView mv = this.getModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
+
         pd.put("set_time",  Tools.date2Str(new Date()));	//添加时间
         pd.put("factory_id",FactoryUtil.getFactoryId());
-        pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        //pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        pd.put("status",1);
+        System.out.println(pd);
         taskSetService.save(pd);
         mv.addObject("msg","success");
         mv.setViewName("save_result");

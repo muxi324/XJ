@@ -74,6 +74,17 @@ public class QuartzManager {
         }
     }
 
+    /**
+     * 设置定时任务
+     * @param jobName 任务名
+     * @param jobGroupName
+     * @param triggerName
+     * @param triggerGroupName
+     * @param jobClass
+     * @param startTime
+     * @param endTime
+     * @param pageData
+     */
     public static void addStartAndEndJob(String jobName, String jobGroupName, String triggerName, String triggerGroupName, Class jobClass,
                                          Date startTime,Date endTime, PageData pageData) {
         try {
@@ -158,7 +169,7 @@ public class QuartzManager {
      * @param jobGroupName
      * @param triggerName
      * @param triggerGroupName
-     *//*
+     */
     public static void removeJob(String jobName, String jobGroupName,
             String triggerName, String triggerGroupName) {
         try {
@@ -168,7 +179,7 @@ public class QuartzManager {
 
             Trigger.TriggerState state = sched.getTriggerState(triggerKey);
 
-            PrintUtils.print("trigger state is " + state.name());
+          //  PrintUtils.print("trigger state is " + state.name());
 
             sched.pauseTrigger(triggerKey);// 停止触发器
             boolean a = sched.unscheduleJob(triggerKey);// 移除触发器
@@ -188,7 +199,7 @@ public class QuartzManager {
         }
     }
 
-    *//**
+    /**
      * @Description:启动所有定时任务
      *//*
     public static void startJobs() {

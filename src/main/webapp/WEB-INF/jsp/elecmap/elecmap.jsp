@@ -24,7 +24,10 @@
 </head>
 <body>
 
+
+<%--地图div--%>
 <div id="allmap" style="height: 85%"></div>
+
 
 <div id="r-result">
     <input type="button" onclick="showAll()" value="展示全部员工位置" />
@@ -32,6 +35,8 @@
     <input type="button" onclick="showError()" value="展示异常位置" />
 </div>
 </body>
+
+<%--选择展示位置员工的模态框--%>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -62,6 +67,8 @@
     // 百度地图API功能
     $(top.hangge());
     var points = [];
+
+    // 所有员工
     $.ajax({
         type : "post",
         async : true,
@@ -69,13 +76,15 @@
         dataType : "json",		//返回数据形式为json
         success : function(result) {
             if (result != null && result.length > 0) {
+                console.info("所有员工位置信息");
                 console.info(result);
-                $.each(result, function(index, content) {
+
+                $.each(result, function(index, content) {  //each循环，index表示下表，content表示对应下标的值
                     var str = "<tr>" +
                         "<td><input type='checkbox'name='workers' value='"+content.NAME+"'/></td>" +
                         "<td>"+content.NAME+"</td>" +
                         "</tr>";
-                    $("#worker").append(str);
+                    $("#worker").append(str);         //将所有员工信息放到模块框中
                     var point = {"lng":content.longitude,"lat":content.latitude,"url":"<%=basePath%>elecmap/detailPath.do?workerId="+content.USER_ID ,"id":content.id,"name":content.NAME,"phoneNum":content.PHONE};
                     points.push(point);
                 })
@@ -91,12 +100,15 @@
         $("#myModal").modal('show');
     }
 
+
+    //展示部分员工信息
     function showWorkers() {
         map.clearOverlays();
         var chk_value =[];
-        $('input[name="workers"]:checked').each(function(){
+        $('input[name="workers"]:checked').each(function(){  //根据单元框获取选中的用户
             chk_value.push($(this).val());
         });
+
         for (var j =0; j<chk_value.length; j++) {
             var name = chk_value[j];
             for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
@@ -117,15 +129,18 @@
         }
         $("#myModal").modal('hide');
     }
+
     var flag = 0;
     function showAll() {
-        flag = addMarker(points,flag);
+        flag = addMarker(points,flag);     //points之前获取的所有用户的信息
     }
+
     //创建标注点并添加到地图中
     function addMarker(points,flag) {
         if (flag == 0) {
             //循环建立标注点
             for(var i=0, pointsLen = points.length; i<pointsLen; i++) {
+
                 var point = new BMap.Point(points[i].lng, points[i].lat); //将标注点转化成地图上的点
                 /*            var myIcon = new BMap.Icon("http://7xic1p.com1.z0.glb.clouddn.com/markers.png", new BMap.Size(23, 25), {
                  // 指定定位位置
@@ -146,14 +161,18 @@
             }
             flag = 1;
         } else {
-            map.clearOverlays();
+            map.clearOverlays();       //清空点
             flag = 0;
         }
         return flag;
     }
+
+
     var errorIcon = new BMap.Icon('static/img/90.png', new BMap.Size(20, 32), {
         anchor: new BMap.Size(10, 30)
     });
+
+    //获取异常位置
     var exceptionPoints = [];
     $.ajax({	//使用JQuery内置的Ajax方法
         type: "post",		//post请求方式
@@ -162,6 +181,7 @@
         dataType: "json",		//返回数据形式为json
         success: function (exceptionList) {
             if (exceptionList != null && exceptionList.length > 0) {
+                console.info("异常位置");
                 console.info(exceptionList);
                 $.each(exceptionList, function(index, content) {
                     var point = {"jingdu":content.jingdu,"weidu":content.weidu,"report_worker":content.report_worker,
@@ -194,7 +214,7 @@
                     var thePoint = exceptionPoints[i];
                     marker.addEventListener("mouseover",
                         function() {
-                            showInfo1(this,thePoint);
+                            showInfo1(this,thePoint);       //鼠标悬停 展示信息
                         });
                 })();
             }

@@ -1,13 +1,12 @@
 package com.wp.util;
 
-import java.util.List;
-import java.util.Map;
-
+import com.wp.entity.system.Menu;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
-import com.wp.entity.system.Menu;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 权限处理
@@ -74,9 +73,8 @@ public class Jurisdiction {
 		//shiro管理的session
 		Subject currentUser = SecurityUtils.getSubject();  
 		Session session = currentUser.getSession();
-		Boolean b = true;
 		List<Menu> menuList = (List)session.getAttribute(Const.SESSION_allmenuList); //获取菜单列表
-		
+
 		for(int i=0;i<menuList.size();i++){
 			for(int j=0;j<menuList.get(i).getSubMenu().size();j++){
 				if(menuList.get(i).getSubMenu().get(j).getMENU_URL().split(".do")[0].equals(menuUrl.split(".do")[0])){

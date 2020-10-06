@@ -26,7 +26,7 @@
 
         //保存
         function save(){
-            if($("#name").val()==""){
+            /*if($("#name").val()==""){
                 $("#name").tips({
                     side:3,
                     msg:'请输入姓名',
@@ -45,7 +45,7 @@
                 });
                 $("#phone").focus();
                 return false;
-            }
+            }*/
             if($("#workshop").val()==""){
                 $("#workshop").tips({
                     side:3,
@@ -73,10 +73,22 @@
     <div id="zhongxin">
         <table id="table_report" class="table table-striped table-bordered table-hover">
             <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">所属工厂:</td>
+                <td><input style="width:95%;" type="text" name="factory" id="factory" value="${pd.factory}" maxlength="150" placeholder="这里输入所属工厂" title="" readonly/></td>
+            </tr>
+            <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">车间名称:</td>
                 <td><input style="width:95%;" type="text" name="workshop" id="workshop" value="${pd.workshop}" maxlength="100" placeholder="这里输入车间名称" title=""/></td>
             </tr>
+            <%--<tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">巡检区域:</td>
+                <td><input style="width:95%;" type="text" name="area" id="area" value="${pd.area}" maxlength="150" placeholder="这里输入巡检区域" title=""/></td>
+            </tr>
             <tr>
+                <td style="width:100px;text-align: right;padding-top: 13px;">巡检点:</td>
+                <td><input style="width:95%;" type="text" name="point" id="point" value="${pd.point}" maxlength="150" placeholder="这里输入巡检点" title=""/></td>
+            </tr>--%>
+           <%-- <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">姓名:</td>
                 <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="100" placeholder="这里输入姓名" title=""/></td>
             </tr>
@@ -87,7 +99,7 @@
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">职位:</td>
                 <td><input style="width:95%;" type="text" name="post" id="post" value="${pd.post}" maxlength="150" placeholder="这里输入职位" title=""/></td>
-            </tr>
+            </tr>--%>
 
 
             <div style=" clear:both; padding-top: 40px;"></div>

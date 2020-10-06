@@ -113,7 +113,7 @@
 		limit 0,1
 	</select>
 	
-	<!-- 列出K权限表里的数据 -->
+	<!-- 3  列出K权限表里的数据   表SYS_GL_QX  -->
 	<select id="listAllkefu"  parameterType="pd" resultType="pd" >
 		select 
 			GL_ID,
@@ -127,7 +127,7 @@
 		from SYS_GL_QX
 	</select>
 	
-	<!-- 列出G权限表里的数据 -->
+	<!-- 列出G权限表里的数据  SYS_USER_QX -->
 	<select id="listAllGysQX"  parameterType="pd" resultType="pd" >
 		select 
 			U_ID,
@@ -196,7 +196,8 @@
 		set FW_QX=#{value} 
 		where GL_ID=#{kefu_id}
 	</update>
-	
+
+<!--PARENT_ID = '0' 是超级管理员，1	-->
 	<select id="listAllRoles" resultMap="roleResultMap">
 		select 
 			ROLE_ID,
@@ -212,7 +213,8 @@
 		where PARENT_ID = '0'
 		ORDER BY ROLE_ID
 	</select>
-	
+
+<!--PARENT_ID = #{ROLE_ID}	2  -->
 	<select id="listAllRolesByPId" resultMap="roleResultMap">
 		select 
 			ROLE_ID,
@@ -230,7 +232,7 @@
 		ORDER BY ROLE_ID
 	</select>
 	
-
+<!--5.遍历角色-->
 	<select id="getRoleById" parameterType="String" resultMap="roleResultMap">
 		select * from SYS_ROLE 
 		where ROLE_ID=#{roleId}
@@ -318,7 +320,9 @@
 			DEL_QX,
 			EDIT_QX,
 			CHA_QX,
-			QX_ID
+			QX_ID,
+			factory_id,
+            level
 		) values (
 			#{ROLE_ID},
 			#{ROLE_NAME},
@@ -328,11 +332,13 @@
 			#{DEL_QX},
 			#{EDIT_QX},
 			#{CHA_QX},
-			#{QX_ID}
+			#{QX_ID},
+			#{factory_id},
+			#{level}
 		)
 	</insert>
 	
-	<!-- 通过id查找 -->
+	<!--4. 通过id查找 -->
 	<select id="findObjectById" parameterType="pd" resultType="pd">
 		select  
 			ROLE_ID,
@@ -350,7 +356,7 @@
 		<!-- 编辑角色 -->
 	<update id="edit" parameterType="pd">
 		update SYS_ROLE 
-		set ROLE_NAME = #{ROLE_NAME}
+		set ROLE_NAME = #{ROLE_NAME},level = #{level}
 		where ROLE_ID = #{ROLE_ID}
 	</update>
 </mapper>

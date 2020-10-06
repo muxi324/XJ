@@ -2,7 +2,6 @@ package com.wp.service.taskmag;
 
 import com.wp.dao.DaoSupport;
 import com.wp.entity.Page;
-import com.wp.entity.house.House;
 import com.wp.util.PageData;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +23,10 @@ public class TaskSetService {
         dao.save("TaskSetMapper.save", pd);
     }
 
+    public void save1(PageData pd)throws Exception{
+        dao.save("TaskSetMapper.save1", pd);
+    }
+
     /*
     * 删除
     */
@@ -35,6 +38,12 @@ public class TaskSetService {
     */
     public void edit(PageData pd)throws Exception{
         dao.update("TaskSetMapper.edit", pd);
+    }
+    /*
+  * 修改状态
+  */
+    public void editStatus(PageData pd)throws Exception{
+        dao.update("TaskSetMapper.editStatus", pd);
     }
 
     /*
@@ -49,6 +58,13 @@ public class TaskSetService {
     */
     public PageData findById(PageData pd)throws Exception{
         return (PageData)dao.findForObject("TaskSetMapper.findById", pd);
+    }
+
+    /*
+     *查询对应的set_id
+     */
+    public PageData findById1(PageData pd)throws Exception{
+        return (PageData)dao.findForObject("TaskSetMapper.findById1", pd);
     }
 
     /*

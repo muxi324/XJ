@@ -1,7 +1,7 @@
 ﻿<div class="navbar navbar-inverse">
 	<div class="navbar-inner">
 		<div class="container-fluid">
-			<a class="brand"><small><i class="icon-leaf"></i> ${pd.SYSNAME}</small> </a>
+			<a class="brand"><small>  <img src="static/images/xun.png" style="width:24px;height:24px" alt=""></i> ${pd.SYSNAME}</small> </a>
 
 			<ul class="nav ace-nav pull-right">
 
@@ -139,7 +139,69 @@
 					</a>
 				</li>--%>
 
+                    <%--<li class="green">--%>
+                        <%--<a href="javascript:alert('预留功能,待开发');" class="dropdown-toggle" data-toggle="dropdown">--%>
+                            <%--<i class="icon-envelope-alt icon-animated-vertical icon-only"></i>--%>
+                            <%--<span class="badge badge-success" style="background:red!important;">5</span>--%>
+                        <%--</a>--%>
+                        <%--<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">--%>
+                            <%--<li class="nav-header">--%>
+                                <%--<i class="icon-envelope"></i> <span>5</span>条异常告警--%>
+                            <%--</li>--%>
+                            <%--<li>--%>
+                                <%--<a href="javascript:alert('预留功能,待开发');">--%>
+                                    <%--<img alt="Alex's Avatar" style="width: 42px;height: 42px" class="msg-photo" src="static/img/baojing1.png" />--%>
+                                    <%--<span class="msg-body">--%>
+										<%--<span class="msg-title">--%>
+											<%--<span class="blue">车间1:</span>--%>
+											<%--已经坏了--%>
+										<%--</span>--%>
+										<%--<span class="msg-time">--%>
+											<%--<i class="icon-time"></i> <span>2018-11-01 10:39:34</span>--%>
+										<%--</span>--%>
+									<%--</span>--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
+                            <%--<li>--%>
+                                <%--<a href="javascript:alert('预留功能,待开发');">--%>
+                                    <%--<img alt="Alex's Avatar" style="width: 42px;height: 42px" class="msg-photo" src="static/img/wenti.png" />--%>
+                                    <%--<span class="msg-body">--%>
+										<%--<span class="msg-title">--%>
+											<%--<span class="blue">车间1:</span>--%>
+											<%--发动机不发动--%>
+										<%--</span>--%>
+										<%--<span class="msg-time">--%>
+											<%--<i class="icon-time"></i> <span>2018-11-01 10:39:34</span>--%>
+										<%--</span>--%>
+									<%--</span>--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
 
+                            <%--<li>--%>
+                                <%--<a href="javascript:alert('预留功能,待开发');">--%>
+                                    <%--<img alt="Alex's Avatar" style="width: 42px;height: 42px" class="msg-photo" src="static/img/yinhuan.png" />--%>
+                                    <%--<span class="msg-body">--%>
+										<%--<span class="msg-title">--%>
+											<%--<span class="blue">车间1:</span>--%>
+											<%--可能会坏--%>
+										<%--</span>--%>
+										<%--<span class="msg-time">--%>
+											<%--<i class="icon-time"></i> <span>2018-11-01 10:39:34</span>--%>
+										<%--</span>--%>
+									<%--</span>--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
+
+
+                            <%--<li>--%>
+                                <%--<a href="javascript:alert('预留功能,待开发');">--%>
+                                    <%--查看所有告警信息--%>
+                                    <%--<i class="icon-arrow-right"></i>--%>
+                                <%--</a>--%>
+                            <%--</li>--%>
+
+                        <%--</ul>--%>
+                    <%--</li>--%>
 				<li class="light-blue user-profile">
 					<a class="user-menu dropdown-toggle" href="javascript:;" data-toggle="dropdown">
 						<img alt="FH" src="static/avatars/user.jpg" class="nav-user-photo" />

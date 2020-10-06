@@ -20,7 +20,7 @@
     <%@ include file="../system/admin/top.jsp"%>
     <link rel="stylesheet" href="static/css/bootstrap-datetimepicker.min.css" /><!-- 日期框 -->
     <link rel="stylesheet" type="text/css" href="plugins/webuploader/webuploader.css" />
-    <link rel="stylesheet" type="text/css" href="plugins/webuploader/style.css" />
+<%--    <link rel="stylesheet" type="text/css" href="plugins/webuploader/style.css" />--%>
 </head>
 <body>
 <form action="sendtask/sendTask.do" id="Form"   method="post">
@@ -124,10 +124,12 @@
                            <td style="width:110px;text-align: right;padding-top: 13px;">异常id:</td>
                            <td><input type="text" name="exceptionId" id="exceptionId" value="${pd.id}"/> <!--异常id--></td>
                        </tr>
-                    <tr>
-                        <td style="width:110px;text-align: right;padding-top: 13px;">异常所属巡检事件id:</td>
-                        <td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""/></td>
-                    </tr>
+
+                    <%--<tr>--%>
+                        <%--<td style="width:110px;text-align: right;padding-top: 13px;">维修任务事件id:</td>--%>
+                        <%--<td><input style="width:90%;" type="text" name="event" id="event" value="${pd.event}" maxlength="200"  title=""/></td>--%>
+                    <%--</tr>--%>
+
                    <tr>
                         <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                         <td><input style="width:90%;" type="text" name="instrument_place" id="instrument_place" value="${pd.instrument_place}" maxlength="200"  title=""/></td>
@@ -188,6 +190,72 @@
                         </td>
                     </tr>
                 </table>
+
+        <%-- 新增--%>
+        <h3 style="padding-left:20px;padding-top: 13px;">选择事件</h3>
+        <div id="page-content" class="clearfix">
+            <div class="row-fluid">
+                <!-- 表格  -->
+                <table id="table_report1" class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th class="center">
+                            <%--<label><input type="checkbox" name= "check_id" id="zcheckbox" /><span class="lbl"></span></label>--%>
+                            选择
+                        </th>
+                        <%--<th class="center">选择</th>--%>
+                        <th class="center">序号</th>
+                        <th class="center">所属车间</th>
+                        <%--<th class="center">所属巡检区域</th>
+                        <th class="center">所属巡检点</th>--%>
+                        <th class="center">事件名称</th>
+                        <th class="center">具体位置</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- 开始循环 -->
+                    <c:choose>
+                        <c:when test="${not empty varList}">
+                            <c:if test="${QX.cha == 1 }">
+                                <c:forEach items="${varList}" var="var" varStatus="vs">
+                                    <tr>
+                                        <td class='center' style="width: 28px;">
+                                            <label><input type='checkbox' id="${var.event_id}" name='event' value="${var.event_id}"/><span class="lbl"></span></label>
+                                        </td>
+                                        <td class='center' style="width: 28px;">${vs.index+1}</td>
+                                        <td style="width: 60px;" class="center"> ${var.workshop}</td>
+                                            <%--<td style="width: 139px;" class="center">${var.check_scope}</td>
+                                            <td style="width: 60px;" class="center">${var.check_point}</td>--%>
+                                        <td style="width: 90px;" class="center">${var.event_name}</td>
+                                        <td style="width: 140px;" class="center">${var.instrument_place}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${QX.cha == 0 }">
+                                <tr>
+                                    <td colspan="100" class="center">您无权查看</td>
+                                </tr>
+                            </c:if>
+                        </c:when>
+                        <c:otherwise>
+                            <tr class="main_info">
+                                <td colspan="100" class="center" >没有相关数据</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
+                    </tbody>
+                </table>
+                <div class="page-header position-relative">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="vertical-align:top;"><div class="pagination" style="float: right;padding-top: 0px;margin-top: 0px;">${page.pageStr}</div></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <%-- 结束--%>
+
          <%--  <h3 style="padding-left:20px;padding-top: 13px;">所用物资</h3>
             <div class="page-header position-relative">
                 <table style="width:100%;">
@@ -264,26 +332,38 @@
     });
     //保存
     function save(){
-        if($("#worker_name").val()==""){
-            $("#worker_name").tips({
-                side:3,
-                msg:'请选择检修员工姓名',
-                bg:'#AE81FF',
-                time:2
-            });
-            $("#worker_name").focus();
-            return false;
-        }
-        if($("#mission").val()==""){
-            $("#mission").tips({
+
+        if($("#mission_name").val()==""){
+            $("#mission_name").tips({
                 side:3,
                 msg:'请输入任务名称',
                 bg:'#AE81FF',
                 time:2
             });
-            $("#mission").focus();
+            $("#mission_name").focus();
             return false;
         }
+        if($("#team_id").val()==""){
+            $("#team_id").tips({
+                side:3,
+                msg:'请选择任务级别',
+                bg:'#AE81FF',
+                time:2
+            });
+            $("#team_id").focus();
+            return false;
+        }
+        // if($("#worker_name").val()==""){
+        //     $("#worker_name").tips({
+        //         side:3,
+        //         msg:'请选择检修员工姓名',
+        //         bg:'#AE81FF',
+        //         time:2
+        //     });
+        //     $("#worker_name").focus();
+        //     return false;
+        // }
+
         $("#Form").submit();
         $("#zhongxin").hide();
         $("#zhongxin2").show();

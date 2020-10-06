@@ -30,16 +30,17 @@ public class MenuController extends BaseController {
 	
 	/**
 	 * 显示菜单列表
-	 * @param model
+	 * @param
 	 * @return
 	 */
 	@RequestMapping
 	public ModelAndView list()throws Exception{
 		ModelAndView mv = this.getModelAndView();
 		try{
-			List<Menu> menuList = menuService.listAllParentMenu();
+			List<Menu> menuList = menuService.listAllParentMenu();        //获取所有父级菜单
 			mv.addObject("menuList", menuList);
 			mv.setViewName("system/menu/menu_list");
+
 		} catch(Exception e){
 			logger.error(e.toString(), e);
 		}
@@ -49,7 +50,7 @@ public class MenuController extends BaseController {
 	
 	/**
 	 * 请求新增菜单页面
-	 * @param model
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value="/toAdd")
@@ -68,7 +69,7 @@ public class MenuController extends BaseController {
 	/**
 	 * 保存菜单信息
 	 * @param menu
-	 * @param model
+	 * @param
 	 * @return
 	 */
 	@RequestMapping(value="/add")
@@ -181,7 +182,6 @@ public class MenuController extends BaseController {
 				PARENT_ID = "0";
 				pd.put("PARENT_ID", PARENT_ID);
 			}
-			
 			if("0".equals(PARENT_ID)){
 				//处理菜单类型====
 				menuService.editType(pd);
@@ -200,7 +200,7 @@ public class MenuController extends BaseController {
 	
 	/**
 	 * 获取当前菜单的所有子菜单
-	 * @param menuId
+	 * @param
 	 * @param response
 	 */
 	@RequestMapping(value="/sub")
@@ -208,9 +208,10 @@ public class MenuController extends BaseController {
 		try {
 			List<Menu> subMenu = menuService.listSubMenuByParentId(MENU_ID);
 			JSONArray arr = JSONArray.fromObject(subMenu);
+
+			//页面显示
 			PrintWriter out;
-			
-			response.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");//防止乱码
 			out = response.getWriter();
 			String json = arr.toString();
 			out.write(json);
@@ -223,7 +224,7 @@ public class MenuController extends BaseController {
 	
 	/**
 	 * 删除菜单
-	 * @param menuId
+	 * @param
 	 * @param out
 	 */
 	@RequestMapping(value="/del")
@@ -237,6 +238,7 @@ public class MenuController extends BaseController {
 		} catch(Exception e){
 			logger.error(e.toString(), e);
 		}
-		
 	}
+
+
 }

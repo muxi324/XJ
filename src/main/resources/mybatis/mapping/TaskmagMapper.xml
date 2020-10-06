@@ -100,13 +100,15 @@
         and mission_condition in(1,2,3,4,5)
         order by id desc
     </select>
+
     <!--巡检任务-->
     <select id="getWorkContent" parameterType="pd" resultType="pd" useCache="false">
         select * from mission_feedback where mission_id = #{mission_id} and event_id = #{event_id}
     </select>
+
     <!--维修任务-->
     <select id="getWorkContentById" parameterType="pd" resultType="pd" useCache="false">
-        select * from mission_feedback where mission_id = #{mission_id}
+        select * from mission_feedback where mission_id = #{id}
         <if test="event != null and event != ''">
         and event_id = #{event}
         </if>
@@ -117,5 +119,10 @@
         auditor_opinion=#{opinion}, auditor = #{auditor}, auditor_time = #{auditor_time}
          where id = #{missionId}
     </update>
+
+    <!--事件运行情况-->
+    <select id="eventyunxinglistPage" parameterType="Page" resultType="pd" useCache="false">
+        select * from mission_feedback where event_id = #{pd.eventId})
+    </select>
 
 </mapper>

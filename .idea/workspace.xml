@@ -1,132 +1,460 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="XJ:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0a68479-2650-4f68-9d02-78188a013099" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/PartsMagController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/materialmag/PartsMagService.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/PartsMagMapper.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_add.jsp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_decrease.jsp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input_history.jsp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_mag.jsp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_output_history.jsp" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/lockmag/lockmag.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/lockmag/lockmag.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/select_material.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/select_material.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/sendtask/SendTaskController.class" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/sendtask/SendTaskController.class" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/AreaMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/AreaMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/PiontMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/PiontMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/sendtask/SendTaskController.class" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/sendtask/SendTaskController.class" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/AreaMapper.xml" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/AreaMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/PiontMapper.xml" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/PiontMapper.xml" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/area_edit.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/area_edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_area.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_area.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_point.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_point.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/point_edit.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/point_edit.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/exception/exceptionInfo.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/exception/exceptionInfo.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/lockmag/lockmag.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/lockmag/lockmag.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/select_material.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/select_material.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask1.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask1.jsp" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask2.jsp" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask2.jsp" />
+    <list default="true" id="075e5589-ba24-4451-99c0-4d6c82ad2f51" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/event/WorkController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/meterinfo/MeterCompanyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/meterinfo/MeterController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RolesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/yunxing/YunxingController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/echarts/echartsModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/meterinfo/MeterCompany.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/meterinfo/meter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Roles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/yunxing/YunxingInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/yunxinginfo/Mission_feedback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/event/WorkService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/meterinfo/MeterCompanyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/meterinfo/MeterService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/role/RolesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/yunxing/YunXingService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/HttpOutUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/groupYunxing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/MeterCompanyMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/MeterMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/Mission_feedbackMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/WorkContentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/YunxingMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/authorization_s.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/meter.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/meter_edit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/metercom_edit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/metercompany.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/meterdetail.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/zhexian.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask3.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/roles_button.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/roles_edit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/roles_list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/workManage/addWorkContent.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/workManage/workManage.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/yunxing/EventYunxingInfo.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/yunxing/yunxingInfo.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/ace-rtl.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/ace-skins.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/ace.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/js/ace-extra.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/layer/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/css/ace-rtl.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/Excel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/erweima.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/fuzhi1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/xiafa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/xun.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/xunjian.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/zanting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/echarts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/use/zhexian.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/XJ_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/XJ_war.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/XJ_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/XJ_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__asm_asm_3_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__asm_asm_3_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_nodep_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_nodep_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_9.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_4_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_4_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_discovery_commons_discovery_0_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_discovery_commons_discovery_0_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_httpclient_commons_httpclient_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_httpclient_commons_httpclient_3_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_jaxrpc_api_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_jaxrpc_api_1_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jstl_jstl_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jstl_jstl_1_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_34.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_34.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_6_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_6_9.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_axis_axis_1_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_axis_axis_1_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_3_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_3_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_3_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_3_6.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_james_apache_mime4j_0_6_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_james_apache_mime4j_0_6_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_7_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_7_4.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_21.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_2_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_2_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_2_0.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_9.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_9.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_dao_2_0_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_dao_2_0_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_mock_2_0_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_mock_2_0_8.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_0_4_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__taglibs_standard_1_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__taglibs_standard_1_1_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__wsdl4j_wsdl4j_1_6_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__wsdl4j_wsdl4j_1_6_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XJ.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/AppuserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/DictionariesMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/MenuMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/RoleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/UserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/UserXMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/base/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/base/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/FactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/FactoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/TeamController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/WorkshopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/WorkshopController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/echarts/RecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/echarts/RecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/elecmap/ElecMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/elecmap/ElecMapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/event/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/event/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/exception/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/exception/ExceptionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/PartsMagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/PartsMagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/ToolsMagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/ToolsMagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/querytask/QueryTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/querytask/QueryTaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendPeriodTaskJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendPeriodTaskJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendTaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/menu/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/menu/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskMagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskMagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskSetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskSetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/dao/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/databank/Workshop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/databank/Workshop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/eventInfo/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/eventInfo/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/interceptor/shiro/ShiroRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/interceptor/shiro/ShiroRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/FactoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/FactoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/WorkshopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/WorkshopService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/event/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/event/EventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/materialmag/PartsMagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/materialmag/PartsMagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/system/menu/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/menu/MenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/system/role/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/role/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/system/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskMagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskMagService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskSetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskSetService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/Const.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/FactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/FactoryUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/Jurisdiction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/Jurisdiction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/ObjectExcelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/ObjectExcelView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/quartz/QuartzManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/quartz/QuartzManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/controllerTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/docTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/jsp_edit_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/jsp_list_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/mapperMysqlTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/mapperOracleTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/mysql_SQL_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/oracle_SQL_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/serviceTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/EventMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/EventMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/PartsMagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/PartsMagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/SysUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/SysUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskSetMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskSetMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskmagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskmagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/ToolsMagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/ToolsMagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/WorkshopMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/WorkshopMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/MenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/RoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/ApplicationContext-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ApplicationContext-mvc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/ApplicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ApplicationContext.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/java/TestByXm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/dbconfig.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ehcache.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/controllerTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/docTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/jsp_edit_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/jsp_list_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/mapperMysqlTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/mapperOracleTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/mysql_SQL_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/oracle_SQL_Template.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/serviceTemplate.ftl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/log4j.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/information/PicturesMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/mybatis-config.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/AppuserMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/DictionariesMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/MenuMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/RoleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/RolesMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/weixin/CommandMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/weixin/ImgmsgMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/weixin/TextmsgMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring/ApplicationContext-mvc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring/ApplicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/team.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/team.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/workshop.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/workshop.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/elecmap/elecmap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/elecmap/elecmap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/exception/exceptionDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/exception/exceptionDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_decrease.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_decrease.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input_history.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_mag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_mag.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_output_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_output_history.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_decrease.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_decrease.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input_history.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_mag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_mag.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_output_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_output_history.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/querytask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/querytask.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/task_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/task_detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/save_result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/save_result.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask1.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask2.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/default.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/default.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/head.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/left.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/tab.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/tab.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/top.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_button.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_button.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/WorkContentDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/WorkContentDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addEvent.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addEvent.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addWorkContent.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addWorkContent.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/eventManage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/eventManage.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/qrCode.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/qrCode.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/refuse_task1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/refuse_task1.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_set.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_set.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/workcontentdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/workcontentdetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/json-lib-2.4-jdk15.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/plugins/ueditor/ueditor.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/plugins/ueditor/ueditor.all.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/base/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/base/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/AreaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/AreaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/PointController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/PointController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/WorkshopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/WorkshopController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/echarts/RecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/echarts/RecordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/elecmap/ElecMapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/elecmap/ElecMapController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/exception/ExceptionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/exception/ExceptionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/querytask/QueryTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/querytask/QueryTaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/sendtask/SendTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/sendtask/SendTaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/login/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/login/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/menu/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/menu/MenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/role/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/role/RoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/taskmag/TaskMagController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/taskmag/TaskMagController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/worker/WorkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/worker/WorkerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/Page.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/system/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/system/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/interceptor/shiro/ShiroRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/interceptor/shiro/ShiroRealm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/databank/WorkshopService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/databank/WorkshopService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/echarts/RecordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/echarts/RecordService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/elecmap/ElecMapService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/elecmap/ElecMapService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/exception/ExceptionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/exception/ExceptionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/sendtask/SendTaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/sendtask/SendTaskService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/system/menu/MenuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/system/menu/MenuService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/system/role/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/system/role/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/system/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/system/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/taskmag/TaskMagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/taskmag/TaskMagService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/worker/WorkerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/worker/WorkerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/Const.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/Jurisdiction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/Jurisdiction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/ObjectExcelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/ObjectExcelView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/PageData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/PageData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/TwoDimensionCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/TwoDimensionCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/ElecMapMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/ElecMapMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/ExceptionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/ExceptionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/QueryTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/QueryTaskMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/RecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/RecordMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/SendTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/SendTaskMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/TaskmagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/TaskmagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkerMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkshopMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkshopMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/MenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/RoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/UserXMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/UserXMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/ApplicationContext-mvc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/spring/ApplicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/base/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/base/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/AreaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/AreaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/PointController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/PointController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/WorkshopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/WorkshopController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/echarts/RecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/echarts/RecordController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/elecmap/ElecMapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/elecmap/ElecMapController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/exception/ExceptionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/exception/ExceptionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/querytask/QueryTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/querytask/QueryTaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/sendtask/SendTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/sendtask/SendTaskController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/login/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/login/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/menu/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/menu/MenuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/role/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/role/RoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/user/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/taskmag/TaskMagController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/taskmag/TaskMagController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/worker/WorkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/worker/WorkerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/Page.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/interceptor/shiro/ShiroRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/interceptor/shiro/ShiroRealm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/databank/WorkshopService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/databank/WorkshopService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/echarts/RecordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/echarts/RecordService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/elecmap/ElecMapService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/elecmap/ElecMapService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/exception/ExceptionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/exception/ExceptionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/sendtask/SendTaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/sendtask/SendTaskService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/menu/MenuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/menu/MenuService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/role/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/role/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/taskmag/TaskMagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/taskmag/TaskMagService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/worker/WorkerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/worker/WorkerService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Const.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Jurisdiction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Jurisdiction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/ObjectExcelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/ObjectExcelView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/PageData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/PageData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/TwoDimensionCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/TwoDimensionCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/dbconfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/dbconfig.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/log4j.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/information/PicturesMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ElecMapMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ElecMapMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ExceptionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ExceptionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/QueryTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/QueryTaskMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/RecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/RecordMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/SendTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/SendTaskMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/TaskmagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/TaskmagMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkerMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkshopMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkshopMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/MenuMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/RoleMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserXMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserXMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/weixin/CommandMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/weixin/ImgmsgMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/weixin/TextmsgMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/spring/ApplicationContext-mvc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/spring/ApplicationContext.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_area.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_area.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_point.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_point.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop_edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/detailPath.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/detailPath.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/elecmap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/elecmap.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/errorDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/errorDetail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/exception/exceptionInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/exception/exceptionInfo.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/querytask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/querytask.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/task_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/task_detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/save_result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/save_result.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask1.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask2.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/default.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/default.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/head.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/left.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/tab.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/tab.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/top.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_button.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_button.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/refuse_task1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/refuse_task1.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/task_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/task_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/lib/json-lib-2.4-jdk15.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/lib/junit-3.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/plugins/ueditor/ueditor.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/plugins/ueditor/ueditor.all.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/static/css/bootstrap-datetimepicker.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/static/css/bootstrap-datetimepicker.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/static/js/bootstrap-datetimepicker.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/static/js/bootstrap-datetimepicker.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/uploadFiles/file/Workers.xls" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/uploadFiles/file/Workers.xls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/xunjian/uploadFiles/uploadImgs/head_pic/20180315/4ad11dc60c5045f6a770e860336ab2e5.jpg" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="addEvent.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addEvent.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="53" column="117" lean-forward="false" selection-start-line="53" selection-start-column="117" selection-end-line="53" selection-end-column="117" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addWorkContent.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addWorkContent.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-75">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#0;n#tr#5;n#table#0;n#div#0;n#form#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="1483" column="10" lean-forward="false" selection-start-line="1483" selection-start-column="10" selection-end-line="1483" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
-        <option value="Jsp File" />
+        <option value="jsf" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>druid/index.html</find>
-      <find>setAllRights</find>
-      <find>saveGYSQX</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GradleLocalSettings">
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/wp/service/event/EventService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapping/EventMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/eventManage.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wp/controller/event/EventController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addEvent.jsp" />
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/select_material.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input_history.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_output_history.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/lockmag/lockmag.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_mag.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_add.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_decrease.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wp/service/materialmag/PartsMagService.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/mapping/PartsMagMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/PartsMagController.java" />
-      </list>
-    </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -135,183 +463,73 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="width" value="1366" />
-    <option name="height" value="728" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="XJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xunjian" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="XJ" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xunjian" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
-      <pane id="Scope" />
-    </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="D:/IDEA/java" />
-    <property name="js.eslint.eslintPackage" value="" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
-    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\workshop\xunjian\src\main\webapp\WEB-INF\jsp\materialmag" />
-      <recent name="F:\workshop\xunjian\src\main\resources\mybatis\mapping" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProjectId" id="1hfne3ev1ReCUM8kTuWXWklZ1dk" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1599221636315" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15625" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="spring" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\admin\xunjian_project\xunjian-master\src\main\resources" />
+      <recent name="E:\admin\xunjian_project\xunjian-master\src\main\resources\spring" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.wp.entity.system" />
+      <recent name="com.wp.service.system.role" />
+      <recent name="com.wp.controller.system.role" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\admin\xunjian_project\xunjian-master\src\main\resources\ftl\createCode" />
+      <recent name="E:\admin\巡检代码\xunjian-master\src\main\webapp\WEB-INF\jsp\system\user" />
+      <recent name="E:\admin\巡检代码\xunjian-master\src\main\webapp\WEB-INF\jsp\system\role" />
+      <recent name="E:\admin\巡检代码\xunjian-master\src\main\webapp\WEB-INF\jsp" />
+      <recent name="E:\admin\巡检代码\xunjian-master\src\main\resources\mybatis\system" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <module />
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
-      <setting name="vmparams" value="" />
-      <setting name="cmdLine" value="run-app" />
-      <setting name="passParentEnv" value="true" />
-      <setting name="launchBrowser" value="true" />
-      <setting name="launchBrowserUrl" value="" />
-      <setting name="depsClasspath" value="false" />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-    </configuration>
-    <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.38" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="D:\Java\jdk1.8.0_251\jre">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/XJ_war_exploded/" />
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="XJ:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/" />
+            <option name="CONTEXT_PATH" value="/XJ_war_exploded" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="Unnamed_XJ_5" />
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_XJ_4" />
       </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="5891" />
+        <option name="DEBUG_PORT" value="59539" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -358,825 +576,205 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <method>
+      <method v="2">
+        <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="XJ:war exploded" />
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
-    </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="" />
-      <option name="DEPLOY" value="true" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="PM_INSTALL_OPTIONS" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Java" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <Java />
-      <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
-        <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
-      </Profilers>
-      <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
-      <module name="" />
-      <option name="TESTING_TYPE" value="0" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
-      <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="DEBUGGER_TYPE" value="Java" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <Java />
-      <Profilers>
-        <option name="ENABLE_ADVANCED_PROFILING" value="true" />
-        <option name="GAPID_ENABLED" value="false" />
-        <option name="GAPID_DISABLE_PCS" value="false" />
-        <option name="SUPPORT_LIB_ENABLED" value="true" />
-        <option name="INSTRUMENTATION_ENABLED" value="true" />
-      </Profilers>
-      <method />
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Cold Fusion runner description" factoryName="Cold Fusion" custom_browser="" web_path="">
-      <method />
-    </configuration>
-    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="myFilePath" />
-      <option name="GLUE" />
-      <option name="myNameFilter" />
-      <option name="myGeneratedName" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
-      <option name="BCName" value="" />
-      <option name="IOSSimulatorSdkPath" value="" />
-      <option name="adlOptions" value="" />
-      <option name="airProgramParameters" value="" />
-      <option name="appDescriptorForEmulator" value="Android" />
-      <option name="debugTransport" value="USB" />
-      <option name="debuggerSdkRaw" value="BC SDK" />
-      <option name="emulator" value="NexusOne" />
-      <option name="emulatorAdlOptions" value="" />
-      <option name="fastPackaging" value="true" />
-      <option name="fullScreenHeight" value="0" />
-      <option name="fullScreenWidth" value="0" />
-      <option name="launchUrl" value="false" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="mobileRunTarget" value="Emulator" />
-      <option name="moduleName" value="" />
-      <option name="overriddenMainClass" value="" />
-      <option name="overriddenOutputFileName" value="" />
-      <option name="overrideMainClass" value="false" />
-      <option name="runTrusted" value="true" />
-      <option name="screenDpi" value="0" />
-      <option name="screenHeight" value="0" />
-      <option name="screenWidth" value="0" />
-      <option name="url" value="http://" />
-      <option name="usbDebugPort" value="7936" />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="newPlayerInstance" value="false" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list />
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JarApplication" factoryName="JAR Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="SCRATCH_FILE_ID" value="0" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="XJ" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
-      <method />
-    </configuration>
-    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-    </configuration>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c0a68479-2650-4f68-9d02-78188a013099" name="Default" comment="" />
-      <created>1521638245971</created>
+      <changelist id="075e5589-ba24-4451-99c0-4d6c82ad2f51" name="Default Changelist" comment="" />
+      <created>1599200491042</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1521638245971</updated>
-      <workItem from="1521638279248" duration="1209000" />
-      <workItem from="1521678700721" duration="4042000" />
-      <workItem from="1521765350728" duration="4429000" />
-      <workItem from="1521863288442" duration="7482000" />
-      <workItem from="1522025319890" duration="1164000" />
-      <workItem from="1522149510423" duration="19701000" />
-      <workItem from="1522284431061" duration="13672000" />
-      <workItem from="1522399130868" duration="1203000" />
-      <workItem from="1522497404180" duration="2807000" />
-      <workItem from="1522504869181" duration="2783000" />
+      <updated>1599200491042</updated>
+      <workItem from="1599200494913" duration="16834000" />
+      <workItem from="1600411107235" duration="1009000" />
+      <workItem from="1600435078006" duration="8285000" />
+      <workItem from="1600474757225" duration="4332000" />
+      <workItem from="1600482033730" duration="2092000" />
+      <workItem from="1600493387018" duration="118000" />
+      <workItem from="1600495236163" duration="2421000" />
+      <workItem from="1600505523771" duration="164000" />
+      <workItem from="1600513707350" duration="4917000" />
+      <workItem from="1600519036418" duration="5533000" />
+      <workItem from="1600660720351" duration="757000" />
+      <workItem from="1600667109008" duration="7205000" />
+      <workItem from="1600685149241" duration="9131000" />
+      <workItem from="1600739272886" duration="3557000" />
+      <workItem from="1600744141059" duration="1628000" />
+      <workItem from="1600755223256" duration="9095000" />
+      <workItem from="1600764665024" duration="1879000" />
+      <workItem from="1600779133011" duration="8585000" />
+      <workItem from="1600823290301" duration="9578000" />
+      <workItem from="1600845050224" duration="8324000" />
+      <workItem from="1600871051477" duration="3332000" />
+      <workItem from="1600908478590" duration="10512000" />
+      <workItem from="1600926551563" duration="4363000" />
+      <workItem from="1600951341349" duration="320000" />
+      <workItem from="1600951963344" duration="2912000" />
+      <workItem from="1600994465050" duration="29000" />
+      <workItem from="1601015418134" duration="2615000" />
+      <workItem from="1601018764990" duration="7599000" />
+      <workItem from="1601045085119" duration="189000" />
+      <workItem from="1601961527667" duration="2726000" />
+      <workItem from="1601964439495" duration="56000" />
+      <workItem from="1601964528477" duration="20000" />
+      <workItem from="1601964644294" duration="14000" />
+      <workItem from="1601964739907" duration="97000" />
+      <workItem from="1601964902297" duration="27000" />
+      <workItem from="1601964985001" duration="717000" />
+      <workItem from="1601965749419" duration="40000" />
+      <workItem from="1601965813271" duration="18000" />
+      <workItem from="1601965851627" duration="45000" />
+      <workItem from="1601965917997" duration="21000" />
+      <workItem from="1601965958547" duration="79000" />
+      <workItem from="1601966050202" duration="38000" />
+      <workItem from="1601966158137" duration="10000" />
+      <workItem from="1601966183227" duration="12000" />
+      <workItem from="1601966443450" duration="3566000" />
+      <workItem from="1601970085816" duration="7385000" />
+      <workItem from="1601977565827" duration="12000" />
+      <workItem from="1601977600783" duration="922000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72258000" />
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
-    <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17631225" sideWeight="0.5057307" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2987887" sideWeight="0.49426934" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2722063" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25572005" sideWeight="0.5028653" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924962" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.88907564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32436976" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5652759" sideWeight="0.49713466" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22511485" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-    </layout>
-    <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25572005" sideWeight="0.5028653" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47240916" sideWeight="0.49713466" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.060888253" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RoleController.java</url>
-          <line>72</line>
-          <properties />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="7" />
-    </breakpoint-manager>
-    <watches-manager />
-  </component>
-  <component name="antWorkspaceConfiguration">
-    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
-    <option name="FILTER_TARGETS" value="false" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addEvent.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="53" column="117" lean-forward="false" selection-start-line="53" selection-start-column="117" selection-end-line="53" selection-end-column="117" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/exception/ExceptionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/tools/twoDimensionCode.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/util/Const.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="61" lean-forward="false" selection-start-line="9" selection-start-column="61" selection-end-line="9" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1023">
-          <caret line="52" column="81" lean-forward="false" selection-start-line="52" selection-start-column="81" selection-end-line="52" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/static/js/myjs/head.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1431">
-          <caret line="19" column="32" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/system/tools/ToolController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="34" column="37" lean-forward="false" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/eventManage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7752">
-          <caret line="334" column="0" lean-forward="false" selection-start-line="334" selection-start-column="0" selection-end-line="334" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskMagController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="68" column="57" lean-forward="true" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/event/EventController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="28" column="41" lean-forward="false" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/UserXMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7290">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/RoleMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7695">
-          <caret line="285" column="25" lean-forward="false" selection-start-line="285" selection-start-column="16" selection-end-line="285" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/service/system/role/RoleService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3807">
-          <caret line="149" column="4" lean-forward="false" selection-start-line="149" selection-start-column="4" selection-end-line="149" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RoleController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4455">
-          <caret line="189" column="89" lean-forward="false" selection-start-line="189" selection-start-column="80" selection-end-line="189" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#11040#11055#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/ApplicationContext-mvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="13" column="29" lean-forward="false" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8046">
-          <caret line="298" column="13" lean-forward="false" selection-start-line="298" selection-start-column="13" selection-end-line="298" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/tools/interfaceTest.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-648">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/select_material.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3267">
-          <caret line="121" column="20" lean-forward="true" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="211" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="211" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_set.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="337" column="5" lean-forward="true" selection-start-line="284" selection-start-column="3" selection-end-line="337" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskSetController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="110" column="35" lean-forward="true" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/worker/worker_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="21" column="82" lean-forward="false" selection-start-line="21" selection-start-column="82" selection-end-line="21" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/house/house.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1053">
-          <caret line="66" column="50" lean-forward="false" selection-start-line="66" selection-start-column="50" selection-end-line="66" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input_history.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="36" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/lockmag/lockmag.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="60" column="235" lean-forward="false" selection-start-line="60" selection-start-column="235" selection-end-line="60" selection-end-column="235" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/worker/WorkerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="338" column="38" lean-forward="true" selection-start-line="338" selection-start-column="38" selection-end-line="338" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskSetService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="36" column="45" lean-forward="true" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/worker/worker_list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="340" column="0" lean-forward="false" selection-start-line="340" selection-start-column="0" selection-end-line="340" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/service/sendtask/SendTaskService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-172">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendTaskController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-328">
-          <caret line="38" column="15" lean-forward="false" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/service/house/HouseService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="88" column="26" lean-forward="false" selection-start-line="88" selection-start-column="16" selection-end-line="88" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/house/HouseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-502">
-          <caret line="57" column="20" lean-forward="false" selection-start-line="57" selection-start-column="20" selection-end-line="57" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_mag.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3456">
-          <caret line="128" column="96" lean-forward="false" selection-start-line="128" selection-start-column="96" selection-end-line="128" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/base/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="30" column="39" lean-forward="true" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/ApplicationContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2916">
-          <caret line="108" column="28" lean-forward="true" selection-start-line="108" selection-start-column="28" selection-end-line="108" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.2.1/mybatis-3.2.1.jar!/org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/area_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1782">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/workshop_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2754">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/house/house_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="85" column="22" lean-forward="true" selection-start-line="85" selection-start-column="22" selection-end-line="85" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_decrease.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2403">
-          <caret line="89" column="15" lean-forward="false" selection-start-line="89" selection-start-column="15" selection-end-line="89" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.0.4.RELEASE/spring-webmvc-4.0.4.RELEASE.jar!/org/springframework/web/servlet/DispatcherServlet.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="489" column="0" lean-forward="false" selection-start-line="489" selection-start-column="0" selection-end-line="489" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.0.4.RELEASE/spring-web-4.0.4.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/util/PageData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="75" column="19" lean-forward="false" selection-start-line="75" selection-start-column="19" selection-end-line="75" selection-end-column="19" />
-          <folding>
-            <element signature="e#1801#1802#0" expanded="false" />
-            <element signature="e#1819#1820#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.0.4.RELEASE/spring-webmvc-4.0.4.RELEASE.jar!/org/springframework/web/servlet/ModelAndView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-956">
-          <caret line="81" column="0" lean-forward="true" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_add.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="95" column="73" lean-forward="false" selection-start-line="95" selection-start-column="73" selection-end-line="95" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_output_history.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="50" column="47" lean-forward="false" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_91/src.zip!/java/lang/reflect/InvocationTargetException.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/dao/DaoSupport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="105" column="18" lean-forward="false" selection-start-line="105" selection-start-column="18" selection-end-line="105" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/mapping/PartsMagMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="23" column="28" lean-forward="true" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/service/materialmag/PartsMagService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/PartsMagController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="124" column="31" lean-forward="true" selection-start-line="124" selection-start-column="31" selection-end-line="124" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="WindowStateProjectService">
+    <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601978495118">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600741086990" />
+    <state x="2035" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600761671723" />
+    <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1601978495118" />
+    <state x="399" y="0" key="#com.intellij.ide.util.MemberChooser" timestamp="1600917070229">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="399" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600669596062" />
+    <state x="399" y="0" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1600917070229" />
+    <state x="371" y="94" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601962357400">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="371" y="95" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600763194457" />
+    <state x="2384" y="137" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600763082821" />
+    <state x="371" y="94" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1601962357400" />
+    <state x="370" y="40" key="FileChooserDialogImpl" timestamp="1601964545158">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="370" y="40" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1601964545158" />
+    <state width="1167" height="427" key="GridCell.Tab.0.bottom" timestamp="1601978232468">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
+    <state width="1167" height="427" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
+    <state width="1167" height="427" key="GridCell.Tab.0.center" timestamp="1601978232468">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
+    <state width="1167" height="427" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
+    <state width="1167" height="427" key="GridCell.Tab.0.left" timestamp="1601978232468">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
+    <state width="1167" height="427" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
+    <state width="1167" height="427" key="GridCell.Tab.0.right" timestamp="1601978232468">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
+    <state width="1167" height="427" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
+    <state width="1167" height="427" key="GridCell.Tab.1.bottom" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.1.bottom/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.1.bottom/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.1.center" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.1.center/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.1.center/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.1.left" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.1.left/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.1.left/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.1.right" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.1.right/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.1.right/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.2.bottom" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.2.bottom/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.2.bottom/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.2.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.2.center" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.2.center/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.2.center/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.2.center/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.2.left" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.2.left/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.2.left/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.2.left/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.2.right" timestamp="1601978232469">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1039" height="411" key="GridCell.Tab.2.right/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
+    <state width="1319" height="345" key="GridCell.Tab.2.right/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
+    <state width="1167" height="427" key="GridCell.Tab.2.right/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state x="0" y="0" key="SettingsEditor" timestamp="1601973841313">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="0" y="0" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1601973841313" />
+    <state x="213" y="-1" width="840" height="718" key="search.everywhere.popup" timestamp="1601976721797">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="213" y="0" width="840" height="718" key="search.everywhere.popup/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600851023113" />
+    <state x="213" y="-1" width="840" height="718" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1601976721797" />
+    <state x="179" y="0" key="spring file set editor" timestamp="1601973838095">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="179" y="0" key="spring file set editor/0.0.1280.720@0.0.1280.720" timestamp="1601973838095" />
   </component>
 </project>

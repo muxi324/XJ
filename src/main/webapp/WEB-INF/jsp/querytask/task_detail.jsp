@@ -77,7 +77,7 @@
                 <td style="width:90px;text-align: right;padding-top: 13px;">手机:</td>
                 <td><input style="width:95%;" type="text" name="worker_phone" id="worker_phone" value="${pd.worker_phone}" maxlength="200" readonly="true" title=""/></td>
                 <td style="width:90px;text-align: right;padding-top: 13px;"></td>
-                <td><input style="width:95%;" type="text" name="" id="" value="" maxlength="200" readonly="true" title=""/></td>
+                <td></td>
             </tr>
             <tr>
                 <td style="width:90px;text-align: right;padding-top: 13px;">开始时间:</td>
@@ -87,7 +87,7 @@
             </tr>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人:</td>
-                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${pd.auditor}" size="18" maxlength="200"  title=""></td>
+                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${pd.auditor}" size="18" maxlength="200"  title="" disabled></td>
                 <td style="width:90px;text-align: right;padding-top: 13px;">审核时间</td>
                 <td><input style="width:95%;" type="text" name="auditor_time" id="auditor_time" value="${pd.auditor_time}" maxlength="200" readonly="true" title=""/></td>
             </tr>
@@ -97,7 +97,7 @@
                     <input style="width:95%;" type="text" name="auditor_opinion" id="auditor_opinion" value="${pd.auditor_opinion}" maxlength="200" readonly="true" title=""/></td>
                 </td>
                 <td style="width:90px;text-align: right;padding-top: 13px;"></td>
-                <td><input style="width:95%;" type="text" name=""  value="" maxlength="200" readonly="true" title=""/></td>
+                <td></td>
             </tr>
             <tr>
                 <td style="width:90px;text-align: right;padding-top: 13px;">拒单理由</td>

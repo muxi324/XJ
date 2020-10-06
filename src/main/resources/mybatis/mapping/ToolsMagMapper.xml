@@ -9,7 +9,7 @@
     <select id="findById" parameterType="pd" resultType="pd">
         select *  from material_history
         where
-        material_id = #{material_id} and is_consume = 1  and type =2
+        material_id = #{material_id} and is_consume = 1  and type =2 and factory_id =#{factory_id}
         <if test="sendTimeStart!=null and sendTimeStart!=''">
            and time &gt;= #{sendTimeStart}
        </if>
@@ -22,7 +22,7 @@
     <select id="findById1" parameterType="pd" resultType="pd">
         select *  from material_history
         where
-        material_id = #{material_id} and is_consume = 0  and type =2
+        material_id = #{material_id} and is_consume = 0  and type =2 and factory_id =#{factory_id}
         <if test="sendTimeStart!=null and sendTimeStart!=''">
            and time &gt;= #{sendTimeStart}
         </if>
@@ -35,7 +35,7 @@
     <select id="selectStock" parameterType="pd" resultType="java.lang.Integer">
         select stock from material
         where
-        material_id = #{material_id}  and type =2
+        material_id = #{material_id}  and type =2 and factory_id = #{factory_id}
     </select>
     <!-- 修改物资入库当前库存 -->
     <update id="editStock" parameterType="pd">

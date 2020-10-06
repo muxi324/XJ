@@ -49,7 +49,7 @@
 		select  u.USER_ID,
 				u.USERNAME,
 				u.NAME,
-				u.RIGHTS as USER_RIGHTS,
+				u.RIGHTS ,
 				u.PASSWORD,
 				u.SKIN,
 				r.ROLE_ID,
@@ -61,7 +61,23 @@
 		where u.STATUS=0 
 		and u.USER_ID=#{USER_ID}
 	</select>
-
+	<select id="getUserAndRoleById2" parameterType="String" resultType="map">
+		select
+			PHONE,
+		    USER_ID,
+		    NAME,
+			post,
+			RIGHTS,
+			PARENT_ID,
+			ADD_QX,
+			DEL_QX,
+			EDIT_QX,
+			CHA_QX,
+			QX_ID
+		from SYS_USER
+		where STATUS=0
+		and USER_ID=#{USER_ID}
+	</select>
 	<update id="updateLastLogin" parameterType="User">
 		update SYS_USER set 
 		LAST_LOGIN=#{LAST_LOGIN} 

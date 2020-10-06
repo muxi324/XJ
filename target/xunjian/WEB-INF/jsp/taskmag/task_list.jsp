@@ -30,17 +30,20 @@
                     <tr>
                         <td>
 						<span class="input-icon">
-							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" value="${pd.enquiry }" placeholder="这里输入内容" />
+							<input autocomplete="off" id="nav-search-input" type="text" name="enquiry" placeholder="这里输入内容" />
 							<i id="nav-search-icon" class="icon-search"></i>
 						</span>
                         </td>
-                        <td><input class="span10 date-picker" name="sendTimeStart" id="sendTimeStart" value="${pd.sendTimeStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
-                        <td><input class="span10 date-picker" name="sendTimeEnd" id="sendTimeEnd" value="${pd.sendTimeEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
+                        <td><input class="span10 date-picker" name="sendTimeStart" id="sendTimeStart"  type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期"/></td>
+                        <td><input class="span10 date-picker" name="sendTimeEnd" id="sendTimeEnd"  type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期"/></td>
                         <td style="vertical-align:top;">
                             <select class="chzn-select" name="status" id="status" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
                                 <option value="">全部</option>
-                                <option value="1" <c:if test="${pd.mission_condition==1}">selected</c:if>>拒单</option>
-                                <option value="4" <c:if test="${pd.mission_condition==4}">selected</c:if>>任务完成</option>
+                                <option value="1" <c:if test="${pd.mission_condition==1}">selected</c:if>>任务已下发</option>
+                                <option value="3" <c:if test="${pd.mission_condition==3}">selected</c:if>>接收未执行</option>
+                                <option value="2" <c:if test="${pd.mission_condition==2}">selected</c:if>>拒收待处理</option>
+                                <option value="4" <c:if test="${pd.mission_condition==4}">selected</c:if>>任务执行中</option>
+                                <option value="5" <c:if test="${pd.mission_condition==5}">selected</c:if>>完成待审核</option>
                             </select>
                         </td>
                         <c:if test="${QX.cha == 1 }">
@@ -57,17 +60,19 @@
 
                     <thead>
                     <tr>
-                        <th class="center">
+                       <%-- <th class="center">
                             <label><input type="checkbox" id="zcheckbox" /><span class="lbl"></span></label>
-                        </th>
+                        </th>--%>
                         <th class="center">序号</th>
-                        <th class="center">任务联单号</th>
-                        <th class="center">安装员工</th>
-                        <th class="center">任务下达时间</th>
-                        <th class="center">房源地址</th>
-                        <th class="center">房源联系人</th>
-                        <th class="center">联系人电话</th>
+                        <th class="center">任务名称</th>
+                        <th class="center">任务单号</th>
                         <th class="center">任务状态</th>
+                        <th class="center">任务下达时间</th>
+                        <th class="center">任务执行人</th>
+                        <th class="center">任务执行人电话</th>
+                        <th class="center">任务下达人</th>
+                        <th class="center">任务级别</th>
+                        <th class="center">任务类型</th>
                         <th class="center">操作</th>
                     </tr>
                     </thead>
@@ -80,33 +85,41 @@
                             <c:if test="${QX.cha == 1 }">
                                 <c:forEach items="${varList}" var="var" varStatus="vs">
                                     <tr>
-                                        <td class='center' style="width: 30px;">
+                                        <%--<td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.mission_id}" /><span class="lbl"></span></label>
-                                        </td>
+                                        </td>--%>
                                         <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                        <td style="width: 60px;" class="center">${var.flow_number}</td>
-                                        <td style="width: 60px;" class="center">${var.worker_name}</td>
-                                        <td style="width: 100px;" class="center">${var.send_time}</td>
-                                        <td style="width: 139px;" class="center">${var.house_address}</td>
-                                        <td style="width: 60px;" class="center">${var.house_owner_name}</td>
-                                        <td style="width: 60px;" class="center">${var.house_owner_phone}</td>
-                                        <td style="width: 60px;" class="center">
-                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-warning   arrowed-in">拒单</span></c:if>
-                                            <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务完成</span></c:if>
-
+                                        <td style="width: 100px;" class="center">${var.mission_name}</td>
+                                        <td style="width: 50px;" class="center">${var.id}</td>
+                                        <td style="width: 50px;" class="center">
+                                            <c:if test="${var.mission_condition == '1' }"><span class="label label-default   arrowed-in">任务待接收</span></c:if>
+                                            <c:if test="${var.mission_condition == '2' }"><span class="label label-warning   arrowed-in">拒收待处理</span></c:if>
+                                            <c:if test="${var.mission_condition == '3' }"><span class="label label-info   arrowed-in">接收未执行</span></c:if>
+                                            <c:if test="${var.mission_condition == '4' }"><span class="label label-info      arrowed-in">任务执行中</span></c:if>
+                                            <c:if test="${var.mission_condition == '5' }"><span class="label label-warning   arrowed-in">完成待审核</span></c:if>
+                                            <c:if test="${var.mission_condition == '6' }"><span class="label label-success   arrowed-in">审核通过</span></c:if>
+                                            <c:if test="${var.mission_condition == '7' }"><span class="label label-success      arrowed-in">审核未通过</span></c:if>
+                                            <c:if test="${var.mission_condition == '8' }"><span class="label label-primary     arrowed-in">拒收已处理</span></c:if>
                                         </td>
-                                        <td style="width: 30px;" class="center">
+                                        <td style="width: 100px;" class="center">${var.send_time}</td>
+                                        <td style="width: 60px;" class="center">${var.worker_name}</td>
+                                        <td style="width: 60px;" class="center">${var.worker_phone}</td>
+                                        <td style="width: 60px;" class="center">${var.set_name}</td>
+                                        <td style="width: 40px;" class="center">${var.mission_level}</td>
+                                        <td style="width: 60px;" class="center">${var.mission_type}</td>
+                                        <td style="width: 60px;" class="center">
                                             <div class='hidden-phone visible-desktop btn-group'>
-
-                                                <c:if test="${QX.cha == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="审核" onclick="check('${var.mission_id }');"><i class='icon-edit'></i></a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能审核"><i class='icon-edit'></i></a></c:if>
+                                                <c:if test="${QX.edit == 1 }">
+                                                <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="审核"  onclick="check('${var.id}');"><i class='icon-edit'></i></a></c:if>
+                                                <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能审核"><i class='icon-edit'></i></a></c:if>
                                                 </c:if>
-
                                             </div>
                                         </td>
+                                        <!--
+                                        <td style="width: 30px;" class="center">
+                                            <a href="taskmag/getTaskLine.do?mission_id=">查看巡检路径</a>
+                                        </td>-->
                                     </tr>
-
                                 </c:forEach>
                             </c:if>
                             <c:if test="${QX.cha == 0 }">
@@ -134,7 +147,6 @@
                 </div>
 
             </form>
-            <%--<table id="mission_msg"></table>--%>
         </div>
     </div>
 </div>
@@ -168,8 +180,8 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="审核";
-        diag.URL = '<%=basePath%>taskmag/goCheck.do?mission_id='+Id;
-        diag.Width = 700;
+        diag.URL = '<%=basePath%>taskmag/goAuditTask.do?mission_id='+Id;
+        diag.Width = 800;
         diag.Height = 800;
         diag.CancelEvent = function(){ //关闭事件
             if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){

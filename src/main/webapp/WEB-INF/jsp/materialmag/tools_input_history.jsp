@@ -157,6 +157,8 @@
                     nextPage(${page.currentPage});
                 }
             }
+
+            window.location.href='<%=basePath%>toolsmag/goInput.do?material_id='+material_id;
             diag.close();
         };
         diag.show();

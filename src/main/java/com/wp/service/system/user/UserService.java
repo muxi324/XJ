@@ -1,15 +1,14 @@
 package com.wp.service.system.user;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-
 import com.wp.dao.DaoSupport;
 import com.wp.entity.Page;
 import com.wp.entity.system.User;
 import com.wp.util.PageData;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 
 @Service("userService")
@@ -45,6 +44,12 @@ public class UserService {
 	*/
 	public PageData findByUN(PageData pd)throws Exception{
 		return (PageData)dao.findForObject("SysUserMapper.findByUN", pd);
+	}
+	/*
+	* 通过手机号获取数据
+	*/
+	public PageData findByUP(PageData pd)throws Exception{
+		return (PageData)dao.findForObject("SysUserMapper.findByUP", pd);
 	}
 	
 	/*
@@ -126,6 +131,10 @@ public class UserService {
 	*/
 	public User getUserAndRoleById(String USER_ID) throws Exception {
 		return (User) dao.findForObject("UserMapper.getUserAndRoleById", USER_ID);
+	}
+
+	public Map<String,String> getUserAndRoleById2(String USER_ID) throws Exception {
+		return (Map)dao.findForObject("UserMapper.getUserAndRoleById2", USER_ID);
 	}
 
 

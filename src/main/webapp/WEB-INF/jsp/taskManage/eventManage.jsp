@@ -65,27 +65,39 @@
                                        <%-- <td class='center' style="width: 30px;">
                                             <label><input type='checkbox' name='ids' value="${var.event_id}" /><span class="lbl"></span></label>
                                         </td>--%>
-                                        <td class='center' style="width: 30px;">${vs.index+1}</td>
-                                        <td style="width: 60px;" class="center">${var.event_id}</td>
+                                        <%--序号--%>
+                                        <td class='center' style="width: 30px;">${vs.index+1}</td>         <%--序号--%>
+                                        <td style="width: 60px;" class="center">${var.event_id}</td>       <%--事件id--%>
                                         <td style="width: 60px;" class="center">${var.workshop}</td>
                                        <%-- <td style="width: 100px;" class="center">${var.check_scope}</td>
                                         <td style="width: 100px;" class="center">${var.check_point}</td>--%>
                                         <td style="width: 100px;" class="center">${var.event_name}</td>
                                         <td style="width: 150px;" class="center">${var.instrument_place}</td>
                                         <td style="width: 100px;" class="center">${var.create_time}</td>
-                                        <td style="width: 100px;" class="center"><a class='btn btn-mini btn-info' title="查看" onclick="showQrCode('${var.qrcode}');"><i class='icon-edit'></i></a></td>
+                                        <td style="width: 100px;" class="center"><a class='btn btn-mini btn-info' title="查看" onclick="showQrCode('${var.event_id}');">
+                                            <img src="static/images/erweima.png" style="width:16px;height:16px" alt="">
+                                            </a></td>
                                        <%-- <td style="width: 100px;" class="center">查看操作记录</td>--%>
                                         <td style="width: 60px;" class="center">
                                             <div class='hidden-phone visible-desktop btn-group'>
 
+                                                <%--编辑事件--%>
                                                 <c:if test="${QX.edit == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑"  onclick="edit('${var.event_id}');"><i class='icon-edit'></i></a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${pd.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑"  onclick="edit('${var.event_id}');">
+                                                        <img src="static/images/edit.png" style="width:14px;height:14px" alt="">
+                                                    </a></c:if>
+                                                    <c:if test="${pd.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您不能编辑"><img src="static/images/edit.png" style="width:18px;height:19px" alt=""></i></a></c:if>
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.edit == 1 }">
-                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-success' title="复制"  onclick="copy('${var.event_id}');"><i class='icon-edit'></i></a></c:if>
-                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-success' title="您不能复制"><i class='icon-edit'></i></a></c:if>
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-success' title="复制"  onclick="copy('${var.event_id}');">
+                                                        <img src="static/images/fuzhi1.png"  style="width:15px;height:15px" alt="">
+                                                        </a>
+                                                    </c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-success' title="您不能复制">
+                                                        <img src="static/images/fuzhi1.png"  style="width:15px;height:15px" alt="">
+                                                         </a>
+                                                    </c:if>
                                                 </c:if>
                                                 &nbsp;&nbsp;&nbsp;
                                                <%-- <c:if test="${QX.cha == 1 }">
@@ -93,6 +105,19 @@
                                                     <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-warning' title="详情"    onclick="detail('${var.event_id}');"><i class='icon-info'></i></a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-warning' title="您不能查看"><i class='icon-info'></i></a></c:if>
                                                 </c:if>--%>
+
+                                                <%--查看事件运行情况--%>
+                                                <c:if test="${QX.edit == 1 }">
+                                                    <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="查看运行情况"  onclick="view_detail('${var.event_id}');">
+                                                        <img src="static/images/Excel.png" style="width:15px;height:15px" alt=""></a></c:if>
+                                                    <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-info' title="您没有权利查看运行情况">
+                                                        <img src="static/images/Excel.png" style="width:15px;height:15px" alt=""></a></c:if>
+                                                </c:if>
+                                                <%--<c:if test="${QX.edit == 1 }">--%>
+                                                    <%--<c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-success' title="查看运行情况"  onclick="view_detail('${var.event_id}');"><i class='icon-edit'></i></a></c:if>--%>
+                                                    <%--<c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-success' title="您没有权利查看运行情况"><i class='icon-edit'></i></a></c:if>--%>
+                                                <%--</c:if>--%>
+                                                &nbsp;&nbsp;&nbsp;
                                                 <c:if test="${QX.del == 1 }">
                                                     <c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-danger' title="删除" onclick="del('${var.event_id}');"  data-placement="left"><i class="icon-trash"></i> </a></c:if>
                                                     <c:if test="${user.USERNAME == 'admin'}"><a class='btn btn-mini btn-danger' title="您不能编辑"><i class='icon-trash'></i></a></c:if>
@@ -126,7 +151,8 @@
                         <tr>
                             <td style="vertical-align:top;">
                                 <c:if test="${QX.add == 1 }">
-                                    <a class="btn btn-small btn-success" onclick="add()">新增</a>
+                                    <c:if test="${pd.USERNAME != 'admin'}"><a class="btn btn-small btn-success" onclick="add();">新增</a></c:if>
+                                    <c:if test="${pd.USERNAME == 'admin'}"><a class="btn btn-small btn-success" title="您不能编辑"><i class='icon-edit'></i></a></c:if>
                                 </c:if>
                                <%-- <c:if test="${QX.del == 1 }">
                                     <a class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" title="批量删除" ><i class='icon-trash'></i></a>
@@ -138,6 +164,10 @@
                 </div>
             </form>
             <!-- PAGE CONTENT ENDS HERE -->
+            <%--<p>登录的用户名时：${sessionScope.user.USERNAME}</p>--%>
+
+            <%--<p>teamId是：${teamId}</p>--%>
+
         </div><!--/row-->
 
     </div><!--/#page-content-->
@@ -204,6 +234,24 @@
         diag.show();
     }
 
+
+    function view_detail(eventId){
+        // top.jzts();
+        <%--var diag = new top.Dialog();--%>
+        <%--diag.Drag=true;--%>
+        <%--diag.Title ="编辑";--%>
+        <%--diag.URL = '<%=basePath%>eventManage/goEditEvent.do?eventId='+eventId;--%>
+        <%--diag.Width = 800;--%>
+        <%--diag.Height = 500;--%>
+        <%--diag.CancelEvent = function(){ //关闭事件--%>
+            <%--if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){--%>
+                <%--nextPage(${page.currentPage});--%>
+            <%--}--%>
+            <%--diag.close();--%>
+        <%--};--%>
+        // diag.show();
+        window.location="<%=basePath%>/yunxing/list.do?eventId="+eventId;
+    }
     function detail(Id) {
         top.jzts();
         var diag = new top.Dialog();
@@ -230,7 +278,7 @@
         var diag = new top.Dialog();
         diag.Drag=true;
         diag.Title ="新增";
-        diag.URL = '<%=basePath%>eventManage/qrcode.do?path='+url;
+        diag.URL = '<%=basePath%>eventManage/qrcode.do?eventid='+url;
         diag.Width = 400;
         diag.Height = 600;
         diag.CancelEvent = function(){ //关闭事件

@@ -47,6 +47,17 @@
 					<td><input type="text" name="ROLE_NAME" id="roleName" value="${pd.ROLE_NAME}" placeholder="这里输入名称" title="名称" /></td>
 				</tr>
 				<tr>
+					<td>
+						<%--<input type="text" name="level" id="level" value="${pd.level}" placeholder="这里输入角色级别" title="名称" />--%>
+						<select class="chzn-select" name="level" id="level" placeholder="这里选择角色级别" >
+							<option value="">全部</option>
+							<option value="0" <c:if test="${pd.level==0}">selected</c:if>>无权使用app</option>
+							<option value="1" <c:if test="${pd.level==1}">selected</c:if>>管理级别（使用app管理功能）</option>
+							<option value="2" <c:if test="${pd.level==2}">selected</c:if>>执行任务级别（使用app执行任务功能）</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
 					<td style="text-align: center;">
 						<a class="btn btn-mini btn-primary" onclick="save();">保存</a>
 						<a class="btn btn-mini btn-danger" onclick="top.Dialog.close();">取消</a>

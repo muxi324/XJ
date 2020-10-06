@@ -30,12 +30,18 @@ import java.util.*;
 @Controller
 @RequestMapping(value="/eventManage")
 public class EventController extends BaseController{
+
     String menuUrl = "eventManage/list.do"; //菜单地址(权限用)
     @Resource(name = "eventService")
     private EventService eventService;
     @Resource(name="workshopService")
     private WorkshopService workshopService;
 
+    /**
+     * 事件管理页面
+     * @param page
+     * @return
+     */
     @RequestMapping(value = "/list")
     public ModelAndView listEvent(Page page) {
         logBefore(logger, "事件列表");
@@ -51,22 +57,31 @@ public class EventController extends BaseController{
                 pd.put("enquiry", "");
             }
             String loginUserName = FactoryUtil.getLoginUserName();
+            pd.put("USERNAME",loginUserName);
             if (StringUtils.isNotEmpty(loginUserName) && !loginUserName.equals("admin")) {
                 pd.put("factory_id",FactoryUtil.getFactoryId());
                 pd.put("workshop_id",FactoryUtil.getWorkshopId());
             }
             page.setPd(pd);
-            List<PageData> varList = eventService.list(page);	//列出${objectName}
+            List<PageData> varList = eventService.list(page);	//列出${objectName} 事件对象
+
             for (PageData p : varList) {
+
                 String qrcode = p.getString("qrcode");
                 //二维码不存在补充二维码
                 if (StringUtils.isEmpty(qrcode)) {
-                    String qrContent = "事件ID: " + p.getString("event_id") +" 事件名: " + p.getString("event_name") + "  所属车间: " + p.getString("workshop");
-                    String encoderImgId = p.getString("event_name") + ".png";
+                    //String qrContent = "事件ID: " + p.getString("event_id") +" 事件名: " + p.getString("event_name") + "  所属车间: " + p.getString("workshop");
+                    Map<String, String> map = new HashMap<String, String>();
+                    String eventId = p.getString("event_id");
+                    map.put("事件ID",eventId);
+                    JSONObject content = JSONObject.fromObject(map);
+                    String qrContent = content.toString();
+                    String encoderImgId = p.getString("event_id") + ".png";
                     try {
-                        String filePath = "C:/apache-tomcat-8.5.23/webapps/qrupload/qrImg/" + encoderImgId;  //存放路径
+                        String filePath = "C:/qrupload/qrImg/" + encoderImgId;  //存放路径
                         TwoDimensionCode.encoderQRCode(qrContent, filePath, "png");							//执行生成二维码
-                        p.put("qrcode",filePath);
+                        p.put("qrcode",encoderImgId);
+                        //System.out.println(p+"99999999999999");
                         eventService.update(p);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -82,15 +97,18 @@ public class EventController extends BaseController{
         }
         return mv;
     }
+
     @RequestMapping(value = "/qrcode")
-    public ModelAndView qrCode() {
+    public ModelAndView qrCode() throws Exception {
         ModelAndView mv = this.getModelAndView();
-        PageData pd = new PageData();
-        pd = this.getPageData();
-        String path = pd.getString("path");
-        int x = path.indexOf("qrImg");
-        String picPath = path.substring(x,path.length());
-        mv.addObject("picPath",picPath);
+        PageData pd = this.getPageData();
+      //  System.out.println(pd+"    66666666666");
+        String event_id = pd.getString("eventid");
+       // System.out.println(event_id+"   8888888");
+        String picPath = eventService.list_code(event_id);
+        String pic = java.net.URLEncoder.encode(picPath,"utf-8");
+       // System.out.println(pic+"  9999999999");
+        mv.addObject("picPath",pic);
         mv.setViewName("taskManage/qrCode");
         return mv;
     }
@@ -114,6 +132,10 @@ public class EventController extends BaseController{
         }
     }
 
+    /**
+     * 去新增页面
+     * @return
+     */
     @RequestMapping(value = "/addEvent")
     public ModelAndView addEvent() {
         ModelAndView mv = this.getModelAndView();
@@ -123,14 +145,15 @@ public class EventController extends BaseController{
             String factory_id = FactoryUtil.getFactoryId();
             String workshop_id = FactoryUtil.getWorkshopId();
             List<PageData> workshopList = new ArrayList<PageData>();
+
             if(StringUtils.isNotEmpty(factory_id)) {
                 PageData factory = new PageData();
                 factory.put("factory_id",factory_id);
                 if(StringUtils.isNotEmpty(workshop_id)){
                     PageData workshop = new PageData();
                     workshop.put("id", workshop_id);
-                    PageData data = workshopService.findById(workshop);
-                    String workshopName = data.getString("workshop");
+                    PageData data = workshopService.findById(workshop);   //车间
+                    String workshopName = data.getString("workshop"); //车间名
                     pd.put("workshop",workshopName);
                 }else{
                     workshopList = workshopService.listWorkshopByFac(factory);
@@ -146,6 +169,11 @@ public class EventController extends BaseController{
         return mv;
     }
 
+    /**
+     * 新增一个事件
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "addEvent1")
     @ResponseBody
     public String addEvent1() throws Exception {
@@ -153,10 +181,13 @@ public class EventController extends BaseController{
         PageData pd = new PageData();
         pd = this.getPageData();
         pd.put("factory_id",FactoryUtil.getFactoryId());
-        pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        String workshopId = pd.getString("workshop_id");
+        if(workshopId==null||workshopId.equals("")){
+            pd.put("workshop_id",FactoryUtil.getWorkshopId());
+        }
         pd.put("status", 1);
         if(StringUtils.isEmpty(pd.getString("workshop"))){
-            String workshopId = pd.getString("workshop_id");
+            workshopId = pd.getString("workshop_id");
             PageData workshop = new PageData();
             workshop.put("id", workshopId);
             PageData data = workshopService.findById(workshop);
@@ -203,36 +234,42 @@ public class EventController extends BaseController{
           return result;
     }
 
+
+    /**
+     * 去到事件编辑界面
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "goEditEvent")          //编辑处理逻辑：先取出数据后保存，然后将新增的id取出给addEvent页面
     public ModelAndView goEditEvent() throws Exception {
         ModelAndView mv = new ModelAndView();
         PageData pd = new PageData();
         pd = this.getPageData();
-        PageData result = eventService.getEventById(pd);
-        result.put("status",0);
-        eventService.update(result);   //将要编辑的事件状态改为 0使用户不可见
+        PageData result = eventService.getEventById(pd);     //取出包含事件对象的map
+//        result.put("status",0);
+//        eventService.update(result);   //将要编辑的事件状态改为 0使用户不可见
 //        插入记录返回该记录的id
-        Event e = new Event();
-        e.setEvent_name(result.getString("event_name"));
-        e.setInstrument_place(result.getString("instrument_place"));
-        e.setWorkshop(result.getString("workshop"));
-        e.setAdditions(result.getString("additions"));
-        e.setFont_color(result.getString("font_color"));
-        e.setFont_size(result.getString("font_size"));
-        e.setStatus("1");
-        e.setQrcode(result.getString("qrcode"));
-        e.setCreate_time(result.getString("create_time"));
-        e.setEvent_level(result.getString("event_level"));
-        e.setFactory_id(result.getString("factory_id"));
-        e.setWorkshop_id(result.getString("workshop_id"));
-        e.setTeam_id(result.getString("team_id"));
-        eventService.insertAndGetId(e);
-        String event_id = e.getEvent_id();    //得到返回的新事件id
+//        Event e = new Event();
+//        e.setEvent_name(result.getString("event_name"));
+//        e.setInstrument_place(result.getString("instrument_place"));
+//        e.setWorkshop(result.getString("workshop"));
+//        e.setAdditions(result.getString("additions"));
+//        e.setFont_color(result.getString("font_color"));
+//        e.setFont_size(result.getString("font_size"));
+//        e.setStatus("1");
+//        e.setQrcode(result.getString("qrcode"));
+//        e.setCreate_time(result.getString("create_time"));
+//        e.setEvent_level(result.getString("event_level"));
+//        e.setFactory_id(result.getString("factory_id"));
+//        e.setWorkshop_id(result.getString("workshop_id"));
+//        e.setTeam_id(result.getString("team_id"));
+//        eventService.insertAndGetId(e);
+//        String event_id = e.getEvent_id();    //得到返回的新事件id
+        String event_id = pd.getString("eventId");
 
         PageData event = new PageData();
         event.put("eventId",event_id);
         PageData result1 = eventService.getEventById(event);
-
         String factory_id = FactoryUtil.getFactoryId();
         String workshop_id = FactoryUtil.getWorkshopId();
         List<PageData> workshopList = new ArrayList<PageData>();
@@ -326,6 +363,10 @@ public class EventController extends BaseController{
         return mv;
     }
 
+    /**
+     * 去增加工作内容页面
+     * @return
+     */
     @RequestMapping(value = "goAddWorkContent", method = {RequestMethod.GET})
     public ModelAndView addWorkContent() {
         ModelAndView mv = new ModelAndView();
@@ -337,6 +378,11 @@ public class EventController extends BaseController{
         return mv;
     }
 
+    /**
+     * 接收数据增加工作内容
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "addWorkContent", method = {RequestMethod.POST})
     public ModelAndView addWorkContent1() throws Exception {
         ModelAndView mv = new ModelAndView();
@@ -344,12 +390,12 @@ public class EventController extends BaseController{
        /* String eventName = pd.getString("eventName");
         String additions = eventService.getAdditionByName(eventName);*/
         String eventId = pd.getString("event_id");   //通过event_id取additions
-        String additions = eventService.getAdditionById(eventId);
+        String additions = eventService.getAdditionById(eventId);   //获取工作内容
         JSONArray workArray;
         if (additions == null || additions.equals("")) {
             workArray = new JSONArray();
         } else {
-            workArray = JSONArray.fromObject(additions);
+            workArray = JSONArray.fromObject(additions);    //将工作内容转成json
         }
         //构造新的工作内容json对象
         JSONObject work = new JSONObject();
@@ -393,7 +439,7 @@ public class EventController extends BaseController{
         if ("1".equals(pd.getString("is_backNum"))) {
             JSONObject view = new JSONObject();
             view.put("view_class","输入框");
-            view.put("view_name","输入" + pd.getString("content_name"));
+            view.put("view_name","输入数字，" + pd.getString("content_name"));
             view.put("font_size",20);
             view.put("font_color","#000000");
             viewArray.add(view);
@@ -401,7 +447,16 @@ public class EventController extends BaseController{
         if ("1".equals(pd.getString("is_backText"))) {
             JSONObject view = new JSONObject();
             view.put("view_class","输入框");
-            view.put("view_name","输入" + pd.getString("content_name"));
+            view.put("view_name","输入，" + pd.getString("content_name"));
+            view.put("font_size",20);
+            view.put("font_color","#000000");
+            viewArray.add(view);
+        }
+        //是否需要反馈文件
+        if ("1".equals(pd.getString("is_backFile"))) {
+            JSONObject view = new JSONObject();
+            view.put("view_class","文件");
+            view.put("view_name","上传" + pd.getString("content_name"));
             view.put("font_size",20);
             view.put("font_color","#000000");
             viewArray.add(view);
@@ -417,10 +472,17 @@ public class EventController extends BaseController{
             String contentName = jsonObject.getString("work_name");
             workcontentList.add(contentName);
         }
+
         mv.addObject("contentList",workcontentList);
         return mv;
     }
 
+
+    /**
+     * 去详细事件页面
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "goEditWorkContent")
     public ModelAndView goEditWorkContent() throws Exception {
         ModelAndView mv = new ModelAndView();
@@ -430,6 +492,9 @@ public class EventController extends BaseController{
         String contentName = pd.getString("workName");
         String additions = eventService.getAdditionById(eventId);
         JSONArray workArray;
+        String take = "0";
+        String text = "0";
+        String file = "0";
         if (additions == null || additions.equals("")) {
             workArray = new JSONArray();
         } else {
@@ -475,16 +540,25 @@ public class EventController extends BaseController{
                     for(int k=0;k<json1.size();k++){
                         JSONObject view = json1.getJSONObject(k);
                         String type = view.getString("view_class");
+
                         if(type.equals("拍照")){
-                            result.put("is_takePhoto",1);
+                            take = "1";
+
                         }else if (type.equals("输入框")){
-                            result.put("is_backText",1);
+                            text = "1";
+
+                        }else if(type.equals("文件")){
+                            file = "1";
                         }
+
                     }
                 }
 
             }
         }
+        result.put("is_takePhoto",take);
+        result.put("is_backText",text);
+        result.put("is_backFile",text);
         mv.addObject("pd",result);
         mv.setViewName("taskManage/WorkContentDetail");
         return mv;

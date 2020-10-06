@@ -31,7 +31,8 @@
 	
 	<select id="listAllParentMenu" resultMap="menuResultMap">
 		select * from SYS_MENU 
-		where PARENT_ID = '0' order by MENU_ORDER 
+		where PARENT_ID = '0'
+		order by MENU_ORDER
 	</select>
 	
 	<select id="listSubMenuByParentId" parameterType="String" resultMap="menuResultMap">

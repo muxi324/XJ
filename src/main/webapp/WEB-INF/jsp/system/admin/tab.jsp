@@ -20,6 +20,8 @@
 	
 	
 <body>
+
+<%--上面的小导航--%>
 <div id="tab_menu" style="height:30px;"></div>
 <div style="width:100%;">
 	<div id="page" style="width:100%;height:100%;"></div>

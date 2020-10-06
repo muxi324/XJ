@@ -136,6 +136,32 @@
         </if>
     </select>
 
+    <!-- 通过手机号获取数据 -->
+    <select id="findByUP" parameterType="pd" resultType="pd" useCache="false">
+        select
+        USER_ID,
+        USERNAME,
+        PASSWORD,
+        NAME,
+        RIGHTS,
+        ROLE_ID,
+        LAST_LOGIN,
+        IP,
+        STATUS,
+        BZ,
+        SKIN,
+        EMAIL,
+        NUMBER,
+        PHONE,factory_id,workshop_id,team_id
+        from
+        SYS_USER
+        where
+        PHONE = #{PHONE}
+        <if test="USERNAME != null and USERNAME != ''">
+            and USERNAME != #{USERNAME}
+        </if>
+    </select>
+
     <!-- 通过USERNAME获取数据 -->
     <select id="findByUId" parameterType="pd" resultType="pd" useCache="false">
         select
@@ -204,7 +230,7 @@
     <select id="listTeamByFac" parameterType="pd" resultType="pd">
         select id,team  from team_info
         where factory_id = #{factory_id}
-        AND  workshop = #{workshop_id}
+        AND  workshop_id = #{workshop_id}
     </select>
     <!--通过班组获取班组成员-->
     <select id="listWorkerByTeam" parameterType="pd" resultType="pd">

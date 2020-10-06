@@ -31,14 +31,13 @@
 					<td>
 						<span class="input-icon">
 							<input autocomplete="off" id="nav-search-input" type="text" name="USERNAME" value="${pd.USERNAME }" placeholder="这里输入关键词" />
-							<i id="nav-search-icon" class="icon-search"></i>
+							<i id="nav-input-icon" class="icon-search"></i>
 						</span>
 					</td>
 					<td><input class="span10 date-picker" name="lastLoginStart" id="lastLoginStart"  value="${pd.lastLoginStart}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="开始日期" title="最近登录开始"/></td>
 					<td><input class="span10 date-picker" name="lastLoginEnd" name="lastLoginEnd"  value="${pd.lastLoginEnd}" type="text" data-date-format="yyyy-mm-dd" readonly="readonly" style="width:88px;" placeholder="结束日期" title="最近登录结束"/></td>
 					<td style="vertical-align:top;"> 
 					 	<select class="chzn-select" name="ROLE_ID" id="role_id" data-placeholder="请选择职位" style="vertical-align:top;width: 120px;">
-						<option value=""></option>
 						<option value="">全部</option>
 						<c:forEach items="${roleList}" var="role">
 							<option value="${role.ROLE_ID }" <c:if test="${pd.ROLE_ID==role.ROLE_ID}">selected</c:if>>${role.ROLE_NAME }</option>
@@ -48,8 +47,8 @@
 					<c:if test="${QX.cha == 1 }">
 					<td style="vertical-align:top;"><button class="btn btn-mini btn-light" onclick="search();" title="检索"><i id="nav-search-icon" class="icon-search"></i></button></td>
 					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="window.location.href='<%=basePath%>/user/listtabUsers.do';" title="切换模式"><i id="nav-search-icon" class="icon-exchange"></i></a></td>
-					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-search-icon" class="icon-download-alt"></i></a></td>
-					<c:if test="${QX.edit == 1 }"><td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td></c:if>
+					<td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="toExcel();" title="导出到EXCEL"><i id="nav-input-icon" class="icon-download-alt"></i></a></td>
+					<%--<c:if test="${QX.edit == 1 }"><td style="vertical-align:top;"><a class="btn btn-mini btn-light" onclick="fromExcel();" title="从EXCEL导入"><i id="nav-search-icon" class="icon-cloud-upload"></i></a></td></c:if>--%>
 					</c:if>
 				</tr>
 			</table>
@@ -67,10 +66,13 @@
 						<th>编号</th>
 						<th>用户名</th>
 						<th>姓名</th>
+						<th>电话</th>
 						<th>职位</th>
-						<th><i class="icon-envelope"></i>邮箱</th>
+						<th>班组</th>
+						<th>所属车间</th>
+						<th>所属厂</th>
 						<th><i class="icon-time hidden-phone"></i>最近登录</th>
-						<th>上次登录IP</th>
+					<%--	<th>上次登录IP</th>--%>
 						<th class="center">操作</th>
 					</tr>
 				</thead>
@@ -92,21 +94,19 @@
 								<td>${user.NUMBER }</td>
 								<td><a>${user.USERNAME }</a></td>
 								<td>${user.NAME }</td>
+								<td>${user.PHONE}</td>
 								<td>${user.ROLE_NAME }</td>
-								<c:if test="${QX.FX_QX == 1 }">
-								<td><a title="发送电子邮件" style="text-decoration:none;cursor:pointer;" onclick="sendEmail('${user.EMAIL }');">${user.EMAIL }&nbsp;<i class="icon-envelope"></i></a></td>
-								</c:if>
-								<c:if test="${QX.FX_QX != 1 }">
-								<td><a title="您无权发送电子邮件" style="text-decoration:none;cursor:pointer;">${user.EMAIL }&nbsp;<i class="icon-envelope"></i></a></td>
-								</c:if>
+								<td>${user.team}</td>
+								<td>${user.workshop}</td>
+								<td>${user.factory}</td>
 								<td>${user.LAST_LOGIN}</td>
-								<td>${user.IP}</td>
+								<%--<td>${user.IP}</td>--%>
 								<td style="width: 60px;">
 									<div class='hidden-phone visible-desktop btn-group'>
 										
-										<c:if test="${QX.FW_QX == 1 }">
+										<%--<c:if test="${QX.FW_QX == 1 }">
 										<a class='btn btn-mini btn-warning' title="发送短信" onclick="sendSms('${user.PHONE }');"><i class='icon-envelope'></i></a>
-										</c:if>
+										</c:if>--%>
 										
 										<c:if test="${QX.edit == 1 }">
 											<c:if test="${user.USERNAME != 'admin'}"><a class='btn btn-mini btn-info' title="编辑" onclick="editUser('${user.USER_ID }');"><i class='icon-edit'></i></a></c:if>
@@ -153,12 +153,12 @@
 					<c:if test="${QX.add == 1 }">
 					<a class="btn btn-small btn-success" onclick="add();">新增</a>
 					</c:if>
-					<c:if test="${QX.FX_QX == 1 }">
+				<%--	<c:if test="${QX.FX_QX == 1 }">
 					<a title="批量发送电子邮件" class="btn btn-small btn-info" onclick="makeAll('确定要给选中的用户发送邮件吗?');"><i class="icon-envelope-alt"></i></a>
-					</c:if>
-					<c:if test="${QX.FW_QX == 1 }">
+					</c:if>--%>
+					<%--<c:if test="${QX.FW_QX == 1 }">
 					<a title="批量发送短信" class="btn btn-small btn-warning" onclick="makeAll('确定要给选中的用户发送短信吗?');"><i class="icon-envelope"></i></a>
-					</c:if>
+					</c:if>--%>
 					<c:if test="${QX.del == 1 }">
 					<a title="批量删除" class="btn btn-small btn-danger" onclick="makeAll('确定要删除选中的数据吗?');" ><i class='icon-trash'></i></a>
 					</c:if>
@@ -169,10 +169,8 @@
 		</div>
 		</form>
 	</div>
- 
- 
- 
- 
+
+
 	<!-- PAGE CONTENT ENDS HERE -->
   </div><!--/row-->
 	
@@ -206,8 +204,8 @@
 			top.jzts();
 			$("#userForm").submit();
 		}
-		
-		
+
+
 		//去发送电子邮件页面
 		function sendEmail(EMAIL){
 			 top.jzts();

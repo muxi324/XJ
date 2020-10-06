@@ -37,21 +37,9 @@
                             <option value="${W.id}" <c:if test="${w.id == pd.workshop_id}">selected</c:if>> ${W.workshop }</option>
                         </c:forEach>
                     </select>
-                    <input type="hidden" name="workshop"  value="${pd.workshop}"/>
+                    <input type="hidden" name="workshop_1"  value="${W.id}"/>
                 </td>
             </tr>
-           <%-- <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检点:</td>
-                <td>
-                    <input style="width:90%;" type="text" name="check_point" id="check_point"  maxlength="200" value="${pd.check_point}" data-placeholder="事件所在的设备名称（可以不填）" >
-                </td>
-            </tr>
-            <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">所属巡检范围:</td>
-                <td>
-                    <input style="width:90%;" type="text" name="check_scope" id="check_scope"  maxlength="200" value="${pd.check_scope}" data-placeholder="事件所在的生产区域（可以不填）">
-                </td>
-            </tr>--%>
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">具体位置:</td>
                 <td>
@@ -83,7 +71,7 @@
             </tr>--%>
             <tr>
                 <td style="text-align: center;" colspan="10">
-                    <a class="btn btn-small btn-primary" onclick="save();">保存并添加工作内容</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-small btn-primary" onclick="save(${w.id});">保存并添加工作内容</a>&nbsp;&nbsp;&nbsp;
                     <a class="btn btn-small btn-danger" onclick="top.Dialog.close();">取消</a>
                 </td>
             </tr>
@@ -140,7 +128,7 @@
         }
     });
     //保存
-    function save(){
+    function save(workshopId){
         if($("#event_name").val()==""){
             $("#event_name").tips({
                 side:3,
@@ -151,23 +139,33 @@
             $("#event_name").focus();
             return false;
         }
-/*        if($("#mission").val()==""){
-            $("#mission").tips({
+        if($("#workshop1").val()==""&&$("#workshop").val()==""){
+            $("#workshop1").tips({
                 side:3,
-                msg:'请输入任务名称',
+                msg:'所属车间不能为空',
                 bg:'#AE81FF',
                 time:2
             });
             $("#mission").focus();
             return false;
-        }*/
+        }
+        if($("#instrument_place").val()==""){
+            $("#instrument_place").tips({
+                side:3,
+                msg:'具体位置不能为空',
+                bg:'#AE81FF',
+                time:2
+            });
+            $("#mission").focus();
+            return false;
+        }
         //$("#Form").submit();
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
-            url: "<%=basePath%>eventManage/addEvent1.do" ,//url
+            url: "<%=basePath%>eventManage/addEvent1.do?workshopId="+workshopId,//url
             data: $('#Form').serialize(),
-            success: function (result) {
+            success: function (result) {          //返回值是事件id:event_id
                 //打印服务端返回的数据(调试用)
                 alert("保存事件成功，请为事件添加工作内容！");
                 $(this).val(""); //清空上次input框里的数据

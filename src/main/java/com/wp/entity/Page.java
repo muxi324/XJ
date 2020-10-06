@@ -4,6 +4,7 @@ import com.wp.util.Const;
 import com.wp.util.PageData;
 import com.wp.util.Tools;
 
+//分页  同时里面还有一个PageDate 用来装一些从前台传来的各种参数
 public class Page {
 	
 	private int showCount; //每页显示记录数

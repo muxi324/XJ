@@ -52,43 +52,25 @@
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务来源:</td>
                 <td><input style="width:90%;" type="text" name="mission_source" id="mission_source" value="${pd.mission_source}" maxlength="200"  title=""/></td>
             </tr>
-          <%--  <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">所覆盖范围:</td>
-                <td><input style="width:90%;" type="text" name="cover_fields" id="cover_fields" value="${pd.cover_fields}" maxlength="200"  title=""/></td>
-                <td style="width:110px;text-align: right;padding-top: 13px;">任务描述:</td>
-                <td><input style="width:90%;" type="text" name="mission_description" id="mission_description" value="${pd.mission_description}" maxlength="200"  title=""/>
-                </td>
-            </tr>--%>
 
             <tr>
-              <%--  <td style="width:110px;text-align: right;padding-top: 13px;">巡检周期:</td>
-                <td><input style="width:80%;" type="text" name="cycle_time" id="cycle_time" value="${pd.cycle_time}" maxlength="150"  title=""/>小时/次</td>--%>
-               <%-- <td style="width:110px;text-align: right;padding-top: 13px;">检修员认证方式:</td>
-                <td><select name="authen_method" id="authen_method" class="form-control" value="${pd.authen_method}" >
-                    <option value="自拍">自拍</option>
-                    <option value="指纹">指纹</option>
-                    <option value="签名">签名</option>
-                </select></td>--%>
                   <td style="width:110px;text-align: right;padding-top: 13px;">任务描述:</td>
                   <td><input style="width:90%;" type="text" name="mission_description" id="mission_description" value="${pd.mission_description}" maxlength="200"  title=""/>
                   </td>
                   <td style="width:110px;text-align: right;padding-top: 13px;">备注:</td>
                   <td><textarea cols="40" rows="6" name="task_addition" id="task_addition" value="${pd.task_addition}" ></textarea></td>
             </tr>
-           <%-- <tr>
-                <td style="width:110px;text-align: right;padding-top: 13px;">任务审核级别</td>
-                <td><select name="auditor_level" id="auditor_level" class="form-control" value="${pd.auditor_level}" >
-                    <option value="1级">1级</option>
-                    <option value="2级">2级</option>
-                    <option value="3级">3级</option>
-                </select></td>
-                <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人</td>
-                <td><select name="auditor" id="auditor" class="form-control" value="${pd.auditor}" >
-                    <option value="王一">王一</option>
-                    <option value="张三">张三</option>
-                    <option value="王旺">王旺</option>
-                </select></td>
-            </tr>--%>
+            <tr>
+                <td style="width:110px;text-align: right;padding-top: 13px;">所属车间:</td>
+                <td>
+                    <select name="workshop_id" id="workshop_id" class="form-control" >
+                        <option value="0">请选择</option>
+                        <c:forEach items="${workshopList}" var="W">
+                            <option value="${W.id}"> ${W.workshop}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
         </table>
         <h3 style="padding-left:20px;padding-top: 13px;">选择事件</h3>
         <div id="page-content" class="clearfix">

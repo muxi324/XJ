@@ -22,7 +22,7 @@ public class SendPeriodTaskJob implements Job {
         Connection conn = null;
         PreparedStatement st = null;
         ResultSet rs = null;
-        System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "-----------send period job! ");
+      //  System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "-----------send period job! ");
         try {
             PageData pd = (PageData) context.getMergedJobDataMap().get("pageData");
             // 调用JDBCUtils 插入数据
@@ -63,7 +63,8 @@ public class SendPeriodTaskJob implements Job {
                 System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) +"数据添加失败！");
             }
             String phonenumber = pd.getString("worker_phone");   //发送短信提醒
-            String Content = "您有一条新任务，请注意查收。";
+
+            String Content = "您有一条新任务("+ pd.getString("mission_name")+")，请注意查收。——巡检平台";
             SendMessage.sendMessage(phonenumber, Content);
         } catch (Exception e) {
             e.printStackTrace();

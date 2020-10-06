@@ -85,7 +85,7 @@
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">配件名称:</td>
-                <td><input style="width:95%;" type="text" name="material_name" id="material_name" value="${pd.material_name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
+                <td><input style="width:95%;" type="text" name="name" id="name" value="${pd.name}" maxlength="150" placeholder="请输入配件名称" title=""/></td>
             </tr>
             <tr>
                 <td style="width:100px;text-align: right;padding-top: 13px;">数量:</td>

@@ -74,6 +74,19 @@ public class Role {
 	public void setCHA_QX(String cHA_QX) {
 		CHA_QX = cHA_QX;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Role{" +
+				"ROLE_ID='" + ROLE_ID + '\'' +
+				", ROLE_NAME='" + ROLE_NAME + '\'' +
+				", RIGHTS='" + RIGHTS + '\'' +
+				", PARENT_ID='" + PARENT_ID + '\'' +
+				", ADD_QX='" + ADD_QX + '\'' +
+				", DEL_QX='" + DEL_QX + '\'' +
+				", EDIT_QX='" + EDIT_QX + '\'' +
+				", CHA_QX='" + CHA_QX + '\'' +
+				", QX_ID='" + QX_ID + '\'' +
+				'}';
+	}
 }

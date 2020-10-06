@@ -91,4 +91,9 @@ public class EventService {
         List<PageData> list = (List<PageData>) dao.findForList("EventMapper.list1",page);
         return list;
     }
+    //查询二维码图片名称
+    public String list_code(String page) throws Exception{
+        String list = (String) dao.findForObject("EventMapper.list_code",page);
+        return list;
+    }
 }

@@ -59,8 +59,10 @@
         <td><img src="/imgFile/${result.pic}" alt="异常图片"width="210"></td>
     </tr>
 </table>
-<a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask2.do?exceptionId=${result.id}">下发维修任务</a>
-<a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask1.do?exceptionId=${result.id}">下发临时巡检任务</a>
+    <c:if test="${result.status==1 && pd.ROLENAME != '1' && pd.ROLENAME != '63f2b93025994edf8166c2164cd00bc2' && pd.ROLENAME != '77af0944668e417eb3f26dad06dc625e'}">
+        <a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask2.do?exceptionId=${result.id}">下发维修任务</a>
+                                      <a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask1.do?exceptionId=${result.id}">下发临时巡检任务</a></c:if>
+    <c:if test="${result.status==1}"><a class="btn btn-mid btn-success" href="${basePath}sendtask/goSendTask3.do?exceptionId=${result.id}">忽略异常</a></c:if>
 <div style="padding-bottom: 30px;">
 </div>
 </div>

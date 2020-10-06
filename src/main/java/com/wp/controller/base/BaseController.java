@@ -1,19 +1,19 @@
 package com.wp.controller.base;
 
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.wp.entity.Page;
 import com.wp.util.Logger;
 import com.wp.util.PageData;
 import com.wp.util.UuidUtil;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 public class BaseController {
-	
+
+	//日志
 	protected Logger logger = Logger.getLogger(this.getClass());
 
 //	private static final long serialVersionUID = 6357869213649815390L;

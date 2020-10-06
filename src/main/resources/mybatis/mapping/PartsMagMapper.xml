@@ -9,7 +9,7 @@
     <select id="findById" parameterType="pd" resultType="pd" useCache="false">
         select *  from material_history
         where  1=1
-        and material_id = #{material_id} and is_consume = 1 and type =1
+        and material_id = #{material_id} and is_consume = 1 and type =1 and factory_id=#{factory_id}
         <if test="sendTimeStart!=null and sendTimeStart!=''">
             and time &gt;= #{sendTimeStart}
         </if>
@@ -23,7 +23,7 @@
     <select id="findById1" parameterType="pd" resultType="pd" useCache="false">
         select *  from material_history
         where  1=1
-        and material_id = #{material_id} and is_consume = 0 and type =1
+        and material_id = #{material_id} and is_consume = 0 and type =1 and factory_id = #{factory_id}
         <if test="sendTimeStart!=null and sendTimeStart!=''">
             and time &gt;= #{sendTimeStart}
         </if>
@@ -43,7 +43,7 @@
     <select id="selectStock" parameterType="pd" resultType="java.lang.Integer">
         select stock from material
         where
-        material_id = #{material_id} and type =1
+        material_id = #{material_id} and type =1 and factory_id = #{factory_id}
     </select>
     <!-- 修改物资入库当前库存 -->
     <update id="editStock" parameterType="pd">
@@ -98,7 +98,11 @@
         </foreach>
     </delete>
 
-
-
+    <!--保存-->
+    <insert id="firstsave" parameterType="pd">
+        insert into material(
+        material_id,type,description,name,stock,factory_id,workshop_id)
+        values (  #{material_id},#{type},#{description}, #{name}, #{stock},#{factory_id},#{workshop_id})
+    </insert>
 
 </mapper>

@@ -35,5 +35,4 @@
         </tr>
     </table>
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>

@@ -13,6 +13,7 @@
     <%@ include file="../system/admin/top.jsp"%>
 </head>
 <body>
+<div id="zhongxin">
 <table id="table_report" class="table table-striped table-bordered table-hover">
     <input type="hidden" id="missionId" name="missionId" value="${missionId}">
     <input type="hidden" name="set_id" id="set_id" value="${pd.set_id }"/>
@@ -52,7 +53,7 @@
         <table id="t" class="table table-striped table-bordered table-hover">
             <tr>
                 <td style="width:110px;text-align: right;padding-top: 13px;">任务审核人:</td>
-                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${USERNAME}" size="18" maxlength="200"  title=""></td>
+                <td><input style="width:90%;" type="text" name="auditor" id="auditor" value="${NAME}" size="18" maxlength="200"  title=""></td>
             </tr>
             <tr>
                 <td style="text-align: center;" colspan="10">
@@ -71,8 +72,8 @@
              </th>--%>
             <th class="center">序号</th>
             <th class="center">所属车间</th>
-            <th class="center">所属巡检区域</th>
-            <th class="center">所属巡检点</th>
+            <%--<th class="center">所属巡检区域</th>
+            <th class="center">所属巡检点</th>--%>
             <th class="center">事件名称</th>
             <th class="center">具体位置</th>
             <th class="center">查看详情</th>
@@ -88,8 +89,8 @@
                                  </td>--%>
                             <td class='center' style="width: 30px;">${vs.index+1}</td>
                             <td style="width: 60px;" class="center"> ${var.workshop}</td>
-                            <td style="width: 139px;" class="center">${var.check_scope}</td>
-                            <td style="width: 60px;" class="center">${var.check_point}</td>
+                            <%--<td style="width: 139px;" class="center">${var.check_scope}</td>
+                            <td style="width: 60px;" class="center">${var.check_point}</td>--%>
                             <td style="width: 100px;" class="center">${var.event_name}</td>
                             <td style="width: 60px;" class="center">${var.instrument_place}</td>
                             <td style="width: 60px;" class="center"><a href="<%=basePath%>taskmag/getWorkContentDetail.do?event_id=${var.event_id}&mission_id=${missionId}">查看详情</a></td>
@@ -118,9 +119,14 @@
     </div>
 
 </table>
+</div>
 </body>
-<%@ include file="../system/admin/bottom.jsp"%>
 </html>
+<!-- 引入 -->
+<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/ace-elements.min.js"></script>
+<script src="static/js/ace.min.js"></script>
 <script type="text/javascript">
     $(top.hangge());
     //重新下发任务

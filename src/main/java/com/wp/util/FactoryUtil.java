@@ -33,4 +33,9 @@ public class FactoryUtil {
         Session session = currentUser.getSession();
         return (String) session.getAttribute(Const.SESSION_NAME);
     }
+    public static String getRoleId() {
+        Subject currentUser = SecurityUtils.getSubject();  //shiro管理的session
+        Session session = currentUser.getSession();
+        return (String) session.getAttribute(Const.ROLENAME);
+    }
 }

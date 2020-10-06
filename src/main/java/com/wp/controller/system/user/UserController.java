@@ -3,6 +3,7 @@ package com.wp.controller.system.user;
 import com.wp.controller.base.BaseController;
 import com.wp.entity.Page;
 import com.wp.entity.system.Role;
+import com.wp.entity.system.User;
 import com.wp.service.databank.FactoryService;
 import com.wp.service.databank.TeamService;
 import com.wp.service.databank.WorkshopService;
@@ -13,7 +14,6 @@ import com.wp.service.worker.WorkerService;
 import com.wp.util.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -165,6 +165,26 @@ public class UserController extends BaseController {
 		map.put("result", errInfo);				//返回结果
 		return AppUtil.returnObject(new PageData(), map);
 	}
+	/**
+	 * 判断手机号是否存在
+	 */
+	@RequestMapping(value="/hasP")
+	@ResponseBody
+	public Object hasP(){
+		Map<String,String> map = new HashMap<String,String>();
+		String errInfo = "success";
+		PageData pd = new PageData();
+		try{
+			pd = this.getPageData();
+			if(userService.findByUP(pd) != null){
+				errInfo = "error";
+			}
+		} catch(Exception e){
+			logger.error(e.toString(), e);
+		}
+		map.put("result", errInfo);				//返回结果
+		return AppUtil.returnObject(new PageData(), map);
+	}
 	
 	/**
 	 * 修改用户
@@ -210,8 +230,12 @@ public class UserController extends BaseController {
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		Subject currentUser = SecurityUtils.getSubject();
+		Session session = currentUser.getSession();
+		User user= (User) session.getAttribute("sessionUser");
+		String user_id = user.getROLE_ID();
 		PrintUtil.print(pd.getString("USER_ID"));
-		
+
 		//顶部修改个人资料
 		String fx = pd.getString("fx");
 		
@@ -224,15 +248,33 @@ public class UserController extends BaseController {
 		}
 		
 		List<Role> roleList = roleService.listAllERRoles();			//列出所有二级角色
+
+		if(user_id.equals("9bb7ce511a6f4b81b48f07ac6ea7c7a0")){  //如果他是车间管理员
+			for(int i=0;i<roleList.size();i++){
+				if( (roleList.get(i).getROLE_ID().equals("63f2b93025994edf8166c2164cd00bc2")) )
+					roleList.remove(i);
+				if( (roleList.get(i).getROLE_ID().equals("77af0944668e417eb3f26dad06dc625e")) )
+					roleList.remove(i);
+				if( (roleList.get(i).getROLE_ID().equals("9bb7ce511a6f4b81b48f07ac6ea7c7a0")) )
+					roleList.remove(i);
+				if( (roleList.get(i).getROLE_ID().equals("1d759aa37b3f4be6b0f6795561239788")) )//离职
+					roleList.remove(i);
+			}
+			//System.out.println("---------888888888888888888--");
+		}
+
 		pd = userService.findByUiId(pd);							//根据ID读取
 
+//		从session中获取两个id
 		String factory_id = FactoryUtil.getFactoryId();
 		String workshop_id = FactoryUtil.getWorkshopId();
+
 		List<PageData> workshopList = new ArrayList<PageData>();
 		if(StringUtils.isNotEmpty(factory_id)) {
 			PageData factory = new PageData();
 			factory.put("factory_id",factory_id);
 			List<PageData> teamList = new ArrayList<PageData>();
+
 			if(StringUtils.isNotEmpty(workshop_id)){
 				PageData workshop = new PageData();
 				workshop.put("id",workshop_id);
@@ -265,12 +307,41 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value="/goAddU")
 	public ModelAndView goAddU()throws Exception{
+
+		//shiro管理的session
+		Subject currentUser = SecurityUtils.getSubject();
+		Session session = currentUser.getSession();
+		User user= (User) session.getAttribute("sessionUser");
+		String role_id = user.getROLE_ID();
+		//System.out.println(role_id);
 				PrintUtil.print("fac id is:" + FactoryUtil.getFactoryId());
 				ModelAndView mv = this.getModelAndView();
 				PageData pd = new PageData();
 				pd = this.getPageData();
 				List<Role> roleList;
 				roleList = roleService.listAllERRoles();			//列出所有二级角色
+				/*for(int i=0;i<roleList.size();i++){
+					System.out.println(roleList.get(i).getROLE_NAME());
+				}*/
+			//System.out.println("---------------------------------");
+				if(role_id.equals("9bb7ce511a6f4b81b48f07ac6ea7c7a0")){  //如果他是车间管理员
+					for(int i=0;i<roleList.size();i++){
+						if( (roleList.get(i).getROLE_ID().equals("63f2b93025994edf8166c2164cd00bc2")) )
+							roleList.remove(i);
+						if( (roleList.get(i).getROLE_ID().equals("77af0944668e417eb3f26dad06dc625e")) )
+							roleList.remove(i);
+						if( (roleList.get(i).getROLE_ID().equals("9bb7ce511a6f4b81b48f07ac6ea7c7a0")) )
+							roleList.remove(i);
+						if( (roleList.get(i).getROLE_ID().equals("1d759aa37b3f4be6b0f6795561239788")) )//离职
+							roleList.remove(i);
+					}
+					//println("---------777--");
+				}
+				/*for(int i=0;i<roleList.size();i++){
+					//System.out.println(roleList.get(i).getROLE_NAME());
+				}*/
+
+
 				String factory_id = FactoryUtil.getFactoryId();
 		        String workshop_id = FactoryUtil.getWorkshopId();
 		        List<PageData> workshopList = new ArrayList<PageData>();
@@ -315,6 +386,7 @@ public class UserController extends BaseController {
 
 				String USERNAME = pd.getString("USERNAME");
 
+				//如果用户已登录
 				if(null != USERNAME && !"".equals(USERNAME)){
 					USERNAME = USERNAME.trim();
 					pd.put("USERNAME", USERNAME);
@@ -368,6 +440,7 @@ public class UserController extends BaseController {
 				mv.addObject("userList", userList);
 				mv.addObject("roleList", roleList);
 				mv.addObject("pd", pd);
+
 				mv.addObject(Const.SESSION_QX,this.getHC());	//按钮权限
 				return mv;
 			}

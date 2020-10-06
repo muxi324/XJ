@@ -37,10 +37,7 @@ public class FactoryService {
     public void edit(PageData pd)throws Exception{
         dao.update("FactoryMapper.edit", pd);
     }
-    //   修改图片
-    public void editPic(PageData pd)throws Exception{
-        dao.update("FactoryMapper.editpic", pd);
-    }
+
     //    取出所有工厂
     public List<Factory> listFactory() throws Exception {
         return (List<Factory>) dao.findForList("FactoryMapper.listFactory", null);
