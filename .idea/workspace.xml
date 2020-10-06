@@ -24,423 +24,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="075e5589-ba24-4451-99c0-4d6c82ad2f51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/event/WorkController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/meterinfo/MeterCompanyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/meterinfo/MeterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RolesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/yunxing/YunxingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/echarts/echartsModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/meterinfo/MeterCompany.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/meterinfo/meter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Roles.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/yunxing/YunxingInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/yunxinginfo/Mission_feedback.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/event/WorkService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/meterinfo/MeterCompanyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/meterinfo/MeterService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/role/RolesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/yunxing/YunXingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/HttpOutUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/groupYunxing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/MeterCompanyMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/MeterMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/Mission_feedbackMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/WorkContentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/YunxingMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/authorization_s.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/meter.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/meter_edit.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/metercom_edit.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/metercompany.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/meterdetail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/meterinfo/zhexian.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask3.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/roles_button.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/roles_edit.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/roles_list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/workManage/addWorkContent.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/workManage/workManage.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/yunxing/EventYunxingInfo.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/yunxing/yunxingInfo.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/ace-rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/ace-skins.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/ace.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/css/font-awesome.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/js/ace-extra.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/assets/layer/layer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/css/ace-rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/Excel.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/edit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/erweima.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/fuzhi1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/xiafa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/xun.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/xunjian.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/images/zanting.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/echarts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/static/js/use/zhexian.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/XJ_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/XJ_war.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/XJ_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/XJ_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__asm_asm_3_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__asm_asm_3_3_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_nodep_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_nodep_3_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_4_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_4_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_3_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_beanutils_commons_beanutils_1_9_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_discovery_commons_discovery_0_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_discovery_commons_discovery_0_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_fileupload_commons_fileupload_1_3_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_httpclient_commons_httpclient_3_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_httpclient_commons_httpclient_3_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dom4j_dom4j_1_6_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_jaxrpc_api_1_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_jaxrpc_api_1_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__jstl_jstl_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jstl_jstl_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_34.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_34.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_6_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ehcache_ehcache_core_2_6_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_ezmorph_ezmorph_1_0_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_axis_axis_1_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_axis_axis_1_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_3_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_3_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_3_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_3_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_james_apache_mime4j_0_6_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_james_apache_mime4j_0_6_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_7_4.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_7_4.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_core_asl_1_9_13.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jackson_jackson_mapper_asl_1_9_13.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_21.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_2_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_2_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_2_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_1_2_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aspects_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_dao_2_0_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_dao_2_0_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_mock_2_0_8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_mock_2_0_8.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_0_4_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_4_0_4_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__taglibs_standard_1_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__taglibs_standard_1_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__wsdl4j_wsdl4j_1_6_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__wsdl4j_wsdl4j_1_6_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_0_b2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XJ.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/AppuserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/DictionariesMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/MenuMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/RoleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/UserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/artifacts/xunjian_war_exploded/WEB-INF/classes/mybatis/system/UserXMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/base/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/base/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/FactoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/FactoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/TeamController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/TeamController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/WorkshopController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/databank/WorkshopController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/echarts/RecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/echarts/RecordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/elecmap/ElecMapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/elecmap/ElecMapController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/event/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/event/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/exception/ExceptionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/exception/ExceptionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/PartsMagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/PartsMagController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/ToolsMagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/materialmag/ToolsMagController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/querytask/QueryTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/querytask/QueryTaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendPeriodTaskJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendPeriodTaskJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendTaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/sendtask/SendTaskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/menu/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/menu/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/role/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/system/user/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskMagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskMagController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskSetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/controller/taskmag/TaskSetController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/dao/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/dao/DAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/Page.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/databank/Workshop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/databank/Workshop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/eventInfo/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/eventInfo/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/entity/system/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/interceptor/shiro/ShiroRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/interceptor/shiro/ShiroRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/FactoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/FactoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/WorkshopService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/databank/WorkshopService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/event/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/event/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/materialmag/PartsMagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/materialmag/PartsMagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/system/menu/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/menu/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/system/role/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/role/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/system/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/system/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskMagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskMagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskSetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/service/taskmag/TaskSetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/Const.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/Const.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/FactoryUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/FactoryUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/Jurisdiction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/Jurisdiction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/ObjectExcelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/ObjectExcelView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/wp/util/quartz/QuartzManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/wp/util/quartz/QuartzManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/controllerTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/docTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/jsp_edit_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/jsp_list_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/mapperMysqlTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/mapperOracleTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/mysql_SQL_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/oracle_SQL_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ftl/createCode/serviceTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/EventMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/EventMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/PartsMagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/PartsMagMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/SysUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/SysUserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskSetMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskSetMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskmagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/TaskmagMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/ToolsMagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/ToolsMagMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/WorkshopMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mapping/WorkshopMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/MenuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/RoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/ApplicationContext-mvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ApplicationContext-mvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spring/ApplicationContext.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ApplicationContext.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/java/TestByXm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/dbconfig.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ehcache.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/controllerTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/docTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/jsp_edit_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/jsp_list_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/mapperMysqlTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/mapperOracleTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/mysql_SQL_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/oracle_SQL_Template.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/ftl/createCode/serviceTemplate.ftl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/log4j.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/information/PicturesMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/mybatis-config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/AppuserMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/DictionariesMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/MenuMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/RoleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/RolesMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/weixin/CommandMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/weixin/ImgmsgMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/mybatis/weixin/TextmsgMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring/ApplicationContext-mvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/spring/ApplicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/team.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/team.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/workshop.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/databank/workshop.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/elecmap/elecmap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/elecmap/elecmap.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/exception/exceptionDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/exception/exceptionDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_decrease.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_decrease.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_input_history.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_mag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_mag.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_output_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/parts_output_history.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_decrease.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_decrease.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_input_history.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_mag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_mag.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_output_history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/materialmag/tools_output_history.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/querytask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/querytask.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/task_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/querytask/task_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/save_result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/save_result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask1.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/sendtask/sendtask2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/default.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/default.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/head.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/left.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/tab.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/tab.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/admin/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_button.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_button.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/role/role_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/system/user/user_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/WorkContentDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/WorkContentDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addEvent.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addEvent.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addWorkContent.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/addWorkContent.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/eventManage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/eventManage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/qrCode.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskManage/qrCode.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/refuse_task1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/refuse_task1.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_set.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/task_set.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/workcontentdetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/taskmag/workcontentdetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/json-lib-2.4-jdk15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/plugins/ueditor/ueditor.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/plugins/ueditor/ueditor.all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/base/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/base/BaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/AreaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/AreaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/PointController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/PointController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/WorkshopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/databank/WorkshopController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/echarts/RecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/echarts/RecordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/elecmap/ElecMapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/elecmap/ElecMapController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/exception/ExceptionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/exception/ExceptionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/querytask/QueryTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/querytask/QueryTaskController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/sendtask/SendTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/sendtask/SendTaskController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/login/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/login/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/menu/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/menu/MenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/role/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/role/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/system/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/system/user/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/taskmag/TaskMagController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/taskmag/TaskMagController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/controller/worker/WorkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/controller/worker/WorkerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/Page.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/system/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/entity/system/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/entity/system/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/interceptor/shiro/ShiroRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/interceptor/shiro/ShiroRealm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/databank/WorkshopService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/databank/WorkshopService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/echarts/RecordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/echarts/RecordService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/elecmap/ElecMapService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/elecmap/ElecMapService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/exception/ExceptionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/exception/ExceptionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/sendtask/SendTaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/sendtask/SendTaskService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/system/menu/MenuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/system/menu/MenuService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/system/role/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/system/role/RoleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/system/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/system/user/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/taskmag/TaskMagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/taskmag/TaskMagService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/service/worker/WorkerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/service/worker/WorkerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/Const.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/Jurisdiction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/Jurisdiction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/ObjectExcelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/ObjectExcelView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/PageData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/PageData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/wp/util/TwoDimensionCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/wp/util/TwoDimensionCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/log4j.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/ElecMapMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/ElecMapMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/ExceptionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/ExceptionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/QueryTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/QueryTaskMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/RecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/RecordMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/SendTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/SendTaskMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/TaskmagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/TaskmagMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkerMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkshopMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mapping/WorkshopMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/MenuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/RoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis/system/UserXMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/UserXMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring/ApplicationContext-mvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/spring/ApplicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/base/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/base/BaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/AreaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/AreaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/PointController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/PointController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/WorkshopController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/databank/WorkshopController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/echarts/RecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/echarts/RecordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/elecmap/ElecMapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/elecmap/ElecMapController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/exception/ExceptionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/exception/ExceptionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/querytask/QueryTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/querytask/QueryTaskController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/sendtask/SendTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/sendtask/SendTaskController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/login/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/login/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/menu/MenuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/menu/MenuController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/role/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/role/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/user/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/system/user/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/taskmag/TaskMagController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/taskmag/TaskMagController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/worker/WorkerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/controller/worker/WorkerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/Page.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/entity/system/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/interceptor/shiro/ShiroRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/interceptor/shiro/ShiroRealm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/databank/WorkshopService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/databank/WorkshopService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/echarts/RecordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/echarts/RecordService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/elecmap/ElecMapService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/elecmap/ElecMapService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/exception/ExceptionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/exception/ExceptionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/sendtask/SendTaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/sendtask/SendTaskService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/menu/MenuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/menu/MenuService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/role/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/role/RoleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/system/user/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/taskmag/TaskMagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/taskmag/TaskMagService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/worker/WorkerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/service/worker/WorkerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Const.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Const.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Jurisdiction.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/Jurisdiction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/ObjectExcelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/ObjectExcelView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/PageData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/PageData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/TwoDimensionCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/com/wp/util/TwoDimensionCode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/dbconfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/dbconfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/log4j.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/log4j.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/information/PicturesMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ElecMapMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ElecMapMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ExceptionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/ExceptionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/QueryTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/QueryTaskMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/RecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/RecordMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/SendTaskMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/SendTaskMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/TaskmagMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/TaskmagMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkerMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkerMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkshopMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mapping/WorkshopMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/mybatis-config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/MenuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/RoleMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserXMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/system/UserXMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/weixin/CommandMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/weixin/ImgmsgMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/mybatis/weixin/TextmsgMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/spring/ApplicationContext-mvc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/classes/spring/ApplicationContext.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_area.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_area.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_point.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/inspt_point.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/databank/workshop_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/detailPath.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/detailPath.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/elecmap.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/elecmap.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/errorDetail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/elecmap/errorDetail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/exception/exceptionInfo.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/exception/exceptionInfo.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/querytask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/querytask.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/task_detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/querytask/task_detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/save_result.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/save_result.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask1.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask2.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/sendtask/sendtask2.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/default.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/default.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/head.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/left.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/left.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/tab.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/tab.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/top.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/admin/top.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_add.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_button.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_button.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/role/role_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/system/user/user_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/refuse_task1.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/refuse_task1.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/task_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/taskmag/task_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_edit.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/jsp/worker/worker_list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/lib/json-lib-2.4-jdk15.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/lib/junit-3.8.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/plugins/ueditor/ueditor.all.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/plugins/ueditor/ueditor.all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/static/css/bootstrap-datetimepicker.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/static/css/bootstrap-datetimepicker.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/static/js/bootstrap-datetimepicker.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/static/js/bootstrap-datetimepicker.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/uploadFiles/file/Workers.xls" beforeDir="false" afterPath="$PROJECT_DIR$/target/xunjian/uploadFiles/file/Workers.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/xunjian/uploadFiles/uploadImgs/head_pic/20180315/4ad11dc60c5045f6a770e860336ab2e5.jpg" beforeDir="false" />
-    </list>
+    <list default="true" id="075e5589-ba24-4451-99c0-4d6c82ad2f51" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -641,8 +225,16 @@
       <workItem from="1601966443450" duration="3566000" />
       <workItem from="1601970085816" duration="7385000" />
       <workItem from="1601977565827" duration="12000" />
-      <workItem from="1601977600783" duration="922000" />
+      <workItem from="1601977600783" duration="1551000" />
     </task>
+    <task id="LOCAL-00001" summary="测试10.6">
+      <created>1601979156930</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601979156930</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView">
@@ -669,13 +261,17 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="测试10.6" />
+    <option name="LAST_COMMIT_MESSAGE" value="测试10.6" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601978495118">
+    <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601978653854">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600741086990" />
     <state x="2035" y="9" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600761671723" />
-    <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1601978495118" />
+    <state x="92" y="7" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1601978653854" />
     <state x="399" y="0" key="#com.intellij.ide.util.MemberChooser" timestamp="1600917070229">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -687,86 +283,94 @@
     <state x="371" y="95" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600763194457" />
     <state x="2384" y="137" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600763082821" />
     <state x="371" y="94" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1601962357400" />
-    <state x="370" y="40" key="FileChooserDialogImpl" timestamp="1601964545158">
+    <state x="370" y="40" key="FileChooserDialogImpl" timestamp="1601978612272">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="370" y="40" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1601964545158" />
-    <state width="1167" height="427" key="GridCell.Tab.0.bottom" timestamp="1601978232468">
+    <state x="370" y="40" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1601978612272" />
+    <state width="1167" height="427" key="GridCell.Tab.0.bottom" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.0.bottom/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
-    <state width="1167" height="427" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
-    <state width="1167" height="427" key="GridCell.Tab.0.center" timestamp="1601978232468">
+    <state width="1167" height="427" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.0.center" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.0.center/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
-    <state width="1167" height="427" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
-    <state width="1167" height="427" key="GridCell.Tab.0.left" timestamp="1601978232468">
+    <state width="1167" height="427" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.0.left" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.0.left/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
-    <state width="1167" height="427" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
-    <state width="1167" height="427" key="GridCell.Tab.0.right" timestamp="1601978232468">
+    <state width="1167" height="427" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.0.right" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.0.right/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880055" />
-    <state width="1167" height="427" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1601978232468" />
-    <state width="1167" height="427" key="GridCell.Tab.1.bottom" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.1.bottom" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.1.bottom/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.1.bottom/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
-    <state width="1167" height="427" key="GridCell.Tab.1.center" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.1.center" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.1.center/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.1.center/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
-    <state width="1167" height="427" key="GridCell.Tab.1.left" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.1.left" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.1.left/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.1.left/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
-    <state width="1167" height="427" key="GridCell.Tab.1.right" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.1.right" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.1.right/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.1.right/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
-    <state width="1167" height="427" key="GridCell.Tab.2.bottom" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.2.bottom" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.2.bottom/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.2.bottom/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.2.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
-    <state width="1167" height="427" key="GridCell.Tab.2.center" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.2.bottom/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.2.center" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.2.center/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.2.center/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.2.center/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
-    <state width="1167" height="427" key="GridCell.Tab.2.left" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.2.center/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.2.left" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.2.left/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.2.left/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.2.left/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
-    <state width="1167" height="427" key="GridCell.Tab.2.right" timestamp="1601978232469">
+    <state width="1167" height="427" key="GridCell.Tab.2.left/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state width="1167" height="427" key="GridCell.Tab.2.right" timestamp="1601978717651">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1039" height="411" key="GridCell.Tab.2.right/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1600955703922" />
     <state width="1319" height="345" key="GridCell.Tab.2.right/0.0.1280.720/1920.0.1600.900@1920.0.1600.900" timestamp="1600851880056" />
-    <state width="1167" height="427" key="GridCell.Tab.2.right/0.0.1280.720@0.0.1280.720" timestamp="1601978232469" />
+    <state width="1167" height="427" key="GridCell.Tab.2.right/0.0.1280.720@0.0.1280.720" timestamp="1601978717651" />
+    <state x="52" y="0" key="RollbackChangesDialog" timestamp="1601978829131">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="52" y="0" key="RollbackChangesDialog/0.0.1280.720@0.0.1280.720" timestamp="1601978829131" />
     <state x="0" y="0" key="SettingsEditor" timestamp="1601973841313">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="0" y="0" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1601973841313" />
+    <state x="133" y="29" key="Vcs.Push.Dialog.v2" timestamp="1601978781375">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="133" y="29" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1601978781375" />
     <state x="213" y="-1" width="840" height="718" key="search.everywhere.popup" timestamp="1601976721797">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
