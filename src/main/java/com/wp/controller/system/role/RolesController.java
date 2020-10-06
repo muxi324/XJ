@@ -97,6 +97,7 @@ public class RolesController extends BaseController {
 		try{
 			String msg = pd.getString("msg");
 			//System.out.println("msg"+msg);
+			System.out.println(msg);
 
 			if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){rolesService.gysqxc(msg,pd);}
 			mv.setViewName("save_result");
