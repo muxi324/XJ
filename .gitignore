@@ -20,6 +20,8 @@ lib/
 *.zip
 *.tar
 *.tar.gz
+workspace.xml
+
 
 # eclipse ignore
 .project

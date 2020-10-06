@@ -225,7 +225,7 @@
       <workItem from="1601966443450" duration="3566000" />
       <workItem from="1601970085816" duration="7385000" />
       <workItem from="1601977565827" duration="12000" />
-      <workItem from="1601977600783" duration="7870000" />
+      <workItem from="1601977600783" duration="8200000" />
     </task>
     <task id="LOCAL-00001" summary="测试10.6">
       <created>1601979156930</created>
@@ -255,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601987022941</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="更新了.gitignore 文件">
+      <created>1601987081355</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1601987081355</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -398,9 +405,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="0" y="0" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1601982927727" />
-    <state x="133" y="29" key="Vcs.Push.Dialog.v2" timestamp="1601984356095">
+    <state x="133" y="29" key="Vcs.Push.Dialog.v2" timestamp="1601987356559">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state x="133" y="29" key="Vcs.Push.Dialog.v2/0.0.1280.720/1920.0.1600.900@0.0.1280.720" timestamp="1601987356559" />
     <state x="133" y="29" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1601984356095" />
     <state x="307" y="102" key="git4idea.merge.GitPullDialog" timestamp="1601985370810">
       <screen x="0" y="0" width="1280" height="720" />
