@@ -1,5 +1,4 @@
 
-
 # maven ignore
 target/
 .idea/
@@ -23,7 +22,6 @@ lib/
 *.tar.gz
 
 # eclipse ignore
-.settings/
 .project
 .classpath
 
