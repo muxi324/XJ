@@ -1,7 +1,21 @@
-/.idea
+
 
 # maven ignore
 target/
+.idea/
+.settings/
+classes/
+*.ftl
+*.txt
+*.MF
+plugins/
+static/
+uploadFiles/
+lib/
+*.ico
+*.class
+.XJ.iml
+.xunjian.iml
 *.jar
 *.war
 *.zip
